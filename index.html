@@ -243,19 +243,28 @@
       gap: 8px;
       margin-bottom: 12px;
     }
-    .meta div {
-      background: #fff;
-      border: 1px solid var(--line);
+    .meta-box {
       border-radius: 8px;
       padding: 8px 10px;
+      border: 1px solid transparent;
     }
-    .meta .lbl {
+    .meta-box .lbl {
       font-size: 0.65rem;
       text-transform: uppercase;
       letter-spacing: .05em;
-      color: var(--muted);
+      font-weight: 600;
+      opacity: 0.75;
     }
-    .meta .val { font-weight: 500; font-size: 0.86rem; margin-top: 2px; word-break: break-word; }
+    .meta-box .val {
+      font-weight: 600;
+      font-size: 0.86rem;
+      margin-top: 3px;
+      word-break: break-word;
+    }
+    .meta-box.role { background: var(--accent-soft); color: var(--accent); border-color: #b7d9d9; }
+    .meta-box.type { background: var(--formula-bg); color: var(--formula); border-color: #b7c9e0; }
+    .meta-box.period { background: var(--tagged-bg); color: var(--tagged); border-color: #d8c0e0; }
+    .meta-box.balance { background: var(--standalone-bg); color: var(--standalone); border-color: #b7d4c0; }
     .doc {
       background: #fff;
       border: 1px solid var(--line);
@@ -618,10 +627,10 @@
           <div>${badge(c)}</div>
           ${summarize(c)}
           <div class="meta">
-            <div><div class="lbl">Role</div><div class="val">${esc(role.label)}</div></div>
-            <div><div class="lbl">Type</div><div class="val">${esc(c.t || "—")}</div></div>
-            <div><div class="lbl">Period</div><div class="val">${esc(c.p || "—")}</div></div>
-            <div><div class="lbl">Balance</div><div class="val">${esc(c.b || "—")}</div></div>
+            <div class="meta-box role"><div class="lbl">Role</div><div class="val">${esc(role.label)}</div></div>
+            <div class="meta-box type"><div class="lbl">Type</div><div class="val">${esc(c.t || "—")}</div></div>
+            <div class="meta-box period"><div class="lbl">Period</div><div class="val">${esc(c.p || "—")}</div></div>
+            <div class="meta-box balance"><div class="lbl">Balance</div><div class="val">${esc(c.b || "—")}</div></div>
           </div>
           ${c.d ? `<div class="doc">${esc(c.d)}</div>` : ""}
           ${section("Formula", "How this concept is calculated. Click a term to open it.", formulaHtml)}
