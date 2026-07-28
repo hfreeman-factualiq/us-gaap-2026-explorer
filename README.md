@@ -5,11 +5,16 @@ Simple HTML explorer for the US GAAP 2026 taxonomy: how concepts are grouped, wh
 ## Run locally
 
 ```bash
-cd viewer
 python -m http.server 8877 --bind 127.0.0.1
 ```
 
 Open http://127.0.0.1:8877
+
+Or open the `viewer/` folder the same way.
+
+## Live site
+
+https://hfreeman-factualiq.github.io/us-gaap-2026-explorer/
 
 ## How to use
 
