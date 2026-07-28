@@ -303,10 +303,8 @@
     }
     .equation .eq-net {
       display: block;
-      font-size: 0.7rem;
+      font-size: 0.72rem;
       font-weight: 600;
-      text-transform: uppercase;
-      letter-spacing: .04em;
       color: var(--muted);
       margin-bottom: 6px;
     }
@@ -511,6 +509,13 @@
       return byNet;
     }
 
+    function prettyNet(net) {
+      return String(net || "")
+        .replace(/([a-z])([A-Z])/g, "$1 $2")
+        .replace(/([A-Z]+)([A-Z][a-z])/g, "$1 $2")
+        .replace(/[-_]/g, " ");
+    }
+
     function renderEquations(parentName, c) {
       const byNet = formulasByNetwork(c);
       if (!byNet.size) return "";
@@ -518,7 +523,7 @@
       for (const [net, parts] of byNet) {
         const rhs = parts.map((item, i) => formatSignedTerm(item, i === 0)).join(" ");
         html += `<div class="equation">
-          <span class="eq-net">${esc(net)}</span>
+          <span class="eq-net">${esc(prettyNet(net))}</span>
           <div class="eq-line">
             <span class="eq-left">${esc(labelOf(parentName))}</span>
             <span class="eq-op">=</span>
