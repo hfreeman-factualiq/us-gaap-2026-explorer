@@ -44,17 +44,22 @@
       height: 100%;
       display: grid;
       grid-template-rows: auto auto 1fr;
-      gap: 12px;
-      padding: 16px;
+      gap: 8px;
+      padding: 10px 12px;
+    }
+    header {
+      display: flex;
+      flex-wrap: wrap;
+      align-items: center;
+      gap: 8px 14px;
     }
     header h1 {
       margin: 0;
-      font-size: 1.7rem;
+      font-size: 1.15rem;
       letter-spacing: -0.02em;
     }
     header h1 span { color: var(--accent); }
-    header p { margin: 6px 0 0; color: var(--muted); font-size: 0.92rem; }
-    .stats { display: flex; flex-wrap: wrap; gap: 8px; margin-top: 10px; }
+    .stats { display: flex; flex-wrap: wrap; gap: 6px; }
     .stat {
       background: var(--panel);
       border: 1px solid var(--line);
@@ -322,14 +327,16 @@
     .equation .eq-coef { font-family: var(--mono); font-size: 0.85em; color: var(--muted); }
     .side { font-size: 0.65rem; color: var(--muted); text-align: right; }
     .empty { color: var(--muted); text-align: center; padding: 28px 12px; }
-    .loading, .error {
-      display: grid;
-      place-items: center;
-      min-height: 50vh;
-      color: var(--muted);
-      font-weight: 600;
+    .error {
+      color: #7a1f1f;
+      max-width: 520px;
+      margin: 24px auto;
+      background: #fff;
+      border: 1px solid #e0b4b4;
+      border-radius: 12px;
+      padding: 20px;
+      font-weight: 400;
     }
-    .error { color: #7a1f1f; max-width: 520px; margin: 40px auto; background: #fff; border: 1px solid #e0b4b4; border-radius: 12px; padding: 20px; font-weight: 400; }
     @media (max-width: 900px) {
       .main, .toolbar { grid-template-columns: 1fr; }
       .panel { max-height: 55vh; }
@@ -337,11 +344,9 @@
   </style>
 </head>
 <body>
-  <div id="boot" class="loading">Loading US GAAP 2026…</div>
-  <div id="app" class="app" hidden>
+  <div id="app" class="app">
     <header>
       <h1>US GAAP <span>2026</span></h1>
-      <p>Start from the top three concepts, expand outward, and inspect how each concept relates to others.</p>
       <div class="stats" id="stats"></div>
     </header>
 
@@ -789,8 +794,6 @@
         const res = await fetch("taxonomy-data.json");
         if (!res.ok) throw new Error(`HTTP ${res.status}`);
         state.data = await res.json();
-        $("boot").hidden = true;
-        $("app").hidden = false;
         renderStats();
         bind();
         const roots = state.data.ontologyRoots || [];
@@ -798,11 +801,10 @@
         renderTree();
         renderDetail(state.selected);
       } catch (err) {
-        $("boot").outerHTML = `<div class="error">
+        $("app").innerHTML = `<div class="error">
           <h2>Could not load data</h2>
-          <p>Serve the <code>viewer</code> folder over HTTP:</p>
-          <p><code>cd viewer && python -m http.server 8877 --bind 127.0.0.1</code></p>
-          <p>Then open <code>http://127.0.0.1:8877</code></p>
+          <p>Serve this folder over HTTP (cannot open as a file:// page).</p>
+          <p><code>python -m http.server 8877 --bind 127.0.0.1</code></p>
           <p>${esc(String(err))}</p>
         </div>`;
       }
