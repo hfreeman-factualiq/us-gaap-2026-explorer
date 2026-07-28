@@ -1,0 +1,10 @@
+# Raw FASB taxonomy package (large XML/XSD) — not needed to run the app
+us-gaap-2026/
+viewer/
+build_viewer_data.py
+__pycache__/
+*.pyc
+.venv/
+venv/
+.env
+.DS_Store
