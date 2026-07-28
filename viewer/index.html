@@ -121,6 +121,27 @@
       border-color: var(--accent);
       box-shadow: 0 0 0 3px var(--accent-soft);
     }
+    .download-group {
+      display: inline-flex;
+      gap: 6px;
+      align-items: center;
+      flex-wrap: wrap;
+    }
+    .download-group button {
+      border: 1px solid var(--line);
+      background: #fff;
+      color: var(--ink);
+      border-radius: 999px;
+      padding: 6px 12px;
+      font: inherit;
+      font-size: 0.78rem;
+      font-weight: 500;
+      cursor: pointer;
+    }
+    .download-group button:hover {
+      border-color: var(--accent);
+      background: var(--accent-soft);
+    }
     .badge.populated { background: #e4f2e8; color: #1f6b3a; }
     .badge.derived-co { background: #dde8f5; color: #1e4d8c; }
 
@@ -384,6 +405,10 @@
         <span style="font-size:0.75rem;color:var(--muted)">Tree</span>
         <select id="tree-source" class="tree-select" title="Select ontology or company tree"></select>
       </label>
+      <div class="download-group" title="Download the currently loaded tree">
+        <button type="button" id="dl-json">Download JSON</button>
+        <button type="button" id="dl-csv">Download CSV</button>
+      </div>
       <div class="stats" id="stats"></div>
     </header>
 
@@ -983,6 +1008,139 @@
       $("detail").scrollTop = 0;
     }
 
+    function downloadBasename() {
+      const meta = state.data?.meta || {};
+      if (meta.companySlug) return `${meta.companySlug}-ontology`;
+      if (meta.company) {
+        return String(meta.company).toLowerCase().replace(/[^a-z0-9]+/g, "-").replace(/^-|-$/g, "") + "-ontology";
+      }
+      const ver = meta.ontologyVersion || state.sourceId || "ontology";
+      return `financial-ontology-${ver}`;
+    }
+
+    function triggerDownload(filename, blob) {
+      const url = URL.createObjectURL(blob);
+      const a = document.createElement("a");
+      a.href = url;
+      a.download = filename;
+      document.body.appendChild(a);
+      a.click();
+      a.remove();
+      setTimeout(() => URL.revokeObjectURL(url), 1500);
+    }
+
+    function csvEscape(val) {
+      const s = val == null ? "" : String(val);
+      if (/[",\n\r]/.test(s)) return `"${s.replace(/"/g, '""')}"`;
+      return s;
+    }
+
+    function linkIds(list) {
+      return (list || []).map((x) => (typeof x === "string" ? x : x.c)).filter(Boolean).join("|");
+    }
+
+    function formulaWeights(list) {
+      return (list || [])
+        .map((x) => {
+          if (typeof x === "string") return x;
+          const w = x.w == null ? "" : `:${x.w}`;
+          return `${x.c}${w}`;
+        })
+        .filter(Boolean)
+        .join("|");
+    }
+
+    function downloadJson() {
+      if (!state.data) return;
+      const payload = {
+        ...state.data,
+        export: {
+          format: "json",
+          exportedAt: new Date().toISOString(),
+          sourceId: state.sourceId,
+        },
+      };
+      const text = JSON.stringify(payload, null, 2);
+      triggerDownload(
+        `${downloadBasename()}.json`,
+        new Blob([text], { type: "application/json;charset=utf-8" })
+      );
+    }
+
+    function downloadCsv() {
+      if (!state.data?.concepts) return;
+      const headers = [
+        "id",
+        "label",
+        "definition",
+        "layer",
+        "kind",
+        "period",
+        "balance",
+        "abstract",
+        "expression",
+        "tree_children",
+        "formula_children",
+        "used_by",
+        "company_labels",
+        "company_populated",
+        "company_derived",
+        "company_gap",
+        "core_tier",
+      ];
+      const rows = [headers.join(",")];
+      const concepts = Object.values(state.data.concepts).sort((a, b) =>
+        String(a.n || "").localeCompare(String(b.n || ""))
+      );
+      for (const c of concepts) {
+        rows.push(
+          [
+            c.n,
+            c.l,
+            c.d,
+            c.layer,
+            c.k,
+            c.p,
+            c.b,
+            c.a ? "true" : "false",
+            c.expression || "",
+            linkIds(c.tc),
+            formulaWeights(c.cc),
+            linkIds(c.cp),
+            (c.companyLabels || []).join("|"),
+            c.companyPopulated ? "true" : "false",
+            c.companyDerived ? "true" : "false",
+            c.companyGap ? "true" : "false",
+            c.coreTier || "",
+          ].map(csvEscape).join(",")
+        );
+      }
+      // Edge list sheet as extra section would need a second file — emit companion edges CSV too
+      const edgeHeaders = ["parent_id", "child_id", "edge_type", "order", "weight", "network"];
+      const edgeRows = [edgeHeaders.join(",")];
+      for (const c of concepts) {
+        for (const x of c.tc || []) {
+          edgeRows.push(
+            [c.n, x.c, "tree", x.o ?? "", x.w ?? "", x.net ?? ""].map(csvEscape).join(",")
+          );
+        }
+        for (const x of c.cc || []) {
+          edgeRows.push(
+            [c.n, x.c, "formula", x.o ?? "", x.w ?? "", x.net ?? ""].map(csvEscape).join(",")
+          );
+        }
+      }
+      const base = downloadBasename();
+      triggerDownload(
+        `${base}-concepts.csv`,
+        new Blob(["\ufeff" + rows.join("\n")], { type: "text/csv;charset=utf-8" })
+      );
+      triggerDownload(
+        `${base}-edges.csv`,
+        new Blob(["\ufeff" + edgeRows.join("\n")], { type: "text/csv;charset=utf-8" })
+      );
+    }
+
     function bind() {
       let t = null;
       $("q").addEventListener("input", (e) => {
@@ -1006,6 +1164,8 @@
         if (!entry) return;
         await loadTree(entry);
       });
+      $("dl-json").addEventListener("click", downloadJson);
+      $("dl-csv").addEventListener("click", downloadCsv);
     }
 
     function fillCatalogSelect() {
