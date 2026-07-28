@@ -291,6 +291,37 @@
     }
     .formula-row:hover { background: #e4ebf0; }
     .weight { font-family: var(--mono); color: var(--formula); font-size: 0.78rem; font-weight: 500; }
+    .equation {
+      background: #fff;
+      border: 1px solid var(--line);
+      border-left: 4px solid var(--formula);
+      border-radius: 8px;
+      padding: 12px 14px;
+      margin-bottom: 10px;
+      font-size: 0.92rem;
+      line-height: 1.55;
+    }
+    .equation .eq-net {
+      display: block;
+      font-size: 0.7rem;
+      font-weight: 600;
+      text-transform: uppercase;
+      letter-spacing: .04em;
+      color: var(--muted);
+      margin-bottom: 6px;
+    }
+    .equation .eq-line { word-break: break-word; }
+    .equation .eq-left { font-weight: 600; }
+    .equation .eq-op { color: var(--muted); margin: 0 0.35em; font-weight: 500; }
+    .equation .eq-term {
+      color: var(--formula);
+      cursor: pointer;
+      text-decoration: underline;
+      text-decoration-color: #b7c9e0;
+      text-underline-offset: 2px;
+    }
+    .equation .eq-term:hover { color: var(--accent); text-decoration-color: var(--accent); }
+    .equation .eq-coef { font-family: var(--mono); font-size: 0.85em; color: var(--muted); }
     .side { font-size: 0.65rem; color: var(--muted); text-align: right; }
     .empty { color: var(--muted); text-align: center; padding: 28px 12px; }
     .loading, .error {
@@ -452,6 +483,66 @@
       return `<div class="section"><h4>${title}</h4><p class="sec-hint">${hint}</p>${html}</div>`;
     }
 
+    function termLink(name) {
+      return `<span class="eq-term" data-go="${escAttr(name)}" title="${escAttr(name)}">${esc(labelOf(name))}</span>`;
+    }
+
+    function formatSignedTerm(item, isFirst) {
+      const abs = Math.abs(item.w);
+      const coef = abs !== 1 ? `<span class="eq-coef">${abs} × </span>` : "";
+      const term = `${coef}${termLink(item.c)}`;
+      if (isFirst) {
+        return item.w < 0 ? `<span class="eq-op">−</span> ${term}` : term;
+      }
+      return item.w < 0
+        ? `<span class="eq-op">−</span> ${term}`
+        : `<span class="eq-op">+</span> ${term}`;
+    }
+
+    /** Group calc children by network; dedupe within each network. */
+    function formulasByNetwork(c) {
+      const byNet = new Map();
+      for (const item of c.cc || []) {
+        if (!byNet.has(item.net)) byNet.set(item.net, []);
+        const list = byNet.get(item.net);
+        if (list.some((x) => x.c === item.c)) continue;
+        list.push(item);
+      }
+      return byNet;
+    }
+
+    function renderEquations(parentName, c) {
+      const byNet = formulasByNetwork(c);
+      if (!byNet.size) return "";
+      let html = "";
+      for (const [net, parts] of byNet) {
+        const rhs = parts.map((item, i) => formatSignedTerm(item, i === 0)).join(" ");
+        html += `<div class="equation">
+          <span class="eq-net">${esc(net)}</span>
+          <div class="eq-line">
+            <span class="eq-left">${esc(labelOf(parentName))}</span>
+            <span class="eq-op">=</span>
+            ${rhs}
+          </div>
+        </div>`;
+      }
+      return html;
+    }
+
+    function renderRatioEquation(c) {
+      if (!c.num?.length && !c.den?.length) return "";
+      const nums = (c.num || []).map(termLink).join(' <span class="eq-op">+</span> ');
+      const dens = (c.den || []).map(termLink).join(' <span class="eq-op">+</span> ');
+      return `<div class="equation">
+        <span class="eq-net">Ratio</span>
+        <div class="eq-line">
+          <span class="eq-left">${esc(c.l || c.n)}</span>
+          <span class="eq-op">=</span>
+          (${nums || "?"}) <span class="eq-op">/</span> (${dens || "?"})
+        </div>
+      </div>`;
+    }
+
     function renderDetail(name) {
       const c = concept(name);
       const el = $("detail");
@@ -461,6 +552,8 @@
       }
       state.selected = name;
       const role = roleOf(c);
+
+      const formulaHtml = renderEquations(name, c) + renderRatioEquation(c);
 
       let built = "";
       if (c.de?.length) {
@@ -476,16 +569,11 @@
         built += `</div>`;
       }
       if (c.cc?.length) {
-        const byNet = new Map();
-        for (const item of c.cc) {
-          if (!byNet.has(item.net)) byNet.set(item.net, new Map());
-          const m = byNet.get(item.net);
-          if (!m.has(item.c)) m.set(item.c, item);
-        }
+        const byNet = formulasByNetwork(c);
         built += `<div class="formula">`;
-        for (const [net, map] of byNet) {
+        for (const [net, parts] of byNet) {
           built += `<div class="formula-h">${esc(net)}</div>`;
-          for (const item of map.values()) {
+          for (const item of parts) {
             const sign = item.w < 0 ? String(item.w) : `+${item.w}`;
             built += `<div class="formula-row" data-go="${escAttr(item.c)}">
               <div class="weight">${sign}</div>
@@ -526,6 +614,7 @@
             <div><div class="lbl">Balance</div><div class="val">${esc(c.b || "—")}</div></div>
           </div>
           ${c.d ? `<div class="doc">${esc(c.d)}</div>` : ""}
+          ${section("Formula", "How this concept is calculated. Click a term to open it.", formulaHtml)}
           ${section("Built from", "Concepts this one needs.", built)}
           ${section("Used by", "Concepts that depend on this one.", usedHtml)}
           ${section("Type grouping", "Broader and narrower types.", groupHtml)}
