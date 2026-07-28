@@ -1,0 +1,740 @@
+{
+  "meta": {
+    "source": "finnhub",
+    "endpoint": "/stock/metric",
+    "purpose": "Ontology expansion — normalized company metrics/ratios catalog",
+    "notes": "Catalog of Finnhub metric keys for Graph RAG / ontology coverage. Set FINNHUB_API_KEY to enlarge from a live AAPL sample. No ongoing calc engine.",
+    "liveKeysSampled": 0
+  },
+  "metrics": [
+    {
+      "id": "fh:metric:10dayaveragetradingvolume",
+      "key": "10DayAverageTradingVolume",
+      "label": "10DayAverageTradingVolume",
+      "category": "liquidity",
+      "expression": "Trading volume",
+      "source": "finnhub",
+      "kind": "metric"
+    },
+    {
+      "id": "fh:metric:13weekpricereturndaily",
+      "key": "13WeekPriceReturnDaily",
+      "label": "13WeekPriceReturnDaily",
+      "category": "valuation",
+      "expression": "Price return",
+      "source": "finnhub",
+      "kind": "metric"
+    },
+    {
+      "id": "fh:metric:26weekpricereturndaily",
+      "key": "26WeekPriceReturnDaily",
+      "label": "26WeekPriceReturnDaily",
+      "category": "valuation",
+      "expression": "Price return",
+      "source": "finnhub",
+      "kind": "metric"
+    },
+    {
+      "id": "fh:metric:3monthaveragetradingvolume",
+      "key": "3MonthAverageTradingVolume",
+      "label": "3MonthAverageTradingVolume",
+      "category": "liquidity",
+      "expression": "Trading volume",
+      "source": "finnhub",
+      "kind": "metric"
+    },
+    {
+      "id": "fh:metric:52weekhigh",
+      "key": "52WeekHigh",
+      "label": "52WeekHigh",
+      "category": "valuation",
+      "expression": "Price level",
+      "source": "finnhub",
+      "kind": "metric"
+    },
+    {
+      "id": "fh:metric:52weeklow",
+      "key": "52WeekLow",
+      "label": "52WeekLow",
+      "category": "valuation",
+      "expression": "Price level",
+      "source": "finnhub",
+      "kind": "metric"
+    },
+    {
+      "id": "fh:metric:52weekpricereturndaily",
+      "key": "52WeekPriceReturnDaily",
+      "label": "52WeekPriceReturnDaily",
+      "category": "valuation",
+      "expression": "Price return",
+      "source": "finnhub",
+      "kind": "metric"
+    },
+    {
+      "id": "fh:metric:5daypricereturndaily",
+      "key": "5DayPriceReturnDaily",
+      "label": "5DayPriceReturnDaily",
+      "category": "valuation",
+      "expression": "Price return",
+      "source": "finnhub",
+      "kind": "metric"
+    },
+    {
+      "id": "fh:metric:assetturnoverannual",
+      "key": "assetTurnoverAnnual",
+      "label": "assetTurnoverAnnual",
+      "category": "efficiency",
+      "expression": "Revenue / Assets",
+      "source": "finnhub",
+      "kind": "metric"
+    },
+    {
+      "id": "fh:metric:assetturnoverttm",
+      "key": "assetTurnoverTTM",
+      "label": "assetTurnoverTTM",
+      "category": "efficiency",
+      "expression": "Revenue / Assets",
+      "source": "finnhub",
+      "kind": "metric"
+    },
+    {
+      "id": "fh:metric:bookvaluepershareannual",
+      "key": "bookValuePerShareAnnual",
+      "label": "bookValuePerShareAnnual",
+      "category": "per-share",
+      "expression": "Equity / Shares",
+      "source": "finnhub",
+      "kind": "metric"
+    },
+    {
+      "id": "fh:metric:bookvaluepersharequarterly",
+      "key": "bookValuePerShareQuarterly",
+      "label": "bookValuePerShareQuarterly",
+      "category": "per-share",
+      "expression": "Equity / Shares",
+      "source": "finnhub",
+      "kind": "metric"
+    },
+    {
+      "id": "fh:metric:currentratioannual",
+      "key": "currentRatioAnnual",
+      "label": "currentRatioAnnual",
+      "category": "liquidity",
+      "expression": "Current Assets / Current Liabilities",
+      "source": "finnhub",
+      "kind": "metric"
+    },
+    {
+      "id": "fh:metric:currentratioquarterly",
+      "key": "currentRatioQuarterly",
+      "label": "currentRatioQuarterly",
+      "category": "liquidity",
+      "expression": "Current Assets / Current Liabilities",
+      "source": "finnhub",
+      "kind": "metric"
+    },
+    {
+      "id": "fh:metric:ebitdpershareannual",
+      "key": "ebitdPerShareAnnual",
+      "label": "ebitdPerShareAnnual",
+      "category": "per-share",
+      "expression": "EBITDA / Shares",
+      "source": "finnhub",
+      "kind": "metric"
+    },
+    {
+      "id": "fh:metric:ebitdpersharettm",
+      "key": "ebitdPerShareTTM",
+      "label": "ebitdPerShareTTM",
+      "category": "per-share",
+      "expression": "EBITDA / Shares",
+      "source": "finnhub",
+      "kind": "metric"
+    },
+    {
+      "id": "fh:metric:ebitdacagr5y",
+      "key": "ebitdaCagr5Y",
+      "label": "ebitdaCagr5Y",
+      "category": "profitability",
+      "expression": "EBITDA CAGR",
+      "source": "finnhub",
+      "kind": "metric"
+    },
+    {
+      "id": "fh:metric:ebitdamarginannual",
+      "key": "ebitdaMarginAnnual",
+      "label": "ebitdaMarginAnnual",
+      "category": "profitability",
+      "expression": "EBITDA / Revenue",
+      "source": "finnhub",
+      "kind": "metric"
+    },
+    {
+      "id": "fh:metric:ebitdamarginttm",
+      "key": "ebitdaMarginTTM",
+      "label": "ebitdaMarginTTM",
+      "category": "profitability",
+      "expression": "EBITDA / Revenue",
+      "source": "finnhub",
+      "kind": "metric"
+    },
+    {
+      "id": "fh:metric:epsannual",
+      "key": "epsAnnual",
+      "label": "epsAnnual",
+      "category": "per-share",
+      "expression": "Net Income / Shares",
+      "source": "finnhub",
+      "kind": "metric"
+    },
+    {
+      "id": "fh:metric:epsbasicexclextraitemsannual",
+      "key": "epsBasicExclExtraItemsAnnual",
+      "label": "epsBasicExclExtraItemsAnnual",
+      "category": "per-share",
+      "expression": "EPS basic ex items",
+      "source": "finnhub",
+      "kind": "metric"
+    },
+    {
+      "id": "fh:metric:epsgrowth3y",
+      "key": "epsGrowth3Y",
+      "label": "epsGrowth3Y",
+      "category": "profitability",
+      "expression": "EPS growth",
+      "source": "finnhub",
+      "kind": "metric"
+    },
+    {
+      "id": "fh:metric:epsgrowth5y",
+      "key": "epsGrowth5Y",
+      "label": "epsGrowth5Y",
+      "category": "profitability",
+      "expression": "EPS growth",
+      "source": "finnhub",
+      "kind": "metric"
+    },
+    {
+      "id": "fh:metric:epsgrowthquarterlyyoy",
+      "key": "epsGrowthQuarterlyYoy",
+      "label": "epsGrowthQuarterlyYoy",
+      "category": "profitability",
+      "expression": "EPS growth YoY",
+      "source": "finnhub",
+      "kind": "metric"
+    },
+    {
+      "id": "fh:metric:epsgrowthttmyoy",
+      "key": "epsGrowthTTMYoy",
+      "label": "epsGrowthTTMYoy",
+      "category": "profitability",
+      "expression": "EPS growth YoY",
+      "source": "finnhub",
+      "kind": "metric"
+    },
+    {
+      "id": "fh:metric:epsttm",
+      "key": "epsTTM",
+      "label": "epsTTM",
+      "category": "per-share",
+      "expression": "EPS TTM",
+      "source": "finnhub",
+      "kind": "metric"
+    },
+    {
+      "id": "fh:metric:enterprisevalue",
+      "key": "enterpriseValue",
+      "label": "enterpriseValue",
+      "category": "valuation",
+      "expression": "Market Cap + Net Debt",
+      "source": "finnhub",
+      "kind": "metric"
+    },
+    {
+      "id": "fh:metric:evebitdaannual",
+      "key": "evEbitdaAnnual",
+      "label": "evEbitdaAnnual",
+      "category": "valuation",
+      "expression": "EV / EBITDA",
+      "source": "finnhub",
+      "kind": "metric"
+    },
+    {
+      "id": "fh:metric:evebitdattm",
+      "key": "evEbitdaTTM",
+      "label": "evEbitdaTTM",
+      "category": "valuation",
+      "expression": "EV / EBITDA",
+      "source": "finnhub",
+      "kind": "metric"
+    },
+    {
+      "id": "fh:metric:freecashflowannual",
+      "key": "freeCashFlowAnnual",
+      "label": "freeCashFlowAnnual",
+      "category": "cashflow",
+      "expression": "OCF - CapEx",
+      "source": "finnhub",
+      "kind": "metric"
+    },
+    {
+      "id": "fh:metric:freecashflowpersharettm",
+      "key": "freeCashFlowPerShareTTM",
+      "label": "freeCashFlowPerShareTTM",
+      "category": "per-share",
+      "expression": "FCF / Shares",
+      "source": "finnhub",
+      "kind": "metric"
+    },
+    {
+      "id": "fh:metric:grossmarginannual",
+      "key": "grossMarginAnnual",
+      "label": "grossMarginAnnual",
+      "category": "profitability",
+      "expression": "Gross Profit / Revenue",
+      "source": "finnhub",
+      "kind": "metric"
+    },
+    {
+      "id": "fh:metric:grossmarginttm",
+      "key": "grossMarginTTM",
+      "label": "grossMarginTTM",
+      "category": "profitability",
+      "expression": "Gross Profit / Revenue",
+      "source": "finnhub",
+      "kind": "metric"
+    },
+    {
+      "id": "fh:metric:inventoryturnoverannual",
+      "key": "inventoryTurnoverAnnual",
+      "label": "inventoryTurnoverAnnual",
+      "category": "efficiency",
+      "expression": "COGS / Inventory",
+      "source": "finnhub",
+      "kind": "metric"
+    },
+    {
+      "id": "fh:metric:inventoryturnoverttm",
+      "key": "inventoryTurnoverTTM",
+      "label": "inventoryTurnoverTTM",
+      "category": "efficiency",
+      "expression": "COGS / Inventory",
+      "source": "finnhub",
+      "kind": "metric"
+    },
+    {
+      "id": "fh:metric:longtermdebt-equityannual",
+      "key": "longTermDebt/equityAnnual",
+      "label": "longTermDebt/equityAnnual",
+      "category": "leverage",
+      "expression": "LT Debt / Equity",
+      "source": "finnhub",
+      "kind": "metric"
+    },
+    {
+      "id": "fh:metric:longtermdebt-equityquarterly",
+      "key": "longTermDebt/equityQuarterly",
+      "label": "longTermDebt/equityQuarterly",
+      "category": "leverage",
+      "expression": "LT Debt / Equity",
+      "source": "finnhub",
+      "kind": "metric"
+    },
+    {
+      "id": "fh:metric:marketcapitalization",
+      "key": "marketCapitalization",
+      "label": "marketCapitalization",
+      "category": "valuation",
+      "expression": "Shares x Price",
+      "source": "finnhub",
+      "kind": "metric"
+    },
+    {
+      "id": "fh:metric:netdebtannual",
+      "key": "netDebtAnnual",
+      "label": "netDebtAnnual",
+      "category": "leverage",
+      "expression": "Debt - Cash",
+      "source": "finnhub",
+      "kind": "metric"
+    },
+    {
+      "id": "fh:metric:netinterestcoverageannual",
+      "key": "netInterestCoverageAnnual",
+      "label": "netInterestCoverageAnnual",
+      "category": "leverage",
+      "expression": "EBIT / Interest",
+      "source": "finnhub",
+      "kind": "metric"
+    },
+    {
+      "id": "fh:metric:netmarginannual",
+      "key": "netMarginAnnual",
+      "label": "netMarginAnnual",
+      "category": "profitability",
+      "expression": "Net Income / Revenue",
+      "source": "finnhub",
+      "kind": "metric"
+    },
+    {
+      "id": "fh:metric:netmarginttm",
+      "key": "netMarginTTM",
+      "label": "netMarginTTM",
+      "category": "profitability",
+      "expression": "Net Income / Revenue",
+      "source": "finnhub",
+      "kind": "metric"
+    },
+    {
+      "id": "fh:metric:netprofitmarginannual",
+      "key": "netProfitMarginAnnual",
+      "label": "netProfitMarginAnnual",
+      "category": "profitability",
+      "expression": "Net Income / Revenue",
+      "source": "finnhub",
+      "kind": "metric"
+    },
+    {
+      "id": "fh:metric:netprofitmarginttm",
+      "key": "netProfitMarginTTM",
+      "label": "netProfitMarginTTM",
+      "category": "profitability",
+      "expression": "Net Income / Revenue",
+      "source": "finnhub",
+      "kind": "metric"
+    },
+    {
+      "id": "fh:metric:operatingmarginannual",
+      "key": "operatingMarginAnnual",
+      "label": "operatingMarginAnnual",
+      "category": "profitability",
+      "expression": "Operating Income / Revenue",
+      "source": "finnhub",
+      "kind": "metric"
+    },
+    {
+      "id": "fh:metric:operatingmarginttm",
+      "key": "operatingMarginTTM",
+      "label": "operatingMarginTTM",
+      "category": "profitability",
+      "expression": "Operating Income / Revenue",
+      "source": "finnhub",
+      "kind": "metric"
+    },
+    {
+      "id": "fh:metric:payoutratioannual",
+      "key": "payoutRatioAnnual",
+      "label": "payoutRatioAnnual",
+      "category": "cashflow",
+      "expression": "Dividends / Net Income",
+      "source": "finnhub",
+      "kind": "metric"
+    },
+    {
+      "id": "fh:metric:payoutratiottm",
+      "key": "payoutRatioTTM",
+      "label": "payoutRatioTTM",
+      "category": "cashflow",
+      "expression": "Dividends / Net Income",
+      "source": "finnhub",
+      "kind": "metric"
+    },
+    {
+      "id": "fh:metric:pbannual",
+      "key": "pbAnnual",
+      "label": "pbAnnual",
+      "category": "valuation",
+      "expression": "Price / Book",
+      "source": "finnhub",
+      "kind": "metric"
+    },
+    {
+      "id": "fh:metric:pbquarterly",
+      "key": "pbQuarterly",
+      "label": "pbQuarterly",
+      "category": "valuation",
+      "expression": "Price / Book",
+      "source": "finnhub",
+      "kind": "metric"
+    },
+    {
+      "id": "fh:metric:peannual",
+      "key": "peAnnual",
+      "label": "peAnnual",
+      "category": "valuation",
+      "expression": "Price / EPS",
+      "source": "finnhub",
+      "kind": "metric"
+    },
+    {
+      "id": "fh:metric:pettm",
+      "key": "peTTM",
+      "label": "peTTM",
+      "category": "valuation",
+      "expression": "Price / EPS TTM",
+      "source": "finnhub",
+      "kind": "metric"
+    },
+    {
+      "id": "fh:metric:pfcfshareannual",
+      "key": "pfcfShareAnnual",
+      "label": "pfcfShareAnnual",
+      "category": "valuation",
+      "expression": "Price / FCF per share",
+      "source": "finnhub",
+      "kind": "metric"
+    },
+    {
+      "id": "fh:metric:pfcfsharettm",
+      "key": "pfcfShareTTM",
+      "label": "pfcfShareTTM",
+      "category": "valuation",
+      "expression": "Price / FCF per share",
+      "source": "finnhub",
+      "kind": "metric"
+    },
+    {
+      "id": "fh:metric:psannual",
+      "key": "psAnnual",
+      "label": "psAnnual",
+      "category": "valuation",
+      "expression": "Price / Sales",
+      "source": "finnhub",
+      "kind": "metric"
+    },
+    {
+      "id": "fh:metric:psttm",
+      "key": "psTTM",
+      "label": "psTTM",
+      "category": "valuation",
+      "expression": "Price / Sales",
+      "source": "finnhub",
+      "kind": "metric"
+    },
+    {
+      "id": "fh:metric:ptbvannual",
+      "key": "ptbvAnnual",
+      "label": "ptbvAnnual",
+      "category": "valuation",
+      "expression": "Price / Tangible Book",
+      "source": "finnhub",
+      "kind": "metric"
+    },
+    {
+      "id": "fh:metric:ptbvquarterly",
+      "key": "ptbvQuarterly",
+      "label": "ptbvQuarterly",
+      "category": "valuation",
+      "expression": "Price / Tangible Book",
+      "source": "finnhub",
+      "kind": "metric"
+    },
+    {
+      "id": "fh:metric:quickratioannual",
+      "key": "quickRatioAnnual",
+      "label": "quickRatioAnnual",
+      "category": "liquidity",
+      "expression": "(CA - Inventory) / CL",
+      "source": "finnhub",
+      "kind": "metric"
+    },
+    {
+      "id": "fh:metric:quickratioquarterly",
+      "key": "quickRatioQuarterly",
+      "label": "quickRatioQuarterly",
+      "category": "liquidity",
+      "expression": "(CA - Inventory) / CL",
+      "source": "finnhub",
+      "kind": "metric"
+    },
+    {
+      "id": "fh:metric:receivablesturnoverannual",
+      "key": "receivablesTurnoverAnnual",
+      "label": "receivablesTurnoverAnnual",
+      "category": "efficiency",
+      "expression": "Revenue / AR",
+      "source": "finnhub",
+      "kind": "metric"
+    },
+    {
+      "id": "fh:metric:receivablesturnoverttm",
+      "key": "receivablesTurnoverTTM",
+      "label": "receivablesTurnoverTTM",
+      "category": "efficiency",
+      "expression": "Revenue / AR",
+      "source": "finnhub",
+      "kind": "metric"
+    },
+    {
+      "id": "fh:metric:roaannual",
+      "key": "roaAnnual",
+      "label": "roaAnnual",
+      "category": "returns",
+      "expression": "Net Income / Assets",
+      "source": "finnhub",
+      "kind": "metric"
+    },
+    {
+      "id": "fh:metric:roarfy",
+      "key": "roaRfy",
+      "label": "roaRfy",
+      "category": "returns",
+      "expression": "ROA",
+      "source": "finnhub",
+      "kind": "metric"
+    },
+    {
+      "id": "fh:metric:roattm",
+      "key": "roaTTM",
+      "label": "roaTTM",
+      "category": "returns",
+      "expression": "ROA TTM",
+      "source": "finnhub",
+      "kind": "metric"
+    },
+    {
+      "id": "fh:metric:roeannual",
+      "key": "roeAnnual",
+      "label": "roeAnnual",
+      "category": "returns",
+      "expression": "Net Income / Equity",
+      "source": "finnhub",
+      "kind": "metric"
+    },
+    {
+      "id": "fh:metric:roerfy",
+      "key": "roeRfy",
+      "label": "roeRfy",
+      "category": "returns",
+      "expression": "ROE",
+      "source": "finnhub",
+      "kind": "metric"
+    },
+    {
+      "id": "fh:metric:roettm",
+      "key": "roeTTM",
+      "label": "roeTTM",
+      "category": "returns",
+      "expression": "ROE TTM",
+      "source": "finnhub",
+      "kind": "metric"
+    },
+    {
+      "id": "fh:metric:roiannual",
+      "key": "roiAnnual",
+      "label": "roiAnnual",
+      "category": "returns",
+      "expression": "Return on investment",
+      "source": "finnhub",
+      "kind": "metric"
+    },
+    {
+      "id": "fh:metric:roittm",
+      "key": "roiTTM",
+      "label": "roiTTM",
+      "category": "returns",
+      "expression": "Return on investment",
+      "source": "finnhub",
+      "kind": "metric"
+    },
+    {
+      "id": "fh:metric:revenuegrowth3y",
+      "key": "revenueGrowth3Y",
+      "label": "revenueGrowth3Y",
+      "category": "profitability",
+      "expression": "Revenue CAGR",
+      "source": "finnhub",
+      "kind": "metric"
+    },
+    {
+      "id": "fh:metric:revenuegrowth5y",
+      "key": "revenueGrowth5Y",
+      "label": "revenueGrowth5Y",
+      "category": "profitability",
+      "expression": "Revenue CAGR",
+      "source": "finnhub",
+      "kind": "metric"
+    },
+    {
+      "id": "fh:metric:revenuegrowthquarterlyyoy",
+      "key": "revenueGrowthQuarterlyYoy",
+      "label": "revenueGrowthQuarterlyYoy",
+      "category": "profitability",
+      "expression": "Revenue growth YoY",
+      "source": "finnhub",
+      "kind": "metric"
+    },
+    {
+      "id": "fh:metric:revenuegrowthttmyoy",
+      "key": "revenueGrowthTTMYoy",
+      "label": "revenueGrowthTTMYoy",
+      "category": "profitability",
+      "expression": "Revenue growth YoY",
+      "source": "finnhub",
+      "kind": "metric"
+    },
+    {
+      "id": "fh:metric:revenuepershareannual",
+      "key": "revenuePerShareAnnual",
+      "label": "revenuePerShareAnnual",
+      "category": "per-share",
+      "expression": "Revenue / Shares",
+      "source": "finnhub",
+      "kind": "metric"
+    },
+    {
+      "id": "fh:metric:revenuepersharettm",
+      "key": "revenuePerShareTTM",
+      "label": "revenuePerShareTTM",
+      "category": "per-share",
+      "expression": "Revenue / Shares",
+      "source": "finnhub",
+      "kind": "metric"
+    },
+    {
+      "id": "fh:metric:revenuesharegrowth5y",
+      "key": "revenueShareGrowth5Y",
+      "label": "revenueShareGrowth5Y",
+      "category": "per-share",
+      "expression": "Revenue/share growth",
+      "source": "finnhub",
+      "kind": "metric"
+    },
+    {
+      "id": "fh:metric:tangiblebookvaluepershareannual",
+      "key": "tangibleBookValuePerShareAnnual",
+      "label": "tangibleBookValuePerShareAnnual",
+      "category": "per-share",
+      "expression": "Tangible equity / Shares",
+      "source": "finnhub",
+      "kind": "metric"
+    },
+    {
+      "id": "fh:metric:tangiblebookvaluepersharequarterly",
+      "key": "tangibleBookValuePerShareQuarterly",
+      "label": "tangibleBookValuePerShareQuarterly",
+      "category": "per-share",
+      "expression": "Tangible equity / Shares",
+      "source": "finnhub",
+      "kind": "metric"
+    },
+    {
+      "id": "fh:metric:totaldebt-totalequityannual",
+      "key": "totalDebt/totalEquityAnnual",
+      "label": "totalDebt/totalEquityAnnual",
+      "category": "leverage",
+      "expression": "Total Debt / Equity",
+      "source": "finnhub",
+      "kind": "metric"
+    },
+    {
+      "id": "fh:metric:totaldebt-totalequityquarterly",
+      "key": "totalDebt/totalEquityQuarterly",
+      "label": "totalDebt/totalEquityQuarterly",
+      "category": "leverage",
+      "expression": "Total Debt / Equity",
+      "source": "finnhub",
+      "kind": "metric"
+    }
+  ]
+}

@@ -1,0 +1,927 @@
+{
+  "meta": {
+    "source": "edgartools",
+    "package": "edgartools",
+    "mappingFile": "C:\\Users\\HFreeman\\AppData\\Local\\Packages\\PythonSoftwareFoundation.Python.3.13_qbz5n2kfra8p0\\LocalCache\\local-packages\\Python313\\site-packages\\edgar\\xbrl\\standardization\\concept_mappings.json",
+    "purpose": "Ontology expansion — ~95 standardized statement concepts → XBRL tags",
+    "notes": "Catalog harvest only; no SEC filing download."
+  },
+  "standardConcepts": [
+    {
+      "id": "et:standard:revenue",
+      "label": "Revenue",
+      "gaapTags": [
+        "Revenue",
+        "Revenues",
+        "SalesRevenueNet",
+        "OperatingRevenue"
+      ],
+      "source": "edgartools",
+      "kind": "standard"
+    },
+    {
+      "id": "et:standard:contract-revenue",
+      "label": "Contract Revenue",
+      "gaapTags": [
+        "RevenueFromContractWithCustomerExcludingAssessedTax",
+        "RevenueFromContractWithCustomerIncludingAssessedTax"
+      ],
+      "source": "edgartools",
+      "kind": "standard"
+    },
+    {
+      "id": "et:standard:product-revenue",
+      "label": "Product Revenue",
+      "gaapTags": [
+        "SalesRevenueGoodsNet",
+        "ProductSales"
+      ],
+      "source": "edgartools",
+      "kind": "standard"
+    },
+    {
+      "id": "et:standard:operating-lease-revenue",
+      "label": "Operating Lease Revenue",
+      "gaapTags": [
+        "OperatingLeaseLeaseIncome"
+      ],
+      "source": "edgartools",
+      "kind": "standard"
+    },
+    {
+      "id": "et:standard:cost-of-revenue",
+      "label": "Cost of Revenue",
+      "gaapTags": [
+        "CostOfRevenueAbstract"
+      ],
+      "source": "edgartools",
+      "kind": "standard"
+    },
+    {
+      "id": "et:standard:total-cost-of-revenue",
+      "label": "Total Cost of Revenue",
+      "gaapTags": [
+        "CostOfRevenue"
+      ],
+      "source": "edgartools",
+      "kind": "standard"
+    },
+    {
+      "id": "et:standard:cost-of-goods-sold",
+      "label": "Cost of Goods Sold",
+      "gaapTags": [
+        "CostOfGoodsSold"
+      ],
+      "source": "edgartools",
+      "kind": "standard"
+    },
+    {
+      "id": "et:standard:cost-of-goods-and-services-sold",
+      "label": "Cost of Goods and Services Sold",
+      "gaapTags": [
+        "CostOfGoodsAndServicesSold"
+      ],
+      "source": "edgartools",
+      "kind": "standard"
+    },
+    {
+      "id": "et:standard:cost-of-sales",
+      "label": "Cost of Sales",
+      "gaapTags": [
+        "CostOfSales"
+      ],
+      "source": "edgartools",
+      "kind": "standard"
+    },
+    {
+      "id": "et:standard:cost-of-goods-and-services-excluding-depreciation",
+      "label": "Cost of Goods and Services Excluding Depreciation",
+      "gaapTags": [
+        "CostOfGoodsAndServiceExcludingDepreciationDepletionAndAmortization"
+      ],
+      "source": "edgartools",
+      "kind": "standard"
+    },
+    {
+      "id": "et:standard:direct-operating-costs",
+      "label": "Direct Operating Costs",
+      "gaapTags": [
+        "DirectOperatingCosts"
+      ],
+      "source": "edgartools",
+      "kind": "standard"
+    },
+    {
+      "id": "et:standard:costs-and-expenses",
+      "label": "Costs and Expenses",
+      "gaapTags": [
+        "CostsAndExpenses"
+      ],
+      "source": "edgartools",
+      "kind": "standard"
+    },
+    {
+      "id": "et:standard:gross-profit",
+      "label": "Gross Profit",
+      "gaapTags": [
+        "GrossProfit"
+      ],
+      "source": "edgartools",
+      "kind": "standard"
+    },
+    {
+      "id": "et:standard:operating-expenses",
+      "label": "Operating Expenses",
+      "gaapTags": [
+        "NoninterestExpense"
+      ],
+      "source": "edgartools",
+      "kind": "standard"
+    },
+    {
+      "id": "et:standard:total-operating-expenses",
+      "label": "Total Operating Expenses",
+      "gaapTags": [
+        "OperatingCostsAndExpenses",
+        "OperatingExpenses"
+      ],
+      "source": "edgartools",
+      "kind": "standard"
+    },
+    {
+      "id": "et:standard:research-and-development-expense",
+      "label": "Research and Development Expense",
+      "gaapTags": [
+        "ResearchAndDevelopmentCosts",
+        "ResearchAndDevelopmentExpense"
+      ],
+      "source": "edgartools",
+      "kind": "standard"
+    },
+    {
+      "id": "et:standard:selling-general-and-administrative-expense",
+      "label": "Selling, General and Administrative Expense",
+      "gaapTags": [
+        "SellingGeneralAndAdministrativeExpense"
+      ],
+      "source": "edgartools",
+      "kind": "standard"
+    },
+    {
+      "id": "et:standard:general-and-administrative-expense",
+      "label": "General and Administrative Expense",
+      "gaapTags": [
+        "GeneralAndAdministrativeExpense",
+        "AdministrativeExpense"
+      ],
+      "source": "edgartools",
+      "kind": "standard"
+    },
+    {
+      "id": "et:standard:selling-expense",
+      "label": "Selling Expense",
+      "gaapTags": [
+        "SellingAndMarketingExpense",
+        "SellingExpense"
+      ],
+      "source": "edgartools",
+      "kind": "standard"
+    },
+    {
+      "id": "et:standard:marketing-expense",
+      "label": "Marketing Expense",
+      "gaapTags": [
+        "MarketingExpense",
+        "AdvertisingExpense"
+      ],
+      "source": "edgartools",
+      "kind": "standard"
+    },
+    {
+      "id": "et:standard:operating-income",
+      "label": "Operating Income",
+      "gaapTags": [
+        "OperatingIncomeLoss",
+        "OperatingIncome",
+        "IncomeLossFromContinuingOperationsBeforeInterestAndTaxes"
+      ],
+      "source": "edgartools",
+      "kind": "standard"
+    },
+    {
+      "id": "et:standard:nonoperating-income-expense",
+      "label": "Nonoperating Income/Expense",
+      "gaapTags": [
+        "NonoperatingIncomeExpense"
+      ],
+      "source": "edgartools",
+      "kind": "standard"
+    },
+    {
+      "id": "et:standard:interest-expense",
+      "label": "Interest Expense",
+      "gaapTags": [
+        "InterestAndDebtExpense",
+        "InterestExpense",
+        "InterestIncomeExpenseNet"
+      ],
+      "source": "edgartools",
+      "kind": "standard"
+    },
+    {
+      "id": "et:standard:interest-expense-operating",
+      "label": "Interest Expense (operating)",
+      "gaapTags": [
+        "InterestExpenseOperating"
+      ],
+      "source": "edgartools",
+      "kind": "standard"
+    },
+    {
+      "id": "et:standard:interest-expense-non-operating",
+      "label": "Interest Expense (non-operating)",
+      "gaapTags": [
+        "InterestExpenseNonoperating"
+      ],
+      "source": "edgartools",
+      "kind": "standard"
+    },
+    {
+      "id": "et:standard:income-before-tax",
+      "label": "Income Before Tax",
+      "gaapTags": [
+        "IncomeLossBeforeIncomeTaxes"
+      ],
+      "source": "edgartools",
+      "kind": "standard"
+    },
+    {
+      "id": "et:standard:income-before-tax-from-continuing-operations",
+      "label": "Income Before Tax from Continuing Operations",
+      "gaapTags": [
+        "IncomeLossFromContinuingOperationsBeforeIncomeTaxes",
+        "IncomeLossFromContinuingOperationsBeforeIncomeTaxesExtraordinaryItemsNoncontrollingInterest"
+      ],
+      "source": "edgartools",
+      "kind": "standard"
+    },
+    {
+      "id": "et:standard:income-tax-expense",
+      "label": "Income Tax Expense",
+      "gaapTags": [
+        "IncomeTaxesPaidNet",
+        "IncomeTaxExpenseBenefit"
+      ],
+      "source": "edgartools",
+      "kind": "standard"
+    },
+    {
+      "id": "et:standard:net-income",
+      "label": "Net Income",
+      "gaapTags": [
+        "NetIncome",
+        "NetIncomeLoss"
+      ],
+      "source": "edgartools",
+      "kind": "standard"
+    },
+    {
+      "id": "et:standard:net-income-from-continuing-operations",
+      "label": "Net Income from Continuing Operations",
+      "gaapTags": [
+        "IncomeLossFromContinuingOperationsIncludingPortionAttributableToNoncontrollingInterest",
+        "IncomeLossFromContinuingOperations"
+      ],
+      "source": "edgartools",
+      "kind": "standard"
+    },
+    {
+      "id": "et:standard:profit-or-loss",
+      "label": "Profit or Loss",
+      "gaapTags": [
+        "ProfitLoss"
+      ],
+      "source": "edgartools",
+      "kind": "standard"
+    },
+    {
+      "id": "et:standard:net-income-attributable-to-noncontrolling-interest",
+      "label": "Net Income Attributable to Noncontrolling Interest",
+      "gaapTags": [
+        "NetIncomeLossAttributableToNonredeemableNoncontrollingInterest",
+        "NetIncomeLossAttributableToNoncontrollingInterest"
+      ],
+      "source": "edgartools",
+      "kind": "standard"
+    },
+    {
+      "id": "et:standard:basic-net-income-available-to-common-shareholders",
+      "label": "Basic Net Income Available to Common Shareholders",
+      "gaapTags": [
+        "NetIncomeLossAvailableToCommonStockholdersBasic"
+      ],
+      "source": "edgartools",
+      "kind": "standard"
+    },
+    {
+      "id": "et:standard:diluted-net-income-available-to-common-shareholders",
+      "label": "Diluted Net Income Available to Common Shareholders",
+      "gaapTags": [
+        "NetIncomeLossAvailableToCommonStockholdersDiluted"
+      ],
+      "source": "edgartools",
+      "kind": "standard"
+    },
+    {
+      "id": "et:standard:accumulated-other-comprehensive-income-loss",
+      "label": "Accumulated Other Comprehensive Income/Loss",
+      "gaapTags": [
+        "AccumulatedOtherComprehensiveIncomeLossNetOfTax"
+      ],
+      "source": "edgartools",
+      "kind": "standard"
+    },
+    {
+      "id": "et:standard:earnings-per-share",
+      "label": "Earnings Per Share",
+      "gaapTags": [
+        "EarningsPerShareAbstract"
+      ],
+      "source": "edgartools",
+      "kind": "standard"
+    },
+    {
+      "id": "et:standard:earnings-per-share-basic",
+      "label": "Earnings Per Share (Basic)",
+      "gaapTags": [
+        "EarningsPerShareBasic"
+      ],
+      "source": "edgartools",
+      "kind": "standard"
+    },
+    {
+      "id": "et:standard:earnings-per-share-diluted",
+      "label": "Earnings Per Share (Diluted)",
+      "gaapTags": [
+        "EarningsPerShareDiluted"
+      ],
+      "source": "edgartools",
+      "kind": "standard"
+    },
+    {
+      "id": "et:standard:shares-outstanding",
+      "label": "Shares Outstanding",
+      "gaapTags": [
+        "WeightedAverageNumberOfSharesOutstandingAbstract"
+      ],
+      "source": "edgartools",
+      "kind": "standard"
+    },
+    {
+      "id": "et:standard:shares-outstanding-basic",
+      "label": "Shares Outstanding (Basic)",
+      "gaapTags": [
+        "WeightedAverageNumberOfSharesOutstandingBasic"
+      ],
+      "source": "edgartools",
+      "kind": "standard"
+    },
+    {
+      "id": "et:standard:shares-outstanding-diluted",
+      "label": "Shares Outstanding (Diluted)",
+      "gaapTags": [
+        "WeightedAverageNumberOfDilutedSharesOutstanding"
+      ],
+      "source": "edgartools",
+      "kind": "standard"
+    },
+    {
+      "id": "et:standard:cash-and-cash-equivalents",
+      "label": "Cash and Cash Equivalents",
+      "gaapTags": [
+        "CashEquivalentsAtCarryingValue",
+        "Cash",
+        "CashAndCashEquivalentsAtCarryingValue",
+        "CashCashEquivalentsAndShortTermInvestments"
+      ],
+      "source": "edgartools",
+      "kind": "standard"
+    },
+    {
+      "id": "et:standard:accounts-receivable",
+      "label": "Accounts Receivable",
+      "gaapTags": [
+        "AccountsReceivableNet",
+        "ReceivablesNetCurrent",
+        "AccountsReceivableNetCurrent",
+        "AccountsReceivableGross"
+      ],
+      "source": "edgartools",
+      "kind": "standard"
+    },
+    {
+      "id": "et:standard:inventory",
+      "label": "Inventory",
+      "gaapTags": [
+        "InventoryGross",
+        "InventoryFinishedGoods",
+        "InventoryNet"
+      ],
+      "source": "edgartools",
+      "kind": "standard"
+    },
+    {
+      "id": "et:standard:prepaid-expenses",
+      "label": "Prepaid Expenses",
+      "gaapTags": [
+        "PrepaidExpenseAndOtherAssetsCurrent",
+        "PrepaidExpenseCurrent"
+      ],
+      "source": "edgartools",
+      "kind": "standard"
+    },
+    {
+      "id": "et:standard:current-marketable-securities",
+      "label": "Current Marketable Securities",
+      "gaapTags": [
+        "AvailableForSaleSecuritiesDebtSecuritiesCurrent",
+        "MarketableSecuritiesCurrent"
+      ],
+      "source": "edgartools",
+      "kind": "standard"
+    },
+    {
+      "id": "et:standard:non-current-marketable-securities",
+      "label": "Non Current Marketable Securities",
+      "gaapTags": [
+        "MarketableSecuritiesNoncurrent"
+      ],
+      "source": "edgartools",
+      "kind": "standard"
+    },
+    {
+      "id": "et:standard:total-current-assets",
+      "label": "Total Current Assets",
+      "gaapTags": [
+        "AssetsCurrent"
+      ],
+      "source": "edgartools",
+      "kind": "standard"
+    },
+    {
+      "id": "et:standard:total-non-current-assets",
+      "label": "Total Non Current Assets",
+      "gaapTags": [
+        "AssetsNoncurrent"
+      ],
+      "source": "edgartools",
+      "kind": "standard"
+    },
+    {
+      "id": "et:standard:property-plant-and-equipment",
+      "label": "Property, Plant and Equipment",
+      "gaapTags": [
+        "PropertyPlantAndEquipmentGross",
+        "PropertyPlantAndEquipmentNet",
+        "FixedAssets"
+      ],
+      "source": "edgartools",
+      "kind": "standard"
+    },
+    {
+      "id": "et:standard:goodwill",
+      "label": "Goodwill",
+      "gaapTags": [
+        "Goodwill"
+      ],
+      "source": "edgartools",
+      "kind": "standard"
+    },
+    {
+      "id": "et:standard:intangible-assets",
+      "label": "Intangible Assets",
+      "gaapTags": [
+        "IntangibleAssetsNetIncludingGoodwill",
+        "IntangibleAssetsNetExcludingGoodwill",
+        "FiniteLivedIntangibleAssetsNet"
+      ],
+      "source": "edgartools",
+      "kind": "standard"
+    },
+    {
+      "id": "et:standard:total-assets",
+      "label": "Total Assets",
+      "gaapTags": [
+        "Assets",
+        "AssetsTotal"
+      ],
+      "source": "edgartools",
+      "kind": "standard"
+    },
+    {
+      "id": "et:standard:long-term-investments",
+      "label": "Long-Term Investments",
+      "gaapTags": [
+        "LongTermInvestments"
+      ],
+      "source": "edgartools",
+      "kind": "standard"
+    },
+    {
+      "id": "et:standard:accounts-payable",
+      "label": "Accounts Payable",
+      "gaapTags": [
+        "AccountsPayableCurrent",
+        "AccountsPayableTradeCurrent"
+      ],
+      "source": "edgartools",
+      "kind": "standard"
+    },
+    {
+      "id": "et:standard:accrued-liabilities",
+      "label": "Accrued Liabilities",
+      "gaapTags": [
+        "OtherAccruedLiabilitiesCurrent",
+        "AccruedLiabilitiesCurrent",
+        "EmployeeRelatedLiabilitiesCurrent"
+      ],
+      "source": "edgartools",
+      "kind": "standard"
+    },
+    {
+      "id": "et:standard:short-term-debt",
+      "label": "Short Term Debt",
+      "gaapTags": [
+        "DebtCurrent",
+        "ShortTermBorrowings",
+        "LongTermDebtCurrent"
+      ],
+      "source": "edgartools",
+      "kind": "standard"
+    },
+    {
+      "id": "et:standard:total-current-liabilities",
+      "label": "Total Current Liabilities",
+      "gaapTags": [
+        "LiabilitiesCurrent"
+      ],
+      "source": "edgartools",
+      "kind": "standard"
+    },
+    {
+      "id": "et:standard:total-non-current-liabilities",
+      "label": "Total Non Current Liabilities",
+      "gaapTags": [
+        "LiabilitiesNoncurrent"
+      ],
+      "source": "edgartools",
+      "kind": "standard"
+    },
+    {
+      "id": "et:standard:long-term-debt",
+      "label": "Long Term Debt",
+      "gaapTags": [
+        "LongTermDebtAndCapitalLeaseObligations",
+        "LongTermDebt",
+        "LongTermBorrowings",
+        "LongTermDebtNoncurrent"
+      ],
+      "source": "edgartools",
+      "kind": "standard"
+    },
+    {
+      "id": "et:standard:notes-payable-current",
+      "label": "Notes Payable, Current",
+      "gaapTags": [
+        "NotesPayableCurrent"
+      ],
+      "source": "edgartools",
+      "kind": "standard"
+    },
+    {
+      "id": "et:standard:notes-payable-non-current",
+      "label": "Notes Payable, Non Current",
+      "gaapTags": [
+        "LongTermNotesAndLoans"
+      ],
+      "source": "edgartools",
+      "kind": "standard"
+    },
+    {
+      "id": "et:standard:deferred-revenue",
+      "label": "Deferred Revenue",
+      "gaapTags": [
+        "DeferredRevenueNoncurrent",
+        "DeferredRevenueCurrent",
+        "DeferredRevenue"
+      ],
+      "source": "edgartools",
+      "kind": "standard"
+    },
+    {
+      "id": "et:standard:total-liabilities",
+      "label": "Total Liabilities",
+      "gaapTags": [
+        "LiabilitiesTotal",
+        "Liabilities"
+      ],
+      "source": "edgartools",
+      "kind": "standard"
+    },
+    {
+      "id": "et:standard:common-stock-shares-outstanding",
+      "label": "Common Stock Shares Outstanding",
+      "gaapTags": [
+        "CommonStockSharesOutstanding"
+      ],
+      "source": "edgartools",
+      "kind": "standard"
+    },
+    {
+      "id": "et:standard:common-stock-shares-issued",
+      "label": "Common Stock Shares Issued",
+      "gaapTags": [
+        "CommonStockSharesIssued"
+      ],
+      "source": "edgartools",
+      "kind": "standard"
+    },
+    {
+      "id": "et:standard:common-stock",
+      "label": "Common Stock",
+      "gaapTags": [
+        "CommonStocksIncludingAdditionalPaidInCapital",
+        "StockholdersEquityCommonStock",
+        "CommonStockValue"
+      ],
+      "source": "edgartools",
+      "kind": "standard"
+    },
+    {
+      "id": "et:standard:preferred-stock",
+      "label": "Preferred Stock",
+      "gaapTags": [
+        "PreferredStockValue"
+      ],
+      "source": "edgartools",
+      "kind": "standard"
+    },
+    {
+      "id": "et:standard:treasury-stock-common-value",
+      "label": "Treasury Stock Common Value",
+      "gaapTags": [
+        "TreasuryStockCommonValue",
+        "TreasuryStockValue"
+      ],
+      "source": "edgartools",
+      "kind": "standard"
+    },
+    {
+      "id": "et:standard:retained-earnings",
+      "label": "Retained Earnings",
+      "gaapTags": [
+        "RetainedEarnings",
+        "RetainedEarningsAccumulatedDeficit"
+      ],
+      "source": "edgartools",
+      "kind": "standard"
+    },
+    {
+      "id": "et:standard:minority-interest",
+      "label": "Minority Interest",
+      "gaapTags": [
+        "MinorityInterest",
+        "NoncontrollingInterest"
+      ],
+      "source": "edgartools",
+      "kind": "standard"
+    },
+    {
+      "id": "et:standard:total-stockholders-equity",
+      "label": "Total Stockholders' Equity",
+      "gaapTags": [
+        "EquityAttributableToParent",
+        "StockholdersEquity",
+        "StockholdersEquityIncludingPortionAttributableToNoncontrollingInterest",
+        "StockholdersEquityAttributableToParent"
+      ],
+      "source": "edgartools",
+      "kind": "standard"
+    },
+    {
+      "id": "et:standard:total-liabilities-and-stockholders-equity",
+      "label": "Total Liabilities and Stockholders' Equity",
+      "gaapTags": [
+        "LiabilitiesAndStockholdersEquity"
+      ],
+      "source": "edgartools",
+      "kind": "standard"
+    },
+    {
+      "id": "et:standard:net-cash-from-operating-activities",
+      "label": "Net Cash from Operating Activities",
+      "gaapTags": [
+        "NetCashProvidedByUsedInOperatingActivities",
+        "NetCashProvidedByUsedInOperatingActivitiesContinuingOperations"
+      ],
+      "source": "edgartools",
+      "kind": "standard"
+    },
+    {
+      "id": "et:standard:net-cash-from-investing-activities",
+      "label": "Net Cash from Investing Activities",
+      "gaapTags": [
+        "NetCashProvidedByUsedInInvestingActivities",
+        "NetCashProvidedByUsedInInvestingActivitiesContinuingOperations"
+      ],
+      "source": "edgartools",
+      "kind": "standard"
+    },
+    {
+      "id": "et:standard:net-cash-from-financing-activities",
+      "label": "Net Cash from Financing Activities",
+      "gaapTags": [
+        "NetCashProvidedByUsedInFinancingActivitiesContinuingOperations",
+        "NetCashProvidedByUsedInFinancingActivities"
+      ],
+      "source": "edgartools",
+      "kind": "standard"
+    },
+    {
+      "id": "et:standard:net-change-in-cash",
+      "label": "Net Change in Cash",
+      "gaapTags": [
+        "IncreaseDecreaseInCashAndCashEquivalents",
+        "CashAndCashEquivalentsPeriodIncreaseDecrease",
+        "CashCashEquivalentsRestrictedCashAndRestrictedCashEquivalentsPeriodIncreaseDecreaseIncludingExchangeRateEffect"
+      ],
+      "source": "edgartools",
+      "kind": "standard"
+    },
+    {
+      "id": "et:standard:payments-for-property-plant-and-equipment",
+      "label": "Payments for Property, Plant and Equipment",
+      "gaapTags": [
+        "PaymentsToAcquirePropertyPlantAndEquipment",
+        "PaymentsToAcquireProductiveAssets"
+      ],
+      "source": "edgartools",
+      "kind": "standard"
+    },
+    {
+      "id": "et:standard:payments-of-dividends",
+      "label": "Payments of Dividends",
+      "gaapTags": [
+        "PaymentsOfDividends"
+      ],
+      "source": "edgartools",
+      "kind": "standard"
+    },
+    {
+      "id": "et:standard:tax-withholding-for-share-based-compensation",
+      "label": "Tax Withholding for Share-Based Compensation",
+      "gaapTags": [
+        "PaymentsRelatedToTaxWithholdingForShareBasedCompensation"
+      ],
+      "source": "edgartools",
+      "kind": "standard"
+    },
+    {
+      "id": "et:standard:payments-to-acquire-businesses",
+      "label": "Payments to Acquire Businesses",
+      "gaapTags": [
+        "PaymentsToAcquireBusinessesNetOfCashAcquired"
+      ],
+      "source": "edgartools",
+      "kind": "standard"
+    },
+    {
+      "id": "et:standard:proceeds-from-issuance-of-common-stock",
+      "label": "Proceeds from Issuance of Common Stock",
+      "gaapTags": [
+        "ProceedsFromIssuanceOfCommonStock"
+      ],
+      "source": "edgartools",
+      "kind": "standard"
+    },
+    {
+      "id": "et:standard:proceeds-from-issuance-of-long-term-debt",
+      "label": "Proceeds from Issuance of Long-Term Debt",
+      "gaapTags": [
+        "ProceedsFromIssuanceOfLongTermDebt"
+      ],
+      "source": "edgartools",
+      "kind": "standard"
+    },
+    {
+      "id": "et:standard:proceeds-from-maturities-prepayments-and-calls-of-securities",
+      "label": "Proceeds from Maturities, Prepayments and Calls of Securities",
+      "gaapTags": [
+        "ProceedsFromMaturitiesPrepaymentsAndCallsOfAvailableForSaleSecurities"
+      ],
+      "source": "edgartools",
+      "kind": "standard"
+    },
+    {
+      "id": "et:standard:proceeds-from-sale-and-maturity-of-other-investments",
+      "label": "Proceeds from Sale and Maturity of Other Investments",
+      "gaapTags": [
+        "ProceedsFromSaleAndMaturityOfOtherInvestments"
+      ],
+      "source": "edgartools",
+      "kind": "standard"
+    },
+    {
+      "id": "et:standard:proceeds-from-sale-of-debt-securities",
+      "label": "Proceeds from Sale of Debt Securities, ",
+      "gaapTags": [
+        "ProceedsFromSaleOfAvailableForSaleSecuritiesDebt"
+      ],
+      "source": "edgartools",
+      "kind": "standard"
+    },
+    {
+      "id": "et:standard:proceeds-from-repayments-of-commercial-paper",
+      "label": "Proceeds from (Repayments of) Commercial Paper",
+      "gaapTags": [
+        "ProceedsFromRepaymentsOfCommercialPaper"
+      ],
+      "source": "edgartools",
+      "kind": "standard"
+    },
+    {
+      "id": "et:standard:other-assets",
+      "label": "Other Assets",
+      "gaapTags": [
+        "OtherAssets"
+      ],
+      "source": "edgartools",
+      "kind": "standard"
+    },
+    {
+      "id": "et:standard:other-current-assets",
+      "label": "Other Current Assets",
+      "gaapTags": [
+        "OtherAssetsCurrent"
+      ],
+      "source": "edgartools",
+      "kind": "standard"
+    },
+    {
+      "id": "et:standard:other-non-current-assets",
+      "label": "Other Non Current Assets",
+      "gaapTags": [
+        "OtherAssetsNoncurrent"
+      ],
+      "source": "edgartools",
+      "kind": "standard"
+    },
+    {
+      "id": "et:standard:deferred-tax-assets",
+      "label": "Deferred Tax Assets",
+      "gaapTags": [
+        "DeferredIncomeTaxAssetsNet"
+      ],
+      "source": "edgartools",
+      "kind": "standard"
+    },
+    {
+      "id": "et:standard:other-liabilities",
+      "label": "Other Liabilities",
+      "gaapTags": [
+        "OtherLiabilities"
+      ],
+      "source": "edgartools",
+      "kind": "standard"
+    },
+    {
+      "id": "et:standard:other-current-liabilities",
+      "label": "Other Current Liabilities",
+      "gaapTags": [
+        "OtherLiabilitiesCurrent"
+      ],
+      "source": "edgartools",
+      "kind": "standard"
+    },
+    {
+      "id": "et:standard:other-non-current-liabilities",
+      "label": "Other Non Current Liabilities",
+      "gaapTags": [
+        "OtherLiabilitiesNoncurrent"
+      ],
+      "source": "edgartools",
+      "kind": "standard"
+    },
+    {
+      "id": "et:standard:depreciation-and-amortization",
+      "label": "Depreciation and Amortization",
+      "gaapTags": [
+        "AmortizationOfIntangibleAssets",
+        "Depreciation",
+        "DepreciationAndAmortization"
+      ],
+      "source": "edgartools",
+      "kind": "standard"
+    }
+  ]
+}

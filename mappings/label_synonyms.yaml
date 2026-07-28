@@ -1,0 +1,241 @@
+# Shared label → ontology concept synonyms for portco financial statements.
+# Keys are normalized (lowercase, stripped punctuation/ampersands).
+# Values are US GAAP / Non-GAAP concept ids from ontology v1.2.
+
+version: "1.0"
+
+# Prefer totals / primary statement lines over GL accounts.
+synonyms:
+  # --- Income statement ---
+  total revenue: Revenues
+  total revenues: Revenues
+  revenue: Revenues
+  revenues: Revenues
+  net revenue: Revenues
+  net revenues: Revenues
+  total sales: Revenues
+  interest income: Revenues
+  servicing fees income: Revenues
+  loan origination fees: Revenues
+  subscription revenue: Revenues
+  hardware revenue: Revenues
+  service revenue: Revenues
+  saas platform fees: Revenues
+  university sponsored clinical care: Revenues
+  other revenues: Revenues
+  other revenue: Revenues
+  other service lines: Revenues
+  career karma income: Revenues
+  school year institution pay: Revenues
+  school year parent pay: Revenues
+  summer camp institution pay: Revenues
+  summer consumer pay: Revenues
+
+  cost of revenue: CostOfRevenue
+  cost of sales: CostOfRevenue
+  cost of goods sold: CostOfRevenue
+  cogs: CostOfRevenue
+  total cost of revenue: CostOfRevenue
+  total cost of sales: CostOfRevenue
+
+  gross profit: GrossProfit
+  gross margin: GrossProfit
+  gross profit before depreciation: GrossProfit
+
+  operating expenses: OperatingExpenses
+  total expenses: OperatingExpenses
+  total operating expenses: OperatingExpenses
+  total opex: OperatingExpenses
+  opex: OperatingExpenses
+  total cost and expense: OperatingExpenses
+
+  selling general and administrative expense: SellingGeneralAndAdministrativeExpense
+  selling general and administrative: SellingGeneralAndAdministrativeExpense
+  general and administrative: SellingGeneralAndAdministrativeExpense
+  general administrative: SellingGeneralAndAdministrativeExpense
+  total general and administrative: SellingGeneralAndAdministrativeExpense
+  g and a: SellingGeneralAndAdministrativeExpense
+  sales and marketing: SellingGeneralAndAdministrativeExpense
+  sales marketing: SellingGeneralAndAdministrativeExpense
+  marketing: SellingGeneralAndAdministrativeExpense
+
+  research and development: ResearchAndDevelopmentExpense
+  research and development expense: ResearchAndDevelopmentExpense
+  r and d: ResearchAndDevelopmentExpense
+  product engineering: ResearchAndDevelopmentExpense
+
+  operating income: OperatingIncomeLoss
+  operating income loss: OperatingIncomeLoss
+  operating profit: OperatingIncomeLoss
+  operating profit before depn amort: OperatingIncomeLoss
+  operating profit before depreciation amortisation: OperatingIncomeLoss
+  operating profit before depn and amort: OperatingIncomeLoss
+  income from operations: OperatingIncomeLoss
+
+  ebitda: nongaap:EBITDA
+  ebitda loss: nongaap:EBITDA
+  earnings before interest tax: OperatingIncomeLoss
+  earnings before interest and tax: OperatingIncomeLoss
+
+  interest expense: InterestAndDebtExpense
+  interest expenses: InterestAndDebtExpense
+  interest and debt expense: InterestAndDebtExpense
+
+  income before tax: IncomeLossFromContinuingOperationsBeforeIncomeTaxesExtraordinaryItemsNoncontrollingInterest
+  earnings before tax: IncomeLossFromContinuingOperationsBeforeIncomeTaxesExtraordinaryItemsNoncontrollingInterest
+  pretax income: IncomeLossFromContinuingOperationsBeforeIncomeTaxesExtraordinaryItemsNoncontrollingInterest
+
+  income tax expense: IncomeTaxExpenseBenefit
+  income taxes: IncomeTaxExpenseBenefit
+  tax expense: IncomeTaxExpenseBenefit
+  tax expenses: IncomeTaxExpenseBenefit
+
+  net income: ProfitLoss
+  net income loss: ProfitLoss
+  net loss: ProfitLoss
+  profit loss: ProfitLoss
+  earnings after tax: ProfitLoss
+  net income after tax: ProfitLoss
+  retained income: ProfitLoss
+
+  depreciation and amortization: DepreciationDepletionAndAmortization
+  depreciation amortisation: DepreciationDepletionAndAmortization
+  depreciation amortization: DepreciationDepletionAndAmortization
+  depreciation and amortisation: DepreciationDepletionAndAmortization
+  depreciation amortisation: DepreciationDepletionAndAmortization
+
+  # --- Balance sheet ---
+  total assets: Assets
+
+  current assets: AssetsCurrent
+  total current assets: AssetsCurrent
+
+  cash: CashAndCashEquivalentsAtCarryingValue
+  cash and cash equivalents: CashAndCashEquivalentsAtCarryingValue
+  cash cash equivalents: CashAndCashEquivalentsAtCarryingValue
+  cash equivalents: CashAndCashEquivalentsAtCarryingValue
+  total cash: CashAndCashEquivalentsAtCarryingValue
+  total cash and cash equivalents: CashAndCashEquivalentsAtCarryingValue
+  total cash and equivalents: CashAndCashEquivalentsAtCarryingValue
+  cash and equivalents: CashAndCashEquivalentsAtCarryingValue
+  cash at end of period: CashAndCashEquivalentsAtCarryingValue
+  cash cash equivalents closing balance: CashAndCashEquivalentsAtCarryingValue
+  cash and equivalents closing balance: CashAndCashEquivalentsAtCarryingValue
+  ending balance: CashAndCashEquivalentsAtCarryingValue
+
+  accounts receivable: ReceivablesNetCurrent
+  accounts receivable net: ReceivablesNetCurrent
+  total accounts receivable: ReceivablesNetCurrent
+  total accounts receivable net: ReceivablesNetCurrent
+
+  inventory: InventoryNet
+  inventory asset: InventoryNet
+  total inventory: InventoryNet
+
+  prepaid expenses: PrepaidExpenseCurrent
+  prepaid expense: PrepaidExpenseCurrent
+
+  fixed assets: PropertyPlantAndEquipmentNet
+  property plant and equipment: PropertyPlantAndEquipmentNet
+  property and equipment: PropertyPlantAndEquipmentNet
+  total fixed assets net: PropertyPlantAndEquipmentNet
+  pp and e: PropertyPlantAndEquipmentNet
+
+  intangible assets: IntangibleAssetsNetIncludingGoodwill
+  intangibles and goodwill: IntangibleAssetsNetIncludingGoodwill
+  goodwill: Goodwill
+  noncurrent assets: AssetsNoncurrent
+  total noncurrent assets: AssetsNoncurrent
+
+  total liabilities: Liabilities
+
+  current liabilities: LiabilitiesCurrent
+  total current liabilities: LiabilitiesCurrent
+
+  accounts payable: AccountsPayableAndAccruedLiabilitiesCurrent
+  accrued expenses: AccountsPayableAndAccruedLiabilitiesCurrent
+  accrued labor: AccountsPayableAndAccruedLiabilitiesCurrent
+  payables and accruals: AccountsPayableAndAccruedLiabilitiesCurrent
+
+  deferred revenue: ContractWithCustomerLiability
+  short term deferred revenue: ContractWithCustomerLiabilityCurrent
+  contract liability: ContractWithCustomerLiability
+
+  short term debt: ShortTermBorrowings
+  short term borrowings: ShortTermBorrowings
+  short term credit: ShortTermBorrowings
+
+  other current liabilities: OtherLiabilitiesCurrent
+
+  noncurrent liabilities: LiabilitiesNoncurrent
+  total noncurrent liabilities: LiabilitiesNoncurrent
+  total long term liabilities: LiabilitiesNoncurrent
+  long term liabilities: LiabilitiesNoncurrent
+
+  long term debt: LongTermDebt
+  long-term debt: LongTermDebt
+
+  operating lease liability: OperatingLeaseLiability
+  lease liabilities: OperatingLeaseLiability
+
+  total equity: StockholdersEquity
+  stockholders equity: StockholdersEquity
+  shareholders equity: StockholdersEquity
+  total stockholders equity: StockholdersEquity
+  total shareholders equity: StockholdersEquity
+
+  preferred stock: PreferredStockValue
+  common stock: CommonStockValue
+  additional paid in capital: AdditionalPaidInCapital
+  retained earnings: RetainedEarningsAccumulatedDeficit
+  accumulated deficit: RetainedEarningsAccumulatedDeficit
+
+  # --- Cash flow ---
+  cash provided by used in operating activities: NetCashProvidedByUsedInOperatingActivities
+  net cash provided used by operating activities: NetCashProvidedByUsedInOperatingActivities
+  net cash provided used in operating activities: NetCashProvidedByUsedInOperatingActivities
+  cash flow from operating activities: NetCashProvidedByUsedInOperatingActivities
+  total cash from operating activities: NetCashProvidedByUsedInOperatingActivities
+  net cash provided used by operating: NetCashProvidedByUsedInOperatingActivities
+  cash provided by used in investing activities: NetCashProvidedByUsedInInvestingActivities
+  net cash provided used by investing activities: NetCashProvidedByUsedInInvestingActivities
+  net cash provided used in investing activities: NetCashProvidedByUsedInInvestingActivities
+  cash flow from investing activities: NetCashProvidedByUsedInInvestingActivities
+  total cash from investing activities: NetCashProvidedByUsedInInvestingActivities
+  net cash used in investing activities: NetCashProvidedByUsedInInvestingActivities
+
+  cash provided by used in financing activities: NetCashProvidedByUsedInFinancingActivities
+  net cash provided used by financing activities: NetCashProvidedByUsedInFinancingActivities
+  net cash provided used in financing activities: NetCashProvidedByUsedInFinancingActivities
+  cash flow from financing activities: NetCashProvidedByUsedInFinancingActivities
+  total cash from financing activities: NetCashProvidedByUsedInFinancingActivities
+
+  net cash increase decrease for period: CashCashEquivalentsRestrictedCashAndRestrictedCashEquivalentsPeriodIncreaseDecreaseExcludingExchangeRateEffect
+  net cash increase for period: CashCashEquivalentsRestrictedCashAndRestrictedCashEquivalentsPeriodIncreaseDecreaseExcludingExchangeRateEffect
+  change in cash and equivalents: CashCashEquivalentsRestrictedCashAndRestrictedCashEquivalentsPeriodIncreaseDecreaseExcludingExchangeRateEffect
+  net change in cash: CashCashEquivalentsRestrictedCashAndRestrictedCashEquivalentsPeriodIncreaseDecreaseExcludingExchangeRateEffect
+
+  capital expenditures: PaymentsToAcquirePropertyPlantAndEquipment
+  capex: PaymentsToAcquirePropertyPlantAndEquipment
+  payments to acquire property plant and equipment: PaymentsToAcquirePropertyPlantAndEquipment
+  sales purchase of fixed assets: PaymentsToAcquirePropertyPlantAndEquipment
+  change in fixed assets: PaymentsToAcquirePropertyPlantAndEquipment
+
+  free cash flow: nongaap:FreeCashFlow
+  working capital: nongaap:WorkingCapital
+  current ratio: ea:metric:current-ratio
+  quick ratio: ea:metric:quick-ratio
+  debt to equity: ea:metric:debt-to-equity
+  roe: ea:metric:roe
+  roa: ea:metric:roa
+
+# Inputs that may be satisfied by an alternate reported concept.
+input_aliases:
+  RevenueFromContractWithCustomerExcludingAssessedTax: [Revenues]
+  RevenueFromContractWithCustomerIncludingAssessedTax: [Revenues]
+  NetIncomeLoss: [ProfitLoss]
+  NetIncomeLossAvailableToCommonStockholdersBasic: [ProfitLoss]
+  LongTermDebtAndCapitalLeaseObligations: [LongTermDebt]
+  DeferredRevenue: [ContractWithCustomerLiability, ContractWithCustomerLiabilityCurrent]
+  AccountsPayableCurrent: [AccountsPayableAndAccruedLiabilitiesCurrent]
+  AccruedLiabilitiesCurrent: [AccountsPayableAndAccruedLiabilitiesCurrent]

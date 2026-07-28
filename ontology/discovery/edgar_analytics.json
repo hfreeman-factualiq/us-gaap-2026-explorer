@@ -1,0 +1,2048 @@
+{
+  "meta": {
+    "source": "edgar_analytics",
+    "package": "edgar-analytics",
+    "purpose": "Ontology expansion — synonym→GAAP maps and derived metric formulas",
+    "notes": "Does not fetch or compute EDGAR filings; harvests library catalogs only."
+  },
+  "extractedConcepts": [
+    {
+      "id": "ea:concept:revenue",
+      "synonymKey": "revenue",
+      "label": "Revenue",
+      "gaapTags": [
+        "RevenueFromContractWithCustomerExcludingAssessedTax",
+        "RevenueFromContractWithCustomerIncludingAssessedTax",
+        "SalesRevenueNet",
+        "SalesRevenueGoodsNet",
+        "SalesRevenueServicesNet",
+        "Revenues"
+      ],
+      "ifrsTags": [
+        "ifrs-full:Revenue",
+        "ifrs-full:RevenueFromSaleOfGoods",
+        "ifrs-full:RevenueFromRenderingOfServices"
+      ],
+      "textLabels": [
+        "Revenue",
+        "Revenues",
+        "Net sales",
+        "Net Sales",
+        "Operating revenue",
+        "Total revenue",
+        "RevenueFromContractWithCustomer"
+      ],
+      "source": "edgar_analytics",
+      "kind": "extracted"
+    },
+    {
+      "id": "ea:concept:gross_profit",
+      "synonymKey": "gross_profit",
+      "label": "Gross Profit",
+      "gaapTags": [
+        "GrossProfit"
+      ],
+      "ifrsTags": [
+        "ifrs-full:GrossProfit"
+      ],
+      "textLabels": [
+        "Gross Profit",
+        "Gross margin",
+        "Gross margin, net",
+        "GrossProfit"
+      ],
+      "source": "edgar_analytics",
+      "kind": "extracted"
+    },
+    {
+      "id": "ea:concept:cost_of_revenue",
+      "synonymKey": "cost_of_revenue",
+      "label": "Cost Of Revenue",
+      "gaapTags": [
+        "CostOfGoodsAndServicesSold",
+        "CostOfRevenue"
+      ],
+      "ifrsTags": [
+        "ifrs-full:CostOfSales"
+      ],
+      "textLabels": [
+        "Cost of revenue",
+        "Cost of sales",
+        "Cost of Sales",
+        "Cost of sales (including depreciation)"
+      ],
+      "source": "edgar_analytics",
+      "kind": "extracted"
+    },
+    {
+      "id": "ea:concept:operating_expenses",
+      "synonymKey": "operating_expenses",
+      "label": "Operating Expenses",
+      "gaapTags": [
+        "OperatingExpenses"
+      ],
+      "ifrsTags": [
+        "ifrs-full:OperatingExpenses",
+        "ifrs-full:OtherOperatingExpenses"
+      ],
+      "textLabels": [
+        "Operating expenses",
+        "Operating expense",
+        "Total operating expenses"
+      ],
+      "source": "edgar_analytics",
+      "kind": "extracted"
+    },
+    {
+      "id": "ea:concept:rnd_expenses",
+      "synonymKey": "rnd_expenses",
+      "label": "Rnd Expenses",
+      "gaapTags": [
+        "ResearchAndDevelopmentExpense"
+      ],
+      "ifrsTags": [
+        "ifrs-full:ResearchAndDevelopmentExpense"
+      ],
+      "textLabels": [
+        "R&D",
+        "Research and development"
+      ],
+      "source": "edgar_analytics",
+      "kind": "extracted"
+    },
+    {
+      "id": "ea:concept:sales_marketing",
+      "synonymKey": "sales_marketing",
+      "label": "Sales Marketing",
+      "gaapTags": [
+        "SellingAndMarketingExpense"
+      ],
+      "ifrsTags": [
+        "ifrs-full:SellingExpense"
+      ],
+      "textLabels": [
+        "Selling and marketing",
+        "Marketing and advertising",
+        "MarketingAndAdvertisingExpense"
+      ],
+      "source": "edgar_analytics",
+      "kind": "extracted"
+    },
+    {
+      "id": "ea:concept:general_administrative",
+      "synonymKey": "general_administrative",
+      "label": "General Administrative",
+      "gaapTags": [
+        "SellingGeneralAndAdministrativeExpense",
+        "GeneralAndAdministrativeExpense"
+      ],
+      "ifrsTags": [
+        "ifrs-full:AdministrativeExpense"
+      ],
+      "textLabels": [
+        "Selling, general and administrative",
+        "Selling, general and administrative expenses",
+        "General and administrative",
+        "SGA"
+      ],
+      "source": "edgar_analytics",
+      "kind": "extracted"
+    },
+    {
+      "id": "ea:concept:operating_income",
+      "synonymKey": "operating_income",
+      "label": "Operating Income",
+      "gaapTags": [
+        "OperatingIncomeLoss"
+      ],
+      "ifrsTags": [
+        "ifrs-full:OperatingProfitLoss"
+      ],
+      "textLabels": [
+        "Operating income",
+        "Operating profit"
+      ],
+      "source": "edgar_analytics",
+      "kind": "extracted"
+    },
+    {
+      "id": "ea:concept:other_income_expense",
+      "synonymKey": "other_income_expense",
+      "label": "Other Income Expense",
+      "gaapTags": [
+        "NonoperatingIncomeExpense"
+      ],
+      "ifrsTags": [
+        "ifrs-full:OtherOperatingIncome",
+        "ifrs-full:FinanceIncome"
+      ],
+      "textLabels": [
+        "Other income/(expense), net",
+        "Non-operating income/(expense)",
+        "OtherNonoperatingIncomeExpense"
+      ],
+      "source": "edgar_analytics",
+      "kind": "extracted"
+    },
+    {
+      "id": "ea:concept:income_before_taxes",
+      "synonymKey": "income_before_taxes",
+      "label": "Income Before Taxes",
+      "gaapTags": [
+        "IncomeLossFromContinuingOperationsBeforeIncomeTaxesExtraordinaryItemsNoncontrollingInterest"
+      ],
+      "ifrsTags": [
+        "ifrs-full:ProfitLossBeforeTax"
+      ],
+      "textLabels": [
+        "Income before provision for income taxes",
+        "Pretax income"
+      ],
+      "source": "edgar_analytics",
+      "kind": "extracted"
+    },
+    {
+      "id": "ea:concept:income_tax_expense",
+      "synonymKey": "income_tax_expense",
+      "label": "Income Tax Expense",
+      "gaapTags": [
+        "IncomeTaxExpenseBenefit"
+      ],
+      "ifrsTags": [
+        "ifrs-full:IncomeTaxExpense"
+      ],
+      "textLabels": [
+        "Provision for income taxes",
+        "Tax expense",
+        "Current income tax expense",
+        "Deferred income tax expense"
+      ],
+      "source": "edgar_analytics",
+      "kind": "extracted"
+    },
+    {
+      "id": "ea:concept:depreciation_amortization",
+      "synonymKey": "depreciation_amortization",
+      "label": "Depreciation Amortization",
+      "gaapTags": [
+        "DepreciationDepletionAndAmortization",
+        "DepreciationAndAmortization"
+      ],
+      "ifrsTags": [
+        "ifrs-full:DepreciationAndAmortisationExpense"
+      ],
+      "textLabels": [
+        "Depreciation and amortization",
+        "Depreciation & Amortization",
+        "Depreciation and amortisation",
+        "Depreciation expense",
+        "Amortization expense",
+        "Amortisation expense",
+        "Depreciation and amortization expense",
+        "Depreciation and amortisation expense",
+        "D&A"
+      ],
+      "source": "edgar_analytics",
+      "kind": "extracted"
+    },
+    {
+      "id": "ea:concept:depreciation_in_cost_of_sales",
+      "synonymKey": "depreciation_in_cost_of_sales",
+      "label": "Depreciation In Cost Of Sales",
+      "gaapTags": [
+        "DepreciationAmortizationInCostOfGoodsSold"
+      ],
+      "ifrsTags": [],
+      "textLabels": [
+        "Depreciation in cost of sales",
+        "Depreciation included in cost of sales",
+        "Depreciation (in cost of sales)",
+        "Depr in cost of goods sold"
+      ],
+      "source": "edgar_analytics",
+      "kind": "extracted"
+    },
+    {
+      "id": "ea:concept:net_income",
+      "synonymKey": "net_income",
+      "label": "Net Income",
+      "gaapTags": [
+        "NetIncomeLoss",
+        "NetIncomeLossAvailableToCommonStockholdersBasic",
+        "NetIncomeLossAttributableToParent"
+      ],
+      "ifrsTags": [
+        "ifrs-full:ProfitLoss",
+        "ifrs-full:ProfitLossAttributableToOwnersOfParent"
+      ],
+      "textLabels": [
+        "Net Income",
+        "Net Earnings",
+        "Net income attributable to common stockholders",
+        "Income (loss) from continuing operations"
+      ],
+      "source": "edgar_analytics",
+      "kind": "extracted"
+    },
+    {
+      "id": "ea:concept:earnings_per_share_basic",
+      "synonymKey": "earnings_per_share_basic",
+      "label": "Earnings Per Share Basic",
+      "gaapTags": [
+        "EarningsPerShareBasic"
+      ],
+      "ifrsTags": [
+        "ifrs-full:BasicEarningsLossPerShare"
+      ],
+      "textLabels": [
+        "Basic EPS"
+      ],
+      "source": "edgar_analytics",
+      "kind": "extracted"
+    },
+    {
+      "id": "ea:concept:earnings_per_share_diluted",
+      "synonymKey": "earnings_per_share_diluted",
+      "label": "Earnings Per Share Diluted",
+      "gaapTags": [
+        "EarningsPerShareDiluted"
+      ],
+      "ifrsTags": [
+        "ifrs-full:DilutedEarningsLossPerShare"
+      ],
+      "textLabels": [
+        "Diluted EPS"
+      ],
+      "source": "edgar_analytics",
+      "kind": "extracted"
+    },
+    {
+      "id": "ea:concept:common_shares_outstanding",
+      "synonymKey": "common_shares_outstanding",
+      "label": "Common Shares Outstanding",
+      "gaapTags": [
+        "CommonStockSharesOutstanding"
+      ],
+      "ifrsTags": [
+        "ifrs-full:IssuedCapitalNumberOfShares"
+      ],
+      "textLabels": [
+        "dei_EntityCommonStockSharesOutstanding",
+        "Common Stock, shares outstanding",
+        "Shares outstanding",
+        "SharesIssued"
+      ],
+      "source": "edgar_analytics",
+      "kind": "extracted"
+    },
+    {
+      "id": "ea:concept:cash_equivalents",
+      "synonymKey": "cash_equivalents",
+      "label": "Cash Equivalents",
+      "gaapTags": [
+        "CashAndCashEquivalentsAtCarryingValue"
+      ],
+      "ifrsTags": [
+        "ifrs-full:CashAndCashEquivalents"
+      ],
+      "textLabels": [
+        "Cash and cash equivalents",
+        "CashCashEquivalentsAndShortTermInvestments",
+        "Cash, cash equivalents, restricted"
+      ],
+      "source": "edgar_analytics",
+      "kind": "extracted"
+    },
+    {
+      "id": "ea:concept:short_term_investments",
+      "synonymKey": "short_term_investments",
+      "label": "Short Term Investments",
+      "gaapTags": [
+        "AvailableForSaleSecuritiesDebtSecuritiesCurrent",
+        "MarketableSecuritiesCurrent"
+      ],
+      "ifrsTags": [
+        "ifrs-full:FinancialAssetsCurrent"
+      ],
+      "textLabels": [
+        "ST investments",
+        "Marketable securities, current",
+        "Short-term investments"
+      ],
+      "source": "edgar_analytics",
+      "kind": "extracted"
+    },
+    {
+      "id": "ea:concept:accounts_receivable",
+      "synonymKey": "accounts_receivable",
+      "label": "Accounts Receivable",
+      "gaapTags": [
+        "AccountsReceivableNetCurrent"
+      ],
+      "ifrsTags": [
+        "ifrs-full:TradeAndOtherReceivables"
+      ],
+      "textLabels": [
+        "Accounts receivable",
+        "Accounts receivable, net",
+        "Receivables"
+      ],
+      "source": "edgar_analytics",
+      "kind": "extracted"
+    },
+    {
+      "id": "ea:concept:inventory",
+      "synonymKey": "inventory",
+      "label": "Inventory",
+      "gaapTags": [
+        "InventoryNet"
+      ],
+      "ifrsTags": [
+        "ifrs-full:Inventories"
+      ],
+      "textLabels": [
+        "Inventories",
+        "Inventory, net",
+        "Inventory",
+        "Inventory, finished goods",
+        "Finished goods inventory",
+        "Inventory, raw materials"
+      ],
+      "source": "edgar_analytics",
+      "kind": "extracted"
+    },
+    {
+      "id": "ea:concept:other_current_assets",
+      "synonymKey": "other_current_assets",
+      "label": "Other Current Assets",
+      "gaapTags": [
+        "OtherAssetsCurrent",
+        "PrepaidExpenseAndOtherAssetsCurrent"
+      ],
+      "ifrsTags": [
+        "ifrs-full:OtherCurrentAssets"
+      ],
+      "textLabels": [
+        "Prepaid expenses and other current assets",
+        "Other current assets"
+      ],
+      "source": "edgar_analytics",
+      "kind": "extracted"
+    },
+    {
+      "id": "ea:concept:current_assets",
+      "synonymKey": "current_assets",
+      "label": "Current Assets",
+      "gaapTags": [
+        "AssetsCurrent"
+      ],
+      "ifrsTags": [
+        "ifrs-full:CurrentAssets"
+      ],
+      "textLabels": [
+        "Total current assets",
+        "Assets, current"
+      ],
+      "source": "edgar_analytics",
+      "kind": "extracted"
+    },
+    {
+      "id": "ea:concept:long_term_investments",
+      "synonymKey": "long_term_investments",
+      "label": "Long Term Investments",
+      "gaapTags": [
+        "LongTermInvestments",
+        "MarketableSecuritiesNoncurrent"
+      ],
+      "ifrsTags": [
+        "ifrs-full:NoncurrentFinancialAssets"
+      ],
+      "textLabels": [
+        "Marketable securities, noncurrent",
+        "Equity and other investments"
+      ],
+      "source": "edgar_analytics",
+      "kind": "extracted"
+    },
+    {
+      "id": "ea:concept:ppe_net",
+      "synonymKey": "ppe_net",
+      "label": "Ppe Net",
+      "gaapTags": [
+        "PropertyPlantAndEquipmentNet"
+      ],
+      "ifrsTags": [
+        "ifrs-full:PropertyPlantAndEquipment"
+      ],
+      "textLabels": [
+        "Property, plant and equipment, net",
+        "Property and equipment, net",
+        "PPE net"
+      ],
+      "source": "edgar_analytics",
+      "kind": "extracted"
+    },
+    {
+      "id": "ea:concept:intangible_assets",
+      "synonymKey": "intangible_assets",
+      "label": "Intangible Assets",
+      "gaapTags": [
+        "IntangibleAssetsNetExcludingGoodwill",
+        "FiniteLivedIntangibleAssetsGross",
+        "IntangibleAssetsFiniteLivedNet",
+        "IntangibleAssetsIndefiniteLivedExcludingGoodwill"
+      ],
+      "ifrsTags": [
+        "ifrs-full:IntangibleAssets"
+      ],
+      "textLabels": [
+        "Intangible assets",
+        "FiniteLivedIntangibleAssetsNet",
+        "Intangible assets, net",
+        "Acquired intangible assets",
+        "Customer-related intangible assets",
+        "Technology-based intangible assets",
+        "Intellectual property",
+        "Brand names",
+        "Customer lists",
+        "Patents",
+        "Trademarks",
+        "Identifiable intangible assets"
+      ],
+      "source": "edgar_analytics",
+      "kind": "extracted"
+    },
+    {
+      "id": "ea:concept:goodwill",
+      "synonymKey": "goodwill",
+      "label": "Goodwill",
+      "gaapTags": [
+        "Goodwill"
+      ],
+      "ifrsTags": [
+        "ifrs-full:Goodwill"
+      ],
+      "textLabels": [
+        "Goodwill"
+      ],
+      "source": "edgar_analytics",
+      "kind": "extracted"
+    },
+    {
+      "id": "ea:concept:other_noncurrent_assets",
+      "synonymKey": "other_noncurrent_assets",
+      "label": "Other Noncurrent Assets",
+      "gaapTags": [
+        "AssetsNoncurrent"
+      ],
+      "ifrsTags": [
+        "ifrs-full:NoncurrentAssets"
+      ],
+      "textLabels": [
+        "Total non-current assets",
+        "Other non-current assets",
+        "Long-lived assets"
+      ],
+      "source": "edgar_analytics",
+      "kind": "extracted"
+    },
+    {
+      "id": "ea:concept:total_assets",
+      "synonymKey": "total_assets",
+      "label": "Total Assets",
+      "gaapTags": [
+        "Assets"
+      ],
+      "ifrsTags": [
+        "ifrs-full:Assets"
+      ],
+      "textLabels": [
+        "Total assets"
+      ],
+      "source": "edgar_analytics",
+      "kind": "extracted"
+    },
+    {
+      "id": "ea:concept:accounts_payable",
+      "synonymKey": "accounts_payable",
+      "label": "Accounts Payable",
+      "gaapTags": [
+        "AccountsPayableCurrent"
+      ],
+      "ifrsTags": [
+        "ifrs-full:TradeAndOtherPayables"
+      ],
+      "textLabels": [
+        "Accounts payable",
+        "AP",
+        "Trade payables"
+      ],
+      "source": "edgar_analytics",
+      "kind": "extracted"
+    },
+    {
+      "id": "ea:concept:accrued_expenses",
+      "synonymKey": "accrued_expenses",
+      "label": "Accrued Expenses",
+      "gaapTags": [
+        "AccruedLiabilitiesCurrent",
+        "AccruedExpenses"
+      ],
+      "ifrsTags": [
+        "ifrs-full:AccrualsAndDeferredIncome"
+      ],
+      "textLabels": [
+        "Accrued expenses",
+        "Other accrued liabilities"
+      ],
+      "source": "edgar_analytics",
+      "kind": "extracted"
+    },
+    {
+      "id": "ea:concept:current_liabilities",
+      "synonymKey": "current_liabilities",
+      "label": "Current Liabilities",
+      "gaapTags": [
+        "LiabilitiesCurrent"
+      ],
+      "ifrsTags": [
+        "ifrs-full:CurrentLiabilities"
+      ],
+      "textLabels": [
+        "Total current liabilities",
+        "Liabilities, current"
+      ],
+      "source": "edgar_analytics",
+      "kind": "extracted"
+    },
+    {
+      "id": "ea:concept:deferred_revenue",
+      "synonymKey": "deferred_revenue",
+      "label": "Deferred Revenue",
+      "gaapTags": [
+        "ContractWithCustomerLiabilityCurrent"
+      ],
+      "ifrsTags": [
+        "ifrs-full:ContractLiabilitiesCurrent"
+      ],
+      "textLabels": [
+        "Deferred revenue",
+        "Unearned revenue",
+        "Contract liability"
+      ],
+      "source": "edgar_analytics",
+      "kind": "extracted"
+    },
+    {
+      "id": "ea:concept:short_term_debt",
+      "synonymKey": "short_term_debt",
+      "label": "Short Term Debt",
+      "gaapTags": [
+        "ShortTermBorrowings",
+        "LongTermDebtCurrent",
+        "CommercialPaper"
+      ],
+      "ifrsTags": [
+        "ifrs-full:BorrowingsCurrent"
+      ],
+      "textLabels": [
+        "Commercial paper",
+        "LineOfCreditFacility",
+        "Short-term debt",
+        "Short-term borrowings",
+        "Current portion of long-term debt"
+      ],
+      "source": "edgar_analytics",
+      "kind": "extracted"
+    },
+    {
+      "id": "ea:concept:long_term_debt",
+      "synonymKey": "long_term_debt",
+      "label": "Long Term Debt",
+      "gaapTags": [
+        "LongTermDebt",
+        "LongTermDebtNoncurrent"
+      ],
+      "ifrsTags": [
+        "ifrs-full:BorrowingsNoncurrent"
+      ],
+      "textLabels": [
+        "Long-term debt",
+        "Long-term debt, net of current portion",
+        "Term debt",
+        "Notes payable",
+        "Bond obligations"
+      ],
+      "source": "edgar_analytics",
+      "kind": "extracted"
+    },
+    {
+      "id": "ea:concept:operating_lease_liabilities",
+      "synonymKey": "operating_lease_liabilities",
+      "label": "Operating Lease Liabilities",
+      "gaapTags": [
+        "OperatingLeaseLiability"
+      ],
+      "ifrsTags": [],
+      "textLabels": [
+        "Operating lease liabilities"
+      ],
+      "source": "edgar_analytics",
+      "kind": "extracted"
+    },
+    {
+      "id": "ea:concept:finance_lease_liabilities",
+      "synonymKey": "finance_lease_liabilities",
+      "label": "Finance Lease Liabilities",
+      "gaapTags": [
+        "FinanceLeaseLiability"
+      ],
+      "ifrsTags": [],
+      "textLabels": [
+        "Finance lease liabilities"
+      ],
+      "source": "edgar_analytics",
+      "kind": "extracted"
+    },
+    {
+      "id": "ea:concept:other_noncurrent_liabilities",
+      "synonymKey": "other_noncurrent_liabilities",
+      "label": "Other Noncurrent Liabilities",
+      "gaapTags": [
+        "LiabilitiesNoncurrent",
+        "OtherLiabilitiesNoncurrent"
+      ],
+      "ifrsTags": [
+        "ifrs-full:NoncurrentLiabilities"
+      ],
+      "textLabels": [
+        "Other non-current liabilities",
+        "Total non-current liabilities"
+      ],
+      "source": "edgar_analytics",
+      "kind": "extracted"
+    },
+    {
+      "id": "ea:concept:total_liabilities",
+      "synonymKey": "total_liabilities",
+      "label": "Total Liabilities",
+      "gaapTags": [
+        "Liabilities"
+      ],
+      "ifrsTags": [
+        "ifrs-full:Liabilities"
+      ],
+      "textLabels": [
+        "Total liabilities"
+      ],
+      "source": "edgar_analytics",
+      "kind": "extracted"
+    },
+    {
+      "id": "ea:concept:total_equity",
+      "synonymKey": "total_equity",
+      "label": "Total Equity",
+      "gaapTags": [
+        "StockholdersEquity",
+        "StockholdersEquityIncludingPortionAttributableToNoncontrollingInterest"
+      ],
+      "ifrsTags": [
+        "ifrs-full:Equity",
+        "ifrs-full:EquityAttributableToOwnersOfParent"
+      ],
+      "textLabels": [
+        "Total shareholders’ equity",
+        "Total equity",
+        "Equity",
+        "Shareholders’ equity",
+        "Stockholders’ equity, including portion attributable to noncontrolling interest"
+      ],
+      "source": "edgar_analytics",
+      "kind": "extracted"
+    },
+    {
+      "id": "ea:concept:common_stock_and_apic",
+      "synonymKey": "common_stock_and_apic",
+      "label": "Common Stock And Apic",
+      "gaapTags": [
+        "CommonStocksIncludingAdditionalPaidInCapital",
+        "AdditionalPaidInCapital"
+      ],
+      "ifrsTags": [
+        "ifrs-full:ShareCapital",
+        "ifrs-full:SharePremium"
+      ],
+      "textLabels": [
+        "Common stock and additional paid-in capital",
+        "Additional paid-in capital"
+      ],
+      "source": "edgar_analytics",
+      "kind": "extracted"
+    },
+    {
+      "id": "ea:concept:treasury_stock",
+      "synonymKey": "treasury_stock",
+      "label": "Treasury Stock",
+      "gaapTags": [
+        "TreasuryStockValue"
+      ],
+      "ifrsTags": [
+        "ifrs-full:TreasuryShares"
+      ],
+      "textLabels": [
+        "Treasury stock"
+      ],
+      "source": "edgar_analytics",
+      "kind": "extracted"
+    },
+    {
+      "id": "ea:concept:retained_earnings",
+      "synonymKey": "retained_earnings",
+      "label": "Retained Earnings",
+      "gaapTags": [
+        "RetainedEarningsAccumulatedDeficit"
+      ],
+      "ifrsTags": [
+        "ifrs-full:RetainedEarnings"
+      ],
+      "textLabels": [
+        "Retained earnings",
+        "Accumulated deficit"
+      ],
+      "source": "edgar_analytics",
+      "kind": "extracted"
+    },
+    {
+      "id": "ea:concept:preferred_stock",
+      "synonymKey": "preferred_stock",
+      "label": "Preferred Stock",
+      "gaapTags": [
+        "PreferredStockValue",
+        "RedeemablePreferredStockCarryingAmount"
+      ],
+      "ifrsTags": [
+        "ifrs-full:PreferenceShareCapital"
+      ],
+      "textLabels": [
+        "Preferred stock",
+        "Redeemable preferred stock"
+      ],
+      "source": "edgar_analytics",
+      "kind": "extracted"
+    },
+    {
+      "id": "ea:concept:minority_interest",
+      "synonymKey": "minority_interest",
+      "label": "Minority Interest",
+      "gaapTags": [
+        "MinorityInterest",
+        "RedeemableNoncontrollingInterestEquityCarryingAmount"
+      ],
+      "ifrsTags": [
+        "ifrs-full:NonControllingInterests"
+      ],
+      "textLabels": [
+        "Noncontrolling interests",
+        "Minority interest",
+        "Noncontrolling interest"
+      ],
+      "source": "edgar_analytics",
+      "kind": "extracted"
+    },
+    {
+      "id": "ea:concept:accumulated_oci",
+      "synonymKey": "accumulated_oci",
+      "label": "Accumulated Oci",
+      "gaapTags": [
+        "AccumulatedOtherComprehensiveIncomeLossNetOfTax",
+        "OtherComprehensiveIncomeLossNetOfTax"
+      ],
+      "ifrsTags": [
+        "ifrs-full:OtherReserves"
+      ],
+      "textLabels": [
+        "Accumulated other comprehensive loss",
+        "AOCI",
+        "Other comprehensive income/loss"
+      ],
+      "source": "edgar_analytics",
+      "kind": "extracted"
+    },
+    {
+      "id": "ea:concept:comprehensive_income",
+      "synonymKey": "comprehensive_income",
+      "label": "Comprehensive Income",
+      "gaapTags": [
+        "ComprehensiveIncomeNetOfTax"
+      ],
+      "ifrsTags": [
+        "ifrs-full:ComprehensiveIncome"
+      ],
+      "textLabels": [
+        "Total comprehensive income",
+        "Other comprehensive income, net of tax"
+      ],
+      "source": "edgar_analytics",
+      "kind": "extracted"
+    },
+    {
+      "id": "ea:concept:cash_flow_operating",
+      "synonymKey": "cash_flow_operating",
+      "label": "Cash Flow Operating",
+      "gaapTags": [
+        "NetCashProvidedByUsedInOperatingActivities"
+      ],
+      "ifrsTags": [
+        "ifrs-full:NetCashFlowsFromUsedInOperatingActivities"
+      ],
+      "textLabels": [
+        "Cash from/(used in) operating activities",
+        "Cash generated by operating activities"
+      ],
+      "source": "edgar_analytics",
+      "kind": "extracted"
+    },
+    {
+      "id": "ea:concept:cash_flow_investing",
+      "synonymKey": "cash_flow_investing",
+      "label": "Cash Flow Investing",
+      "gaapTags": [
+        "NetCashProvidedByUsedInInvestingActivities"
+      ],
+      "ifrsTags": [
+        "ifrs-full:NetCashFlowsFromUsedInInvestingActivities"
+      ],
+      "textLabels": [
+        "Cash from/(used in) investing activities",
+        "Cash generated by/(used in) investing activities",
+        "NetCashProvidedByUsedInInvestingActivities"
+      ],
+      "source": "edgar_analytics",
+      "kind": "extracted"
+    },
+    {
+      "id": "ea:concept:cash_flow_financing",
+      "synonymKey": "cash_flow_financing",
+      "label": "Cash Flow Financing",
+      "gaapTags": [
+        "NetCashProvidedByUsedInFinancingActivities"
+      ],
+      "ifrsTags": [
+        "ifrs-full:NetCashFlowsFromUsedInFinancingActivities"
+      ],
+      "textLabels": [
+        "Cash from/(used in) financing activities",
+        "Cash used in financing activities"
+      ],
+      "source": "edgar_analytics",
+      "kind": "extracted"
+    },
+    {
+      "id": "ea:concept:share_based_compensation",
+      "synonymKey": "share_based_compensation",
+      "label": "Share Based Compensation",
+      "gaapTags": [
+        "ShareBasedCompensation",
+        "AllocatedShareBasedCompensationExpense"
+      ],
+      "ifrsTags": [
+        "ifrs-full:ShareBasedPayment"
+      ],
+      "textLabels": [
+        "Stock-based compensation expense",
+        "Share-based compensation",
+        "Equity compensation"
+      ],
+      "source": "edgar_analytics",
+      "kind": "extracted"
+    },
+    {
+      "id": "ea:concept:deferred_tax_assets",
+      "synonymKey": "deferred_tax_assets",
+      "label": "Deferred Tax Assets",
+      "gaapTags": [
+        "DeferredTaxAssetsGross",
+        "DeferredTaxAssetsNet"
+      ],
+      "ifrsTags": [
+        "ifrs-full:DeferredTaxAssets"
+      ],
+      "textLabels": [
+        "Deferred tax assets",
+        "DTA"
+      ],
+      "source": "edgar_analytics",
+      "kind": "extracted"
+    },
+    {
+      "id": "ea:concept:deferred_tax_liabilities",
+      "synonymKey": "deferred_tax_liabilities",
+      "label": "Deferred Tax Liabilities",
+      "gaapTags": [
+        "DeferredTaxLiabilities",
+        "DeferredTaxLiabilitiesNet"
+      ],
+      "ifrsTags": [
+        "ifrs-full:DeferredTaxLiabilities"
+      ],
+      "textLabels": [
+        "DTL"
+      ],
+      "source": "edgar_analytics",
+      "kind": "extracted"
+    },
+    {
+      "id": "ea:concept:unrecognized_tax_benefits",
+      "synonymKey": "unrecognized_tax_benefits",
+      "label": "Unrecognized Tax Benefits",
+      "gaapTags": [
+        "UnrecognizedTaxBenefits"
+      ],
+      "ifrsTags": [],
+      "textLabels": [
+        "Unrecognized tax benefits",
+        "Gross unrecognized tax benefits"
+      ],
+      "source": "edgar_analytics",
+      "kind": "extracted"
+    },
+    {
+      "id": "ea:concept:dividends",
+      "synonymKey": "dividends",
+      "label": "Dividends",
+      "gaapTags": [
+        "Dividends",
+        "CommonStockDividendsPerShareDeclared"
+      ],
+      "ifrsTags": [
+        "ifrs-full:DividendsPaid"
+      ],
+      "textLabels": [
+        "Dividends",
+        "Dividends declared",
+        "PaymentsOfDividends"
+      ],
+      "source": "edgar_analytics",
+      "kind": "extracted"
+    },
+    {
+      "id": "ea:concept:share_repurchase",
+      "synonymKey": "share_repurchase",
+      "label": "Share Repurchase",
+      "gaapTags": [
+        "PaymentsForRepurchaseOfCommonStock",
+        "StockRepurchasedAndRetiredDuringPeriodShares"
+      ],
+      "ifrsTags": [
+        "ifrs-full:PaymentsForRepurchaseOfEquityInstruments"
+      ],
+      "textLabels": [
+        "Repurchases of common stock",
+        "Stock repurchased and retired"
+      ],
+      "source": "edgar_analytics",
+      "kind": "extracted"
+    },
+    {
+      "id": "ea:concept:business_combinations",
+      "synonymKey": "business_combinations",
+      "label": "Business Combinations",
+      "gaapTags": [
+        "BusinessCombinationsPolicy",
+        "BusinessCombinationDisclosureTextBlock"
+      ],
+      "ifrsTags": [
+        "ifrs-full:BusinessCombinations"
+      ],
+      "textLabels": [
+        "Business combinations",
+        "AcquisitionsNetOfCashAcquiredAndPurchasesOfIntangibleAndOtherAssets",
+        "Merger or acquisition references (in textual sections)"
+      ],
+      "source": "edgar_analytics",
+      "kind": "extracted"
+    },
+    {
+      "id": "ea:concept:lease_disclosures",
+      "synonymKey": "lease_disclosures",
+      "label": "Lease Disclosures",
+      "gaapTags": [
+        "LesseeLeasesPolicyTextBlock",
+        "LeaseCost",
+        "LeaseCostTableTextBlock"
+      ],
+      "ifrsTags": [
+        "ifrs-full:Leases"
+      ],
+      "textLabels": [
+        "OperatingLeaseLiabilityPaymentsDue",
+        "FinanceLeaseLiabilityPaymentsDue",
+        "Leases (general disclosures)"
+      ],
+      "source": "edgar_analytics",
+      "kind": "extracted"
+    },
+    {
+      "id": "ea:concept:derivatives_hedging",
+      "synonymKey": "derivatives_hedging",
+      "label": "Derivatives Hedging",
+      "gaapTags": [
+        "DerivativeInstrumentsAndHedgingActivitiesDisclosureTextBlock",
+        "DerivativeAssetFairValueGrossAssetIncludingNotSubjectToMasterNettingArrangement"
+      ],
+      "ifrsTags": [
+        "ifrs-full:DerivativeFinancialInstruments"
+      ],
+      "textLabels": [
+        "Derivative instruments",
+        "Hedging instruments",
+        "Cash flow hedges",
+        "Net investment hedges",
+        "FairValueHedge"
+      ],
+      "source": "edgar_analytics",
+      "kind": "extracted"
+    },
+    {
+      "id": "ea:concept:fair_value",
+      "synonymKey": "fair_value",
+      "label": "Fair Value",
+      "gaapTags": [
+        "FairValueMeasurementPolicyPolicyTextBlock",
+        "FairValueDisclosuresTextBlock"
+      ],
+      "ifrsTags": [
+        "ifrs-full:FairValueMeasurement"
+      ],
+      "textLabels": [
+        "Fair Value Measurements"
+      ],
+      "source": "edgar_analytics",
+      "kind": "extracted"
+    },
+    {
+      "id": "ea:concept:segment_reporting",
+      "synonymKey": "segment_reporting",
+      "label": "Segment Reporting",
+      "gaapTags": [
+        "SegmentReportingPolicyPolicyTextBlock",
+        "SegmentReportingDisclosureTextBlock"
+      ],
+      "ifrsTags": [
+        "ifrs-full:SegmentReporting"
+      ],
+      "textLabels": [
+        "Segment revenue",
+        "Segment operating income"
+      ],
+      "source": "edgar_analytics",
+      "kind": "extracted"
+    },
+    {
+      "id": "ea:concept:commitments_contingencies",
+      "synonymKey": "commitments_contingencies",
+      "label": "Commitments Contingencies",
+      "gaapTags": [
+        "CommitmentsAndContingencies",
+        "CommitmentsAndContingenciesDisclosureTextBlock"
+      ],
+      "ifrsTags": [
+        "ifrs-full:ContingentLiabilities"
+      ],
+      "textLabels": [
+        "Contingencies",
+        "Litigation, claims",
+        "Purchase obligations",
+        "Guarantees"
+      ],
+      "source": "edgar_analytics",
+      "kind": "extracted"
+    },
+    {
+      "id": "ea:concept:litigation_legal",
+      "synonymKey": "litigation_legal",
+      "label": "Litigation Legal",
+      "gaapTags": [
+        "LegalMattersAndContingenciesTextBlock"
+      ],
+      "ifrsTags": [],
+      "textLabels": [
+        "Loss contingency, loss in period",
+        "European Commission fines",
+        "Legal proceedings"
+      ],
+      "source": "edgar_analytics",
+      "kind": "extracted"
+    },
+    {
+      "id": "ea:concept:risk_factors",
+      "synonymKey": "risk_factors",
+      "label": "Risk Factors",
+      "gaapTags": [],
+      "ifrsTags": [],
+      "textLabels": [
+        "Risk Factors",
+        "Item 1A. Risk Factors",
+        "Business risk, M&A risk, supply chain risk, etc."
+      ],
+      "source": "edgar_analytics",
+      "kind": "extracted"
+    },
+    {
+      "id": "ea:concept:insider_transactions",
+      "synonymKey": "insider_transactions",
+      "label": "Insider Transactions",
+      "gaapTags": [],
+      "ifrsTags": [],
+      "textLabels": [
+        "ecd_TrdArrIndName",
+        "ecd_TrdArrIndTitle",
+        "Insider trading arrangement",
+        "Rule 10b5-1 arrangement",
+        "InsiderTrdPoliciesProcAdoptedFlag"
+      ],
+      "source": "edgar_analytics",
+      "kind": "extracted"
+    },
+    {
+      "id": "ea:concept:recent_accounting_guidance",
+      "synonymKey": "recent_accounting_guidance",
+      "label": "Recent Accounting Guidance",
+      "gaapTags": [
+        "NewAccountingPronouncementsPolicyPolicyTextBlock"
+      ],
+      "ifrsTags": [
+        "ifrs-full:StandardsIssuedButNotYetEffective"
+      ],
+      "textLabels": [
+        "kltr_RecentAccountingGuidanceNotYetAdoptedPolicyTextBlock",
+        "Recent accounting guidance",
+        "Pronouncements not yet adopted"
+      ],
+      "source": "edgar_analytics",
+      "kind": "extracted"
+    },
+    {
+      "id": "ea:concept:capital_expenditures",
+      "synonymKey": "capital_expenditures",
+      "label": "Capital Expenditures",
+      "gaapTags": [
+        "PaymentsToAcquirePropertyPlantAndEquipment"
+      ],
+      "ifrsTags": [
+        "ifrs-full:AcquisitionsOfPropertyPlantAndEquipment"
+      ],
+      "textLabels": [
+        "Capital expenditures",
+        "Purchase of PP&E",
+        "Purchase of fixed assets",
+        "Additions to property, plant and equipment",
+        "PurchaseOfPropertyAndEquipment",
+        "Capital expenditures, net",
+        "Capital Expenditures, net",
+        "Capital expenditure",
+        "Capital Expenditure",
+        "Capital investment",
+        "CapEx",
+        "Capex"
+      ],
+      "source": "edgar_analytics",
+      "kind": "extracted"
+    },
+    {
+      "id": "ea:concept:right_of_use_assets",
+      "synonymKey": "right_of_use_assets",
+      "label": "Right Of Use Assets",
+      "gaapTags": [
+        "OperatingLeaseRightOfUseAsset"
+      ],
+      "ifrsTags": [
+        "ifrs-full:RightOfUseAssets"
+      ],
+      "textLabels": [
+        "Right-of-use assets",
+        "Lease assets"
+      ],
+      "source": "edgar_analytics",
+      "kind": "extracted"
+    },
+    {
+      "id": "ea:concept:lease_liabilities_current",
+      "synonymKey": "lease_liabilities_current",
+      "label": "Lease Liabilities Current",
+      "gaapTags": [
+        "OperatingLeaseLiabilityCurrent"
+      ],
+      "ifrsTags": [
+        "ifrs-full:LeaseLiabilitiesCurrent"
+      ],
+      "textLabels": [
+        "Lease liabilities, current",
+        "Operating lease liability, current"
+      ],
+      "source": "edgar_analytics",
+      "kind": "extracted"
+    },
+    {
+      "id": "ea:concept:lease_liabilities_noncurrent",
+      "synonymKey": "lease_liabilities_noncurrent",
+      "label": "Lease Liabilities Noncurrent",
+      "gaapTags": [
+        "OperatingLeaseLiabilityNoncurrent"
+      ],
+      "ifrsTags": [
+        "ifrs-full:LeaseLiabilitiesNoncurrent"
+      ],
+      "textLabels": [
+        "Lease liabilities, non-current",
+        "Operating lease liability, non-current"
+      ],
+      "source": "edgar_analytics",
+      "kind": "extracted"
+    },
+    {
+      "id": "ea:concept:financial_assets_fvpl",
+      "synonymKey": "financial_assets_fvpl",
+      "label": "Financial Assets Fvpl",
+      "gaapTags": [
+        "MarketableSecuritiesCurrent"
+      ],
+      "ifrsTags": [
+        "ifrs-full:FinancialAssetsAtFairValueThroughProfitOrLoss"
+      ],
+      "textLabels": [
+        "Financial assets at fair value through profit or loss",
+        "Financial instruments (FVPL)"
+      ],
+      "source": "edgar_analytics",
+      "kind": "extracted"
+    },
+    {
+      "id": "ea:concept:financial_assets_fvoci",
+      "synonymKey": "financial_assets_fvoci",
+      "label": "Financial Assets Fvoci",
+      "gaapTags": [
+        "AvailableForSaleSecuritiesCurrent"
+      ],
+      "ifrsTags": [
+        "ifrs-full:FinancialAssetsAtFairValueThroughOtherComprehensiveIncome"
+      ],
+      "textLabels": [
+        "Financial assets at fair value through other comprehensive income",
+        "Financial instruments (FVOCI)"
+      ],
+      "source": "edgar_analytics",
+      "kind": "extracted"
+    },
+    {
+      "id": "ea:concept:gains_losses_oci",
+      "synonymKey": "gains_losses_oci",
+      "label": "Gains Losses Oci",
+      "gaapTags": [
+        "OtherComprehensiveIncomeLossNetOfTax"
+      ],
+      "ifrsTags": [
+        "ifrs-full:OtherComprehensiveIncome"
+      ],
+      "textLabels": [
+        "Gains or losses in other comprehensive income",
+        "OCI items"
+      ],
+      "source": "edgar_analytics",
+      "kind": "extracted"
+    },
+    {
+      "id": "ea:concept:contract_assets",
+      "synonymKey": "contract_assets",
+      "label": "Contract Assets",
+      "gaapTags": [
+        "ContractWithCustomerAsset"
+      ],
+      "ifrsTags": [
+        "ifrs-full:ContractAssets"
+      ],
+      "textLabels": [
+        "Contract assets",
+        "Unbilled receivables"
+      ],
+      "source": "edgar_analytics",
+      "kind": "extracted"
+    },
+    {
+      "id": "ea:concept:contract_liabilities",
+      "synonymKey": "contract_liabilities",
+      "label": "Contract Liabilities",
+      "gaapTags": [
+        "ContractWithCustomerLiability"
+      ],
+      "ifrsTags": [
+        "ifrs-full:ContractLiabilities"
+      ],
+      "textLabels": [
+        "Deferred income including contract liabilities",
+        "Contract liabilities"
+      ],
+      "source": "edgar_analytics",
+      "kind": "extracted"
+    },
+    {
+      "id": "ea:concept:interest_expense",
+      "synonymKey": "interest_expense",
+      "label": "Interest Expense",
+      "gaapTags": [
+        "InterestExpense"
+      ],
+      "ifrsTags": [
+        "ifrs-full:FinanceCosts",
+        "ifrs-full:InterestExpense"
+      ],
+      "textLabels": [
+        "Interest Expense",
+        "Finance costs",
+        "Interest and debt expense"
+      ],
+      "source": "edgar_analytics",
+      "kind": "extracted"
+    },
+    {
+      "id": "ea:concept:purchase_of_intangibles",
+      "synonymKey": "purchase_of_intangibles",
+      "label": "Purchase Of Intangibles",
+      "gaapTags": [
+        "PaymentsToAcquireIntangibleAssets"
+      ],
+      "ifrsTags": [
+        "ifrs-full:AcquisitionsOfIntangibleAssets"
+      ],
+      "textLabels": [
+        "Purchase of intangible assets",
+        "Payments to acquire intangible assets",
+        "Additions to intangible assets",
+        "PaymentsToAcquireIntangibleAssets"
+      ],
+      "source": "edgar_analytics",
+      "kind": "extracted"
+    },
+    {
+      "id": "ea:concept:business_acquisitions_net",
+      "synonymKey": "business_acquisitions_net",
+      "label": "Business Acquisitions Net",
+      "gaapTags": [
+        "PaymentsToAcquireBusinessesNetOfCashAcquired"
+      ],
+      "ifrsTags": [
+        "ifrs-full:BusinessCombinationsNetOfCashAcquired"
+      ],
+      "textLabels": [
+        "Acquisitions (net of cash acquired)",
+        "Acquisition of business net of cash acquired",
+        "Purchase of business net of cash acquired",
+        "PaymentsToAcquireBusinessesNetOfCashAcquired"
+      ],
+      "source": "edgar_analytics",
+      "kind": "extracted"
+    },
+    {
+      "id": "ea:concept:miscellaneous",
+      "synonymKey": "miscellaneous",
+      "label": "Miscellaneous",
+      "gaapTags": [
+        "SignificantAccountingPoliciesTextBlock"
+      ],
+      "ifrsTags": [
+        "ifrs-full:GeneralInformationAboutFinancialStatements"
+      ],
+      "textLabels": [
+        "BasisOfAccountingPolicyPolicyTextBlock",
+        "BasisOfPresentationAndSignificantAccountingPoliciesTextBlock",
+        "ConsolidationPolicyTextBlock",
+        "ForeignCurrencyTransactionsAndTranslationsPolicyTextBlock",
+        "NatureOfOperationsPolicyPolicyTextBlock",
+        "srt_CondensedFinancialStatementsTextBlock"
+      ],
+      "source": "edgar_analytics",
+      "kind": "extracted"
+    }
+  ],
+  "derivedMetrics": [
+    {
+      "id": "ea:metric:gross-margin",
+      "label": "Gross Margin %",
+      "category": "profitability",
+      "expression": "Gross Profit / Revenue x 100",
+      "inputSynonyms": [
+        "gross_profit",
+        "revenue"
+      ],
+      "source": "edgar_analytics",
+      "kind": "derived"
+    },
+    {
+      "id": "ea:metric:operating-margin",
+      "label": "Operating Margin %",
+      "category": "profitability",
+      "expression": "Operating Income / Revenue x 100",
+      "inputSynonyms": [
+        "operating_income",
+        "revenue"
+      ],
+      "source": "edgar_analytics",
+      "kind": "derived"
+    },
+    {
+      "id": "ea:metric:net-margin",
+      "label": "Net Margin %",
+      "category": "profitability",
+      "expression": "Net Income / Revenue x 100",
+      "inputSynonyms": [
+        "net_income",
+        "revenue"
+      ],
+      "source": "edgar_analytics",
+      "kind": "derived"
+    },
+    {
+      "id": "ea:metric:ebit-approx",
+      "label": "EBIT (approx)",
+      "category": "profitability",
+      "expression": "Net Income + Interest + Tax",
+      "inputSynonyms": [
+        "net_income",
+        "interest_expense",
+        "income_tax_expense"
+      ],
+      "source": "edgar_analytics",
+      "kind": "derived"
+    },
+    {
+      "id": "ea:metric:ebit-standard",
+      "label": "EBIT (standard)",
+      "category": "profitability",
+      "expression": "Operating Income",
+      "inputSynonyms": [
+        "operating_income"
+      ],
+      "source": "edgar_analytics",
+      "kind": "derived"
+    },
+    {
+      "id": "ea:metric:ebitda-approx",
+      "label": "EBITDA (approx)",
+      "category": "profitability",
+      "expression": "EBIT (approx) + D&A",
+      "inputSynonyms": [
+        "net_income",
+        "interest_expense",
+        "income_tax_expense",
+        "depreciation_amortization"
+      ],
+      "source": "edgar_analytics",
+      "kind": "derived"
+    },
+    {
+      "id": "ea:metric:ebitda-standard",
+      "label": "EBITDA (standard)",
+      "category": "profitability",
+      "expression": "EBIT (standard) + D&A",
+      "inputSynonyms": [
+        "operating_income",
+        "depreciation_amortization"
+      ],
+      "source": "edgar_analytics",
+      "kind": "derived"
+    },
+    {
+      "id": "ea:metric:current-ratio",
+      "label": "Current Ratio",
+      "category": "liquidity",
+      "expression": "Current Assets / Current Liabilities",
+      "inputSynonyms": [
+        "current_assets",
+        "current_liabilities"
+      ],
+      "source": "edgar_analytics",
+      "kind": "derived"
+    },
+    {
+      "id": "ea:metric:quick-ratio",
+      "label": "Quick Ratio",
+      "category": "liquidity",
+      "expression": "(Current Assets - Inventory) / Current Liabilities",
+      "inputSynonyms": [
+        "current_assets",
+        "inventory",
+        "current_liabilities"
+      ],
+      "source": "edgar_analytics",
+      "kind": "derived"
+    },
+    {
+      "id": "ea:metric:cash-ratio",
+      "label": "Cash Ratio",
+      "category": "liquidity",
+      "expression": "Cash / Current Liabilities",
+      "inputSynonyms": [
+        "cash_equivalents",
+        "current_liabilities"
+      ],
+      "source": "edgar_analytics",
+      "kind": "derived"
+    },
+    {
+      "id": "ea:metric:debt-to-equity",
+      "label": "Debt-to-Equity",
+      "category": "leverage",
+      "expression": "Total Liabilities / Total Equity",
+      "inputSynonyms": [
+        "total_liabilities",
+        "total_equity"
+      ],
+      "source": "edgar_analytics",
+      "kind": "derived"
+    },
+    {
+      "id": "ea:metric:debt-total-capital",
+      "label": "Debt/Total Capital",
+      "category": "leverage",
+      "expression": "(ST Debt + LT Debt) / (ST Debt + LT Debt + Equity)",
+      "inputSynonyms": [
+        "short_term_debt",
+        "long_term_debt",
+        "total_equity"
+      ],
+      "source": "edgar_analytics",
+      "kind": "derived"
+    },
+    {
+      "id": "ea:metric:equity-ratio",
+      "label": "Equity Ratio %",
+      "category": "leverage",
+      "expression": "Total Equity / Total Assets x 100",
+      "inputSynonyms": [
+        "total_equity",
+        "total_assets"
+      ],
+      "source": "edgar_analytics",
+      "kind": "derived"
+    },
+    {
+      "id": "ea:metric:interest-coverage",
+      "label": "Interest Coverage",
+      "category": "leverage",
+      "expression": "EBIT (standard) / Interest Expense",
+      "inputSynonyms": [
+        "operating_income",
+        "interest_expense"
+      ],
+      "source": "edgar_analytics",
+      "kind": "derived"
+    },
+    {
+      "id": "ea:metric:net-debt",
+      "label": "Net Debt",
+      "category": "leverage",
+      "expression": "ST Debt + LT Debt + Lease Liabilities - Cash",
+      "inputSynonyms": [
+        "short_term_debt",
+        "long_term_debt",
+        "operating_lease_liabilities",
+        "finance_lease_liabilities",
+        "cash_equivalents"
+      ],
+      "source": "edgar_analytics",
+      "kind": "derived"
+    },
+    {
+      "id": "ea:metric:net-debt-ebitda",
+      "label": "Net Debt/EBITDA",
+      "category": "leverage",
+      "expression": "Financial Net Debt / EBITDA (standard)",
+      "inputSynonyms": [
+        "short_term_debt",
+        "long_term_debt",
+        "cash_equivalents",
+        "operating_income",
+        "depreciation_amortization"
+      ],
+      "source": "edgar_analytics",
+      "kind": "derived"
+    },
+    {
+      "id": "ea:metric:lease-liabilities-ratio",
+      "label": "Lease Liabilities Ratio %",
+      "category": "leverage",
+      "expression": "(Operating + Finance Leases) / Total Assets x 100",
+      "inputSynonyms": [
+        "operating_lease_liabilities",
+        "finance_lease_liabilities",
+        "total_assets"
+      ],
+      "source": "edgar_analytics",
+      "kind": "derived"
+    },
+    {
+      "id": "ea:metric:cash-from-operations",
+      "label": "Cash from Operations",
+      "category": "cashflow",
+      "expression": "Operating Cash Flow",
+      "inputSynonyms": [
+        "cash_flow_operating"
+      ],
+      "source": "edgar_analytics",
+      "kind": "derived"
+    },
+    {
+      "id": "ea:metric:free-cash-flow",
+      "label": "Free Cash Flow",
+      "category": "cashflow",
+      "expression": "OCF - CapEx",
+      "inputSynonyms": [
+        "cash_flow_operating",
+        "capital_expenditures"
+      ],
+      "source": "edgar_analytics",
+      "kind": "derived"
+    },
+    {
+      "id": "ea:metric:cash-flow-coverage",
+      "label": "Cash Flow Coverage",
+      "category": "cashflow",
+      "expression": "OCF / Current Liabilities",
+      "inputSynonyms": [
+        "cash_flow_operating",
+        "current_liabilities"
+      ],
+      "source": "edgar_analytics",
+      "kind": "derived"
+    },
+    {
+      "id": "ea:metric:fixed-charge-coverage",
+      "label": "Fixed Charge Coverage",
+      "category": "cashflow",
+      "expression": "(EBIT + Lease Expense) / (Interest + Lease Expense)",
+      "inputSynonyms": [
+        "operating_income",
+        "interest_expense",
+        "operating_lease_liabilities"
+      ],
+      "source": "edgar_analytics",
+      "kind": "derived"
+    },
+    {
+      "id": "ea:metric:roe",
+      "label": "ROE %",
+      "category": "returns",
+      "expression": "Net Income / Total Equity x 100",
+      "inputSynonyms": [
+        "net_income",
+        "total_equity"
+      ],
+      "source": "edgar_analytics",
+      "kind": "derived"
+    },
+    {
+      "id": "ea:metric:roa",
+      "label": "ROA %",
+      "category": "returns",
+      "expression": "Net Income / Total Assets x 100",
+      "inputSynonyms": [
+        "net_income",
+        "total_assets"
+      ],
+      "source": "edgar_analytics",
+      "kind": "derived"
+    },
+    {
+      "id": "ea:metric:accruals-ratio",
+      "label": "Accruals Ratio",
+      "category": "quality",
+      "expression": "(Net Income - OCF) / Total Assets",
+      "inputSynonyms": [
+        "net_income",
+        "cash_flow_operating",
+        "total_assets"
+      ],
+      "source": "edgar_analytics",
+      "kind": "derived"
+    },
+    {
+      "id": "ea:metric:earnings-quality",
+      "label": "Earnings Quality",
+      "category": "quality",
+      "expression": "OCF / Net Income",
+      "inputSynonyms": [
+        "cash_flow_operating",
+        "net_income"
+      ],
+      "source": "edgar_analytics",
+      "kind": "derived"
+    },
+    {
+      "id": "ea:metric:sloan-accrual",
+      "label": "Sloan Accrual",
+      "category": "quality",
+      "expression": "(ΔWC - ΔCash - D&A) / Avg Total Assets",
+      "inputSynonyms": [
+        "current_assets",
+        "current_liabilities",
+        "cash_equivalents",
+        "depreciation_amortization",
+        "total_assets"
+      ],
+      "source": "edgar_analytics",
+      "kind": "derived"
+    },
+    {
+      "id": "ea:metric:intangible-ratio",
+      "label": "Intangible Ratio %",
+      "category": "composition",
+      "expression": "Intangible Assets / Total Assets x 100",
+      "inputSynonyms": [
+        "intangible_assets",
+        "total_assets"
+      ],
+      "source": "edgar_analytics",
+      "kind": "derived"
+    },
+    {
+      "id": "ea:metric:goodwill-ratio",
+      "label": "Goodwill Ratio %",
+      "category": "composition",
+      "expression": "Goodwill / Total Assets x 100",
+      "inputSynonyms": [
+        "goodwill",
+        "total_assets"
+      ],
+      "source": "edgar_analytics",
+      "kind": "derived"
+    },
+    {
+      "id": "ea:metric:tangible-equity",
+      "label": "Tangible Equity",
+      "category": "composition",
+      "expression": "Total Equity - Intangibles - Goodwill",
+      "inputSynonyms": [
+        "total_equity",
+        "intangible_assets",
+        "goodwill"
+      ],
+      "source": "edgar_analytics",
+      "kind": "derived"
+    },
+    {
+      "id": "ea:metric:p-e-ratio",
+      "label": "P/E Ratio",
+      "category": "valuation",
+      "expression": "Price / Diluted EPS",
+      "inputSynonyms": [
+        "earnings_per_share_diluted"
+      ],
+      "source": "edgar_analytics",
+      "kind": "derived"
+    },
+    {
+      "id": "ea:metric:p-b-ratio",
+      "label": "P/B Ratio",
+      "category": "valuation",
+      "expression": "Market Cap / Total Equity",
+      "inputSynonyms": [
+        "total_equity"
+      ],
+      "source": "edgar_analytics",
+      "kind": "derived"
+    },
+    {
+      "id": "ea:metric:ev-ebitda",
+      "label": "EV/EBITDA",
+      "category": "valuation",
+      "expression": "Enterprise Value / EBITDA",
+      "inputSynonyms": [
+        "operating_income",
+        "depreciation_amortization",
+        "cash_equivalents",
+        "short_term_debt",
+        "long_term_debt"
+      ],
+      "source": "edgar_analytics",
+      "kind": "derived"
+    },
+    {
+      "id": "ea:metric:earnings-yield",
+      "label": "Earnings Yield",
+      "category": "valuation",
+      "expression": "1 / P/E",
+      "inputSynonyms": [
+        "earnings_per_share_diluted"
+      ],
+      "source": "edgar_analytics",
+      "kind": "derived"
+    },
+    {
+      "id": "ea:metric:dso",
+      "label": "DSO",
+      "category": "working-capital",
+      "expression": "AR / (Revenue / 365)",
+      "inputSynonyms": [
+        "accounts_receivable",
+        "revenue"
+      ],
+      "source": "edgar_analytics",
+      "kind": "derived"
+    },
+    {
+      "id": "ea:metric:dio",
+      "label": "DIO",
+      "category": "working-capital",
+      "expression": "Inventory / (COGS / 365)",
+      "inputSynonyms": [
+        "inventory",
+        "cost_of_revenue"
+      ],
+      "source": "edgar_analytics",
+      "kind": "derived"
+    },
+    {
+      "id": "ea:metric:dpo",
+      "label": "DPO",
+      "category": "working-capital",
+      "expression": "AP / (COGS / 365)",
+      "inputSynonyms": [
+        "accounts_payable",
+        "cost_of_revenue"
+      ],
+      "source": "edgar_analytics",
+      "kind": "derived"
+    },
+    {
+      "id": "ea:metric:cash-conversion-cycle",
+      "label": "Cash Conversion Cycle",
+      "category": "working-capital",
+      "expression": "DSO + DIO - DPO",
+      "inputSynonyms": [
+        "accounts_receivable",
+        "inventory",
+        "accounts_payable",
+        "revenue",
+        "cost_of_revenue"
+      ],
+      "source": "edgar_analytics",
+      "kind": "derived"
+    },
+    {
+      "id": "ea:metric:nopat",
+      "label": "NOPAT",
+      "category": "returns",
+      "expression": "Operating Income x (1 - Tax Rate)",
+      "inputSynonyms": [
+        "operating_income",
+        "income_tax_expense",
+        "income_before_taxes"
+      ],
+      "source": "edgar_analytics",
+      "kind": "derived"
+    },
+    {
+      "id": "ea:metric:invested-capital",
+      "label": "Invested Capital",
+      "category": "returns",
+      "expression": "Equity + ST Debt + LT Debt - Cash",
+      "inputSynonyms": [
+        "total_equity",
+        "short_term_debt",
+        "long_term_debt",
+        "cash_equivalents"
+      ],
+      "source": "edgar_analytics",
+      "kind": "derived"
+    },
+    {
+      "id": "ea:metric:roic",
+      "label": "ROIC %",
+      "category": "returns",
+      "expression": "NOPAT / Invested Capital x 100",
+      "inputSynonyms": [
+        "operating_income",
+        "income_tax_expense",
+        "income_before_taxes",
+        "total_equity",
+        "short_term_debt",
+        "long_term_debt",
+        "cash_equivalents"
+      ],
+      "source": "edgar_analytics",
+      "kind": "derived"
+    },
+    {
+      "id": "ea:metric:asset-turnover",
+      "label": "Asset Turnover",
+      "category": "efficiency",
+      "expression": "Revenue / Total Assets",
+      "inputSynonyms": [
+        "revenue",
+        "total_assets"
+      ],
+      "source": "edgar_analytics",
+      "kind": "derived"
+    },
+    {
+      "id": "ea:metric:piotroski-f-score",
+      "label": "Piotroski F-Score",
+      "category": "scoring",
+      "expression": "9 binary fundamental tests (0-9)",
+      "inputSynonyms": [
+        "net_income",
+        "cash_flow_operating",
+        "total_assets",
+        "total_equity",
+        "long_term_debt",
+        "current_assets",
+        "current_liabilities",
+        "gross_profit",
+        "revenue",
+        "common_shares_outstanding"
+      ],
+      "source": "edgar_analytics",
+      "kind": "derived"
+    },
+    {
+      "id": "ea:metric:altman-z-score",
+      "label": "Altman Z-Score",
+      "category": "scoring",
+      "expression": "Bankruptcy probability model",
+      "inputSynonyms": [
+        "current_assets",
+        "current_liabilities",
+        "total_assets",
+        "retained_earnings",
+        "operating_income",
+        "total_liabilities",
+        "total_equity",
+        "revenue"
+      ],
+      "source": "edgar_analytics",
+      "kind": "derived"
+    },
+    {
+      "id": "ea:metric:beneish-m-score",
+      "label": "Beneish M-Score",
+      "category": "scoring",
+      "expression": "Earnings manipulation probability model",
+      "inputSynonyms": [
+        "accounts_receivable",
+        "revenue",
+        "gross_profit",
+        "total_assets",
+        "current_assets",
+        "ppe_net",
+        "depreciation_amortization",
+        "general_administrative",
+        "total_liabilities",
+        "current_liabilities",
+        "net_income",
+        "cash_flow_operating"
+      ],
+      "source": "edgar_analytics",
+      "kind": "derived"
+    }
+  ]
+}

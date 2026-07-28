@@ -1,2 +1,9 @@
 streamlit>=1.32.0
 streamlit-agraph>=0.0.45
+PyYAML>=6.0
+edgartools>=3.0.0
+edgar-analytics>=1.0.0
+openpyxl>=3.1.0
+pyxlsb>=1.0.10
+xlrd>=2.0.1
+rapidfuzz>=3.0.0

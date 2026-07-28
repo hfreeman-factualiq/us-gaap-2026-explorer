@@ -1,12 +1,22 @@
-# Raw FASB taxonomy package (large XML/XSD) — not needed to run the app
+# Raw FASB taxonomy package (large XML/XSD) — not needed to run the app once JSON is built
 us-gaap-2026/
-build_viewer_data.py
 __pycache__/
 *.pyc
 .venv/
 venv/
 .env
+claudekey.txt
+**/llm_map_cache.json
+**/llm_gap_cache.json
+**/llm_mappings_cache.json
 .DS_Store
 # Streamlit experiment (HTML viewer is primary)
 app.py
 .streamlit/
+# Optional large FIBO extract / GAAP parse cache
+vendor/fibo/
+data/gaap-only.json
+data/ontology-full.json
+# Confidential portco packs — never publish
+Financial Statements/
+

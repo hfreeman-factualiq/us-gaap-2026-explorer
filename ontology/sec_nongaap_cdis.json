@@ -1,0 +1,525 @@
+{
+  "meta": {
+    "source": "https://www.sec.gov/rules-regulations/staff-guidance/corporation-finance-interpretations/non-gaap-financial-measures",
+    "notes": "SEC staff C&DIs on Non-GAAP Financial Measures. For agent guidance only; not legal advice. Curated governs[] edges link rules to nongaap metrics."
+  },
+  "rules": [
+    {
+      "id": "cdi:100.01",
+      "questionId": "100.01",
+      "title": "[May 17, 2016] Question 102.04 Question: Is the registrant required to use the non-GAAP measure in managing its business or for other purposes in order to be able to disclose it?",
+      "question": "Question 100.01. [May 17, 2016] Question 102.04 Question: Is the registrant required to use the non-GAAP measure in managing its business or for other purposes in order to be able to disclose it?",
+      "answer": "No. Item 10(e)(1)(i)(D) of Regulation S-K states only that, \"[t]o the extent material,\" there should be a statement disclosing the additional purposes, \"if any,\" for which the registrant's management uses the non-GAAP financial measure. There is no prohibition against disclosing a non-GAAP financial measure that is not used by management in managing its business. [Jan. 11, 2010]",
+      "tags": [
+        "adjustment",
+        "definition",
+        "general"
+      ],
+      "sourceUrl": "https://www.sec.gov/rules-regulations/staff-guidance/corporation-finance-interpretations/non-gaap-financial-measures",
+      "layer": "rule",
+      "governs": [
+        "nongaap:AdjustedEBITDA",
+        "nongaap:NonRecurringAdjustmentsPlaceholder",
+        "nongaap:ARR",
+        "nongaap:NetRevenueRetention"
+      ]
+    },
+    {
+      "id": "cdi:100.02",
+      "questionId": "100.02",
+      "title": "Question: Can a non-GAAP measure be misleading if it is presented inconsistently between periods?",
+      "question": "Question 100.02 Question: Can a non-GAAP measure be misleading if it is presented inconsistently between periods?",
+      "answer": "Yes. For example, a non-GAAP measure that adjusts a particular charge or gain in the current period and for which other, similar charges or gains were not also adjusted in prior periods could violate Rule 100(b) of Regulation G unless the change between periods is disclosed and the reasons for it explained. In addition, depending on the significance of the change, it may be necessary to recast prior measures to conform to the current presentation and place the disclosure in the appropriate context. [May 17, 2016]",
+      "tags": [
+        "general"
+      ],
+      "sourceUrl": "https://www.sec.gov/rules-regulations/staff-guidance/corporation-finance-interpretations/non-gaap-financial-measures",
+      "layer": "rule"
+    },
+    {
+      "id": "cdi:100.03",
+      "questionId": "100.03",
+      "title": "Question: Can a non-GAAP measure be misleading if the measure excludes charges, but does not exclude any gains?",
+      "question": "Question 100.03 Question: Can a non-GAAP measure be misleading if the measure excludes charges, but does not exclude any gains?",
+      "answer": "Yes. For example, a non-GAAP measure that is adjusted only for non-recurring charges when there were non-recurring gains that occurred during the same period could violate Rule 100(b) of Regulation G. [May 17, 2016]",
+      "tags": [
+        "general"
+      ],
+      "sourceUrl": "https://www.sec.gov/rules-regulations/staff-guidance/corporation-finance-interpretations/non-gaap-financial-measures",
+      "layer": "rule"
+    },
+    {
+      "id": "cdi:100.04",
+      "questionId": "100.04",
+      "title": "Question: Can a non-GAAP measure violate Rule 100(b) of Regulation G if the recognition and measurement principles used to calculate the measure are inconsistent with GAAP?",
+      "question": "Question 100.04 Question: Can a non-GAAP measure violate Rule 100(b) of Regulation G if the recognition and measurement principles used to calculate the measure are inconsistent with GAAP?",
+      "answer": "Yes. By definition, a non-GAAP measure excludes or includes amounts from the most directly comparable GAAP measure. However, non-GAAP adjustments that have the effect of changing the recognition and measurement principles required to be applied in accordance with GAAP would be considered individually tailored and may cause the presentation of a non-GAAP measure to be misleading. Examples the staff may consider to be misleading include, but are not limited to: changing the pattern of recognition, such as including an adjustment in a non-GAAP performance measure to accelerate revenue recognized ratably over time in accordance with GAAP as though revenue was earned when customers were billed; presenting a non-GAAP measure of revenue that deducts transaction costs as if the company acted as an agent in the transaction, when gross presentation as a principal is required by GAAP, or the inverse, presenting a measure of revenue on a gross basis when net presentation is required by GAAP; and changing the basis of accounting for revenue or expenses in a non-GAAP performance measure from an accrual basis in accordance with GAAP to a cash basis. [December 13, 2022]",
+      "tags": [
+        "general"
+      ],
+      "sourceUrl": "https://www.sec.gov/rules-regulations/staff-guidance/corporation-finance-interpretations/non-gaap-financial-measures",
+      "layer": "rule"
+    },
+    {
+      "id": "cdi:100.05",
+      "questionId": "100.05",
+      "title": "Question: Can a non-GAAP measure be misleading if it, and/or any adjustment made to the GAAP measure, is not appropriately labeled and clearly described?",
+      "question": "Question 100.05 Question: Can a non-GAAP measure be misleading if it, and/or any adjustment made to the GAAP measure, is not appropriately labeled and clearly described?",
+      "answer": "Yes. Non-GAAP measures are not always consistent across, or comparable with, non-GAAP measures disclosed by other companies. Without an appropriate label and clear description, a non-GAAP measure and/or any adjustment made to arrive at that measure could be misleading to investors. The following examples would violate Rule 100(b) of Regulation G: Failure to identify and describe a measure as non-GAAP. Presenting a non-GAAP measure with a label that does not reflect the nature of the non-GAAP measure, such as: a contribution margin that is calculated as GAAP revenue less certain expenses, labeled “net revenue”; non-GAAP measure labeled the same as a GAAP line item or subtotal even though it is calculated differently than the similarly labeled GAAP measure, such as “Gross Profit” or “Sales”; and a non-GAAP measure labeled “pro forma” that is not calculated in a manner consistent with the pro forma requirements in Article 11 of Regulation S-X. [December 13, 2022]",
+      "tags": [
+        "adjustment"
+      ],
+      "sourceUrl": "https://www.sec.gov/rules-regulations/staff-guidance/corporation-finance-interpretations/non-gaap-financial-measures",
+      "layer": "rule"
+    },
+    {
+      "id": "cdi:100.06",
+      "questionId": "100.06",
+      "title": "Question: Can a non-GAAP measure be misleading, and violate Rule 100(b) of Regulation G, even if it is accompanied by disclosure about the nature and effect of each adjustment made to the most directly comparable GAAP measure?",
+      "question": "Question 100.06 Question: Can a non-GAAP measure be misleading, and violate Rule 100(b) of Regulation G, even if it is accompanied by disclosure about the nature and effect of each adjustment made to the most directly comparable GAAP measure?",
+      "answer": "Yes. It is the staff’s view that a non-GAAP measure could mislead investors to such a degree that even extensive, detailed disclosure about the nature and effect of each adjustment would not prevent the non-GAAP measure from being materially misleading. [December 13, 2022] Section 101. Business Combination Transactions",
+      "tags": [
+        "adjustment"
+      ],
+      "sourceUrl": "https://www.sec.gov/rules-regulations/staff-guidance/corporation-finance-interpretations/non-gaap-financial-measures",
+      "layer": "rule"
+    },
+    {
+      "id": "cdi:101.01",
+      "questionId": "101.01",
+      "title": "Question: Are financial measures included in forecasts provided to a financial advisor and used in connection with a business combination transaction non-GAAP financial measures?",
+      "question": "Question 101.01 Question: Are financial measures included in forecasts provided to a financial advisor and used in connection with a business combination transaction non-GAAP financial measures?",
+      "answer": "Yes. [April 4, 2018]",
+      "tags": [
+        "general"
+      ],
+      "sourceUrl": "https://www.sec.gov/rules-regulations/staff-guidance/corporation-finance-interpretations/non-gaap-financial-measures",
+      "layer": "rule"
+    },
+    {
+      "id": "cdi:101.02",
+      "questionId": "101.02",
+      "title": "Question: Can the registrant rely on the Answer to Question 101.01 if the same forecasts provided to its financial advisor are also provided to its board of directors or board committee?",
+      "question": "Question 101.02 Question: Can the registrant rely on the Answer to Question 101.01 if the same forecasts provided to its financial advisor are also provided to its board of directors or board committee?",
+      "answer": "",
+      "tags": [
+        "general"
+      ],
+      "sourceUrl": "https://www.sec.gov/rules-regulations/staff-guidance/corporation-finance-interpretations/non-gaap-financial-measures",
+      "layer": "rule"
+    },
+    {
+      "id": "cdi:101.03",
+      "questionId": "101.03",
+      "title": "Question: A registrant provides forecasts to bidders in a business combination transaction. To avoid anti-fraud concerns under the federal securities laws or ensure that the other disclosures in the document are not misleading, it determine",
+      "question": "Question 101.03 Question: A registrant provides forecasts to bidders in a business combination transaction. To avoid anti-fraud concerns under the federal securities laws or ensure that the other disclosures in the document are not misleading, it determines that such forecasts should be disclosed. Are the financial measures contained in forecasts disclosed for this purpose considered non-GAAP financial measures?",
+      "answer": "If a registrant determines that forecasts exchanged between the parties in a business combination transaction are material and that disclosure of such forecasts is required to comply with the anti-fraud and other liability provisions of the federal securities laws, the financial measures included in such forecasts would be excluded from the definition of non-GAAP financial measures and therefore not subject to Item 10(e) of Regulation S-K and Regulation G. [April 4, 2018]",
+      "tags": [
+        "general"
+      ],
+      "sourceUrl": "https://www.sec.gov/rules-regulations/staff-guidance/corporation-finance-interpretations/non-gaap-financial-measures",
+      "layer": "rule"
+    },
+    {
+      "id": "cdi:101.04",
+      "questionId": "101.04",
+      "title": "Question: Does the exemption from Regulation G and Item 10(e) of Regulation S-K for non-GAAP financial measures disclosed in communications relating to a business combination transaction extend to the same non-GAAP financial measures disclo",
+      "question": "Question 101.04 Question: Does the exemption from Regulation G and Item 10(e) of Regulation S-K for non-GAAP financial measures disclosed in communications relating to a business combination transaction extend to the same non-GAAP financial measures disclosed in registration statements, proxy statements and tender offer statements?",
+      "answer": "No. There is an exemption from Regulation G and Item 10(e) of Regulation S-K for non-GAAP financial measures disclosed in communications subject to Securities Act Rule 425 and Exchange Act Rules 14a-12 and 14d-2(b)(2); it is also intended to apply to communications subject to Exchange Act Rule 14d-9(a)(2). This exemption does not extend beyond such communications. Consequently, if the same non-GAAP financial measure that was included in a communication filed under one of those rules is also disclosed in a Securities Act registration statement, proxy statement, or tender offer statement, this exemption from Regulation G and Item 10(e) of Regulation S-K would not be available for that non-GAAP financial measure. [Oct. 17, 2017]",
+      "tags": [
+        "general"
+      ],
+      "sourceUrl": "https://www.sec.gov/rules-regulations/staff-guidance/corporation-finance-interpretations/non-gaap-financial-measures",
+      "layer": "rule"
+    },
+    {
+      "id": "cdi:101.05",
+      "questionId": "101.05",
+      "title": "Question: If reconciliation of a non-GAAP financial measure is required and the most directly comparable measure is a “pro forma” measure prepared and presented in accordance with Article 11 of Regulation S-X, may companies use that measure",
+      "question": "Question 101.05 Question: If reconciliation of a non-GAAP financial measure is required and the most directly comparable measure is a “pro forma” measure prepared and presented in accordance with Article 11 of Regulation S-X, may companies use that measure for reconciliation purposes, in lieu of a GAAP financial measure?",
+      "answer": "Yes. [Jan. 11, 2010] Section 102. Item 10(e) of Regulation S-K",
+      "tags": [
+        "reconciliation"
+      ],
+      "sourceUrl": "https://www.sec.gov/rules-regulations/staff-guidance/corporation-finance-interpretations/non-gaap-financial-measures",
+      "layer": "rule"
+    },
+    {
+      "id": "cdi:102.01",
+      "questionId": "102.01",
+      "title": "Question: What measure was contemplated by \"funds from operations\" in footnote 50 to Exchange Act Release No. 47226, Conditions for Use of Non-GAAP Financial Measures, which indicates that companies may use \"funds from operations per share\"",
+      "question": "Question 102.01 Question: What measure was contemplated by \"funds from operations\" in footnote 50 to Exchange Act Release No. 47226, Conditions for Use of Non-GAAP Financial Measures, which indicates that companies may use \"funds from operations per share\" in earnings releases and materials that are filed or furnished to the Commission, subject to the requirements of Regulation G and Item 10(e) of Regulation S-K?",
+      "answer": "The reference to \"funds from operations\" in footnote 50, or “FFO,” refers to the measure defined as of January 1, 2000, by the National Association of Real Estate Investment Trusts (NAREIT). NAREIT has revised and clarified the definition since 2000. The staff accepts NAREIT’s definition of FFO in effect as of May 17, 2016 as a performance measure and does not object to its presentation on a per share basis. [May 17, 2016]",
+      "tags": [
+        "per-share"
+      ],
+      "sourceUrl": "https://www.sec.gov/rules-regulations/staff-guidance/corporation-finance-interpretations/non-gaap-financial-measures",
+      "layer": "rule"
+    },
+    {
+      "id": "cdi:102.02",
+      "questionId": "102.02",
+      "title": "Question : May a registrant present FFO on a basis other than as defined by NAREIT as of May 17, 2016?",
+      "question": "Question 102.02 Question : May a registrant present FFO on a basis other than as defined by NAREIT as of May 17, 2016?",
+      "answer": "Yes, provided that any adjustments made to FFO comply with Item 10(e) of Regulation S-K and the measure does not violate Rule 100(b) of Regulation G. Any adjustments made to FFO must comply with the requirements of Item 10(e) of Regulation S-K for a performance measure or a liquidity measure, depending on the nature of the adjustments, some of which may trigger the prohibition on presenting this measure on a per share basis. See Section 100 and",
+      "tags": [
+        "general"
+      ],
+      "sourceUrl": "https://www.sec.gov/rules-regulations/staff-guidance/corporation-finance-interpretations/non-gaap-financial-measures",
+      "layer": "rule"
+    },
+    {
+      "id": "cdi:102.03",
+      "questionId": "102.03",
+      "title": "Non-recurring / infrequent / unusual labels",
+      "question": "How does the prohibition on adjusting for non-recurring items work when labeling charges or gains?",
+      "answer": "It is not appropriate to state that a charge or gain is non-recurring, infrequent, or unusual unless it meets specified criteria. Registrants may still adjust for items they believe appropriate, subject to Regulation G and Item 10(e).",
+      "tags": [
+        "adjustment",
+        "reconciliation"
+      ],
+      "sourceUrl": "https://www.sec.gov/rules-regulations/staff-guidance/corporation-finance-interpretations/non-gaap-financial-measures",
+      "layer": "rule",
+      "governs": [
+        "nongaap:AdjustedEBITDA",
+        "nongaap:NonRecurringAdjustmentsPlaceholder"
+      ]
+    },
+    {
+      "id": "cdi:102.05",
+      "questionId": "102.05",
+      "title": "[May 17, 2016] Section 104. Segment Information Question 104.01 Question: Is segment information that is presented in conformity with Accounting Standards Codification 280, pursuant to which a company may determine segment profitability on ",
+      "question": "Question 102.05. [May 17, 2016] Section 104. Segment Information Question 104.01 Question: Is segment information that is presented in conformity with Accounting Standards Codification 280, pursuant to which a company may determine segment profitability on a basis that differs from the amounts in the consolidated financial statements determined in accordance with GAAP, considered to be a non-GAAP financial measure under Regulation G and Item 10(e) of Regulation S-K?",
+      "answer": "Regulation S-K applies to registration statements filed under the Securities Act, as well as registration statements, periodic and current reports and other documents filed under the Exchange Act. A free writing prospectus is not filed as part of the issuer's registration statement, unless the issuer files it on Form 8-K or otherwise includes it or incorporates it by reference into the registration statement. Therefore, Item 10(e) of Regulation S-K does not apply to a filed free writing prospectus unless the free writing prospectus is included in or incorporated by reference into the issuer's registration statement or included in an Exchange Act filing. [Jan. 11, 2010]",
+      "tags": [
+        "general",
+        "liquidity",
+        "per-share",
+        "reconciliation"
+      ],
+      "sourceUrl": "https://www.sec.gov/rules-regulations/staff-guidance/corporation-finance-interpretations/non-gaap-financial-measures",
+      "layer": "rule",
+      "governs": [
+        "nongaap:FreeCashFlow",
+        "nongaap:FreeCashFlowAltInvesting",
+        "nongaap:CashBurn",
+        "nongaap:CashBurnCapEx",
+        "nongaap:WorkingCapital",
+        "nongaap:NetDebt"
+      ]
+    },
+    {
+      "id": "cdi:102.06",
+      "questionId": "102.06",
+      "title": "Question: Is Item 10(e)(1)(i) of Regulation S-K, which requires the prominent presentation of, and reconciliation to, the most directly comparable GAAP financial measure or measures, intended to change the staff's practice of requiring the ",
+      "question": "Question 102.06 Question: Is Item 10(e)(1)(i) of Regulation S-K, which requires the prominent presentation of, and reconciliation to, the most directly comparable GAAP financial measure or measures, intended to change the staff's practice of requiring the prominent presentation of amounts for the three major categories of the statement of cash flows when a non-GAAP liquidity measure is presented?",
+      "answer": "No. The requirements in Item 10(e)(1)(i) are consistent with the staff's practice. The three major categories of the statement of cash flows should be presented when a non-GAAP liquidity measure is presented. [Jan. 11, 2010]",
+      "tags": [
+        "reconciliation",
+        "liquidity",
+        "prominence"
+      ],
+      "sourceUrl": "https://www.sec.gov/rules-regulations/staff-guidance/corporation-finance-interpretations/non-gaap-financial-measures",
+      "layer": "rule"
+    },
+    {
+      "id": "cdi:102.07",
+      "questionId": "102.07",
+      "title": "Question: Some companies present a measure of \"free cash flow,\" which is typically calculated as cash flows from operating activities as presented in the statement of cash flows under GAAP, less capital expenditures. Does Item 10(e)(1)(ii) ",
+      "question": "Question 102.07 Question: Some companies present a measure of \"free cash flow,\" which is typically calculated as cash flows from operating activities as presented in the statement of cash flows under GAAP, less capital expenditures. Does Item 10(e)(1)(ii) of Regulation S-K prohibit this measure in documents filed with the Commission?",
+      "answer": "No. The deduction of capital expenditures from the GAAP financial measure of cash flows from operating activities would not violate the prohibitions in Item 10(e)(1)(ii). However, companies should be aware that this measure does not have a uniform definition and its title does not describe how it is calculated. Accordingly, a clear description of how this measure is calculated, as well as the necessary reconciliation, should accompany the measure where it is used. Companies should also avoid inappropriate or potentially misleading inferences about its usefulness. For example, \"free cash flow\" should not be used in a manner that inappropriately implies that the measure represents the residual cash flow available for discretionary expenditures, since many companies have mandatory debt service requirements or other non-discretionary expenditures that are not deducted from the measure. Also, free cash flow is a liquidity measure that must not be presented on a per share basis. See",
+      "tags": [
+        "liquidity",
+        "reconciliation"
+      ],
+      "sourceUrl": "https://www.sec.gov/rules-regulations/staff-guidance/corporation-finance-interpretations/non-gaap-financial-measures",
+      "layer": "rule",
+      "governs": [
+        "nongaap:FreeCashFlow",
+        "nongaap:FreeCashFlowAltInvesting",
+        "nongaap:CashBurn",
+        "nongaap:CashBurnCapEx"
+      ]
+    },
+    {
+      "id": "cdi:102.09",
+      "questionId": "102.09",
+      "title": "[Jan. 11, 2010] Question 103.02 Question: If EBIT or EBITDA is presented as a performance measure, to which GAAP financial measure should it be reconciled?",
+      "question": "Question 102.09. [Jan. 11, 2010] Question 103.02 Question: If EBIT or EBITDA is presented as a performance measure, to which GAAP financial measure should it be reconciled?",
+      "answer": "If a company presents EBIT or EBITDA as a performance measure, such measures should be reconciled to net income as presented in the statement of operations under GAAP. Operating income would not be considered the most directly comparable GAAP financial measure because EBIT and EBITDA make adjustments for items that are not included in operating income. In addition, these measures must not be presented on a per share basis. See",
+      "tags": [
+        "ebitda",
+        "liquidity",
+        "reconciliation"
+      ],
+      "sourceUrl": "https://www.sec.gov/rules-regulations/staff-guidance/corporation-finance-interpretations/non-gaap-financial-measures",
+      "layer": "rule",
+      "governs": [
+        "nongaap:EBITDA",
+        "nongaap:AdjustedEBITDA",
+        "nongaap:NetIncomeToEBITDABridge"
+      ]
+    },
+    {
+      "id": "cdi:102.10",
+      "questionId": "102.10",
+      "title": "(c). When presenting a forward-looking non-GAAP measure, a registrant may exclude the quantitative reconciliation if it is relying on the exception provided by Item 10(e)(1)(i)(B) of Regulation S-K. A measure would be considered more promin",
+      "question": "Question 102.10(c). When presenting a forward-looking non-GAAP measure, a registrant may exclude the quantitative reconciliation if it is relying on the exception provided by Item 10(e)(1)(i)(B) of Regulation S-K. A measure would be considered more prominent than the comparable GAAP measure if it is presented without disclosing reliance upon the exception, identifying the information that is unavailable, and its probable significance in a location of equal or greater prominence. [December 13, 2022] Question 102.10(c) Question: The staff considers the presentation of a non-GAAP income statement, alone or as part of the required non-GAAP reconciliation, as giving undue prominence to non-GAAP measures. What is considered to be a non-GAAP income statement?",
+      "answer": "Yes. This requirement applies to the presentation of, and any related discussion and analysis of, a non-GAAP measure. Whether a non-GAAP measure is more prominent than the comparable GAAP measure generally depends on the facts and circumstances in which the disclosure is made. The staff would consider the following to be examples of non-GAAP measures that are more prominent than the comparable GAAP measures: Presenting an income statement of non-GAAP measures. See",
+      "tags": [
+        "prominence",
+        "reconciliation"
+      ],
+      "sourceUrl": "https://www.sec.gov/rules-regulations/staff-guidance/corporation-finance-interpretations/non-gaap-financial-measures",
+      "layer": "rule",
+      "governs": [
+        "nongaap:EBITDA",
+        "nongaap:AdjustedEBITDA",
+        "nongaap:FreeCashFlow",
+        "nongaap:ARR",
+        "nongaap:NetRevenueRetention",
+        "nongaap:NetIncomeToEBITDABridge"
+      ]
+    },
+    {
+      "id": "cdi:102.11",
+      "questionId": "102.11",
+      "title": "Question: How should income tax effects related to adjustments to arrive at a non-GAAP measure be calculated and presented?",
+      "question": "Question 102.11 Question: How should income tax effects related to adjustments to arrive at a non-GAAP measure be calculated and presented?",
+      "answer": "A registrant should provide income tax effects on its non-GAAP measures depending on the nature of the measures. If a measure is a liquidity measure that includes income taxes, it might be acceptable to adjust GAAP taxes to show taxes paid in cash. If a measure is a performance measure, the registrant should include current and deferred income tax expense commensurate with the non-GAAP measure of profitability. In addition, adjustments to arrive at a non-GAAP measure should not be presented “net of tax.” Rather, income taxes should be shown as a separate adjustment and clearly explained. [May 17, 2016]",
+      "tags": [
+        "adjustment"
+      ],
+      "sourceUrl": "https://www.sec.gov/rules-regulations/staff-guidance/corporation-finance-interpretations/non-gaap-financial-measures",
+      "layer": "rule"
+    },
+    {
+      "id": "cdi:102.12",
+      "questionId": "102.12",
+      "title": "Question: A registrant discloses a financial measure or information that is not in accordance with GAAP or calculated exclusively from amounts presented in accordance with GAAP. In some circumstances, this financial information may have bee",
+      "question": "Question 102.12 Question: A registrant discloses a financial measure or information that is not in accordance with GAAP or calculated exclusively from amounts presented in accordance with GAAP. In some circumstances, this financial information may have been prepared in accordance with guidance published by a government, governmental authority or self-regulatory organization that is applicable to the registrant, although the information is not required disclosure by the government, governmental authority or self-regulatory organization. Is this information considered to be a \"non-GAAP financial measure\" for purposes of Regulation G and Item 10 of Regulation S-K?",
+      "answer": "Yes. Unless this information is required to be disclosed by a system of regulation that is applicable to the registrant, it is considered to be a \"non-GAAP financial measure\" under Regulation G and Item 10 of Regulation S-K. Registrants that disclose such information must provide the disclosures required by Regulation G or Item 10 of Regulation S-K, if applicable, including the quantitative reconciliation from the non-GAAP financial measure to the most comparable measure calculated in accordance with GAAP. This reconciliation should be in sufficient detail to allow a reader to understand the nature of the reconciling items. [Apr. 24, 2009] Section 103. EBIT and EBITDA",
+      "tags": [
+        "general"
+      ],
+      "sourceUrl": "https://www.sec.gov/rules-regulations/staff-guidance/corporation-finance-interpretations/non-gaap-financial-measures",
+      "layer": "rule"
+    },
+    {
+      "id": "cdi:103.01",
+      "questionId": "103.01",
+      "title": "Question: Exchange Act Release No. 47226 describes EBIT as \"earnings before interest and taxes\" and EBITDA as \"earnings before interest, taxes, depreciation and amortization.\" What GAAP measure is intended by the term \"earnings\"? May measur",
+      "question": "Question 103.01 Question: Exchange Act Release No. 47226 describes EBIT as \"earnings before interest and taxes\" and EBITDA as \"earnings before interest, taxes, depreciation and amortization.\" What GAAP measure is intended by the term \"earnings\"? May measures other than those described in the release be characterized as \"EBIT\" or \"EBITDA\"? Does the exception for EBIT and EBITDA from the prohibition in Item 10(e)(1)(ii)(A) of Regulation S-K apply to these other measures?",
+      "answer": "\"Earnings\" means net income as presented in the statement of operations under GAAP. Measures that are calculated differently than those described as EBIT and EBITDA in Exchange Act Release No. 47226 should not be characterized as \"EBIT\" or \"EBITDA\" and their titles should be distinguished from \"EBIT\" or \"EBITDA,\" such as \"Adjusted EBITDA.\" These measures are not exempt from the prohibition in Item 10(e)(1)(ii)(A) of Regulation S-K, with the exception of measures addressed in",
+      "tags": [
+        "ebitda"
+      ],
+      "sourceUrl": "https://www.sec.gov/rules-regulations/staff-guidance/corporation-finance-interpretations/non-gaap-financial-measures",
+      "layer": "rule"
+    },
+    {
+      "id": "cdi:104.02",
+      "questionId": "104.02",
+      "title": "Question: Does Item 10(e)(1)(ii) of Regulation S-K prohibit the discussion in MD&A of segment information determined in conformity with Accounting Standards Codification 280?",
+      "question": "Question 104.02 Question: Does Item 10(e)(1)(ii) of Regulation S-K prohibit the discussion in MD&A of segment information determined in conformity with Accounting Standards Codification 280?",
+      "answer": "No. Where a company includes in its MD&A a discussion of segment profitability determined consistent with Accounting Standards Codification 280, which also requires that a footnote to the company's consolidated financial statements provide a reconciliation, the company also should include in the segment discussion in the MD&A a complete discussion of the reconciling items that apply to the particular segment being discussed. In this regard, see Financial Reporting Codification Section 501.06.a, footnote 28. [Jan. 11, 2010]",
+      "tags": [
+        "general"
+      ],
+      "sourceUrl": "https://www.sec.gov/rules-regulations/staff-guidance/corporation-finance-interpretations/non-gaap-financial-measures",
+      "layer": "rule"
+    },
+    {
+      "id": "cdi:104.03",
+      "questionId": "104.03",
+      "title": "Question: Is a measure of segment profit/loss or liquidity that is not in conformity with Accounting Standards Codification 280 a non-GAAP financial measure under Regulation G and Item 10(e) of Regulation S-K?",
+      "question": "Question 104.03 Question: Is a measure of segment profit/loss or liquidity that is not in conformity with Accounting Standards Codification 280 a non-GAAP financial measure under Regulation G and Item 10(e) of Regulation S-K?",
+      "answer": "Yes. Segment measures that are adjusted to include amounts excluded from, or to exclude amounts included in, the measure reported to the chief operating decision maker for purposes of making decisions about allocating resources to the segment and assessing its performance do not comply with Accounting Standards Codification 280. Such measures are, therefore, non-GAAP financial measures and subject to all of the provisions of Regulation G and Item 10(e) of Regulation S-K. [Jan. 11, 2010]",
+      "tags": [
+        "liquidity"
+      ],
+      "sourceUrl": "https://www.sec.gov/rules-regulations/staff-guidance/corporation-finance-interpretations/non-gaap-financial-measures",
+      "layer": "rule"
+    },
+    {
+      "id": "cdi:104.04",
+      "questionId": "104.04",
+      "title": "Question: In the footnote that reconciles the segment measures to the consolidated financial statements, a company may total the profit or loss for the individual segments as part of the Accounting Standards Codification 280 required reconc",
+      "question": "Question 104.04 Question: In the footnote that reconciles the segment measures to the consolidated financial statements, a company may total the profit or loss for the individual segments as part of the Accounting Standards Codification 280 required reconciliation. Would the presentation of the total segment profit or loss measure in any context other than the Accounting Standards Codification 280 required reconciliation in the footnote be the presentation of a non-GAAP financial measure?",
+      "answer": "Yes. The presentation of the total segment profit or loss measure in any context other than the Accounting Standards Codification 280 required reconciliation in the footnote would be the presentation of a non-GAAP financial measure because it has no authoritative meaning outside of the Accounting Standards Codification 280 required reconciliation in the footnotes to the company's consolidated financial statements. [Jan. 11, 2010]",
+      "tags": [
+        "reconciliation"
+      ],
+      "sourceUrl": "https://www.sec.gov/rules-regulations/staff-guidance/corporation-finance-interpretations/non-gaap-financial-measures",
+      "layer": "rule"
+    },
+    {
+      "id": "cdi:104.05",
+      "questionId": "104.05",
+      "title": "Question: Company X presents a table illustrating a breakdown of revenues by certain products, but does not sum this to the revenue amount presented on Company X's financial statements. Is the information in the table considered a non-GAAP ",
+      "question": "Question 104.05 Question: Company X presents a table illustrating a breakdown of revenues by certain products, but does not sum this to the revenue amount presented on Company X's financial statements. Is the information in the table considered a non-GAAP financial measure under Regulation G and Item 10(e) of Regulation S-K?",
+      "answer": "No, assuming the product revenue amounts are calculated in accordance with GAAP. The presentation would be considered a non-GAAP financial measure, however, if the revenue amounts are adjusted in any manner. [Jan. 11, 2010]",
+      "tags": [
+        "general"
+      ],
+      "sourceUrl": "https://www.sec.gov/rules-regulations/staff-guidance/corporation-finance-interpretations/non-gaap-financial-measures",
+      "layer": "rule"
+    },
+    {
+      "id": "cdi:104.06",
+      "questionId": "104.06",
+      "title": "Question: Company X has operations in various foreign countries where the local currency is used to prepare the financial statements which are translated into the reporting currency under the applicable accounting standards. In preparing it",
+      "question": "Question 104.06 Question: Company X has operations in various foreign countries where the local currency is used to prepare the financial statements which are translated into the reporting currency under the applicable accounting standards. In preparing its MD&A, Company X will explain the reasons for changes in various financial statement captions. A portion of these changes will be attributable to changes in exchange rates between periods used for translation. Company X wants to isolate the effect of exchange rate differences and will present financial information in a constant currency — e.g., assume a constant exchange rate between periods for translation. Would such a presentation be considered a non-GAAP measure under Regulation G and Item 10(e) of Regulation S-K?",
+      "answer": "Yes. Company X may comply with the reconciliation requirements of Regulation G and Item 10(e) by presenting the historical amounts and the amounts in constant currency and describing the process for calculating the constant currency amounts and the basis of presentation. [Jan. 11, 2010] Section 105. Item 2.02 of Form 8-K",
+      "tags": [
+        "general"
+      ],
+      "sourceUrl": "https://www.sec.gov/rules-regulations/staff-guidance/corporation-finance-interpretations/non-gaap-financial-measures",
+      "layer": "rule"
+    },
+    {
+      "id": "cdi:105.01",
+      "questionId": "105.01",
+      "title": "Question: Item 2.02 of Form 8-K contains a conditional exemption from its requirement to furnish a Form 8-K where earnings information is presented orally, telephonically, by webcast, by broadcast or by similar means. Among other conditions",
+      "question": "Question 105.01 Question: Item 2.02 of Form 8-K contains a conditional exemption from its requirement to furnish a Form 8-K where earnings information is presented orally, telephonically, by webcast, by broadcast or by similar means. Among other conditions, the company must provide on its web site any financial and other statistical information contained in the presentation, together with any information that would be required by Regulation G. Would an audio file of the initial webcast satisfy this condition to the exemption?",
+      "answer": "Yes, provided that: (1) the audio file contains all material financial and other statistical information included in the presentation that was not previously disclosed, and (2) investors can access it and replay it through the company's web site. Alternatively, slides or a similar presentation posted on the web site at the time of the presentation containing the required, previously undisclosed, material financial and other statistical information would satisfy the condition. In each case, the company must provide all previously undisclosed material financial and other statistical information, including information provided in connection with any questions and answers. Regulation FD also may impose disclosure requirements in these circumstances. [Jan. 11, 2010]",
+      "tags": [
+        "general"
+      ],
+      "sourceUrl": "https://www.sec.gov/rules-regulations/staff-guidance/corporation-finance-interpretations/non-gaap-financial-measures",
+      "layer": "rule"
+    },
+    {
+      "id": "cdi:105.02",
+      "questionId": "105.02",
+      "title": "Question: Item 2.02 of Form 8-K contains a conditional exemption from its requirement to furnish a Form 8-K where earnings information is presented orally, telephonically, by webcast, by broadcast or by similar means. Among other conditions",
+      "question": "Question 105.02 Question: Item 2.02 of Form 8-K contains a conditional exemption from its requirement to furnish a Form 8-K where earnings information is presented orally, telephonically, by webcast, by broadcast or by similar means. Among other conditions, the company must provide on its web site any material financial and other statistical information not previously disclosed and contained in the presentation, together with any information that would be required by Regulation G. When must all of this information appear on the company's web site?",
+      "answer": "The required information must appear on the company's web site at the time the oral presentation is made. In the case of information that is not provided in a presentation itself but, rather, is disclosed unexpectedly in connection with the question and answer session that was part of that oral presentation, the information must be posted on the company's web site promptly after it is disclosed. Any requirements of Regulation FD also must be satisfied. A webcast of the oral presentation would be sufficient to meet this requirement. [Jan. 11, 2010]",
+      "tags": [
+        "general"
+      ],
+      "sourceUrl": "https://www.sec.gov/rules-regulations/staff-guidance/corporation-finance-interpretations/non-gaap-financial-measures",
+      "layer": "rule"
+    },
+    {
+      "id": "cdi:105.03",
+      "questionId": "105.03",
+      "title": "Question: Does a company's failure to furnish to the Commission the Form 8-K required by Item 2.02 in a timely manner affect the company's eligibility to use Form S-3?",
+      "question": "Question 105.03 Question: Does a company's failure to furnish to the Commission the Form 8-K required by Item 2.02 in a timely manner affect the company's eligibility to use Form S-3?",
+      "answer": "No. Form S-3 requires the company to have filed in \"a timely manner all reports required to be filed in twelve calendar months and any portion of a month immediately preceding the filing of the registration statement.\" Because an Item 2.02 Form 8-K is furnished to the Commission, rather than filed with the Commission, failure to furnish such a Form 8-K in a timely manner would not affect a company's eligibility to use Form S-3. While not affecting a company's Form S-3 eligibility, failure to comply with Item 2.02 of Form 8-K would, of course, be a violation of Section 13(a) of the Exchange Act and the rules thereunder. [Jan. 11, 2010]",
+      "tags": [
+        "general"
+      ],
+      "sourceUrl": "https://www.sec.gov/rules-regulations/staff-guidance/corporation-finance-interpretations/non-gaap-financial-measures",
+      "layer": "rule"
+    },
+    {
+      "id": "cdi:105.04",
+      "questionId": "105.04",
+      "title": "[withdrawn] Question 105.05 Question: Company X files its quarterly earnings release as an exhibit to its Form 10-Q on Wednesday morning, prior to holding its earnings conference call Wednesday afternoon. Assuming that all of the other cond",
+      "question": "Question 105.04 [withdrawn] Question 105.05 Question: Company X files its quarterly earnings release as an exhibit to its Form 10-Q on Wednesday morning, prior to holding its earnings conference call Wednesday afternoon. Assuming that all of the other conditions of Item 2.02(b) are met, may the company rely on the exemption for its conference call even if it does not also furnish the earnings release in an Item 2.02 Form 8-K?",
+      "answer": "Yes. Company X's filing of the earnings release as an exhibit to its Form 10-Q, rather than in an Item 2.02 Form 8-K, before the conference call takes place, would not preclude reliance on the exemption for the conference call. [Jan. 11, 2010]",
+      "tags": [
+        "general"
+      ],
+      "sourceUrl": "https://www.sec.gov/rules-regulations/staff-guidance/corporation-finance-interpretations/non-gaap-financial-measures",
+      "layer": "rule"
+    },
+    {
+      "id": "cdi:105.06",
+      "questionId": "105.06",
+      "title": "Question: Company A issues a press release announcing its results of operations for a just-completed fiscal quarter, including its expected adjusted earnings (a non-GAAP financial measure) for the fiscal period. Would this press release be ",
+      "question": "Question 105.06 Question: Company A issues a press release announcing its results of operations for a just-completed fiscal quarter, including its expected adjusted earnings (a non-GAAP financial measure) for the fiscal period. Would this press release be subject to Item 2.02 of Form 8-K?",
+      "answer": "Yes, because it contains material, non-public information regarding its results of operations for a completed fiscal period. The adjusted earnings range presented would be subject to the requirements of Item 2.02 applicable to non-GAAP financial measures. [Jan. 11, 2010]",
+      "tags": [
+        "adjustment"
+      ],
+      "sourceUrl": "https://www.sec.gov/rules-regulations/staff-guidance/corporation-finance-interpretations/non-gaap-financial-measures",
+      "layer": "rule"
+    },
+    {
+      "id": "cdi:105.07",
+      "questionId": "105.07",
+      "title": "Question: A company issues its earnings release after the close of the market and holds a properly noticed conference call to discuss its earnings two hours later. That conference call contains material, previously undisclosed, information ",
+      "question": "Question 105.07 Question: A company issues its earnings release after the close of the market and holds a properly noticed conference call to discuss its earnings two hours later. That conference call contains material, previously undisclosed, information of the type described under Item 2.02 of Form 8-K. Because of this timing, the company is unable to furnish its earnings release on a Form 8-K before its conference call. Accordingly, the company cannot rely on the exemption from the requirement to furnish the information in the conference call on a Form 8-K. What must the company file with regard to its conference call?",
+      "answer": "The company must furnish the material, previously non-public, financial and other statistical information required to be furnished on Item 2.02 of Form 8-K as an exhibit to a Form 8-K and satisfy the other requirements of Item 2.02 of Form 8-K. A transcript of the portion of the conference call or slides or a similar presentation including such information will satisfy this requirement. In each case, all material, previously undisclosed, financial and other statistical information, including that provided in connection with any questions and answers, must be provided. [Jan. 15, 2010] Section 106. Foreign Private Issuers",
+      "tags": [
+        "general"
+      ],
+      "sourceUrl": "https://www.sec.gov/rules-regulations/staff-guidance/corporation-finance-interpretations/non-gaap-financial-measures",
+      "layer": "rule"
+    },
+    {
+      "id": "cdi:106.01",
+      "questionId": "106.01",
+      "title": "Question: The Note to Item 10(e) of Regulation S-K permits a foreign private issuer to include in its filings a non-GAAP financial measure that otherwise would be prohibited by Item 10(e)(1)(ii) if, among other things, the non-GAAP financia",
+      "question": "Question 106.01 Question: The Note to Item 10(e) of Regulation S-K permits a foreign private issuer to include in its filings a non-GAAP financial measure that otherwise would be prohibited by Item 10(e)(1)(ii) if, among other things, the non-GAAP financial measure is required or expressly permitted by the standard setter that is responsible for establishing the GAAP used in the company's primary financial statements included in its filing with the Commission. What does \"expressly permitted\" mean?",
+      "answer": "A measure is \"expressly permitted\" if the particular measure is clearly and specifically identified as an acceptable measure by the standard setter that is responsible for establishing the GAAP used in the company's primary financial statements included in its filing with the Commission. The concept of \"expressly permitted\" can be also be demonstrated with explicit acceptance of a presentation by the primary securities regulator in the foreign private issuer's home country jurisdiction or market. Explicit acceptance by the regulator would include (1) published views of the regulator or members of the regulator's staff or (2) a letter from the regulator or its staff to the foreign private issuer indicating the acceptance of the presentation — which would be provided to the Commission's staff upon request. [Jan. 11, 2010]",
+      "tags": [
+        "general"
+      ],
+      "sourceUrl": "https://www.sec.gov/rules-regulations/staff-guidance/corporation-finance-interpretations/non-gaap-financial-measures",
+      "layer": "rule"
+    },
+    {
+      "id": "cdi:106.02",
+      "questionId": "106.02",
+      "title": "Question: A foreign private issuer furnishes a press release on Form 6-K that includes a section with non-GAAP financial measures. Can a foreign private issuer incorporate by reference into a Securities Act registration statement only those",
+      "question": "Question 106.02 Question: A foreign private issuer furnishes a press release on Form 6-K that includes a section with non-GAAP financial measures. Can a foreign private issuer incorporate by reference into a Securities Act registration statement only those portions of the furnished press release that do not include the non-GAAP financial measures?",
+      "answer": "Yes. Reports on Form 6-K are not incorporated by reference automatically into Securities Act registration statements. In order to incorporate a Form 6-K into a Securities Act registration statement, a foreign private issuer must specifically provide for such incorporation by reference in the registration statement and in any subsequently submitted Form 6-K. See Item 6(c) of Form F-3. Where a foreign private issuer wishes to incorporate by reference a portion or portions of the press release provided on a Form 6-K, the foreign private issuer should either: (1) specify in the Form 6-K those portions of the press release to be incorporated by reference, or (2) furnish two Form 6-K reports, one that contains the full press release and another that contains the portions that would be incorporated by reference (and specifies that the second Form 6-K is so incorporated). Using a separate report on Form 6-K containing the portions that would be incorporated by reference may provide more clarity for investors in most circumstances. A company must also consider whether its disclosure is rendered misleading if it incorporates only a portion (or portions) of a press release. [Jan. 11, 2010]",
+      "tags": [
+        "general"
+      ],
+      "sourceUrl": "https://www.sec.gov/rules-regulations/staff-guidance/corporation-finance-interpretations/non-gaap-financial-measures",
+      "layer": "rule"
+    },
+    {
+      "id": "cdi:106.03",
+      "questionId": "106.03",
+      "title": "Question: A foreign private issuer publishes a non-GAAP financial measure that does not comply with Regulation G, in reliance on Rule 100(c), and then furnishes the information in a report on Form 6-K. Must the foreign private issuer comply",
+      "question": "Question 106.03 Question: A foreign private issuer publishes a non-GAAP financial measure that does not comply with Regulation G, in reliance on Rule 100(c), and then furnishes the information in a report on Form 6-K. Must the foreign private issuer comply with Item 10(e) of Regulation S-K with respect to that information if the company chooses to incorporate that Form 6-K report into a filed Securities Act registration statement (other than an MJDS registration statement)?",
+      "answer": "Yes, the company must comply with all of the provisions of Item 10(e) of Regulation S-K. [Jan. 11, 2010]",
+      "tags": [
+        "general"
+      ],
+      "sourceUrl": "https://www.sec.gov/rules-regulations/staff-guidance/corporation-finance-interpretations/non-gaap-financial-measures",
+      "layer": "rule"
+    },
+    {
+      "id": "cdi:106.04",
+      "questionId": "106.04",
+      "title": "Question: If a Canadian company includes a non-GAAP financial measure in an annual report on Form 40-F, does the company need to comply with Regulation G or Item 10(e) of Regulation S-K with respect to that information if the company files ",
+      "question": "Question 106.04 Question: If a Canadian company includes a non-GAAP financial measure in an annual report on Form 40-F, does the company need to comply with Regulation G or Item 10(e) of Regulation S-K with respect to that information if the company files a non-MJDS Securities Act registration statement that incorporates by reference the Form 40-F?",
+      "answer": "No. Information included in a Form 40-F is not subject to Regulation G or Item 10(e) of Regulation S-K. [Jan. 11, 2010] Section 107. Voluntary Filers",
+      "tags": [
+        "general"
+      ],
+      "sourceUrl": "https://www.sec.gov/rules-regulations/staff-guidance/corporation-finance-interpretations/non-gaap-financial-measures",
+      "layer": "rule"
+    },
+    {
+      "id": "cdi:107.01",
+      "questionId": "107.01",
+      "title": "Question: Section 15(d) of the Exchange Act suspends automatically its application to any company that would be subject to the filing requirements of that section where, if other conditions are met, on the first day of the company's fiscal ",
+      "question": "Question 107.01 Question: Section 15(d) of the Exchange Act suspends automatically its application to any company that would be subject to the filing requirements of that section where, if other conditions are met, on the first day of the company's fiscal year it has fewer than 300 holders of record of the class of securities that created the Section 15(d) obligation. This suspension, which relates to the fiscal year in which the fewer than 300 record holders determination is made on the first day thereof, is automatic and does not require any filing with the Commission. The Commission adopted Rule 15d-6 under the Exchange Act to require the filing of a Form 15 as a notice of the suspension of a company's reporting obligation under Section 15(d). Such a filing, however, is not a condition to the suspension. A number of companies whose Section 15(d) reporting obligation is suspended automatically by the statute choose not to file the notice required by Rule 15d-6 and continue to file Exchange Act reports as though they continue to be required. Must a company whose reporting obligation is suspended automatically by Section 15(d) but continues to file periodic reports as though it were required to file periodic reports comply with Regulation G and the requirements of Item 10(e) of Regulation S-K?",
+      "answer": "Yes. Regulation S-K relates to filings with the Commission. Accordingly, a company that is making filings as described in this question must comply with Regulation S-K or Form 20-F, as applicable, in its filings. As to other public communications, any company \"that has a class of securities registered under Section 12 of the Securities Exchange Act of 1934, or is required to file reports under Section 15(d) of the Securities Exchange Act of 1934\" must comply with Regulation G. The application of this standard to those companies that no longer are \"required\" to report under Section 15(d) but choose to continue to report presents a difficult dilemma, as those companies technically are not subject to Regulation G but their continued filing is intended to and does give the appearance that they are a public company whose disclosure is subject to the Commission's regulations. It is reasonable that this appearance would cause shareholders and other market participants to expect and rely on a company's required compliance with the requirements of the federal securities laws applicable to companies reporting under Section 15(d). Accordingly, while Regulation G technically does not apply to a company such as the one described in this question, the failure of such a company to comply with all requirements (including Regulation G) applicable to a Section 15(d)-reporting company can raise significant issues regarding that company's compliance with the anti-fraud provisions of the federal securities laws. [Jan. 11, 2010] Section 108. Compensation Discussion and Analysis/Proxy Statement",
+      "tags": [
+        "general"
+      ],
+      "sourceUrl": "https://www.sec.gov/rules-regulations/staff-guidance/corporation-finance-interpretations/non-gaap-financial-measures",
+      "layer": "rule"
+    },
+    {
+      "id": "cdi:108.01",
+      "questionId": "108.01",
+      "title": "Question: Instruction 5 to Item 402(b) provides that \"[d]isclosure of target levels that are non-GAAP financial measures will not be subject to Regulation G and Item 10(e); however, disclosure must be provided as to how the number is calcul",
+      "question": "Question 108.01 Question: Instruction 5 to Item 402(b) provides that \"[d]isclosure of target levels that are non-GAAP financial measures will not be subject to Regulation G and Item 10(e); however, disclosure must be provided as to how the number is calculated from the registrant's audited financial statements.\" Does this instruction extend to non-GAAP financial information that does not relate to the disclosure of target levels, but is nevertheless included in Compensation Discussion & Analysis (\"CD&A\") or other parts of the proxy statement - for example, to explain the relationship between pay and performance?",
+      "answer": "No. Instruction 5 to Item 402(b) is limited to CD&A disclosure of target levels that are non-GAAP financial measures. If non-GAAP financial measures are presented in CD&A or in any other part of the proxy statement for any other purpose, such as to explain the relationship between pay and performance or to justify certain levels or amounts of pay, then those non-GAAP financial measures are subject to the requirements of Regulation G and Item 10(e) of Regulation S-K. In these pay-related circumstances only, the staff will not object if a registrant includes the required GAAP reconciliation and other information in an annex to the proxy statement, provided the registrant includes a prominent cross-reference to such annex. Or, if the non-GAAP financial measures are the same as those included in the Form 10-K that is incorporating by reference the proxy statement's Item 402 disclosure as part of its Part III information, the staff will not object if the registrant complies with Regulation G and Item 10(e) by providing a prominent cross-reference to the pages in the Form 10-K containing the required GAAP reconciliation and other information. [July 8, 2011] Last Reviewed or Updated: Dec. 13, 2022 Return to top SEC homepage About the SEC Budget & Performance Careers Commission Votes Contact Contracts Transparency Accessibility & Disability Artificial Intelligence FOIA Inspector General No FEAR Act Data Ombuds SEC Excess Personal Property Guidance Websites Investor.gov Related Sites USA.gov Site Information Plain Writing Privacy & Security Site Map Stay connected. Sign up for email updates. Your email address Sign Up X Facebook Instagram RSS YouTube Email Updates",
+      "tags": [
+        "general"
+      ],
+      "sourceUrl": "https://www.sec.gov/rules-regulations/staff-guidance/corporation-finance-interpretations/non-gaap-financial-measures",
+      "layer": "rule"
+    }
+  ]
+}

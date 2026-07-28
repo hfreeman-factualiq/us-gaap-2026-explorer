@@ -1,0 +1,107 @@
+{
+  "meta": {
+    "source": "https://github.com/edmcouncil/fibo",
+    "notes": "Curated FIBO-aligned financial metric stubs mapped to US GAAP / non-GAAP nodes. Full FIBO OWL is not imported; optional vendor/fibo extract is for reference only."
+  },
+  "concepts": [
+    {
+      "id": "fibo:EBITDA",
+      "label": "EBITDA",
+      "definition": "Earnings before interest, taxes, depreciation and amortization (FIBO-aligned management metric).",
+      "fiboIri": "https://spec.edmcouncil.org/fibo/ontology/FBC/FinancialInstruments/FinancialInstruments/",
+      "alignsTo": [
+        "nongaap:EBITDA",
+        "OperatingIncomeLoss",
+        "DepreciationDepletionAndAmortization"
+      ],
+      "layer": "fibo",
+      "mapped": true
+    },
+    {
+      "id": "fibo:FreeCashFlow",
+      "label": "Free Cash Flow",
+      "definition": "Cash available after capital expenditures; aligned to operating cash flow minus CapEx.",
+      "fiboIri": "https://spec.edmcouncil.org/fibo/ontology/FBC/FinancialInstruments/FinancialInstruments/",
+      "alignsTo": [
+        "nongaap:FreeCashFlow",
+        "NetCashProvidedByUsedInOperatingActivities",
+        "PaymentsToAcquirePropertyPlantAndEquipment"
+      ],
+      "layer": "fibo",
+      "mapped": true
+    },
+    {
+      "id": "fibo:WorkingCapital",
+      "label": "Working Capital",
+      "definition": "Current assets minus current liabilities.",
+      "fiboIri": "https://spec.edmcouncil.org/fibo/ontology/FND/Accounting/CurrencyAmount/",
+      "alignsTo": [
+        "nongaap:WorkingCapital",
+        "AssetsCurrent",
+        "LiabilitiesCurrent"
+      ],
+      "layer": "fibo",
+      "mapped": true
+    },
+    {
+      "id": "fibo:NetDebt",
+      "label": "Net Debt",
+      "definition": "Interest-bearing obligations net of cash and cash equivalents.",
+      "fiboIri": "https://spec.edmcouncil.org/fibo/ontology/FBC/DebtAndEquities/Debt/",
+      "alignsTo": [
+        "nongaap:NetDebt",
+        "LongTermDebtAndCapitalLeaseObligations",
+        "CashAndCashEquivalentsAtCarryingValue"
+      ],
+      "layer": "fibo",
+      "mapped": true
+    },
+    {
+      "id": "fibo:GrossMargin",
+      "label": "Gross Margin",
+      "definition": "Gross profit relative to revenue.",
+      "fiboIri": "https://spec.edmcouncil.org/fibo/ontology/FND/Accounting/CurrencyAmount/",
+      "alignsTo": [
+        "nongaap:GrossMargin",
+        "GrossProfit",
+        "RevenueFromContractWithCustomerExcludingAssessedTax"
+      ],
+      "layer": "fibo",
+      "mapped": true
+    },
+    {
+      "id": "fibo:CashFlowFromOperations",
+      "label": "Cash Flow from Operations",
+      "definition": "FIBO-aligned operating cash flow concept mapped to US GAAP operating activities net cash.",
+      "fiboIri": "https://spec.edmcouncil.org/fibo/ontology/FND/Accounting/CurrencyAmount/",
+      "alignsTo": [
+        "NetCashProvidedByUsedInOperatingActivities"
+      ],
+      "layer": "fibo",
+      "mapped": true
+    },
+    {
+      "id": "fibo:OperatingIncome",
+      "label": "Operating Income",
+      "definition": "FIBO-aligned operating income mapped to us-gaap OperatingIncomeLoss.",
+      "fiboIri": "https://spec.edmcouncil.org/fibo/ontology/FND/Accounting/CurrencyAmount/",
+      "alignsTo": [
+        "OperatingIncomeLoss"
+      ],
+      "layer": "fibo",
+      "mapped": true
+    },
+    {
+      "id": "fibo:Revenue",
+      "label": "Revenue",
+      "definition": "FIBO-aligned revenue concept mapped to primary US GAAP revenue tags.",
+      "fiboIri": "https://spec.edmcouncil.org/fibo/ontology/FND/Accounting/CurrencyAmount/",
+      "alignsTo": [
+        "RevenueFromContractWithCustomerExcludingAssessedTax",
+        "Revenues"
+      ],
+      "layer": "fibo",
+      "mapped": true
+    }
+  ]
+}

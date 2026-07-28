@@ -1,0 +1,4888 @@
+{
+  "meta": {
+    "purpose": "Unified discovery catalog for ontology expansion",
+    "sources": [
+      "edgar_analytics",
+      "edgartools",
+      "finnhub",
+      "gap-analysis"
+    ]
+  },
+  "summary": {
+    "totalNodes": 334,
+    "bySource": {
+      "edgar_analytics": 123,
+      "edgartools": 95,
+      "finnhub": 81,
+      "gap-analysis": 35
+    },
+    "gapFlags": 147
+  },
+  "nodes": [
+    {
+      "id": "ea:concept:revenue",
+      "label": "Revenue",
+      "layer": "discovery",
+      "source": "edgar_analytics",
+      "kind": "extracted",
+      "category": "extracted-concept",
+      "mapsTo": [
+        "RevenueFromContractWithCustomerExcludingAssessedTax",
+        "RevenueFromContractWithCustomerIncludingAssessedTax",
+        "SalesRevenueNet",
+        "SalesRevenueGoodsNet",
+        "SalesRevenueServicesNet",
+        "Revenues"
+      ],
+      "expression": "",
+      "definition": "edgar_analytics synonym key `revenue`"
+    },
+    {
+      "id": "ea:concept:gross_profit",
+      "label": "Gross Profit",
+      "layer": "discovery",
+      "source": "edgar_analytics",
+      "kind": "extracted",
+      "category": "extracted-concept",
+      "mapsTo": [
+        "GrossProfit"
+      ],
+      "expression": "",
+      "definition": "edgar_analytics synonym key `gross_profit`"
+    },
+    {
+      "id": "ea:concept:cost_of_revenue",
+      "label": "Cost Of Revenue",
+      "layer": "discovery",
+      "source": "edgar_analytics",
+      "kind": "extracted",
+      "category": "extracted-concept",
+      "mapsTo": [
+        "CostOfGoodsAndServicesSold",
+        "CostOfRevenue"
+      ],
+      "expression": "",
+      "definition": "edgar_analytics synonym key `cost_of_revenue`"
+    },
+    {
+      "id": "ea:concept:operating_expenses",
+      "label": "Operating Expenses",
+      "layer": "discovery",
+      "source": "edgar_analytics",
+      "kind": "extracted",
+      "category": "extracted-concept",
+      "mapsTo": [
+        "OperatingExpenses"
+      ],
+      "expression": "",
+      "definition": "edgar_analytics synonym key `operating_expenses`"
+    },
+    {
+      "id": "ea:concept:rnd_expenses",
+      "label": "Rnd Expenses",
+      "layer": "discovery",
+      "source": "edgar_analytics",
+      "kind": "extracted",
+      "category": "extracted-concept",
+      "mapsTo": [
+        "ResearchAndDevelopmentExpense"
+      ],
+      "expression": "",
+      "definition": "edgar_analytics synonym key `rnd_expenses`"
+    },
+    {
+      "id": "ea:concept:sales_marketing",
+      "label": "Sales Marketing",
+      "layer": "discovery",
+      "source": "edgar_analytics",
+      "kind": "extracted",
+      "category": "extracted-concept",
+      "mapsTo": [
+        "SellingAndMarketingExpense"
+      ],
+      "expression": "",
+      "definition": "edgar_analytics synonym key `sales_marketing`"
+    },
+    {
+      "id": "ea:concept:general_administrative",
+      "label": "General Administrative",
+      "layer": "discovery",
+      "source": "edgar_analytics",
+      "kind": "extracted",
+      "category": "extracted-concept",
+      "mapsTo": [
+        "SellingGeneralAndAdministrativeExpense",
+        "GeneralAndAdministrativeExpense"
+      ],
+      "expression": "",
+      "definition": "edgar_analytics synonym key `general_administrative`"
+    },
+    {
+      "id": "ea:concept:operating_income",
+      "label": "Operating Income",
+      "layer": "discovery",
+      "source": "edgar_analytics",
+      "kind": "extracted",
+      "category": "extracted-concept",
+      "mapsTo": [
+        "OperatingIncomeLoss"
+      ],
+      "expression": "",
+      "definition": "edgar_analytics synonym key `operating_income`"
+    },
+    {
+      "id": "ea:concept:other_income_expense",
+      "label": "Other Income Expense",
+      "layer": "discovery",
+      "source": "edgar_analytics",
+      "kind": "extracted",
+      "category": "extracted-concept",
+      "mapsTo": [
+        "NonoperatingIncomeExpense"
+      ],
+      "expression": "",
+      "definition": "edgar_analytics synonym key `other_income_expense`"
+    },
+    {
+      "id": "ea:concept:income_before_taxes",
+      "label": "Income Before Taxes",
+      "layer": "discovery",
+      "source": "edgar_analytics",
+      "kind": "extracted",
+      "category": "extracted-concept",
+      "mapsTo": [
+        "IncomeLossFromContinuingOperationsBeforeIncomeTaxesExtraordinaryItemsNoncontrollingInterest"
+      ],
+      "expression": "",
+      "definition": "edgar_analytics synonym key `income_before_taxes`"
+    },
+    {
+      "id": "ea:concept:income_tax_expense",
+      "label": "Income Tax Expense",
+      "layer": "discovery",
+      "source": "edgar_analytics",
+      "kind": "extracted",
+      "category": "extracted-concept",
+      "mapsTo": [
+        "IncomeTaxExpenseBenefit"
+      ],
+      "expression": "",
+      "definition": "edgar_analytics synonym key `income_tax_expense`"
+    },
+    {
+      "id": "ea:concept:depreciation_amortization",
+      "label": "Depreciation Amortization",
+      "layer": "discovery",
+      "source": "edgar_analytics",
+      "kind": "extracted",
+      "category": "extracted-concept",
+      "mapsTo": [
+        "DepreciationDepletionAndAmortization",
+        "DepreciationAndAmortization"
+      ],
+      "expression": "",
+      "definition": "edgar_analytics synonym key `depreciation_amortization`"
+    },
+    {
+      "id": "ea:concept:depreciation_in_cost_of_sales",
+      "label": "Depreciation In Cost Of Sales",
+      "layer": "discovery",
+      "source": "edgar_analytics",
+      "kind": "extracted",
+      "category": "extracted-concept",
+      "mapsTo": [
+        "DepreciationAmortizationInCostOfGoodsSold"
+      ],
+      "expression": "",
+      "definition": "edgar_analytics synonym key `depreciation_in_cost_of_sales`"
+    },
+    {
+      "id": "ea:concept:net_income",
+      "label": "Net Income",
+      "layer": "discovery",
+      "source": "edgar_analytics",
+      "kind": "extracted",
+      "category": "extracted-concept",
+      "mapsTo": [
+        "NetIncomeLoss",
+        "NetIncomeLossAvailableToCommonStockholdersBasic",
+        "NetIncomeLossAttributableToParent"
+      ],
+      "expression": "",
+      "definition": "edgar_analytics synonym key `net_income`"
+    },
+    {
+      "id": "ea:concept:earnings_per_share_basic",
+      "label": "Earnings Per Share Basic",
+      "layer": "discovery",
+      "source": "edgar_analytics",
+      "kind": "extracted",
+      "category": "extracted-concept",
+      "mapsTo": [
+        "EarningsPerShareBasic"
+      ],
+      "expression": "",
+      "definition": "edgar_analytics synonym key `earnings_per_share_basic`"
+    },
+    {
+      "id": "ea:concept:earnings_per_share_diluted",
+      "label": "Earnings Per Share Diluted",
+      "layer": "discovery",
+      "source": "edgar_analytics",
+      "kind": "extracted",
+      "category": "extracted-concept",
+      "mapsTo": [
+        "EarningsPerShareDiluted"
+      ],
+      "expression": "",
+      "definition": "edgar_analytics synonym key `earnings_per_share_diluted`"
+    },
+    {
+      "id": "ea:concept:common_shares_outstanding",
+      "label": "Common Shares Outstanding",
+      "layer": "discovery",
+      "source": "edgar_analytics",
+      "kind": "extracted",
+      "category": "extracted-concept",
+      "mapsTo": [
+        "CommonStockSharesOutstanding"
+      ],
+      "expression": "",
+      "definition": "edgar_analytics synonym key `common_shares_outstanding`"
+    },
+    {
+      "id": "ea:concept:cash_equivalents",
+      "label": "Cash Equivalents",
+      "layer": "discovery",
+      "source": "edgar_analytics",
+      "kind": "extracted",
+      "category": "extracted-concept",
+      "mapsTo": [
+        "CashAndCashEquivalentsAtCarryingValue"
+      ],
+      "expression": "",
+      "definition": "edgar_analytics synonym key `cash_equivalents`"
+    },
+    {
+      "id": "ea:concept:short_term_investments",
+      "label": "Short Term Investments",
+      "layer": "discovery",
+      "source": "edgar_analytics",
+      "kind": "extracted",
+      "category": "extracted-concept",
+      "mapsTo": [
+        "AvailableForSaleSecuritiesDebtSecuritiesCurrent",
+        "MarketableSecuritiesCurrent"
+      ],
+      "expression": "",
+      "definition": "edgar_analytics synonym key `short_term_investments`"
+    },
+    {
+      "id": "ea:concept:accounts_receivable",
+      "label": "Accounts Receivable",
+      "layer": "discovery",
+      "source": "edgar_analytics",
+      "kind": "extracted",
+      "category": "extracted-concept",
+      "mapsTo": [
+        "AccountsReceivableNetCurrent"
+      ],
+      "expression": "",
+      "definition": "edgar_analytics synonym key `accounts_receivable`"
+    },
+    {
+      "id": "ea:concept:inventory",
+      "label": "Inventory",
+      "layer": "discovery",
+      "source": "edgar_analytics",
+      "kind": "extracted",
+      "category": "extracted-concept",
+      "mapsTo": [
+        "InventoryNet"
+      ],
+      "expression": "",
+      "definition": "edgar_analytics synonym key `inventory`"
+    },
+    {
+      "id": "ea:concept:other_current_assets",
+      "label": "Other Current Assets",
+      "layer": "discovery",
+      "source": "edgar_analytics",
+      "kind": "extracted",
+      "category": "extracted-concept",
+      "mapsTo": [
+        "OtherAssetsCurrent",
+        "PrepaidExpenseAndOtherAssetsCurrent"
+      ],
+      "expression": "",
+      "definition": "edgar_analytics synonym key `other_current_assets`"
+    },
+    {
+      "id": "ea:concept:current_assets",
+      "label": "Current Assets",
+      "layer": "discovery",
+      "source": "edgar_analytics",
+      "kind": "extracted",
+      "category": "extracted-concept",
+      "mapsTo": [
+        "AssetsCurrent"
+      ],
+      "expression": "",
+      "definition": "edgar_analytics synonym key `current_assets`"
+    },
+    {
+      "id": "ea:concept:long_term_investments",
+      "label": "Long Term Investments",
+      "layer": "discovery",
+      "source": "edgar_analytics",
+      "kind": "extracted",
+      "category": "extracted-concept",
+      "mapsTo": [
+        "LongTermInvestments",
+        "MarketableSecuritiesNoncurrent"
+      ],
+      "expression": "",
+      "definition": "edgar_analytics synonym key `long_term_investments`"
+    },
+    {
+      "id": "ea:concept:ppe_net",
+      "label": "Ppe Net",
+      "layer": "discovery",
+      "source": "edgar_analytics",
+      "kind": "extracted",
+      "category": "extracted-concept",
+      "mapsTo": [
+        "PropertyPlantAndEquipmentNet"
+      ],
+      "expression": "",
+      "definition": "edgar_analytics synonym key `ppe_net`"
+    },
+    {
+      "id": "ea:concept:intangible_assets",
+      "label": "Intangible Assets",
+      "layer": "discovery",
+      "source": "edgar_analytics",
+      "kind": "extracted",
+      "category": "extracted-concept",
+      "mapsTo": [
+        "IntangibleAssetsNetExcludingGoodwill",
+        "FiniteLivedIntangibleAssetsGross",
+        "IntangibleAssetsFiniteLivedNet",
+        "IntangibleAssetsIndefiniteLivedExcludingGoodwill"
+      ],
+      "expression": "",
+      "definition": "edgar_analytics synonym key `intangible_assets`"
+    },
+    {
+      "id": "ea:concept:goodwill",
+      "label": "Goodwill",
+      "layer": "discovery",
+      "source": "edgar_analytics",
+      "kind": "extracted",
+      "category": "extracted-concept",
+      "mapsTo": [
+        "Goodwill"
+      ],
+      "expression": "",
+      "definition": "edgar_analytics synonym key `goodwill`"
+    },
+    {
+      "id": "ea:concept:other_noncurrent_assets",
+      "label": "Other Noncurrent Assets",
+      "layer": "discovery",
+      "source": "edgar_analytics",
+      "kind": "extracted",
+      "category": "extracted-concept",
+      "mapsTo": [
+        "AssetsNoncurrent"
+      ],
+      "expression": "",
+      "definition": "edgar_analytics synonym key `other_noncurrent_assets`"
+    },
+    {
+      "id": "ea:concept:total_assets",
+      "label": "Total Assets",
+      "layer": "discovery",
+      "source": "edgar_analytics",
+      "kind": "extracted",
+      "category": "extracted-concept",
+      "mapsTo": [
+        "Assets"
+      ],
+      "expression": "",
+      "definition": "edgar_analytics synonym key `total_assets`"
+    },
+    {
+      "id": "ea:concept:accounts_payable",
+      "label": "Accounts Payable",
+      "layer": "discovery",
+      "source": "edgar_analytics",
+      "kind": "extracted",
+      "category": "extracted-concept",
+      "mapsTo": [
+        "AccountsPayableCurrent"
+      ],
+      "expression": "",
+      "definition": "edgar_analytics synonym key `accounts_payable`"
+    },
+    {
+      "id": "ea:concept:accrued_expenses",
+      "label": "Accrued Expenses",
+      "layer": "discovery",
+      "source": "edgar_analytics",
+      "kind": "extracted",
+      "category": "extracted-concept",
+      "mapsTo": [
+        "AccruedLiabilitiesCurrent",
+        "AccruedExpenses"
+      ],
+      "expression": "",
+      "definition": "edgar_analytics synonym key `accrued_expenses`"
+    },
+    {
+      "id": "ea:concept:current_liabilities",
+      "label": "Current Liabilities",
+      "layer": "discovery",
+      "source": "edgar_analytics",
+      "kind": "extracted",
+      "category": "extracted-concept",
+      "mapsTo": [
+        "LiabilitiesCurrent"
+      ],
+      "expression": "",
+      "definition": "edgar_analytics synonym key `current_liabilities`"
+    },
+    {
+      "id": "ea:concept:deferred_revenue",
+      "label": "Deferred Revenue",
+      "layer": "discovery",
+      "source": "edgar_analytics",
+      "kind": "extracted",
+      "category": "extracted-concept",
+      "mapsTo": [
+        "ContractWithCustomerLiabilityCurrent"
+      ],
+      "expression": "",
+      "definition": "edgar_analytics synonym key `deferred_revenue`"
+    },
+    {
+      "id": "ea:concept:short_term_debt",
+      "label": "Short Term Debt",
+      "layer": "discovery",
+      "source": "edgar_analytics",
+      "kind": "extracted",
+      "category": "extracted-concept",
+      "mapsTo": [
+        "ShortTermBorrowings",
+        "LongTermDebtCurrent",
+        "CommercialPaper"
+      ],
+      "expression": "",
+      "definition": "edgar_analytics synonym key `short_term_debt`"
+    },
+    {
+      "id": "ea:concept:long_term_debt",
+      "label": "Long Term Debt",
+      "layer": "discovery",
+      "source": "edgar_analytics",
+      "kind": "extracted",
+      "category": "extracted-concept",
+      "mapsTo": [
+        "LongTermDebt",
+        "LongTermDebtNoncurrent"
+      ],
+      "expression": "",
+      "definition": "edgar_analytics synonym key `long_term_debt`"
+    },
+    {
+      "id": "ea:concept:operating_lease_liabilities",
+      "label": "Operating Lease Liabilities",
+      "layer": "discovery",
+      "source": "edgar_analytics",
+      "kind": "extracted",
+      "category": "extracted-concept",
+      "mapsTo": [
+        "OperatingLeaseLiability"
+      ],
+      "expression": "",
+      "definition": "edgar_analytics synonym key `operating_lease_liabilities`"
+    },
+    {
+      "id": "ea:concept:finance_lease_liabilities",
+      "label": "Finance Lease Liabilities",
+      "layer": "discovery",
+      "source": "edgar_analytics",
+      "kind": "extracted",
+      "category": "extracted-concept",
+      "mapsTo": [
+        "FinanceLeaseLiability"
+      ],
+      "expression": "",
+      "definition": "edgar_analytics synonym key `finance_lease_liabilities`"
+    },
+    {
+      "id": "ea:concept:other_noncurrent_liabilities",
+      "label": "Other Noncurrent Liabilities",
+      "layer": "discovery",
+      "source": "edgar_analytics",
+      "kind": "extracted",
+      "category": "extracted-concept",
+      "mapsTo": [
+        "LiabilitiesNoncurrent",
+        "OtherLiabilitiesNoncurrent"
+      ],
+      "expression": "",
+      "definition": "edgar_analytics synonym key `other_noncurrent_liabilities`"
+    },
+    {
+      "id": "ea:concept:total_liabilities",
+      "label": "Total Liabilities",
+      "layer": "discovery",
+      "source": "edgar_analytics",
+      "kind": "extracted",
+      "category": "extracted-concept",
+      "mapsTo": [
+        "Liabilities"
+      ],
+      "expression": "",
+      "definition": "edgar_analytics synonym key `total_liabilities`"
+    },
+    {
+      "id": "ea:concept:total_equity",
+      "label": "Total Equity",
+      "layer": "discovery",
+      "source": "edgar_analytics",
+      "kind": "extracted",
+      "category": "extracted-concept",
+      "mapsTo": [
+        "StockholdersEquity",
+        "StockholdersEquityIncludingPortionAttributableToNoncontrollingInterest"
+      ],
+      "expression": "",
+      "definition": "edgar_analytics synonym key `total_equity`"
+    },
+    {
+      "id": "ea:concept:common_stock_and_apic",
+      "label": "Common Stock And Apic",
+      "layer": "discovery",
+      "source": "edgar_analytics",
+      "kind": "extracted",
+      "category": "extracted-concept",
+      "mapsTo": [
+        "CommonStocksIncludingAdditionalPaidInCapital",
+        "AdditionalPaidInCapital"
+      ],
+      "expression": "",
+      "definition": "edgar_analytics synonym key `common_stock_and_apic`"
+    },
+    {
+      "id": "ea:concept:treasury_stock",
+      "label": "Treasury Stock",
+      "layer": "discovery",
+      "source": "edgar_analytics",
+      "kind": "extracted",
+      "category": "extracted-concept",
+      "mapsTo": [
+        "TreasuryStockValue"
+      ],
+      "expression": "",
+      "definition": "edgar_analytics synonym key `treasury_stock`"
+    },
+    {
+      "id": "ea:concept:retained_earnings",
+      "label": "Retained Earnings",
+      "layer": "discovery",
+      "source": "edgar_analytics",
+      "kind": "extracted",
+      "category": "extracted-concept",
+      "mapsTo": [
+        "RetainedEarningsAccumulatedDeficit"
+      ],
+      "expression": "",
+      "definition": "edgar_analytics synonym key `retained_earnings`"
+    },
+    {
+      "id": "ea:concept:preferred_stock",
+      "label": "Preferred Stock",
+      "layer": "discovery",
+      "source": "edgar_analytics",
+      "kind": "extracted",
+      "category": "extracted-concept",
+      "mapsTo": [
+        "PreferredStockValue",
+        "RedeemablePreferredStockCarryingAmount"
+      ],
+      "expression": "",
+      "definition": "edgar_analytics synonym key `preferred_stock`"
+    },
+    {
+      "id": "ea:concept:minority_interest",
+      "label": "Minority Interest",
+      "layer": "discovery",
+      "source": "edgar_analytics",
+      "kind": "extracted",
+      "category": "extracted-concept",
+      "mapsTo": [
+        "MinorityInterest",
+        "RedeemableNoncontrollingInterestEquityCarryingAmount"
+      ],
+      "expression": "",
+      "definition": "edgar_analytics synonym key `minority_interest`"
+    },
+    {
+      "id": "ea:concept:accumulated_oci",
+      "label": "Accumulated Oci",
+      "layer": "discovery",
+      "source": "edgar_analytics",
+      "kind": "extracted",
+      "category": "extracted-concept",
+      "mapsTo": [
+        "AccumulatedOtherComprehensiveIncomeLossNetOfTax",
+        "OtherComprehensiveIncomeLossNetOfTax"
+      ],
+      "expression": "",
+      "definition": "edgar_analytics synonym key `accumulated_oci`"
+    },
+    {
+      "id": "ea:concept:comprehensive_income",
+      "label": "Comprehensive Income",
+      "layer": "discovery",
+      "source": "edgar_analytics",
+      "kind": "extracted",
+      "category": "extracted-concept",
+      "mapsTo": [
+        "ComprehensiveIncomeNetOfTax"
+      ],
+      "expression": "",
+      "definition": "edgar_analytics synonym key `comprehensive_income`"
+    },
+    {
+      "id": "ea:concept:cash_flow_operating",
+      "label": "Cash Flow Operating",
+      "layer": "discovery",
+      "source": "edgar_analytics",
+      "kind": "extracted",
+      "category": "extracted-concept",
+      "mapsTo": [
+        "NetCashProvidedByUsedInOperatingActivities"
+      ],
+      "expression": "",
+      "definition": "edgar_analytics synonym key `cash_flow_operating`"
+    },
+    {
+      "id": "ea:concept:cash_flow_investing",
+      "label": "Cash Flow Investing",
+      "layer": "discovery",
+      "source": "edgar_analytics",
+      "kind": "extracted",
+      "category": "extracted-concept",
+      "mapsTo": [
+        "NetCashProvidedByUsedInInvestingActivities"
+      ],
+      "expression": "",
+      "definition": "edgar_analytics synonym key `cash_flow_investing`"
+    },
+    {
+      "id": "ea:concept:cash_flow_financing",
+      "label": "Cash Flow Financing",
+      "layer": "discovery",
+      "source": "edgar_analytics",
+      "kind": "extracted",
+      "category": "extracted-concept",
+      "mapsTo": [
+        "NetCashProvidedByUsedInFinancingActivities"
+      ],
+      "expression": "",
+      "definition": "edgar_analytics synonym key `cash_flow_financing`"
+    },
+    {
+      "id": "ea:concept:share_based_compensation",
+      "label": "Share Based Compensation",
+      "layer": "discovery",
+      "source": "edgar_analytics",
+      "kind": "extracted",
+      "category": "extracted-concept",
+      "mapsTo": [
+        "ShareBasedCompensation",
+        "AllocatedShareBasedCompensationExpense"
+      ],
+      "expression": "",
+      "definition": "edgar_analytics synonym key `share_based_compensation`"
+    },
+    {
+      "id": "ea:concept:deferred_tax_assets",
+      "label": "Deferred Tax Assets",
+      "layer": "discovery",
+      "source": "edgar_analytics",
+      "kind": "extracted",
+      "category": "extracted-concept",
+      "mapsTo": [
+        "DeferredTaxAssetsGross",
+        "DeferredTaxAssetsNet"
+      ],
+      "expression": "",
+      "definition": "edgar_analytics synonym key `deferred_tax_assets`"
+    },
+    {
+      "id": "ea:concept:deferred_tax_liabilities",
+      "label": "Deferred Tax Liabilities",
+      "layer": "discovery",
+      "source": "edgar_analytics",
+      "kind": "extracted",
+      "category": "extracted-concept",
+      "mapsTo": [
+        "DeferredTaxLiabilities",
+        "DeferredTaxLiabilitiesNet"
+      ],
+      "expression": "",
+      "definition": "edgar_analytics synonym key `deferred_tax_liabilities`"
+    },
+    {
+      "id": "ea:concept:unrecognized_tax_benefits",
+      "label": "Unrecognized Tax Benefits",
+      "layer": "discovery",
+      "source": "edgar_analytics",
+      "kind": "extracted",
+      "category": "extracted-concept",
+      "mapsTo": [
+        "UnrecognizedTaxBenefits"
+      ],
+      "expression": "",
+      "definition": "edgar_analytics synonym key `unrecognized_tax_benefits`"
+    },
+    {
+      "id": "ea:concept:dividends",
+      "label": "Dividends",
+      "layer": "discovery",
+      "source": "edgar_analytics",
+      "kind": "extracted",
+      "category": "extracted-concept",
+      "mapsTo": [
+        "Dividends",
+        "CommonStockDividendsPerShareDeclared"
+      ],
+      "expression": "",
+      "definition": "edgar_analytics synonym key `dividends`"
+    },
+    {
+      "id": "ea:concept:share_repurchase",
+      "label": "Share Repurchase",
+      "layer": "discovery",
+      "source": "edgar_analytics",
+      "kind": "extracted",
+      "category": "extracted-concept",
+      "mapsTo": [
+        "PaymentsForRepurchaseOfCommonStock",
+        "StockRepurchasedAndRetiredDuringPeriodShares"
+      ],
+      "expression": "",
+      "definition": "edgar_analytics synonym key `share_repurchase`"
+    },
+    {
+      "id": "ea:concept:business_combinations",
+      "label": "Business Combinations",
+      "layer": "discovery",
+      "source": "edgar_analytics",
+      "kind": "extracted",
+      "category": "extracted-concept",
+      "mapsTo": [
+        "BusinessCombinationsPolicy",
+        "BusinessCombinationDisclosureTextBlock"
+      ],
+      "expression": "",
+      "definition": "edgar_analytics synonym key `business_combinations`"
+    },
+    {
+      "id": "ea:concept:lease_disclosures",
+      "label": "Lease Disclosures",
+      "layer": "discovery",
+      "source": "edgar_analytics",
+      "kind": "extracted",
+      "category": "extracted-concept",
+      "mapsTo": [
+        "LesseeLeasesPolicyTextBlock",
+        "LeaseCost",
+        "LeaseCostTableTextBlock"
+      ],
+      "expression": "",
+      "definition": "edgar_analytics synonym key `lease_disclosures`"
+    },
+    {
+      "id": "ea:concept:derivatives_hedging",
+      "label": "Derivatives Hedging",
+      "layer": "discovery",
+      "source": "edgar_analytics",
+      "kind": "extracted",
+      "category": "extracted-concept",
+      "mapsTo": [
+        "DerivativeInstrumentsAndHedgingActivitiesDisclosureTextBlock",
+        "DerivativeAssetFairValueGrossAssetIncludingNotSubjectToMasterNettingArrangement"
+      ],
+      "expression": "",
+      "definition": "edgar_analytics synonym key `derivatives_hedging`"
+    },
+    {
+      "id": "ea:concept:fair_value",
+      "label": "Fair Value",
+      "layer": "discovery",
+      "source": "edgar_analytics",
+      "kind": "extracted",
+      "category": "extracted-concept",
+      "mapsTo": [
+        "FairValueMeasurementPolicyPolicyTextBlock",
+        "FairValueDisclosuresTextBlock"
+      ],
+      "expression": "",
+      "definition": "edgar_analytics synonym key `fair_value`"
+    },
+    {
+      "id": "ea:concept:segment_reporting",
+      "label": "Segment Reporting",
+      "layer": "discovery",
+      "source": "edgar_analytics",
+      "kind": "extracted",
+      "category": "extracted-concept",
+      "mapsTo": [
+        "SegmentReportingPolicyPolicyTextBlock",
+        "SegmentReportingDisclosureTextBlock"
+      ],
+      "expression": "",
+      "definition": "edgar_analytics synonym key `segment_reporting`"
+    },
+    {
+      "id": "ea:concept:commitments_contingencies",
+      "label": "Commitments Contingencies",
+      "layer": "discovery",
+      "source": "edgar_analytics",
+      "kind": "extracted",
+      "category": "extracted-concept",
+      "mapsTo": [
+        "CommitmentsAndContingencies",
+        "CommitmentsAndContingenciesDisclosureTextBlock"
+      ],
+      "expression": "",
+      "definition": "edgar_analytics synonym key `commitments_contingencies`"
+    },
+    {
+      "id": "ea:concept:litigation_legal",
+      "label": "Litigation Legal",
+      "layer": "discovery",
+      "source": "edgar_analytics",
+      "kind": "extracted",
+      "category": "extracted-concept",
+      "mapsTo": [
+        "LegalMattersAndContingenciesTextBlock"
+      ],
+      "expression": "",
+      "definition": "edgar_analytics synonym key `litigation_legal`"
+    },
+    {
+      "id": "ea:concept:risk_factors",
+      "label": "Risk Factors",
+      "layer": "discovery",
+      "source": "edgar_analytics",
+      "kind": "extracted",
+      "category": "extracted-concept",
+      "mapsTo": [],
+      "expression": "",
+      "definition": "edgar_analytics synonym key `risk_factors`"
+    },
+    {
+      "id": "ea:concept:insider_transactions",
+      "label": "Insider Transactions",
+      "layer": "discovery",
+      "source": "edgar_analytics",
+      "kind": "extracted",
+      "category": "extracted-concept",
+      "mapsTo": [],
+      "expression": "",
+      "definition": "edgar_analytics synonym key `insider_transactions`"
+    },
+    {
+      "id": "ea:concept:recent_accounting_guidance",
+      "label": "Recent Accounting Guidance",
+      "layer": "discovery",
+      "source": "edgar_analytics",
+      "kind": "extracted",
+      "category": "extracted-concept",
+      "mapsTo": [
+        "NewAccountingPronouncementsPolicyPolicyTextBlock"
+      ],
+      "expression": "",
+      "definition": "edgar_analytics synonym key `recent_accounting_guidance`"
+    },
+    {
+      "id": "ea:concept:capital_expenditures",
+      "label": "Capital Expenditures",
+      "layer": "discovery",
+      "source": "edgar_analytics",
+      "kind": "extracted",
+      "category": "extracted-concept",
+      "mapsTo": [
+        "PaymentsToAcquirePropertyPlantAndEquipment"
+      ],
+      "expression": "",
+      "definition": "edgar_analytics synonym key `capital_expenditures`"
+    },
+    {
+      "id": "ea:concept:right_of_use_assets",
+      "label": "Right Of Use Assets",
+      "layer": "discovery",
+      "source": "edgar_analytics",
+      "kind": "extracted",
+      "category": "extracted-concept",
+      "mapsTo": [
+        "OperatingLeaseRightOfUseAsset"
+      ],
+      "expression": "",
+      "definition": "edgar_analytics synonym key `right_of_use_assets`"
+    },
+    {
+      "id": "ea:concept:lease_liabilities_current",
+      "label": "Lease Liabilities Current",
+      "layer": "discovery",
+      "source": "edgar_analytics",
+      "kind": "extracted",
+      "category": "extracted-concept",
+      "mapsTo": [
+        "OperatingLeaseLiabilityCurrent"
+      ],
+      "expression": "",
+      "definition": "edgar_analytics synonym key `lease_liabilities_current`"
+    },
+    {
+      "id": "ea:concept:lease_liabilities_noncurrent",
+      "label": "Lease Liabilities Noncurrent",
+      "layer": "discovery",
+      "source": "edgar_analytics",
+      "kind": "extracted",
+      "category": "extracted-concept",
+      "mapsTo": [
+        "OperatingLeaseLiabilityNoncurrent"
+      ],
+      "expression": "",
+      "definition": "edgar_analytics synonym key `lease_liabilities_noncurrent`"
+    },
+    {
+      "id": "ea:concept:financial_assets_fvpl",
+      "label": "Financial Assets Fvpl",
+      "layer": "discovery",
+      "source": "edgar_analytics",
+      "kind": "extracted",
+      "category": "extracted-concept",
+      "mapsTo": [
+        "MarketableSecuritiesCurrent"
+      ],
+      "expression": "",
+      "definition": "edgar_analytics synonym key `financial_assets_fvpl`"
+    },
+    {
+      "id": "ea:concept:financial_assets_fvoci",
+      "label": "Financial Assets Fvoci",
+      "layer": "discovery",
+      "source": "edgar_analytics",
+      "kind": "extracted",
+      "category": "extracted-concept",
+      "mapsTo": [
+        "AvailableForSaleSecuritiesCurrent"
+      ],
+      "expression": "",
+      "definition": "edgar_analytics synonym key `financial_assets_fvoci`"
+    },
+    {
+      "id": "ea:concept:gains_losses_oci",
+      "label": "Gains Losses Oci",
+      "layer": "discovery",
+      "source": "edgar_analytics",
+      "kind": "extracted",
+      "category": "extracted-concept",
+      "mapsTo": [
+        "OtherComprehensiveIncomeLossNetOfTax"
+      ],
+      "expression": "",
+      "definition": "edgar_analytics synonym key `gains_losses_oci`"
+    },
+    {
+      "id": "ea:concept:contract_assets",
+      "label": "Contract Assets",
+      "layer": "discovery",
+      "source": "edgar_analytics",
+      "kind": "extracted",
+      "category": "extracted-concept",
+      "mapsTo": [
+        "ContractWithCustomerAsset"
+      ],
+      "expression": "",
+      "definition": "edgar_analytics synonym key `contract_assets`"
+    },
+    {
+      "id": "ea:concept:contract_liabilities",
+      "label": "Contract Liabilities",
+      "layer": "discovery",
+      "source": "edgar_analytics",
+      "kind": "extracted",
+      "category": "extracted-concept",
+      "mapsTo": [
+        "ContractWithCustomerLiability"
+      ],
+      "expression": "",
+      "definition": "edgar_analytics synonym key `contract_liabilities`"
+    },
+    {
+      "id": "ea:concept:interest_expense",
+      "label": "Interest Expense",
+      "layer": "discovery",
+      "source": "edgar_analytics",
+      "kind": "extracted",
+      "category": "extracted-concept",
+      "mapsTo": [
+        "InterestExpense"
+      ],
+      "expression": "",
+      "definition": "edgar_analytics synonym key `interest_expense`"
+    },
+    {
+      "id": "ea:concept:purchase_of_intangibles",
+      "label": "Purchase Of Intangibles",
+      "layer": "discovery",
+      "source": "edgar_analytics",
+      "kind": "extracted",
+      "category": "extracted-concept",
+      "mapsTo": [
+        "PaymentsToAcquireIntangibleAssets"
+      ],
+      "expression": "",
+      "definition": "edgar_analytics synonym key `purchase_of_intangibles`"
+    },
+    {
+      "id": "ea:concept:business_acquisitions_net",
+      "label": "Business Acquisitions Net",
+      "layer": "discovery",
+      "source": "edgar_analytics",
+      "kind": "extracted",
+      "category": "extracted-concept",
+      "mapsTo": [
+        "PaymentsToAcquireBusinessesNetOfCashAcquired"
+      ],
+      "expression": "",
+      "definition": "edgar_analytics synonym key `business_acquisitions_net`"
+    },
+    {
+      "id": "ea:concept:miscellaneous",
+      "label": "Miscellaneous",
+      "layer": "discovery",
+      "source": "edgar_analytics",
+      "kind": "extracted",
+      "category": "extracted-concept",
+      "mapsTo": [
+        "SignificantAccountingPoliciesTextBlock"
+      ],
+      "expression": "",
+      "definition": "edgar_analytics synonym key `miscellaneous`"
+    },
+    {
+      "id": "ea:metric:gross-margin",
+      "label": "Gross Margin %",
+      "layer": "discovery",
+      "source": "edgar_analytics",
+      "kind": "derived",
+      "category": "profitability",
+      "mapsTo": [
+        "GrossProfit",
+        "RevenueFromContractWithCustomerExcludingAssessedTax",
+        "RevenueFromContractWithCustomerIncludingAssessedTax",
+        "SalesRevenueNet",
+        "SalesRevenueGoodsNet",
+        "SalesRevenueServicesNet",
+        "Revenues"
+      ],
+      "inputSynonyms": [
+        "gross_profit",
+        "revenue"
+      ],
+      "expression": "Gross Profit / Revenue x 100",
+      "definition": "edgar_analytics derived metric: Gross Profit / Revenue x 100",
+      "gap": false
+    },
+    {
+      "id": "ea:metric:operating-margin",
+      "label": "Operating Margin %",
+      "layer": "discovery",
+      "source": "edgar_analytics",
+      "kind": "derived",
+      "category": "profitability",
+      "mapsTo": [
+        "OperatingIncomeLoss",
+        "RevenueFromContractWithCustomerExcludingAssessedTax",
+        "RevenueFromContractWithCustomerIncludingAssessedTax",
+        "SalesRevenueNet",
+        "SalesRevenueGoodsNet",
+        "SalesRevenueServicesNet",
+        "Revenues"
+      ],
+      "inputSynonyms": [
+        "operating_income",
+        "revenue"
+      ],
+      "expression": "Operating Income / Revenue x 100",
+      "definition": "edgar_analytics derived metric: Operating Income / Revenue x 100",
+      "gap": false
+    },
+    {
+      "id": "ea:metric:net-margin",
+      "label": "Net Margin %",
+      "layer": "discovery",
+      "source": "edgar_analytics",
+      "kind": "derived",
+      "category": "profitability",
+      "mapsTo": [
+        "NetIncomeLoss",
+        "NetIncomeLossAvailableToCommonStockholdersBasic",
+        "NetIncomeLossAttributableToParent",
+        "RevenueFromContractWithCustomerExcludingAssessedTax",
+        "RevenueFromContractWithCustomerIncludingAssessedTax",
+        "SalesRevenueNet",
+        "SalesRevenueGoodsNet",
+        "SalesRevenueServicesNet",
+        "Revenues"
+      ],
+      "inputSynonyms": [
+        "net_income",
+        "revenue"
+      ],
+      "expression": "Net Income / Revenue x 100",
+      "definition": "edgar_analytics derived metric: Net Income / Revenue x 100",
+      "gap": true
+    },
+    {
+      "id": "ea:metric:ebit-approx",
+      "label": "EBIT (approx)",
+      "layer": "discovery",
+      "source": "edgar_analytics",
+      "kind": "derived",
+      "category": "profitability",
+      "mapsTo": [
+        "NetIncomeLoss",
+        "NetIncomeLossAvailableToCommonStockholdersBasic",
+        "NetIncomeLossAttributableToParent",
+        "InterestExpense",
+        "IncomeTaxExpenseBenefit"
+      ],
+      "inputSynonyms": [
+        "net_income",
+        "interest_expense",
+        "income_tax_expense"
+      ],
+      "expression": "Net Income + Interest + Tax",
+      "definition": "edgar_analytics derived metric: Net Income + Interest + Tax",
+      "gap": true
+    },
+    {
+      "id": "ea:metric:ebit-standard",
+      "label": "EBIT (standard)",
+      "layer": "discovery",
+      "source": "edgar_analytics",
+      "kind": "derived",
+      "category": "profitability",
+      "mapsTo": [
+        "OperatingIncomeLoss"
+      ],
+      "inputSynonyms": [
+        "operating_income"
+      ],
+      "expression": "Operating Income",
+      "definition": "edgar_analytics derived metric: Operating Income",
+      "gap": true
+    },
+    {
+      "id": "ea:metric:ebitda-approx",
+      "label": "EBITDA (approx)",
+      "layer": "discovery",
+      "source": "edgar_analytics",
+      "kind": "derived",
+      "category": "profitability",
+      "mapsTo": [
+        "NetIncomeLoss",
+        "NetIncomeLossAvailableToCommonStockholdersBasic",
+        "NetIncomeLossAttributableToParent",
+        "InterestExpense",
+        "IncomeTaxExpenseBenefit",
+        "DepreciationDepletionAndAmortization",
+        "DepreciationAndAmortization"
+      ],
+      "inputSynonyms": [
+        "net_income",
+        "interest_expense",
+        "income_tax_expense",
+        "depreciation_amortization"
+      ],
+      "expression": "EBIT (approx) + D&A",
+      "definition": "edgar_analytics derived metric: EBIT (approx) + D&A",
+      "gap": false
+    },
+    {
+      "id": "ea:metric:ebitda-standard",
+      "label": "EBITDA (standard)",
+      "layer": "discovery",
+      "source": "edgar_analytics",
+      "kind": "derived",
+      "category": "profitability",
+      "mapsTo": [
+        "OperatingIncomeLoss",
+        "DepreciationDepletionAndAmortization",
+        "DepreciationAndAmortization"
+      ],
+      "inputSynonyms": [
+        "operating_income",
+        "depreciation_amortization"
+      ],
+      "expression": "EBIT (standard) + D&A",
+      "definition": "edgar_analytics derived metric: EBIT (standard) + D&A",
+      "gap": false
+    },
+    {
+      "id": "ea:metric:current-ratio",
+      "label": "Current Ratio",
+      "layer": "discovery",
+      "source": "edgar_analytics",
+      "kind": "derived",
+      "category": "liquidity",
+      "mapsTo": [
+        "AssetsCurrent",
+        "LiabilitiesCurrent"
+      ],
+      "inputSynonyms": [
+        "current_assets",
+        "current_liabilities"
+      ],
+      "expression": "Current Assets / Current Liabilities",
+      "definition": "edgar_analytics derived metric: Current Assets / Current Liabilities",
+      "gap": true
+    },
+    {
+      "id": "ea:metric:quick-ratio",
+      "label": "Quick Ratio",
+      "layer": "discovery",
+      "source": "edgar_analytics",
+      "kind": "derived",
+      "category": "liquidity",
+      "mapsTo": [
+        "AssetsCurrent",
+        "InventoryNet",
+        "LiabilitiesCurrent"
+      ],
+      "inputSynonyms": [
+        "current_assets",
+        "inventory",
+        "current_liabilities"
+      ],
+      "expression": "(Current Assets - Inventory) / Current Liabilities",
+      "definition": "edgar_analytics derived metric: (Current Assets - Inventory) / Current Liabilities",
+      "gap": true
+    },
+    {
+      "id": "ea:metric:cash-ratio",
+      "label": "Cash Ratio",
+      "layer": "discovery",
+      "source": "edgar_analytics",
+      "kind": "derived",
+      "category": "liquidity",
+      "mapsTo": [
+        "CashAndCashEquivalentsAtCarryingValue",
+        "LiabilitiesCurrent"
+      ],
+      "inputSynonyms": [
+        "cash_equivalents",
+        "current_liabilities"
+      ],
+      "expression": "Cash / Current Liabilities",
+      "definition": "edgar_analytics derived metric: Cash / Current Liabilities",
+      "gap": true
+    },
+    {
+      "id": "ea:metric:debt-to-equity",
+      "label": "Debt-to-Equity",
+      "layer": "discovery",
+      "source": "edgar_analytics",
+      "kind": "derived",
+      "category": "leverage",
+      "mapsTo": [
+        "Liabilities",
+        "StockholdersEquity",
+        "StockholdersEquityIncludingPortionAttributableToNoncontrollingInterest"
+      ],
+      "inputSynonyms": [
+        "total_liabilities",
+        "total_equity"
+      ],
+      "expression": "Total Liabilities / Total Equity",
+      "definition": "edgar_analytics derived metric: Total Liabilities / Total Equity",
+      "gap": true
+    },
+    {
+      "id": "ea:metric:debt-total-capital",
+      "label": "Debt/Total Capital",
+      "layer": "discovery",
+      "source": "edgar_analytics",
+      "kind": "derived",
+      "category": "leverage",
+      "mapsTo": [
+        "ShortTermBorrowings",
+        "LongTermDebtCurrent",
+        "CommercialPaper",
+        "LongTermDebt",
+        "LongTermDebtNoncurrent",
+        "StockholdersEquity",
+        "StockholdersEquityIncludingPortionAttributableToNoncontrollingInterest"
+      ],
+      "inputSynonyms": [
+        "short_term_debt",
+        "long_term_debt",
+        "total_equity"
+      ],
+      "expression": "(ST Debt + LT Debt) / (ST Debt + LT Debt + Equity)",
+      "definition": "edgar_analytics derived metric: (ST Debt + LT Debt) / (ST Debt + LT Debt + Equity)",
+      "gap": true
+    },
+    {
+      "id": "ea:metric:equity-ratio",
+      "label": "Equity Ratio %",
+      "layer": "discovery",
+      "source": "edgar_analytics",
+      "kind": "derived",
+      "category": "leverage",
+      "mapsTo": [
+        "StockholdersEquity",
+        "StockholdersEquityIncludingPortionAttributableToNoncontrollingInterest",
+        "Assets"
+      ],
+      "inputSynonyms": [
+        "total_equity",
+        "total_assets"
+      ],
+      "expression": "Total Equity / Total Assets x 100",
+      "definition": "edgar_analytics derived metric: Total Equity / Total Assets x 100",
+      "gap": true
+    },
+    {
+      "id": "ea:metric:interest-coverage",
+      "label": "Interest Coverage",
+      "layer": "discovery",
+      "source": "edgar_analytics",
+      "kind": "derived",
+      "category": "leverage",
+      "mapsTo": [
+        "OperatingIncomeLoss",
+        "InterestExpense"
+      ],
+      "inputSynonyms": [
+        "operating_income",
+        "interest_expense"
+      ],
+      "expression": "EBIT (standard) / Interest Expense",
+      "definition": "edgar_analytics derived metric: EBIT (standard) / Interest Expense",
+      "gap": true
+    },
+    {
+      "id": "ea:metric:net-debt",
+      "label": "Net Debt",
+      "layer": "discovery",
+      "source": "edgar_analytics",
+      "kind": "derived",
+      "category": "leverage",
+      "mapsTo": [
+        "ShortTermBorrowings",
+        "LongTermDebtCurrent",
+        "CommercialPaper",
+        "LongTermDebt",
+        "LongTermDebtNoncurrent",
+        "OperatingLeaseLiability",
+        "FinanceLeaseLiability",
+        "CashAndCashEquivalentsAtCarryingValue"
+      ],
+      "inputSynonyms": [
+        "short_term_debt",
+        "long_term_debt",
+        "operating_lease_liabilities",
+        "finance_lease_liabilities",
+        "cash_equivalents"
+      ],
+      "expression": "ST Debt + LT Debt + Lease Liabilities - Cash",
+      "definition": "edgar_analytics derived metric: ST Debt + LT Debt + Lease Liabilities - Cash",
+      "gap": false
+    },
+    {
+      "id": "ea:metric:net-debt-ebitda",
+      "label": "Net Debt/EBITDA",
+      "layer": "discovery",
+      "source": "edgar_analytics",
+      "kind": "derived",
+      "category": "leverage",
+      "mapsTo": [
+        "ShortTermBorrowings",
+        "LongTermDebtCurrent",
+        "CommercialPaper",
+        "LongTermDebt",
+        "LongTermDebtNoncurrent",
+        "CashAndCashEquivalentsAtCarryingValue",
+        "OperatingIncomeLoss",
+        "DepreciationDepletionAndAmortization",
+        "DepreciationAndAmortization"
+      ],
+      "inputSynonyms": [
+        "short_term_debt",
+        "long_term_debt",
+        "cash_equivalents",
+        "operating_income",
+        "depreciation_amortization"
+      ],
+      "expression": "Financial Net Debt / EBITDA (standard)",
+      "definition": "edgar_analytics derived metric: Financial Net Debt / EBITDA (standard)",
+      "gap": false
+    },
+    {
+      "id": "ea:metric:lease-liabilities-ratio",
+      "label": "Lease Liabilities Ratio %",
+      "layer": "discovery",
+      "source": "edgar_analytics",
+      "kind": "derived",
+      "category": "leverage",
+      "mapsTo": [
+        "OperatingLeaseLiability",
+        "FinanceLeaseLiability",
+        "Assets"
+      ],
+      "inputSynonyms": [
+        "operating_lease_liabilities",
+        "finance_lease_liabilities",
+        "total_assets"
+      ],
+      "expression": "(Operating + Finance Leases) / Total Assets x 100",
+      "definition": "edgar_analytics derived metric: (Operating + Finance Leases) / Total Assets x 100",
+      "gap": true
+    },
+    {
+      "id": "ea:metric:cash-from-operations",
+      "label": "Cash from Operations",
+      "layer": "discovery",
+      "source": "edgar_analytics",
+      "kind": "derived",
+      "category": "cashflow",
+      "mapsTo": [
+        "NetCashProvidedByUsedInOperatingActivities"
+      ],
+      "inputSynonyms": [
+        "cash_flow_operating"
+      ],
+      "expression": "Operating Cash Flow",
+      "definition": "edgar_analytics derived metric: Operating Cash Flow",
+      "gap": true
+    },
+    {
+      "id": "ea:metric:free-cash-flow",
+      "label": "Free Cash Flow",
+      "layer": "discovery",
+      "source": "edgar_analytics",
+      "kind": "derived",
+      "category": "cashflow",
+      "mapsTo": [
+        "NetCashProvidedByUsedInOperatingActivities",
+        "PaymentsToAcquirePropertyPlantAndEquipment"
+      ],
+      "inputSynonyms": [
+        "cash_flow_operating",
+        "capital_expenditures"
+      ],
+      "expression": "OCF - CapEx",
+      "definition": "edgar_analytics derived metric: OCF - CapEx",
+      "gap": false
+    },
+    {
+      "id": "ea:metric:cash-flow-coverage",
+      "label": "Cash Flow Coverage",
+      "layer": "discovery",
+      "source": "edgar_analytics",
+      "kind": "derived",
+      "category": "cashflow",
+      "mapsTo": [
+        "NetCashProvidedByUsedInOperatingActivities",
+        "LiabilitiesCurrent"
+      ],
+      "inputSynonyms": [
+        "cash_flow_operating",
+        "current_liabilities"
+      ],
+      "expression": "OCF / Current Liabilities",
+      "definition": "edgar_analytics derived metric: OCF / Current Liabilities",
+      "gap": true
+    },
+    {
+      "id": "ea:metric:fixed-charge-coverage",
+      "label": "Fixed Charge Coverage",
+      "layer": "discovery",
+      "source": "edgar_analytics",
+      "kind": "derived",
+      "category": "cashflow",
+      "mapsTo": [
+        "OperatingIncomeLoss",
+        "InterestExpense",
+        "OperatingLeaseLiability"
+      ],
+      "inputSynonyms": [
+        "operating_income",
+        "interest_expense",
+        "operating_lease_liabilities"
+      ],
+      "expression": "(EBIT + Lease Expense) / (Interest + Lease Expense)",
+      "definition": "edgar_analytics derived metric: (EBIT + Lease Expense) / (Interest + Lease Expense)",
+      "gap": true
+    },
+    {
+      "id": "ea:metric:roe",
+      "label": "ROE %",
+      "layer": "discovery",
+      "source": "edgar_analytics",
+      "kind": "derived",
+      "category": "returns",
+      "mapsTo": [
+        "NetIncomeLoss",
+        "NetIncomeLossAvailableToCommonStockholdersBasic",
+        "NetIncomeLossAttributableToParent",
+        "StockholdersEquity",
+        "StockholdersEquityIncludingPortionAttributableToNoncontrollingInterest"
+      ],
+      "inputSynonyms": [
+        "net_income",
+        "total_equity"
+      ],
+      "expression": "Net Income / Total Equity x 100",
+      "definition": "edgar_analytics derived metric: Net Income / Total Equity x 100",
+      "gap": true
+    },
+    {
+      "id": "ea:metric:roa",
+      "label": "ROA %",
+      "layer": "discovery",
+      "source": "edgar_analytics",
+      "kind": "derived",
+      "category": "returns",
+      "mapsTo": [
+        "NetIncomeLoss",
+        "NetIncomeLossAvailableToCommonStockholdersBasic",
+        "NetIncomeLossAttributableToParent",
+        "Assets"
+      ],
+      "inputSynonyms": [
+        "net_income",
+        "total_assets"
+      ],
+      "expression": "Net Income / Total Assets x 100",
+      "definition": "edgar_analytics derived metric: Net Income / Total Assets x 100",
+      "gap": true
+    },
+    {
+      "id": "ea:metric:accruals-ratio",
+      "label": "Accruals Ratio",
+      "layer": "discovery",
+      "source": "edgar_analytics",
+      "kind": "derived",
+      "category": "quality",
+      "mapsTo": [
+        "NetIncomeLoss",
+        "NetIncomeLossAvailableToCommonStockholdersBasic",
+        "NetIncomeLossAttributableToParent",
+        "NetCashProvidedByUsedInOperatingActivities",
+        "Assets"
+      ],
+      "inputSynonyms": [
+        "net_income",
+        "cash_flow_operating",
+        "total_assets"
+      ],
+      "expression": "(Net Income - OCF) / Total Assets",
+      "definition": "edgar_analytics derived metric: (Net Income - OCF) / Total Assets",
+      "gap": true
+    },
+    {
+      "id": "ea:metric:earnings-quality",
+      "label": "Earnings Quality",
+      "layer": "discovery",
+      "source": "edgar_analytics",
+      "kind": "derived",
+      "category": "quality",
+      "mapsTo": [
+        "NetCashProvidedByUsedInOperatingActivities",
+        "NetIncomeLoss",
+        "NetIncomeLossAvailableToCommonStockholdersBasic",
+        "NetIncomeLossAttributableToParent"
+      ],
+      "inputSynonyms": [
+        "cash_flow_operating",
+        "net_income"
+      ],
+      "expression": "OCF / Net Income",
+      "definition": "edgar_analytics derived metric: OCF / Net Income",
+      "gap": true
+    },
+    {
+      "id": "ea:metric:sloan-accrual",
+      "label": "Sloan Accrual",
+      "layer": "discovery",
+      "source": "edgar_analytics",
+      "kind": "derived",
+      "category": "quality",
+      "mapsTo": [
+        "AssetsCurrent",
+        "LiabilitiesCurrent",
+        "CashAndCashEquivalentsAtCarryingValue",
+        "DepreciationDepletionAndAmortization",
+        "DepreciationAndAmortization",
+        "Assets"
+      ],
+      "inputSynonyms": [
+        "current_assets",
+        "current_liabilities",
+        "cash_equivalents",
+        "depreciation_amortization",
+        "total_assets"
+      ],
+      "expression": "(ΔWC - ΔCash - D&A) / Avg Total Assets",
+      "definition": "edgar_analytics derived metric: (ΔWC - ΔCash - D&A) / Avg Total Assets",
+      "gap": true
+    },
+    {
+      "id": "ea:metric:intangible-ratio",
+      "label": "Intangible Ratio %",
+      "layer": "discovery",
+      "source": "edgar_analytics",
+      "kind": "derived",
+      "category": "composition",
+      "mapsTo": [
+        "IntangibleAssetsNetExcludingGoodwill",
+        "FiniteLivedIntangibleAssetsGross",
+        "IntangibleAssetsFiniteLivedNet",
+        "IntangibleAssetsIndefiniteLivedExcludingGoodwill",
+        "Assets"
+      ],
+      "inputSynonyms": [
+        "intangible_assets",
+        "total_assets"
+      ],
+      "expression": "Intangible Assets / Total Assets x 100",
+      "definition": "edgar_analytics derived metric: Intangible Assets / Total Assets x 100",
+      "gap": true
+    },
+    {
+      "id": "ea:metric:goodwill-ratio",
+      "label": "Goodwill Ratio %",
+      "layer": "discovery",
+      "source": "edgar_analytics",
+      "kind": "derived",
+      "category": "composition",
+      "mapsTo": [
+        "Goodwill",
+        "Assets"
+      ],
+      "inputSynonyms": [
+        "goodwill",
+        "total_assets"
+      ],
+      "expression": "Goodwill / Total Assets x 100",
+      "definition": "edgar_analytics derived metric: Goodwill / Total Assets x 100",
+      "gap": true
+    },
+    {
+      "id": "ea:metric:tangible-equity",
+      "label": "Tangible Equity",
+      "layer": "discovery",
+      "source": "edgar_analytics",
+      "kind": "derived",
+      "category": "composition",
+      "mapsTo": [
+        "StockholdersEquity",
+        "StockholdersEquityIncludingPortionAttributableToNoncontrollingInterest",
+        "IntangibleAssetsNetExcludingGoodwill",
+        "FiniteLivedIntangibleAssetsGross",
+        "IntangibleAssetsFiniteLivedNet",
+        "IntangibleAssetsIndefiniteLivedExcludingGoodwill",
+        "Goodwill"
+      ],
+      "inputSynonyms": [
+        "total_equity",
+        "intangible_assets",
+        "goodwill"
+      ],
+      "expression": "Total Equity - Intangibles - Goodwill",
+      "definition": "edgar_analytics derived metric: Total Equity - Intangibles - Goodwill",
+      "gap": true
+    },
+    {
+      "id": "ea:metric:p-e-ratio",
+      "label": "P/E Ratio",
+      "layer": "discovery",
+      "source": "edgar_analytics",
+      "kind": "derived",
+      "category": "valuation",
+      "mapsTo": [
+        "EarningsPerShareDiluted"
+      ],
+      "inputSynonyms": [
+        "earnings_per_share_diluted"
+      ],
+      "expression": "Price / Diluted EPS",
+      "definition": "edgar_analytics derived metric: Price / Diluted EPS",
+      "gap": true
+    },
+    {
+      "id": "ea:metric:p-b-ratio",
+      "label": "P/B Ratio",
+      "layer": "discovery",
+      "source": "edgar_analytics",
+      "kind": "derived",
+      "category": "valuation",
+      "mapsTo": [
+        "StockholdersEquity",
+        "StockholdersEquityIncludingPortionAttributableToNoncontrollingInterest"
+      ],
+      "inputSynonyms": [
+        "total_equity"
+      ],
+      "expression": "Market Cap / Total Equity",
+      "definition": "edgar_analytics derived metric: Market Cap / Total Equity",
+      "gap": true
+    },
+    {
+      "id": "ea:metric:ev-ebitda",
+      "label": "EV/EBITDA",
+      "layer": "discovery",
+      "source": "edgar_analytics",
+      "kind": "derived",
+      "category": "valuation",
+      "mapsTo": [
+        "OperatingIncomeLoss",
+        "DepreciationDepletionAndAmortization",
+        "DepreciationAndAmortization",
+        "CashAndCashEquivalentsAtCarryingValue",
+        "ShortTermBorrowings",
+        "LongTermDebtCurrent",
+        "CommercialPaper",
+        "LongTermDebt",
+        "LongTermDebtNoncurrent"
+      ],
+      "inputSynonyms": [
+        "operating_income",
+        "depreciation_amortization",
+        "cash_equivalents",
+        "short_term_debt",
+        "long_term_debt"
+      ],
+      "expression": "Enterprise Value / EBITDA",
+      "definition": "edgar_analytics derived metric: Enterprise Value / EBITDA",
+      "gap": false
+    },
+    {
+      "id": "ea:metric:earnings-yield",
+      "label": "Earnings Yield",
+      "layer": "discovery",
+      "source": "edgar_analytics",
+      "kind": "derived",
+      "category": "valuation",
+      "mapsTo": [
+        "EarningsPerShareDiluted"
+      ],
+      "inputSynonyms": [
+        "earnings_per_share_diluted"
+      ],
+      "expression": "1 / P/E",
+      "definition": "edgar_analytics derived metric: 1 / P/E",
+      "gap": true
+    },
+    {
+      "id": "ea:metric:dso",
+      "label": "DSO",
+      "layer": "discovery",
+      "source": "edgar_analytics",
+      "kind": "derived",
+      "category": "working-capital",
+      "mapsTo": [
+        "AccountsReceivableNetCurrent",
+        "RevenueFromContractWithCustomerExcludingAssessedTax",
+        "RevenueFromContractWithCustomerIncludingAssessedTax",
+        "SalesRevenueNet",
+        "SalesRevenueGoodsNet",
+        "SalesRevenueServicesNet",
+        "Revenues"
+      ],
+      "inputSynonyms": [
+        "accounts_receivable",
+        "revenue"
+      ],
+      "expression": "AR / (Revenue / 365)",
+      "definition": "edgar_analytics derived metric: AR / (Revenue / 365)",
+      "gap": true
+    },
+    {
+      "id": "ea:metric:dio",
+      "label": "DIO",
+      "layer": "discovery",
+      "source": "edgar_analytics",
+      "kind": "derived",
+      "category": "working-capital",
+      "mapsTo": [
+        "InventoryNet",
+        "CostOfGoodsAndServicesSold",
+        "CostOfRevenue"
+      ],
+      "inputSynonyms": [
+        "inventory",
+        "cost_of_revenue"
+      ],
+      "expression": "Inventory / (COGS / 365)",
+      "definition": "edgar_analytics derived metric: Inventory / (COGS / 365)",
+      "gap": true
+    },
+    {
+      "id": "ea:metric:dpo",
+      "label": "DPO",
+      "layer": "discovery",
+      "source": "edgar_analytics",
+      "kind": "derived",
+      "category": "working-capital",
+      "mapsTo": [
+        "AccountsPayableCurrent",
+        "CostOfGoodsAndServicesSold",
+        "CostOfRevenue"
+      ],
+      "inputSynonyms": [
+        "accounts_payable",
+        "cost_of_revenue"
+      ],
+      "expression": "AP / (COGS / 365)",
+      "definition": "edgar_analytics derived metric: AP / (COGS / 365)",
+      "gap": true
+    },
+    {
+      "id": "ea:metric:cash-conversion-cycle",
+      "label": "Cash Conversion Cycle",
+      "layer": "discovery",
+      "source": "edgar_analytics",
+      "kind": "derived",
+      "category": "working-capital",
+      "mapsTo": [
+        "AccountsReceivableNetCurrent",
+        "InventoryNet",
+        "AccountsPayableCurrent",
+        "RevenueFromContractWithCustomerExcludingAssessedTax",
+        "RevenueFromContractWithCustomerIncludingAssessedTax",
+        "SalesRevenueNet",
+        "SalesRevenueGoodsNet",
+        "SalesRevenueServicesNet",
+        "Revenues",
+        "CostOfGoodsAndServicesSold",
+        "CostOfRevenue"
+      ],
+      "inputSynonyms": [
+        "accounts_receivable",
+        "inventory",
+        "accounts_payable",
+        "revenue",
+        "cost_of_revenue"
+      ],
+      "expression": "DSO + DIO - DPO",
+      "definition": "edgar_analytics derived metric: DSO + DIO - DPO",
+      "gap": true
+    },
+    {
+      "id": "ea:metric:nopat",
+      "label": "NOPAT",
+      "layer": "discovery",
+      "source": "edgar_analytics",
+      "kind": "derived",
+      "category": "returns",
+      "mapsTo": [
+        "OperatingIncomeLoss",
+        "IncomeTaxExpenseBenefit",
+        "IncomeLossFromContinuingOperationsBeforeIncomeTaxesExtraordinaryItemsNoncontrollingInterest"
+      ],
+      "inputSynonyms": [
+        "operating_income",
+        "income_tax_expense",
+        "income_before_taxes"
+      ],
+      "expression": "Operating Income x (1 - Tax Rate)",
+      "definition": "edgar_analytics derived metric: Operating Income x (1 - Tax Rate)",
+      "gap": true
+    },
+    {
+      "id": "ea:metric:invested-capital",
+      "label": "Invested Capital",
+      "layer": "discovery",
+      "source": "edgar_analytics",
+      "kind": "derived",
+      "category": "returns",
+      "mapsTo": [
+        "StockholdersEquity",
+        "StockholdersEquityIncludingPortionAttributableToNoncontrollingInterest",
+        "ShortTermBorrowings",
+        "LongTermDebtCurrent",
+        "CommercialPaper",
+        "LongTermDebt",
+        "LongTermDebtNoncurrent",
+        "CashAndCashEquivalentsAtCarryingValue"
+      ],
+      "inputSynonyms": [
+        "total_equity",
+        "short_term_debt",
+        "long_term_debt",
+        "cash_equivalents"
+      ],
+      "expression": "Equity + ST Debt + LT Debt - Cash",
+      "definition": "edgar_analytics derived metric: Equity + ST Debt + LT Debt - Cash",
+      "gap": true
+    },
+    {
+      "id": "ea:metric:roic",
+      "label": "ROIC %",
+      "layer": "discovery",
+      "source": "edgar_analytics",
+      "kind": "derived",
+      "category": "returns",
+      "mapsTo": [
+        "OperatingIncomeLoss",
+        "IncomeTaxExpenseBenefit",
+        "IncomeLossFromContinuingOperationsBeforeIncomeTaxesExtraordinaryItemsNoncontrollingInterest",
+        "StockholdersEquity",
+        "StockholdersEquityIncludingPortionAttributableToNoncontrollingInterest",
+        "ShortTermBorrowings",
+        "LongTermDebtCurrent",
+        "CommercialPaper",
+        "LongTermDebt",
+        "LongTermDebtNoncurrent",
+        "CashAndCashEquivalentsAtCarryingValue"
+      ],
+      "inputSynonyms": [
+        "operating_income",
+        "income_tax_expense",
+        "income_before_taxes",
+        "total_equity",
+        "short_term_debt",
+        "long_term_debt",
+        "cash_equivalents"
+      ],
+      "expression": "NOPAT / Invested Capital x 100",
+      "definition": "edgar_analytics derived metric: NOPAT / Invested Capital x 100",
+      "gap": true
+    },
+    {
+      "id": "ea:metric:asset-turnover",
+      "label": "Asset Turnover",
+      "layer": "discovery",
+      "source": "edgar_analytics",
+      "kind": "derived",
+      "category": "efficiency",
+      "mapsTo": [
+        "RevenueFromContractWithCustomerExcludingAssessedTax",
+        "RevenueFromContractWithCustomerIncludingAssessedTax",
+        "SalesRevenueNet",
+        "SalesRevenueGoodsNet",
+        "SalesRevenueServicesNet",
+        "Revenues",
+        "Assets"
+      ],
+      "inputSynonyms": [
+        "revenue",
+        "total_assets"
+      ],
+      "expression": "Revenue / Total Assets",
+      "definition": "edgar_analytics derived metric: Revenue / Total Assets",
+      "gap": true
+    },
+    {
+      "id": "ea:metric:piotroski-f-score",
+      "label": "Piotroski F-Score",
+      "layer": "discovery",
+      "source": "edgar_analytics",
+      "kind": "derived",
+      "category": "scoring",
+      "mapsTo": [
+        "NetIncomeLoss",
+        "NetIncomeLossAvailableToCommonStockholdersBasic",
+        "NetIncomeLossAttributableToParent",
+        "NetCashProvidedByUsedInOperatingActivities",
+        "Assets",
+        "StockholdersEquity",
+        "StockholdersEquityIncludingPortionAttributableToNoncontrollingInterest",
+        "LongTermDebt",
+        "LongTermDebtNoncurrent",
+        "AssetsCurrent",
+        "LiabilitiesCurrent",
+        "GrossProfit",
+        "RevenueFromContractWithCustomerExcludingAssessedTax",
+        "RevenueFromContractWithCustomerIncludingAssessedTax",
+        "SalesRevenueNet",
+        "SalesRevenueGoodsNet",
+        "SalesRevenueServicesNet",
+        "Revenues",
+        "CommonStockSharesOutstanding"
+      ],
+      "inputSynonyms": [
+        "net_income",
+        "cash_flow_operating",
+        "total_assets",
+        "total_equity",
+        "long_term_debt",
+        "current_assets",
+        "current_liabilities",
+        "gross_profit",
+        "revenue",
+        "common_shares_outstanding"
+      ],
+      "expression": "9 binary fundamental tests (0-9)",
+      "definition": "edgar_analytics derived metric: 9 binary fundamental tests (0-9)",
+      "gap": true
+    },
+    {
+      "id": "ea:metric:altman-z-score",
+      "label": "Altman Z-Score",
+      "layer": "discovery",
+      "source": "edgar_analytics",
+      "kind": "derived",
+      "category": "scoring",
+      "mapsTo": [
+        "AssetsCurrent",
+        "LiabilitiesCurrent",
+        "Assets",
+        "RetainedEarningsAccumulatedDeficit",
+        "OperatingIncomeLoss",
+        "Liabilities",
+        "StockholdersEquity",
+        "StockholdersEquityIncludingPortionAttributableToNoncontrollingInterest",
+        "RevenueFromContractWithCustomerExcludingAssessedTax",
+        "RevenueFromContractWithCustomerIncludingAssessedTax",
+        "SalesRevenueNet",
+        "SalesRevenueGoodsNet",
+        "SalesRevenueServicesNet",
+        "Revenues"
+      ],
+      "inputSynonyms": [
+        "current_assets",
+        "current_liabilities",
+        "total_assets",
+        "retained_earnings",
+        "operating_income",
+        "total_liabilities",
+        "total_equity",
+        "revenue"
+      ],
+      "expression": "Bankruptcy probability model",
+      "definition": "edgar_analytics derived metric: Bankruptcy probability model",
+      "gap": true
+    },
+    {
+      "id": "ea:metric:beneish-m-score",
+      "label": "Beneish M-Score",
+      "layer": "discovery",
+      "source": "edgar_analytics",
+      "kind": "derived",
+      "category": "scoring",
+      "mapsTo": [
+        "AccountsReceivableNetCurrent",
+        "RevenueFromContractWithCustomerExcludingAssessedTax",
+        "RevenueFromContractWithCustomerIncludingAssessedTax",
+        "SalesRevenueNet",
+        "SalesRevenueGoodsNet",
+        "SalesRevenueServicesNet",
+        "Revenues",
+        "GrossProfit",
+        "Assets",
+        "AssetsCurrent",
+        "PropertyPlantAndEquipmentNet",
+        "DepreciationDepletionAndAmortization",
+        "DepreciationAndAmortization",
+        "SellingGeneralAndAdministrativeExpense",
+        "GeneralAndAdministrativeExpense",
+        "Liabilities",
+        "LiabilitiesCurrent",
+        "NetIncomeLoss",
+        "NetIncomeLossAvailableToCommonStockholdersBasic",
+        "NetIncomeLossAttributableToParent",
+        "NetCashProvidedByUsedInOperatingActivities"
+      ],
+      "inputSynonyms": [
+        "accounts_receivable",
+        "revenue",
+        "gross_profit",
+        "total_assets",
+        "current_assets",
+        "ppe_net",
+        "depreciation_amortization",
+        "general_administrative",
+        "total_liabilities",
+        "current_liabilities",
+        "net_income",
+        "cash_flow_operating"
+      ],
+      "expression": "Earnings manipulation probability model",
+      "definition": "edgar_analytics derived metric: Earnings manipulation probability model",
+      "gap": true
+    },
+    {
+      "id": "et:standard:revenue",
+      "label": "Revenue",
+      "layer": "discovery",
+      "source": "edgartools",
+      "kind": "standard",
+      "category": "statement-standard",
+      "mapsTo": [
+        "Revenue",
+        "Revenues",
+        "SalesRevenueNet",
+        "OperatingRevenue"
+      ],
+      "expression": "",
+      "definition": "edgartools standardization concept"
+    },
+    {
+      "id": "et:standard:contract-revenue",
+      "label": "Contract Revenue",
+      "layer": "discovery",
+      "source": "edgartools",
+      "kind": "standard",
+      "category": "statement-standard",
+      "mapsTo": [
+        "RevenueFromContractWithCustomerExcludingAssessedTax",
+        "RevenueFromContractWithCustomerIncludingAssessedTax"
+      ],
+      "expression": "",
+      "definition": "edgartools standardization concept"
+    },
+    {
+      "id": "et:standard:product-revenue",
+      "label": "Product Revenue",
+      "layer": "discovery",
+      "source": "edgartools",
+      "kind": "standard",
+      "category": "statement-standard",
+      "mapsTo": [
+        "SalesRevenueGoodsNet",
+        "ProductSales"
+      ],
+      "expression": "",
+      "definition": "edgartools standardization concept"
+    },
+    {
+      "id": "et:standard:operating-lease-revenue",
+      "label": "Operating Lease Revenue",
+      "layer": "discovery",
+      "source": "edgartools",
+      "kind": "standard",
+      "category": "statement-standard",
+      "mapsTo": [
+        "OperatingLeaseLeaseIncome"
+      ],
+      "expression": "",
+      "definition": "edgartools standardization concept"
+    },
+    {
+      "id": "et:standard:cost-of-revenue",
+      "label": "Cost of Revenue",
+      "layer": "discovery",
+      "source": "edgartools",
+      "kind": "standard",
+      "category": "statement-standard",
+      "mapsTo": [
+        "CostOfRevenueAbstract"
+      ],
+      "expression": "",
+      "definition": "edgartools standardization concept"
+    },
+    {
+      "id": "et:standard:total-cost-of-revenue",
+      "label": "Total Cost of Revenue",
+      "layer": "discovery",
+      "source": "edgartools",
+      "kind": "standard",
+      "category": "statement-standard",
+      "mapsTo": [
+        "CostOfRevenue"
+      ],
+      "expression": "",
+      "definition": "edgartools standardization concept"
+    },
+    {
+      "id": "et:standard:cost-of-goods-sold",
+      "label": "Cost of Goods Sold",
+      "layer": "discovery",
+      "source": "edgartools",
+      "kind": "standard",
+      "category": "statement-standard",
+      "mapsTo": [
+        "CostOfGoodsSold"
+      ],
+      "expression": "",
+      "definition": "edgartools standardization concept"
+    },
+    {
+      "id": "et:standard:cost-of-goods-and-services-sold",
+      "label": "Cost of Goods and Services Sold",
+      "layer": "discovery",
+      "source": "edgartools",
+      "kind": "standard",
+      "category": "statement-standard",
+      "mapsTo": [
+        "CostOfGoodsAndServicesSold"
+      ],
+      "expression": "",
+      "definition": "edgartools standardization concept"
+    },
+    {
+      "id": "et:standard:cost-of-sales",
+      "label": "Cost of Sales",
+      "layer": "discovery",
+      "source": "edgartools",
+      "kind": "standard",
+      "category": "statement-standard",
+      "mapsTo": [
+        "CostOfSales"
+      ],
+      "expression": "",
+      "definition": "edgartools standardization concept"
+    },
+    {
+      "id": "et:standard:cost-of-goods-and-services-excluding-depreciation",
+      "label": "Cost of Goods and Services Excluding Depreciation",
+      "layer": "discovery",
+      "source": "edgartools",
+      "kind": "standard",
+      "category": "statement-standard",
+      "mapsTo": [
+        "CostOfGoodsAndServiceExcludingDepreciationDepletionAndAmortization"
+      ],
+      "expression": "",
+      "definition": "edgartools standardization concept"
+    },
+    {
+      "id": "et:standard:direct-operating-costs",
+      "label": "Direct Operating Costs",
+      "layer": "discovery",
+      "source": "edgartools",
+      "kind": "standard",
+      "category": "statement-standard",
+      "mapsTo": [
+        "DirectOperatingCosts"
+      ],
+      "expression": "",
+      "definition": "edgartools standardization concept"
+    },
+    {
+      "id": "et:standard:costs-and-expenses",
+      "label": "Costs and Expenses",
+      "layer": "discovery",
+      "source": "edgartools",
+      "kind": "standard",
+      "category": "statement-standard",
+      "mapsTo": [
+        "CostsAndExpenses"
+      ],
+      "expression": "",
+      "definition": "edgartools standardization concept"
+    },
+    {
+      "id": "et:standard:gross-profit",
+      "label": "Gross Profit",
+      "layer": "discovery",
+      "source": "edgartools",
+      "kind": "standard",
+      "category": "statement-standard",
+      "mapsTo": [
+        "GrossProfit"
+      ],
+      "expression": "",
+      "definition": "edgartools standardization concept"
+    },
+    {
+      "id": "et:standard:operating-expenses",
+      "label": "Operating Expenses",
+      "layer": "discovery",
+      "source": "edgartools",
+      "kind": "standard",
+      "category": "statement-standard",
+      "mapsTo": [
+        "NoninterestExpense"
+      ],
+      "expression": "",
+      "definition": "edgartools standardization concept"
+    },
+    {
+      "id": "et:standard:total-operating-expenses",
+      "label": "Total Operating Expenses",
+      "layer": "discovery",
+      "source": "edgartools",
+      "kind": "standard",
+      "category": "statement-standard",
+      "mapsTo": [
+        "OperatingCostsAndExpenses",
+        "OperatingExpenses"
+      ],
+      "expression": "",
+      "definition": "edgartools standardization concept"
+    },
+    {
+      "id": "et:standard:research-and-development-expense",
+      "label": "Research and Development Expense",
+      "layer": "discovery",
+      "source": "edgartools",
+      "kind": "standard",
+      "category": "statement-standard",
+      "mapsTo": [
+        "ResearchAndDevelopmentCosts",
+        "ResearchAndDevelopmentExpense"
+      ],
+      "expression": "",
+      "definition": "edgartools standardization concept"
+    },
+    {
+      "id": "et:standard:selling-general-and-administrative-expense",
+      "label": "Selling, General and Administrative Expense",
+      "layer": "discovery",
+      "source": "edgartools",
+      "kind": "standard",
+      "category": "statement-standard",
+      "mapsTo": [
+        "SellingGeneralAndAdministrativeExpense"
+      ],
+      "expression": "",
+      "definition": "edgartools standardization concept"
+    },
+    {
+      "id": "et:standard:general-and-administrative-expense",
+      "label": "General and Administrative Expense",
+      "layer": "discovery",
+      "source": "edgartools",
+      "kind": "standard",
+      "category": "statement-standard",
+      "mapsTo": [
+        "GeneralAndAdministrativeExpense",
+        "AdministrativeExpense"
+      ],
+      "expression": "",
+      "definition": "edgartools standardization concept"
+    },
+    {
+      "id": "et:standard:selling-expense",
+      "label": "Selling Expense",
+      "layer": "discovery",
+      "source": "edgartools",
+      "kind": "standard",
+      "category": "statement-standard",
+      "mapsTo": [
+        "SellingAndMarketingExpense",
+        "SellingExpense"
+      ],
+      "expression": "",
+      "definition": "edgartools standardization concept"
+    },
+    {
+      "id": "et:standard:marketing-expense",
+      "label": "Marketing Expense",
+      "layer": "discovery",
+      "source": "edgartools",
+      "kind": "standard",
+      "category": "statement-standard",
+      "mapsTo": [
+        "MarketingExpense",
+        "AdvertisingExpense"
+      ],
+      "expression": "",
+      "definition": "edgartools standardization concept"
+    },
+    {
+      "id": "et:standard:operating-income",
+      "label": "Operating Income",
+      "layer": "discovery",
+      "source": "edgartools",
+      "kind": "standard",
+      "category": "statement-standard",
+      "mapsTo": [
+        "OperatingIncomeLoss",
+        "OperatingIncome",
+        "IncomeLossFromContinuingOperationsBeforeInterestAndTaxes"
+      ],
+      "expression": "",
+      "definition": "edgartools standardization concept"
+    },
+    {
+      "id": "et:standard:nonoperating-income-expense",
+      "label": "Nonoperating Income/Expense",
+      "layer": "discovery",
+      "source": "edgartools",
+      "kind": "standard",
+      "category": "statement-standard",
+      "mapsTo": [
+        "NonoperatingIncomeExpense"
+      ],
+      "expression": "",
+      "definition": "edgartools standardization concept"
+    },
+    {
+      "id": "et:standard:interest-expense",
+      "label": "Interest Expense",
+      "layer": "discovery",
+      "source": "edgartools",
+      "kind": "standard",
+      "category": "statement-standard",
+      "mapsTo": [
+        "InterestAndDebtExpense",
+        "InterestExpense",
+        "InterestIncomeExpenseNet"
+      ],
+      "expression": "",
+      "definition": "edgartools standardization concept"
+    },
+    {
+      "id": "et:standard:interest-expense-operating",
+      "label": "Interest Expense (operating)",
+      "layer": "discovery",
+      "source": "edgartools",
+      "kind": "standard",
+      "category": "statement-standard",
+      "mapsTo": [
+        "InterestExpenseOperating"
+      ],
+      "expression": "",
+      "definition": "edgartools standardization concept"
+    },
+    {
+      "id": "et:standard:interest-expense-non-operating",
+      "label": "Interest Expense (non-operating)",
+      "layer": "discovery",
+      "source": "edgartools",
+      "kind": "standard",
+      "category": "statement-standard",
+      "mapsTo": [
+        "InterestExpenseNonoperating"
+      ],
+      "expression": "",
+      "definition": "edgartools standardization concept"
+    },
+    {
+      "id": "et:standard:income-before-tax",
+      "label": "Income Before Tax",
+      "layer": "discovery",
+      "source": "edgartools",
+      "kind": "standard",
+      "category": "statement-standard",
+      "mapsTo": [
+        "IncomeLossBeforeIncomeTaxes"
+      ],
+      "expression": "",
+      "definition": "edgartools standardization concept"
+    },
+    {
+      "id": "et:standard:income-before-tax-from-continuing-operations",
+      "label": "Income Before Tax from Continuing Operations",
+      "layer": "discovery",
+      "source": "edgartools",
+      "kind": "standard",
+      "category": "statement-standard",
+      "mapsTo": [
+        "IncomeLossFromContinuingOperationsBeforeIncomeTaxes",
+        "IncomeLossFromContinuingOperationsBeforeIncomeTaxesExtraordinaryItemsNoncontrollingInterest"
+      ],
+      "expression": "",
+      "definition": "edgartools standardization concept"
+    },
+    {
+      "id": "et:standard:income-tax-expense",
+      "label": "Income Tax Expense",
+      "layer": "discovery",
+      "source": "edgartools",
+      "kind": "standard",
+      "category": "statement-standard",
+      "mapsTo": [
+        "IncomeTaxesPaidNet",
+        "IncomeTaxExpenseBenefit"
+      ],
+      "expression": "",
+      "definition": "edgartools standardization concept"
+    },
+    {
+      "id": "et:standard:net-income",
+      "label": "Net Income",
+      "layer": "discovery",
+      "source": "edgartools",
+      "kind": "standard",
+      "category": "statement-standard",
+      "mapsTo": [
+        "NetIncome",
+        "NetIncomeLoss"
+      ],
+      "expression": "",
+      "definition": "edgartools standardization concept"
+    },
+    {
+      "id": "et:standard:net-income-from-continuing-operations",
+      "label": "Net Income from Continuing Operations",
+      "layer": "discovery",
+      "source": "edgartools",
+      "kind": "standard",
+      "category": "statement-standard",
+      "mapsTo": [
+        "IncomeLossFromContinuingOperationsIncludingPortionAttributableToNoncontrollingInterest",
+        "IncomeLossFromContinuingOperations"
+      ],
+      "expression": "",
+      "definition": "edgartools standardization concept"
+    },
+    {
+      "id": "et:standard:profit-or-loss",
+      "label": "Profit or Loss",
+      "layer": "discovery",
+      "source": "edgartools",
+      "kind": "standard",
+      "category": "statement-standard",
+      "mapsTo": [
+        "ProfitLoss"
+      ],
+      "expression": "",
+      "definition": "edgartools standardization concept"
+    },
+    {
+      "id": "et:standard:net-income-attributable-to-noncontrolling-interest",
+      "label": "Net Income Attributable to Noncontrolling Interest",
+      "layer": "discovery",
+      "source": "edgartools",
+      "kind": "standard",
+      "category": "statement-standard",
+      "mapsTo": [
+        "NetIncomeLossAttributableToNonredeemableNoncontrollingInterest",
+        "NetIncomeLossAttributableToNoncontrollingInterest"
+      ],
+      "expression": "",
+      "definition": "edgartools standardization concept"
+    },
+    {
+      "id": "et:standard:basic-net-income-available-to-common-shareholders",
+      "label": "Basic Net Income Available to Common Shareholders",
+      "layer": "discovery",
+      "source": "edgartools",
+      "kind": "standard",
+      "category": "statement-standard",
+      "mapsTo": [
+        "NetIncomeLossAvailableToCommonStockholdersBasic"
+      ],
+      "expression": "",
+      "definition": "edgartools standardization concept"
+    },
+    {
+      "id": "et:standard:diluted-net-income-available-to-common-shareholders",
+      "label": "Diluted Net Income Available to Common Shareholders",
+      "layer": "discovery",
+      "source": "edgartools",
+      "kind": "standard",
+      "category": "statement-standard",
+      "mapsTo": [
+        "NetIncomeLossAvailableToCommonStockholdersDiluted"
+      ],
+      "expression": "",
+      "definition": "edgartools standardization concept"
+    },
+    {
+      "id": "et:standard:accumulated-other-comprehensive-income-loss",
+      "label": "Accumulated Other Comprehensive Income/Loss",
+      "layer": "discovery",
+      "source": "edgartools",
+      "kind": "standard",
+      "category": "statement-standard",
+      "mapsTo": [
+        "AccumulatedOtherComprehensiveIncomeLossNetOfTax"
+      ],
+      "expression": "",
+      "definition": "edgartools standardization concept"
+    },
+    {
+      "id": "et:standard:earnings-per-share",
+      "label": "Earnings Per Share",
+      "layer": "discovery",
+      "source": "edgartools",
+      "kind": "standard",
+      "category": "statement-standard",
+      "mapsTo": [
+        "EarningsPerShareAbstract"
+      ],
+      "expression": "",
+      "definition": "edgartools standardization concept"
+    },
+    {
+      "id": "et:standard:earnings-per-share-basic",
+      "label": "Earnings Per Share (Basic)",
+      "layer": "discovery",
+      "source": "edgartools",
+      "kind": "standard",
+      "category": "statement-standard",
+      "mapsTo": [
+        "EarningsPerShareBasic"
+      ],
+      "expression": "",
+      "definition": "edgartools standardization concept"
+    },
+    {
+      "id": "et:standard:earnings-per-share-diluted",
+      "label": "Earnings Per Share (Diluted)",
+      "layer": "discovery",
+      "source": "edgartools",
+      "kind": "standard",
+      "category": "statement-standard",
+      "mapsTo": [
+        "EarningsPerShareDiluted"
+      ],
+      "expression": "",
+      "definition": "edgartools standardization concept"
+    },
+    {
+      "id": "et:standard:shares-outstanding",
+      "label": "Shares Outstanding",
+      "layer": "discovery",
+      "source": "edgartools",
+      "kind": "standard",
+      "category": "statement-standard",
+      "mapsTo": [
+        "WeightedAverageNumberOfSharesOutstandingAbstract"
+      ],
+      "expression": "",
+      "definition": "edgartools standardization concept"
+    },
+    {
+      "id": "et:standard:shares-outstanding-basic",
+      "label": "Shares Outstanding (Basic)",
+      "layer": "discovery",
+      "source": "edgartools",
+      "kind": "standard",
+      "category": "statement-standard",
+      "mapsTo": [
+        "WeightedAverageNumberOfSharesOutstandingBasic"
+      ],
+      "expression": "",
+      "definition": "edgartools standardization concept"
+    },
+    {
+      "id": "et:standard:shares-outstanding-diluted",
+      "label": "Shares Outstanding (Diluted)",
+      "layer": "discovery",
+      "source": "edgartools",
+      "kind": "standard",
+      "category": "statement-standard",
+      "mapsTo": [
+        "WeightedAverageNumberOfDilutedSharesOutstanding"
+      ],
+      "expression": "",
+      "definition": "edgartools standardization concept"
+    },
+    {
+      "id": "et:standard:cash-and-cash-equivalents",
+      "label": "Cash and Cash Equivalents",
+      "layer": "discovery",
+      "source": "edgartools",
+      "kind": "standard",
+      "category": "statement-standard",
+      "mapsTo": [
+        "CashEquivalentsAtCarryingValue",
+        "Cash",
+        "CashAndCashEquivalentsAtCarryingValue",
+        "CashCashEquivalentsAndShortTermInvestments"
+      ],
+      "expression": "",
+      "definition": "edgartools standardization concept"
+    },
+    {
+      "id": "et:standard:accounts-receivable",
+      "label": "Accounts Receivable",
+      "layer": "discovery",
+      "source": "edgartools",
+      "kind": "standard",
+      "category": "statement-standard",
+      "mapsTo": [
+        "AccountsReceivableNet",
+        "ReceivablesNetCurrent",
+        "AccountsReceivableNetCurrent",
+        "AccountsReceivableGross"
+      ],
+      "expression": "",
+      "definition": "edgartools standardization concept"
+    },
+    {
+      "id": "et:standard:inventory",
+      "label": "Inventory",
+      "layer": "discovery",
+      "source": "edgartools",
+      "kind": "standard",
+      "category": "statement-standard",
+      "mapsTo": [
+        "InventoryGross",
+        "InventoryFinishedGoods",
+        "InventoryNet"
+      ],
+      "expression": "",
+      "definition": "edgartools standardization concept"
+    },
+    {
+      "id": "et:standard:prepaid-expenses",
+      "label": "Prepaid Expenses",
+      "layer": "discovery",
+      "source": "edgartools",
+      "kind": "standard",
+      "category": "statement-standard",
+      "mapsTo": [
+        "PrepaidExpenseAndOtherAssetsCurrent",
+        "PrepaidExpenseCurrent"
+      ],
+      "expression": "",
+      "definition": "edgartools standardization concept"
+    },
+    {
+      "id": "et:standard:current-marketable-securities",
+      "label": "Current Marketable Securities",
+      "layer": "discovery",
+      "source": "edgartools",
+      "kind": "standard",
+      "category": "statement-standard",
+      "mapsTo": [
+        "AvailableForSaleSecuritiesDebtSecuritiesCurrent",
+        "MarketableSecuritiesCurrent"
+      ],
+      "expression": "",
+      "definition": "edgartools standardization concept"
+    },
+    {
+      "id": "et:standard:non-current-marketable-securities",
+      "label": "Non Current Marketable Securities",
+      "layer": "discovery",
+      "source": "edgartools",
+      "kind": "standard",
+      "category": "statement-standard",
+      "mapsTo": [
+        "MarketableSecuritiesNoncurrent"
+      ],
+      "expression": "",
+      "definition": "edgartools standardization concept"
+    },
+    {
+      "id": "et:standard:total-current-assets",
+      "label": "Total Current Assets",
+      "layer": "discovery",
+      "source": "edgartools",
+      "kind": "standard",
+      "category": "statement-standard",
+      "mapsTo": [
+        "AssetsCurrent"
+      ],
+      "expression": "",
+      "definition": "edgartools standardization concept"
+    },
+    {
+      "id": "et:standard:total-non-current-assets",
+      "label": "Total Non Current Assets",
+      "layer": "discovery",
+      "source": "edgartools",
+      "kind": "standard",
+      "category": "statement-standard",
+      "mapsTo": [
+        "AssetsNoncurrent"
+      ],
+      "expression": "",
+      "definition": "edgartools standardization concept"
+    },
+    {
+      "id": "et:standard:property-plant-and-equipment",
+      "label": "Property, Plant and Equipment",
+      "layer": "discovery",
+      "source": "edgartools",
+      "kind": "standard",
+      "category": "statement-standard",
+      "mapsTo": [
+        "PropertyPlantAndEquipmentGross",
+        "PropertyPlantAndEquipmentNet",
+        "FixedAssets"
+      ],
+      "expression": "",
+      "definition": "edgartools standardization concept"
+    },
+    {
+      "id": "et:standard:goodwill",
+      "label": "Goodwill",
+      "layer": "discovery",
+      "source": "edgartools",
+      "kind": "standard",
+      "category": "statement-standard",
+      "mapsTo": [
+        "Goodwill"
+      ],
+      "expression": "",
+      "definition": "edgartools standardization concept"
+    },
+    {
+      "id": "et:standard:intangible-assets",
+      "label": "Intangible Assets",
+      "layer": "discovery",
+      "source": "edgartools",
+      "kind": "standard",
+      "category": "statement-standard",
+      "mapsTo": [
+        "IntangibleAssetsNetIncludingGoodwill",
+        "IntangibleAssetsNetExcludingGoodwill",
+        "FiniteLivedIntangibleAssetsNet"
+      ],
+      "expression": "",
+      "definition": "edgartools standardization concept"
+    },
+    {
+      "id": "et:standard:total-assets",
+      "label": "Total Assets",
+      "layer": "discovery",
+      "source": "edgartools",
+      "kind": "standard",
+      "category": "statement-standard",
+      "mapsTo": [
+        "Assets",
+        "AssetsTotal"
+      ],
+      "expression": "",
+      "definition": "edgartools standardization concept"
+    },
+    {
+      "id": "et:standard:long-term-investments",
+      "label": "Long-Term Investments",
+      "layer": "discovery",
+      "source": "edgartools",
+      "kind": "standard",
+      "category": "statement-standard",
+      "mapsTo": [
+        "LongTermInvestments"
+      ],
+      "expression": "",
+      "definition": "edgartools standardization concept"
+    },
+    {
+      "id": "et:standard:accounts-payable",
+      "label": "Accounts Payable",
+      "layer": "discovery",
+      "source": "edgartools",
+      "kind": "standard",
+      "category": "statement-standard",
+      "mapsTo": [
+        "AccountsPayableCurrent",
+        "AccountsPayableTradeCurrent"
+      ],
+      "expression": "",
+      "definition": "edgartools standardization concept"
+    },
+    {
+      "id": "et:standard:accrued-liabilities",
+      "label": "Accrued Liabilities",
+      "layer": "discovery",
+      "source": "edgartools",
+      "kind": "standard",
+      "category": "statement-standard",
+      "mapsTo": [
+        "OtherAccruedLiabilitiesCurrent",
+        "AccruedLiabilitiesCurrent",
+        "EmployeeRelatedLiabilitiesCurrent"
+      ],
+      "expression": "",
+      "definition": "edgartools standardization concept"
+    },
+    {
+      "id": "et:standard:short-term-debt",
+      "label": "Short Term Debt",
+      "layer": "discovery",
+      "source": "edgartools",
+      "kind": "standard",
+      "category": "statement-standard",
+      "mapsTo": [
+        "DebtCurrent",
+        "ShortTermBorrowings",
+        "LongTermDebtCurrent"
+      ],
+      "expression": "",
+      "definition": "edgartools standardization concept"
+    },
+    {
+      "id": "et:standard:total-current-liabilities",
+      "label": "Total Current Liabilities",
+      "layer": "discovery",
+      "source": "edgartools",
+      "kind": "standard",
+      "category": "statement-standard",
+      "mapsTo": [
+        "LiabilitiesCurrent"
+      ],
+      "expression": "",
+      "definition": "edgartools standardization concept"
+    },
+    {
+      "id": "et:standard:total-non-current-liabilities",
+      "label": "Total Non Current Liabilities",
+      "layer": "discovery",
+      "source": "edgartools",
+      "kind": "standard",
+      "category": "statement-standard",
+      "mapsTo": [
+        "LiabilitiesNoncurrent"
+      ],
+      "expression": "",
+      "definition": "edgartools standardization concept"
+    },
+    {
+      "id": "et:standard:long-term-debt",
+      "label": "Long Term Debt",
+      "layer": "discovery",
+      "source": "edgartools",
+      "kind": "standard",
+      "category": "statement-standard",
+      "mapsTo": [
+        "LongTermDebtAndCapitalLeaseObligations",
+        "LongTermDebt",
+        "LongTermBorrowings",
+        "LongTermDebtNoncurrent"
+      ],
+      "expression": "",
+      "definition": "edgartools standardization concept"
+    },
+    {
+      "id": "et:standard:notes-payable-current",
+      "label": "Notes Payable, Current",
+      "layer": "discovery",
+      "source": "edgartools",
+      "kind": "standard",
+      "category": "statement-standard",
+      "mapsTo": [
+        "NotesPayableCurrent"
+      ],
+      "expression": "",
+      "definition": "edgartools standardization concept"
+    },
+    {
+      "id": "et:standard:notes-payable-non-current",
+      "label": "Notes Payable, Non Current",
+      "layer": "discovery",
+      "source": "edgartools",
+      "kind": "standard",
+      "category": "statement-standard",
+      "mapsTo": [
+        "LongTermNotesAndLoans"
+      ],
+      "expression": "",
+      "definition": "edgartools standardization concept"
+    },
+    {
+      "id": "et:standard:deferred-revenue",
+      "label": "Deferred Revenue",
+      "layer": "discovery",
+      "source": "edgartools",
+      "kind": "standard",
+      "category": "statement-standard",
+      "mapsTo": [
+        "DeferredRevenueNoncurrent",
+        "DeferredRevenueCurrent",
+        "DeferredRevenue"
+      ],
+      "expression": "",
+      "definition": "edgartools standardization concept"
+    },
+    {
+      "id": "et:standard:total-liabilities",
+      "label": "Total Liabilities",
+      "layer": "discovery",
+      "source": "edgartools",
+      "kind": "standard",
+      "category": "statement-standard",
+      "mapsTo": [
+        "LiabilitiesTotal",
+        "Liabilities"
+      ],
+      "expression": "",
+      "definition": "edgartools standardization concept"
+    },
+    {
+      "id": "et:standard:common-stock-shares-outstanding",
+      "label": "Common Stock Shares Outstanding",
+      "layer": "discovery",
+      "source": "edgartools",
+      "kind": "standard",
+      "category": "statement-standard",
+      "mapsTo": [
+        "CommonStockSharesOutstanding"
+      ],
+      "expression": "",
+      "definition": "edgartools standardization concept"
+    },
+    {
+      "id": "et:standard:common-stock-shares-issued",
+      "label": "Common Stock Shares Issued",
+      "layer": "discovery",
+      "source": "edgartools",
+      "kind": "standard",
+      "category": "statement-standard",
+      "mapsTo": [
+        "CommonStockSharesIssued"
+      ],
+      "expression": "",
+      "definition": "edgartools standardization concept"
+    },
+    {
+      "id": "et:standard:common-stock",
+      "label": "Common Stock",
+      "layer": "discovery",
+      "source": "edgartools",
+      "kind": "standard",
+      "category": "statement-standard",
+      "mapsTo": [
+        "CommonStocksIncludingAdditionalPaidInCapital",
+        "StockholdersEquityCommonStock",
+        "CommonStockValue"
+      ],
+      "expression": "",
+      "definition": "edgartools standardization concept"
+    },
+    {
+      "id": "et:standard:preferred-stock",
+      "label": "Preferred Stock",
+      "layer": "discovery",
+      "source": "edgartools",
+      "kind": "standard",
+      "category": "statement-standard",
+      "mapsTo": [
+        "PreferredStockValue"
+      ],
+      "expression": "",
+      "definition": "edgartools standardization concept"
+    },
+    {
+      "id": "et:standard:treasury-stock-common-value",
+      "label": "Treasury Stock Common Value",
+      "layer": "discovery",
+      "source": "edgartools",
+      "kind": "standard",
+      "category": "statement-standard",
+      "mapsTo": [
+        "TreasuryStockCommonValue",
+        "TreasuryStockValue"
+      ],
+      "expression": "",
+      "definition": "edgartools standardization concept"
+    },
+    {
+      "id": "et:standard:retained-earnings",
+      "label": "Retained Earnings",
+      "layer": "discovery",
+      "source": "edgartools",
+      "kind": "standard",
+      "category": "statement-standard",
+      "mapsTo": [
+        "RetainedEarnings",
+        "RetainedEarningsAccumulatedDeficit"
+      ],
+      "expression": "",
+      "definition": "edgartools standardization concept"
+    },
+    {
+      "id": "et:standard:minority-interest",
+      "label": "Minority Interest",
+      "layer": "discovery",
+      "source": "edgartools",
+      "kind": "standard",
+      "category": "statement-standard",
+      "mapsTo": [
+        "MinorityInterest",
+        "NoncontrollingInterest"
+      ],
+      "expression": "",
+      "definition": "edgartools standardization concept"
+    },
+    {
+      "id": "et:standard:total-stockholders-equity",
+      "label": "Total Stockholders' Equity",
+      "layer": "discovery",
+      "source": "edgartools",
+      "kind": "standard",
+      "category": "statement-standard",
+      "mapsTo": [
+        "EquityAttributableToParent",
+        "StockholdersEquity",
+        "StockholdersEquityIncludingPortionAttributableToNoncontrollingInterest",
+        "StockholdersEquityAttributableToParent"
+      ],
+      "expression": "",
+      "definition": "edgartools standardization concept"
+    },
+    {
+      "id": "et:standard:total-liabilities-and-stockholders-equity",
+      "label": "Total Liabilities and Stockholders' Equity",
+      "layer": "discovery",
+      "source": "edgartools",
+      "kind": "standard",
+      "category": "statement-standard",
+      "mapsTo": [
+        "LiabilitiesAndStockholdersEquity"
+      ],
+      "expression": "",
+      "definition": "edgartools standardization concept"
+    },
+    {
+      "id": "et:standard:net-cash-from-operating-activities",
+      "label": "Net Cash from Operating Activities",
+      "layer": "discovery",
+      "source": "edgartools",
+      "kind": "standard",
+      "category": "statement-standard",
+      "mapsTo": [
+        "NetCashProvidedByUsedInOperatingActivities",
+        "NetCashProvidedByUsedInOperatingActivitiesContinuingOperations"
+      ],
+      "expression": "",
+      "definition": "edgartools standardization concept"
+    },
+    {
+      "id": "et:standard:net-cash-from-investing-activities",
+      "label": "Net Cash from Investing Activities",
+      "layer": "discovery",
+      "source": "edgartools",
+      "kind": "standard",
+      "category": "statement-standard",
+      "mapsTo": [
+        "NetCashProvidedByUsedInInvestingActivities",
+        "NetCashProvidedByUsedInInvestingActivitiesContinuingOperations"
+      ],
+      "expression": "",
+      "definition": "edgartools standardization concept"
+    },
+    {
+      "id": "et:standard:net-cash-from-financing-activities",
+      "label": "Net Cash from Financing Activities",
+      "layer": "discovery",
+      "source": "edgartools",
+      "kind": "standard",
+      "category": "statement-standard",
+      "mapsTo": [
+        "NetCashProvidedByUsedInFinancingActivitiesContinuingOperations",
+        "NetCashProvidedByUsedInFinancingActivities"
+      ],
+      "expression": "",
+      "definition": "edgartools standardization concept"
+    },
+    {
+      "id": "et:standard:net-change-in-cash",
+      "label": "Net Change in Cash",
+      "layer": "discovery",
+      "source": "edgartools",
+      "kind": "standard",
+      "category": "statement-standard",
+      "mapsTo": [
+        "IncreaseDecreaseInCashAndCashEquivalents",
+        "CashAndCashEquivalentsPeriodIncreaseDecrease",
+        "CashCashEquivalentsRestrictedCashAndRestrictedCashEquivalentsPeriodIncreaseDecreaseIncludingExchangeRateEffect"
+      ],
+      "expression": "",
+      "definition": "edgartools standardization concept"
+    },
+    {
+      "id": "et:standard:payments-for-property-plant-and-equipment",
+      "label": "Payments for Property, Plant and Equipment",
+      "layer": "discovery",
+      "source": "edgartools",
+      "kind": "standard",
+      "category": "statement-standard",
+      "mapsTo": [
+        "PaymentsToAcquirePropertyPlantAndEquipment",
+        "PaymentsToAcquireProductiveAssets"
+      ],
+      "expression": "",
+      "definition": "edgartools standardization concept"
+    },
+    {
+      "id": "et:standard:payments-of-dividends",
+      "label": "Payments of Dividends",
+      "layer": "discovery",
+      "source": "edgartools",
+      "kind": "standard",
+      "category": "statement-standard",
+      "mapsTo": [
+        "PaymentsOfDividends"
+      ],
+      "expression": "",
+      "definition": "edgartools standardization concept"
+    },
+    {
+      "id": "et:standard:tax-withholding-for-share-based-compensation",
+      "label": "Tax Withholding for Share-Based Compensation",
+      "layer": "discovery",
+      "source": "edgartools",
+      "kind": "standard",
+      "category": "statement-standard",
+      "mapsTo": [
+        "PaymentsRelatedToTaxWithholdingForShareBasedCompensation"
+      ],
+      "expression": "",
+      "definition": "edgartools standardization concept"
+    },
+    {
+      "id": "et:standard:payments-to-acquire-businesses",
+      "label": "Payments to Acquire Businesses",
+      "layer": "discovery",
+      "source": "edgartools",
+      "kind": "standard",
+      "category": "statement-standard",
+      "mapsTo": [
+        "PaymentsToAcquireBusinessesNetOfCashAcquired"
+      ],
+      "expression": "",
+      "definition": "edgartools standardization concept"
+    },
+    {
+      "id": "et:standard:proceeds-from-issuance-of-common-stock",
+      "label": "Proceeds from Issuance of Common Stock",
+      "layer": "discovery",
+      "source": "edgartools",
+      "kind": "standard",
+      "category": "statement-standard",
+      "mapsTo": [
+        "ProceedsFromIssuanceOfCommonStock"
+      ],
+      "expression": "",
+      "definition": "edgartools standardization concept"
+    },
+    {
+      "id": "et:standard:proceeds-from-issuance-of-long-term-debt",
+      "label": "Proceeds from Issuance of Long-Term Debt",
+      "layer": "discovery",
+      "source": "edgartools",
+      "kind": "standard",
+      "category": "statement-standard",
+      "mapsTo": [
+        "ProceedsFromIssuanceOfLongTermDebt"
+      ],
+      "expression": "",
+      "definition": "edgartools standardization concept"
+    },
+    {
+      "id": "et:standard:proceeds-from-maturities-prepayments-and-calls-of-securities",
+      "label": "Proceeds from Maturities, Prepayments and Calls of Securities",
+      "layer": "discovery",
+      "source": "edgartools",
+      "kind": "standard",
+      "category": "statement-standard",
+      "mapsTo": [
+        "ProceedsFromMaturitiesPrepaymentsAndCallsOfAvailableForSaleSecurities"
+      ],
+      "expression": "",
+      "definition": "edgartools standardization concept"
+    },
+    {
+      "id": "et:standard:proceeds-from-sale-and-maturity-of-other-investments",
+      "label": "Proceeds from Sale and Maturity of Other Investments",
+      "layer": "discovery",
+      "source": "edgartools",
+      "kind": "standard",
+      "category": "statement-standard",
+      "mapsTo": [
+        "ProceedsFromSaleAndMaturityOfOtherInvestments"
+      ],
+      "expression": "",
+      "definition": "edgartools standardization concept"
+    },
+    {
+      "id": "et:standard:proceeds-from-sale-of-debt-securities",
+      "label": "Proceeds from Sale of Debt Securities, ",
+      "layer": "discovery",
+      "source": "edgartools",
+      "kind": "standard",
+      "category": "statement-standard",
+      "mapsTo": [
+        "ProceedsFromSaleOfAvailableForSaleSecuritiesDebt"
+      ],
+      "expression": "",
+      "definition": "edgartools standardization concept"
+    },
+    {
+      "id": "et:standard:proceeds-from-repayments-of-commercial-paper",
+      "label": "Proceeds from (Repayments of) Commercial Paper",
+      "layer": "discovery",
+      "source": "edgartools",
+      "kind": "standard",
+      "category": "statement-standard",
+      "mapsTo": [
+        "ProceedsFromRepaymentsOfCommercialPaper"
+      ],
+      "expression": "",
+      "definition": "edgartools standardization concept"
+    },
+    {
+      "id": "et:standard:other-assets",
+      "label": "Other Assets",
+      "layer": "discovery",
+      "source": "edgartools",
+      "kind": "standard",
+      "category": "statement-standard",
+      "mapsTo": [
+        "OtherAssets"
+      ],
+      "expression": "",
+      "definition": "edgartools standardization concept"
+    },
+    {
+      "id": "et:standard:other-current-assets",
+      "label": "Other Current Assets",
+      "layer": "discovery",
+      "source": "edgartools",
+      "kind": "standard",
+      "category": "statement-standard",
+      "mapsTo": [
+        "OtherAssetsCurrent"
+      ],
+      "expression": "",
+      "definition": "edgartools standardization concept"
+    },
+    {
+      "id": "et:standard:other-non-current-assets",
+      "label": "Other Non Current Assets",
+      "layer": "discovery",
+      "source": "edgartools",
+      "kind": "standard",
+      "category": "statement-standard",
+      "mapsTo": [
+        "OtherAssetsNoncurrent"
+      ],
+      "expression": "",
+      "definition": "edgartools standardization concept"
+    },
+    {
+      "id": "et:standard:deferred-tax-assets",
+      "label": "Deferred Tax Assets",
+      "layer": "discovery",
+      "source": "edgartools",
+      "kind": "standard",
+      "category": "statement-standard",
+      "mapsTo": [
+        "DeferredIncomeTaxAssetsNet"
+      ],
+      "expression": "",
+      "definition": "edgartools standardization concept"
+    },
+    {
+      "id": "et:standard:other-liabilities",
+      "label": "Other Liabilities",
+      "layer": "discovery",
+      "source": "edgartools",
+      "kind": "standard",
+      "category": "statement-standard",
+      "mapsTo": [
+        "OtherLiabilities"
+      ],
+      "expression": "",
+      "definition": "edgartools standardization concept"
+    },
+    {
+      "id": "et:standard:other-current-liabilities",
+      "label": "Other Current Liabilities",
+      "layer": "discovery",
+      "source": "edgartools",
+      "kind": "standard",
+      "category": "statement-standard",
+      "mapsTo": [
+        "OtherLiabilitiesCurrent"
+      ],
+      "expression": "",
+      "definition": "edgartools standardization concept"
+    },
+    {
+      "id": "et:standard:other-non-current-liabilities",
+      "label": "Other Non Current Liabilities",
+      "layer": "discovery",
+      "source": "edgartools",
+      "kind": "standard",
+      "category": "statement-standard",
+      "mapsTo": [
+        "OtherLiabilitiesNoncurrent"
+      ],
+      "expression": "",
+      "definition": "edgartools standardization concept"
+    },
+    {
+      "id": "et:standard:depreciation-and-amortization",
+      "label": "Depreciation and Amortization",
+      "layer": "discovery",
+      "source": "edgartools",
+      "kind": "standard",
+      "category": "statement-standard",
+      "mapsTo": [
+        "AmortizationOfIntangibleAssets",
+        "Depreciation",
+        "DepreciationAndAmortization"
+      ],
+      "expression": "",
+      "definition": "edgartools standardization concept"
+    },
+    {
+      "id": "fh:metric:10dayaveragetradingvolume",
+      "label": "10DayAverageTradingVolume",
+      "layer": "discovery",
+      "source": "finnhub",
+      "kind": "metric",
+      "category": "liquidity",
+      "mapsTo": [],
+      "expression": "Trading volume",
+      "definition": "Finnhub /stock/metric key `10DayAverageTradingVolume`",
+      "gap": true
+    },
+    {
+      "id": "fh:metric:13weekpricereturndaily",
+      "label": "13WeekPriceReturnDaily",
+      "layer": "discovery",
+      "source": "finnhub",
+      "kind": "metric",
+      "category": "valuation",
+      "mapsTo": [],
+      "expression": "Price return",
+      "definition": "Finnhub /stock/metric key `13WeekPriceReturnDaily`",
+      "gap": true
+    },
+    {
+      "id": "fh:metric:26weekpricereturndaily",
+      "label": "26WeekPriceReturnDaily",
+      "layer": "discovery",
+      "source": "finnhub",
+      "kind": "metric",
+      "category": "valuation",
+      "mapsTo": [],
+      "expression": "Price return",
+      "definition": "Finnhub /stock/metric key `26WeekPriceReturnDaily`",
+      "gap": true
+    },
+    {
+      "id": "fh:metric:3monthaveragetradingvolume",
+      "label": "3MonthAverageTradingVolume",
+      "layer": "discovery",
+      "source": "finnhub",
+      "kind": "metric",
+      "category": "liquidity",
+      "mapsTo": [],
+      "expression": "Trading volume",
+      "definition": "Finnhub /stock/metric key `3MonthAverageTradingVolume`",
+      "gap": true
+    },
+    {
+      "id": "fh:metric:52weekhigh",
+      "label": "52WeekHigh",
+      "layer": "discovery",
+      "source": "finnhub",
+      "kind": "metric",
+      "category": "valuation",
+      "mapsTo": [],
+      "expression": "Price level",
+      "definition": "Finnhub /stock/metric key `52WeekHigh`",
+      "gap": true
+    },
+    {
+      "id": "fh:metric:52weeklow",
+      "label": "52WeekLow",
+      "layer": "discovery",
+      "source": "finnhub",
+      "kind": "metric",
+      "category": "valuation",
+      "mapsTo": [],
+      "expression": "Price level",
+      "definition": "Finnhub /stock/metric key `52WeekLow`",
+      "gap": true
+    },
+    {
+      "id": "fh:metric:52weekpricereturndaily",
+      "label": "52WeekPriceReturnDaily",
+      "layer": "discovery",
+      "source": "finnhub",
+      "kind": "metric",
+      "category": "valuation",
+      "mapsTo": [],
+      "expression": "Price return",
+      "definition": "Finnhub /stock/metric key `52WeekPriceReturnDaily`",
+      "gap": true
+    },
+    {
+      "id": "fh:metric:5daypricereturndaily",
+      "label": "5DayPriceReturnDaily",
+      "layer": "discovery",
+      "source": "finnhub",
+      "kind": "metric",
+      "category": "valuation",
+      "mapsTo": [],
+      "expression": "Price return",
+      "definition": "Finnhub /stock/metric key `5DayPriceReturnDaily`",
+      "gap": true
+    },
+    {
+      "id": "fh:metric:assetturnoverannual",
+      "label": "assetTurnoverAnnual",
+      "layer": "discovery",
+      "source": "finnhub",
+      "kind": "metric",
+      "category": "efficiency",
+      "mapsTo": [],
+      "expression": "Revenue / Assets",
+      "definition": "Finnhub /stock/metric key `assetTurnoverAnnual`",
+      "gap": true
+    },
+    {
+      "id": "fh:metric:assetturnoverttm",
+      "label": "assetTurnoverTTM",
+      "layer": "discovery",
+      "source": "finnhub",
+      "kind": "metric",
+      "category": "efficiency",
+      "mapsTo": [],
+      "expression": "Revenue / Assets",
+      "definition": "Finnhub /stock/metric key `assetTurnoverTTM`",
+      "gap": true
+    },
+    {
+      "id": "fh:metric:bookvaluepershareannual",
+      "label": "bookValuePerShareAnnual",
+      "layer": "discovery",
+      "source": "finnhub",
+      "kind": "metric",
+      "category": "per-share",
+      "mapsTo": [],
+      "expression": "Equity / Shares",
+      "definition": "Finnhub /stock/metric key `bookValuePerShareAnnual`",
+      "gap": true
+    },
+    {
+      "id": "fh:metric:bookvaluepersharequarterly",
+      "label": "bookValuePerShareQuarterly",
+      "layer": "discovery",
+      "source": "finnhub",
+      "kind": "metric",
+      "category": "per-share",
+      "mapsTo": [],
+      "expression": "Equity / Shares",
+      "definition": "Finnhub /stock/metric key `bookValuePerShareQuarterly`",
+      "gap": true
+    },
+    {
+      "id": "fh:metric:currentratioannual",
+      "label": "currentRatioAnnual",
+      "layer": "discovery",
+      "source": "finnhub",
+      "kind": "metric",
+      "category": "liquidity",
+      "mapsTo": [],
+      "expression": "Current Assets / Current Liabilities",
+      "definition": "Finnhub /stock/metric key `currentRatioAnnual`",
+      "gap": true
+    },
+    {
+      "id": "fh:metric:currentratioquarterly",
+      "label": "currentRatioQuarterly",
+      "layer": "discovery",
+      "source": "finnhub",
+      "kind": "metric",
+      "category": "liquidity",
+      "mapsTo": [],
+      "expression": "Current Assets / Current Liabilities",
+      "definition": "Finnhub /stock/metric key `currentRatioQuarterly`",
+      "gap": true
+    },
+    {
+      "id": "fh:metric:ebitdpershareannual",
+      "label": "ebitdPerShareAnnual",
+      "layer": "discovery",
+      "source": "finnhub",
+      "kind": "metric",
+      "category": "per-share",
+      "mapsTo": [],
+      "expression": "EBITDA / Shares",
+      "definition": "Finnhub /stock/metric key `ebitdPerShareAnnual`",
+      "gap": true
+    },
+    {
+      "id": "fh:metric:ebitdpersharettm",
+      "label": "ebitdPerShareTTM",
+      "layer": "discovery",
+      "source": "finnhub",
+      "kind": "metric",
+      "category": "per-share",
+      "mapsTo": [],
+      "expression": "EBITDA / Shares",
+      "definition": "Finnhub /stock/metric key `ebitdPerShareTTM`",
+      "gap": true
+    },
+    {
+      "id": "fh:metric:ebitdacagr5y",
+      "label": "ebitdaCagr5Y",
+      "layer": "discovery",
+      "source": "finnhub",
+      "kind": "metric",
+      "category": "profitability",
+      "mapsTo": [],
+      "expression": "EBITDA CAGR",
+      "definition": "Finnhub /stock/metric key `ebitdaCagr5Y`",
+      "gap": false
+    },
+    {
+      "id": "fh:metric:ebitdamarginannual",
+      "label": "ebitdaMarginAnnual",
+      "layer": "discovery",
+      "source": "finnhub",
+      "kind": "metric",
+      "category": "profitability",
+      "mapsTo": [],
+      "expression": "EBITDA / Revenue",
+      "definition": "Finnhub /stock/metric key `ebitdaMarginAnnual`",
+      "gap": false
+    },
+    {
+      "id": "fh:metric:ebitdamarginttm",
+      "label": "ebitdaMarginTTM",
+      "layer": "discovery",
+      "source": "finnhub",
+      "kind": "metric",
+      "category": "profitability",
+      "mapsTo": [],
+      "expression": "EBITDA / Revenue",
+      "definition": "Finnhub /stock/metric key `ebitdaMarginTTM`",
+      "gap": false
+    },
+    {
+      "id": "fh:metric:epsannual",
+      "label": "epsAnnual",
+      "layer": "discovery",
+      "source": "finnhub",
+      "kind": "metric",
+      "category": "per-share",
+      "mapsTo": [],
+      "expression": "Net Income / Shares",
+      "definition": "Finnhub /stock/metric key `epsAnnual`",
+      "gap": true
+    },
+    {
+      "id": "fh:metric:epsbasicexclextraitemsannual",
+      "label": "epsBasicExclExtraItemsAnnual",
+      "layer": "discovery",
+      "source": "finnhub",
+      "kind": "metric",
+      "category": "per-share",
+      "mapsTo": [],
+      "expression": "EPS basic ex items",
+      "definition": "Finnhub /stock/metric key `epsBasicExclExtraItemsAnnual`",
+      "gap": true
+    },
+    {
+      "id": "fh:metric:epsgrowth3y",
+      "label": "epsGrowth3Y",
+      "layer": "discovery",
+      "source": "finnhub",
+      "kind": "metric",
+      "category": "profitability",
+      "mapsTo": [],
+      "expression": "EPS growth",
+      "definition": "Finnhub /stock/metric key `epsGrowth3Y`",
+      "gap": true
+    },
+    {
+      "id": "fh:metric:epsgrowth5y",
+      "label": "epsGrowth5Y",
+      "layer": "discovery",
+      "source": "finnhub",
+      "kind": "metric",
+      "category": "profitability",
+      "mapsTo": [],
+      "expression": "EPS growth",
+      "definition": "Finnhub /stock/metric key `epsGrowth5Y`",
+      "gap": true
+    },
+    {
+      "id": "fh:metric:epsgrowthquarterlyyoy",
+      "label": "epsGrowthQuarterlyYoy",
+      "layer": "discovery",
+      "source": "finnhub",
+      "kind": "metric",
+      "category": "profitability",
+      "mapsTo": [],
+      "expression": "EPS growth YoY",
+      "definition": "Finnhub /stock/metric key `epsGrowthQuarterlyYoy`",
+      "gap": true
+    },
+    {
+      "id": "fh:metric:epsgrowthttmyoy",
+      "label": "epsGrowthTTMYoy",
+      "layer": "discovery",
+      "source": "finnhub",
+      "kind": "metric",
+      "category": "profitability",
+      "mapsTo": [],
+      "expression": "EPS growth YoY",
+      "definition": "Finnhub /stock/metric key `epsGrowthTTMYoy`",
+      "gap": true
+    },
+    {
+      "id": "fh:metric:epsttm",
+      "label": "epsTTM",
+      "layer": "discovery",
+      "source": "finnhub",
+      "kind": "metric",
+      "category": "per-share",
+      "mapsTo": [],
+      "expression": "EPS TTM",
+      "definition": "Finnhub /stock/metric key `epsTTM`",
+      "gap": true
+    },
+    {
+      "id": "fh:metric:enterprisevalue",
+      "label": "enterpriseValue",
+      "layer": "discovery",
+      "source": "finnhub",
+      "kind": "metric",
+      "category": "valuation",
+      "mapsTo": [],
+      "expression": "Market Cap + Net Debt",
+      "definition": "Finnhub /stock/metric key `enterpriseValue`",
+      "gap": true
+    },
+    {
+      "id": "fh:metric:evebitdaannual",
+      "label": "evEbitdaAnnual",
+      "layer": "discovery",
+      "source": "finnhub",
+      "kind": "metric",
+      "category": "valuation",
+      "mapsTo": [],
+      "expression": "EV / EBITDA",
+      "definition": "Finnhub /stock/metric key `evEbitdaAnnual`",
+      "gap": false
+    },
+    {
+      "id": "fh:metric:evebitdattm",
+      "label": "evEbitdaTTM",
+      "layer": "discovery",
+      "source": "finnhub",
+      "kind": "metric",
+      "category": "valuation",
+      "mapsTo": [],
+      "expression": "EV / EBITDA",
+      "definition": "Finnhub /stock/metric key `evEbitdaTTM`",
+      "gap": false
+    },
+    {
+      "id": "fh:metric:freecashflowannual",
+      "label": "freeCashFlowAnnual",
+      "layer": "discovery",
+      "source": "finnhub",
+      "kind": "metric",
+      "category": "cashflow",
+      "mapsTo": [],
+      "expression": "OCF - CapEx",
+      "definition": "Finnhub /stock/metric key `freeCashFlowAnnual`",
+      "gap": true
+    },
+    {
+      "id": "fh:metric:freecashflowpersharettm",
+      "label": "freeCashFlowPerShareTTM",
+      "layer": "discovery",
+      "source": "finnhub",
+      "kind": "metric",
+      "category": "per-share",
+      "mapsTo": [],
+      "expression": "FCF / Shares",
+      "definition": "Finnhub /stock/metric key `freeCashFlowPerShareTTM`",
+      "gap": true
+    },
+    {
+      "id": "fh:metric:grossmarginannual",
+      "label": "grossMarginAnnual",
+      "layer": "discovery",
+      "source": "finnhub",
+      "kind": "metric",
+      "category": "profitability",
+      "mapsTo": [],
+      "expression": "Gross Profit / Revenue",
+      "definition": "Finnhub /stock/metric key `grossMarginAnnual`",
+      "gap": true
+    },
+    {
+      "id": "fh:metric:grossmarginttm",
+      "label": "grossMarginTTM",
+      "layer": "discovery",
+      "source": "finnhub",
+      "kind": "metric",
+      "category": "profitability",
+      "mapsTo": [],
+      "expression": "Gross Profit / Revenue",
+      "definition": "Finnhub /stock/metric key `grossMarginTTM`",
+      "gap": true
+    },
+    {
+      "id": "fh:metric:inventoryturnoverannual",
+      "label": "inventoryTurnoverAnnual",
+      "layer": "discovery",
+      "source": "finnhub",
+      "kind": "metric",
+      "category": "efficiency",
+      "mapsTo": [],
+      "expression": "COGS / Inventory",
+      "definition": "Finnhub /stock/metric key `inventoryTurnoverAnnual`",
+      "gap": true
+    },
+    {
+      "id": "fh:metric:inventoryturnoverttm",
+      "label": "inventoryTurnoverTTM",
+      "layer": "discovery",
+      "source": "finnhub",
+      "kind": "metric",
+      "category": "efficiency",
+      "mapsTo": [],
+      "expression": "COGS / Inventory",
+      "definition": "Finnhub /stock/metric key `inventoryTurnoverTTM`",
+      "gap": true
+    },
+    {
+      "id": "fh:metric:longtermdebt-equityannual",
+      "label": "longTermDebt/equityAnnual",
+      "layer": "discovery",
+      "source": "finnhub",
+      "kind": "metric",
+      "category": "leverage",
+      "mapsTo": [],
+      "expression": "LT Debt / Equity",
+      "definition": "Finnhub /stock/metric key `longTermDebt/equityAnnual`",
+      "gap": true
+    },
+    {
+      "id": "fh:metric:longtermdebt-equityquarterly",
+      "label": "longTermDebt/equityQuarterly",
+      "layer": "discovery",
+      "source": "finnhub",
+      "kind": "metric",
+      "category": "leverage",
+      "mapsTo": [],
+      "expression": "LT Debt / Equity",
+      "definition": "Finnhub /stock/metric key `longTermDebt/equityQuarterly`",
+      "gap": true
+    },
+    {
+      "id": "fh:metric:marketcapitalization",
+      "label": "marketCapitalization",
+      "layer": "discovery",
+      "source": "finnhub",
+      "kind": "metric",
+      "category": "valuation",
+      "mapsTo": [],
+      "expression": "Shares x Price",
+      "definition": "Finnhub /stock/metric key `marketCapitalization`",
+      "gap": true
+    },
+    {
+      "id": "fh:metric:netdebtannual",
+      "label": "netDebtAnnual",
+      "layer": "discovery",
+      "source": "finnhub",
+      "kind": "metric",
+      "category": "leverage",
+      "mapsTo": [],
+      "expression": "Debt - Cash",
+      "definition": "Finnhub /stock/metric key `netDebtAnnual`",
+      "gap": true
+    },
+    {
+      "id": "fh:metric:netinterestcoverageannual",
+      "label": "netInterestCoverageAnnual",
+      "layer": "discovery",
+      "source": "finnhub",
+      "kind": "metric",
+      "category": "leverage",
+      "mapsTo": [],
+      "expression": "EBIT / Interest",
+      "definition": "Finnhub /stock/metric key `netInterestCoverageAnnual`",
+      "gap": true
+    },
+    {
+      "id": "fh:metric:netmarginannual",
+      "label": "netMarginAnnual",
+      "layer": "discovery",
+      "source": "finnhub",
+      "kind": "metric",
+      "category": "profitability",
+      "mapsTo": [],
+      "expression": "Net Income / Revenue",
+      "definition": "Finnhub /stock/metric key `netMarginAnnual`",
+      "gap": true
+    },
+    {
+      "id": "fh:metric:netmarginttm",
+      "label": "netMarginTTM",
+      "layer": "discovery",
+      "source": "finnhub",
+      "kind": "metric",
+      "category": "profitability",
+      "mapsTo": [],
+      "expression": "Net Income / Revenue",
+      "definition": "Finnhub /stock/metric key `netMarginTTM`",
+      "gap": true
+    },
+    {
+      "id": "fh:metric:netprofitmarginannual",
+      "label": "netProfitMarginAnnual",
+      "layer": "discovery",
+      "source": "finnhub",
+      "kind": "metric",
+      "category": "profitability",
+      "mapsTo": [],
+      "expression": "Net Income / Revenue",
+      "definition": "Finnhub /stock/metric key `netProfitMarginAnnual`",
+      "gap": true
+    },
+    {
+      "id": "fh:metric:netprofitmarginttm",
+      "label": "netProfitMarginTTM",
+      "layer": "discovery",
+      "source": "finnhub",
+      "kind": "metric",
+      "category": "profitability",
+      "mapsTo": [],
+      "expression": "Net Income / Revenue",
+      "definition": "Finnhub /stock/metric key `netProfitMarginTTM`",
+      "gap": true
+    },
+    {
+      "id": "fh:metric:operatingmarginannual",
+      "label": "operatingMarginAnnual",
+      "layer": "discovery",
+      "source": "finnhub",
+      "kind": "metric",
+      "category": "profitability",
+      "mapsTo": [],
+      "expression": "Operating Income / Revenue",
+      "definition": "Finnhub /stock/metric key `operatingMarginAnnual`",
+      "gap": true
+    },
+    {
+      "id": "fh:metric:operatingmarginttm",
+      "label": "operatingMarginTTM",
+      "layer": "discovery",
+      "source": "finnhub",
+      "kind": "metric",
+      "category": "profitability",
+      "mapsTo": [],
+      "expression": "Operating Income / Revenue",
+      "definition": "Finnhub /stock/metric key `operatingMarginTTM`",
+      "gap": true
+    },
+    {
+      "id": "fh:metric:payoutratioannual",
+      "label": "payoutRatioAnnual",
+      "layer": "discovery",
+      "source": "finnhub",
+      "kind": "metric",
+      "category": "cashflow",
+      "mapsTo": [],
+      "expression": "Dividends / Net Income",
+      "definition": "Finnhub /stock/metric key `payoutRatioAnnual`",
+      "gap": true
+    },
+    {
+      "id": "fh:metric:payoutratiottm",
+      "label": "payoutRatioTTM",
+      "layer": "discovery",
+      "source": "finnhub",
+      "kind": "metric",
+      "category": "cashflow",
+      "mapsTo": [],
+      "expression": "Dividends / Net Income",
+      "definition": "Finnhub /stock/metric key `payoutRatioTTM`",
+      "gap": true
+    },
+    {
+      "id": "fh:metric:pbannual",
+      "label": "pbAnnual",
+      "layer": "discovery",
+      "source": "finnhub",
+      "kind": "metric",
+      "category": "valuation",
+      "mapsTo": [],
+      "expression": "Price / Book",
+      "definition": "Finnhub /stock/metric key `pbAnnual`",
+      "gap": true
+    },
+    {
+      "id": "fh:metric:pbquarterly",
+      "label": "pbQuarterly",
+      "layer": "discovery",
+      "source": "finnhub",
+      "kind": "metric",
+      "category": "valuation",
+      "mapsTo": [],
+      "expression": "Price / Book",
+      "definition": "Finnhub /stock/metric key `pbQuarterly`",
+      "gap": true
+    },
+    {
+      "id": "fh:metric:peannual",
+      "label": "peAnnual",
+      "layer": "discovery",
+      "source": "finnhub",
+      "kind": "metric",
+      "category": "valuation",
+      "mapsTo": [],
+      "expression": "Price / EPS",
+      "definition": "Finnhub /stock/metric key `peAnnual`",
+      "gap": true
+    },
+    {
+      "id": "fh:metric:pettm",
+      "label": "peTTM",
+      "layer": "discovery",
+      "source": "finnhub",
+      "kind": "metric",
+      "category": "valuation",
+      "mapsTo": [],
+      "expression": "Price / EPS TTM",
+      "definition": "Finnhub /stock/metric key `peTTM`",
+      "gap": true
+    },
+    {
+      "id": "fh:metric:pfcfshareannual",
+      "label": "pfcfShareAnnual",
+      "layer": "discovery",
+      "source": "finnhub",
+      "kind": "metric",
+      "category": "valuation",
+      "mapsTo": [],
+      "expression": "Price / FCF per share",
+      "definition": "Finnhub /stock/metric key `pfcfShareAnnual`",
+      "gap": true
+    },
+    {
+      "id": "fh:metric:pfcfsharettm",
+      "label": "pfcfShareTTM",
+      "layer": "discovery",
+      "source": "finnhub",
+      "kind": "metric",
+      "category": "valuation",
+      "mapsTo": [],
+      "expression": "Price / FCF per share",
+      "definition": "Finnhub /stock/metric key `pfcfShareTTM`",
+      "gap": true
+    },
+    {
+      "id": "fh:metric:psannual",
+      "label": "psAnnual",
+      "layer": "discovery",
+      "source": "finnhub",
+      "kind": "metric",
+      "category": "valuation",
+      "mapsTo": [],
+      "expression": "Price / Sales",
+      "definition": "Finnhub /stock/metric key `psAnnual`",
+      "gap": true
+    },
+    {
+      "id": "fh:metric:psttm",
+      "label": "psTTM",
+      "layer": "discovery",
+      "source": "finnhub",
+      "kind": "metric",
+      "category": "valuation",
+      "mapsTo": [],
+      "expression": "Price / Sales",
+      "definition": "Finnhub /stock/metric key `psTTM`",
+      "gap": true
+    },
+    {
+      "id": "fh:metric:ptbvannual",
+      "label": "ptbvAnnual",
+      "layer": "discovery",
+      "source": "finnhub",
+      "kind": "metric",
+      "category": "valuation",
+      "mapsTo": [],
+      "expression": "Price / Tangible Book",
+      "definition": "Finnhub /stock/metric key `ptbvAnnual`",
+      "gap": true
+    },
+    {
+      "id": "fh:metric:ptbvquarterly",
+      "label": "ptbvQuarterly",
+      "layer": "discovery",
+      "source": "finnhub",
+      "kind": "metric",
+      "category": "valuation",
+      "mapsTo": [],
+      "expression": "Price / Tangible Book",
+      "definition": "Finnhub /stock/metric key `ptbvQuarterly`",
+      "gap": true
+    },
+    {
+      "id": "fh:metric:quickratioannual",
+      "label": "quickRatioAnnual",
+      "layer": "discovery",
+      "source": "finnhub",
+      "kind": "metric",
+      "category": "liquidity",
+      "mapsTo": [],
+      "expression": "(CA - Inventory) / CL",
+      "definition": "Finnhub /stock/metric key `quickRatioAnnual`",
+      "gap": true
+    },
+    {
+      "id": "fh:metric:quickratioquarterly",
+      "label": "quickRatioQuarterly",
+      "layer": "discovery",
+      "source": "finnhub",
+      "kind": "metric",
+      "category": "liquidity",
+      "mapsTo": [],
+      "expression": "(CA - Inventory) / CL",
+      "definition": "Finnhub /stock/metric key `quickRatioQuarterly`",
+      "gap": true
+    },
+    {
+      "id": "fh:metric:receivablesturnoverannual",
+      "label": "receivablesTurnoverAnnual",
+      "layer": "discovery",
+      "source": "finnhub",
+      "kind": "metric",
+      "category": "efficiency",
+      "mapsTo": [],
+      "expression": "Revenue / AR",
+      "definition": "Finnhub /stock/metric key `receivablesTurnoverAnnual`",
+      "gap": true
+    },
+    {
+      "id": "fh:metric:receivablesturnoverttm",
+      "label": "receivablesTurnoverTTM",
+      "layer": "discovery",
+      "source": "finnhub",
+      "kind": "metric",
+      "category": "efficiency",
+      "mapsTo": [],
+      "expression": "Revenue / AR",
+      "definition": "Finnhub /stock/metric key `receivablesTurnoverTTM`",
+      "gap": true
+    },
+    {
+      "id": "fh:metric:roaannual",
+      "label": "roaAnnual",
+      "layer": "discovery",
+      "source": "finnhub",
+      "kind": "metric",
+      "category": "returns",
+      "mapsTo": [],
+      "expression": "Net Income / Assets",
+      "definition": "Finnhub /stock/metric key `roaAnnual`",
+      "gap": true
+    },
+    {
+      "id": "fh:metric:roarfy",
+      "label": "roaRfy",
+      "layer": "discovery",
+      "source": "finnhub",
+      "kind": "metric",
+      "category": "returns",
+      "mapsTo": [],
+      "expression": "ROA",
+      "definition": "Finnhub /stock/metric key `roaRfy`",
+      "gap": true
+    },
+    {
+      "id": "fh:metric:roattm",
+      "label": "roaTTM",
+      "layer": "discovery",
+      "source": "finnhub",
+      "kind": "metric",
+      "category": "returns",
+      "mapsTo": [],
+      "expression": "ROA TTM",
+      "definition": "Finnhub /stock/metric key `roaTTM`",
+      "gap": true
+    },
+    {
+      "id": "fh:metric:roeannual",
+      "label": "roeAnnual",
+      "layer": "discovery",
+      "source": "finnhub",
+      "kind": "metric",
+      "category": "returns",
+      "mapsTo": [],
+      "expression": "Net Income / Equity",
+      "definition": "Finnhub /stock/metric key `roeAnnual`",
+      "gap": true
+    },
+    {
+      "id": "fh:metric:roerfy",
+      "label": "roeRfy",
+      "layer": "discovery",
+      "source": "finnhub",
+      "kind": "metric",
+      "category": "returns",
+      "mapsTo": [],
+      "expression": "ROE",
+      "definition": "Finnhub /stock/metric key `roeRfy`",
+      "gap": true
+    },
+    {
+      "id": "fh:metric:roettm",
+      "label": "roeTTM",
+      "layer": "discovery",
+      "source": "finnhub",
+      "kind": "metric",
+      "category": "returns",
+      "mapsTo": [],
+      "expression": "ROE TTM",
+      "definition": "Finnhub /stock/metric key `roeTTM`",
+      "gap": true
+    },
+    {
+      "id": "fh:metric:roiannual",
+      "label": "roiAnnual",
+      "layer": "discovery",
+      "source": "finnhub",
+      "kind": "metric",
+      "category": "returns",
+      "mapsTo": [],
+      "expression": "Return on investment",
+      "definition": "Finnhub /stock/metric key `roiAnnual`",
+      "gap": true
+    },
+    {
+      "id": "fh:metric:roittm",
+      "label": "roiTTM",
+      "layer": "discovery",
+      "source": "finnhub",
+      "kind": "metric",
+      "category": "returns",
+      "mapsTo": [],
+      "expression": "Return on investment",
+      "definition": "Finnhub /stock/metric key `roiTTM`",
+      "gap": true
+    },
+    {
+      "id": "fh:metric:revenuegrowth3y",
+      "label": "revenueGrowth3Y",
+      "layer": "discovery",
+      "source": "finnhub",
+      "kind": "metric",
+      "category": "profitability",
+      "mapsTo": [],
+      "expression": "Revenue CAGR",
+      "definition": "Finnhub /stock/metric key `revenueGrowth3Y`",
+      "gap": true
+    },
+    {
+      "id": "fh:metric:revenuegrowth5y",
+      "label": "revenueGrowth5Y",
+      "layer": "discovery",
+      "source": "finnhub",
+      "kind": "metric",
+      "category": "profitability",
+      "mapsTo": [],
+      "expression": "Revenue CAGR",
+      "definition": "Finnhub /stock/metric key `revenueGrowth5Y`",
+      "gap": true
+    },
+    {
+      "id": "fh:metric:revenuegrowthquarterlyyoy",
+      "label": "revenueGrowthQuarterlyYoy",
+      "layer": "discovery",
+      "source": "finnhub",
+      "kind": "metric",
+      "category": "profitability",
+      "mapsTo": [],
+      "expression": "Revenue growth YoY",
+      "definition": "Finnhub /stock/metric key `revenueGrowthQuarterlyYoy`",
+      "gap": true
+    },
+    {
+      "id": "fh:metric:revenuegrowthttmyoy",
+      "label": "revenueGrowthTTMYoy",
+      "layer": "discovery",
+      "source": "finnhub",
+      "kind": "metric",
+      "category": "profitability",
+      "mapsTo": [],
+      "expression": "Revenue growth YoY",
+      "definition": "Finnhub /stock/metric key `revenueGrowthTTMYoy`",
+      "gap": true
+    },
+    {
+      "id": "fh:metric:revenuepershareannual",
+      "label": "revenuePerShareAnnual",
+      "layer": "discovery",
+      "source": "finnhub",
+      "kind": "metric",
+      "category": "per-share",
+      "mapsTo": [],
+      "expression": "Revenue / Shares",
+      "definition": "Finnhub /stock/metric key `revenuePerShareAnnual`",
+      "gap": true
+    },
+    {
+      "id": "fh:metric:revenuepersharettm",
+      "label": "revenuePerShareTTM",
+      "layer": "discovery",
+      "source": "finnhub",
+      "kind": "metric",
+      "category": "per-share",
+      "mapsTo": [],
+      "expression": "Revenue / Shares",
+      "definition": "Finnhub /stock/metric key `revenuePerShareTTM`",
+      "gap": true
+    },
+    {
+      "id": "fh:metric:revenuesharegrowth5y",
+      "label": "revenueShareGrowth5Y",
+      "layer": "discovery",
+      "source": "finnhub",
+      "kind": "metric",
+      "category": "per-share",
+      "mapsTo": [],
+      "expression": "Revenue/share growth",
+      "definition": "Finnhub /stock/metric key `revenueShareGrowth5Y`",
+      "gap": true
+    },
+    {
+      "id": "fh:metric:tangiblebookvaluepershareannual",
+      "label": "tangibleBookValuePerShareAnnual",
+      "layer": "discovery",
+      "source": "finnhub",
+      "kind": "metric",
+      "category": "per-share",
+      "mapsTo": [],
+      "expression": "Tangible equity / Shares",
+      "definition": "Finnhub /stock/metric key `tangibleBookValuePerShareAnnual`",
+      "gap": true
+    },
+    {
+      "id": "fh:metric:tangiblebookvaluepersharequarterly",
+      "label": "tangibleBookValuePerShareQuarterly",
+      "layer": "discovery",
+      "source": "finnhub",
+      "kind": "metric",
+      "category": "per-share",
+      "mapsTo": [],
+      "expression": "Tangible equity / Shares",
+      "definition": "Finnhub /stock/metric key `tangibleBookValuePerShareQuarterly`",
+      "gap": true
+    },
+    {
+      "id": "fh:metric:totaldebt-totalequityannual",
+      "label": "totalDebt/totalEquityAnnual",
+      "layer": "discovery",
+      "source": "finnhub",
+      "kind": "metric",
+      "category": "leverage",
+      "mapsTo": [],
+      "expression": "Total Debt / Equity",
+      "definition": "Finnhub /stock/metric key `totalDebt/totalEquityAnnual`",
+      "gap": true
+    },
+    {
+      "id": "fh:metric:totaldebt-totalequityquarterly",
+      "label": "totalDebt/totalEquityQuarterly",
+      "layer": "discovery",
+      "source": "finnhub",
+      "kind": "metric",
+      "category": "leverage",
+      "mapsTo": [],
+      "expression": "Total Debt / Equity",
+      "definition": "Finnhub /stock/metric key `totalDebt/totalEquityQuarterly`",
+      "gap": true
+    },
+    {
+      "id": "gap:missing-gaap:AccruedExpenses",
+      "label": "Missing GAAP tag: AccruedExpenses",
+      "layer": "discovery",
+      "source": "gap-analysis",
+      "kind": "gap",
+      "category": "missing-gaap",
+      "mapsTo": [
+        "AccruedExpenses"
+      ],
+      "expression": "",
+      "definition": "Referenced by discovery libraries but not present in the local ontology concept set. Referenced by: ea:concept:accrued_expenses",
+      "gap": true
+    },
+    {
+      "id": "gap:missing-gaap:AdministrativeExpense",
+      "label": "Missing GAAP tag: AdministrativeExpense",
+      "layer": "discovery",
+      "source": "gap-analysis",
+      "kind": "gap",
+      "category": "missing-gaap",
+      "mapsTo": [
+        "AdministrativeExpense"
+      ],
+      "expression": "",
+      "definition": "Referenced by discovery libraries but not present in the local ontology concept set. Referenced by: et:standard:general-and-administrative-expense",
+      "gap": true
+    },
+    {
+      "id": "gap:missing-gaap:AssetsTotal",
+      "label": "Missing GAAP tag: AssetsTotal",
+      "layer": "discovery",
+      "source": "gap-analysis",
+      "kind": "gap",
+      "category": "missing-gaap",
+      "mapsTo": [
+        "AssetsTotal"
+      ],
+      "expression": "",
+      "definition": "Referenced by discovery libraries but not present in the local ontology concept set. Referenced by: et:standard:total-assets",
+      "gap": true
+    },
+    {
+      "id": "gap:missing-gaap:AvailableForSaleSecuritiesCurrent",
+      "label": "Missing GAAP tag: AvailableForSaleSecuritiesCurrent",
+      "layer": "discovery",
+      "source": "gap-analysis",
+      "kind": "gap",
+      "category": "missing-gaap",
+      "mapsTo": [
+        "AvailableForSaleSecuritiesCurrent"
+      ],
+      "expression": "",
+      "definition": "Referenced by discovery libraries but not present in the local ontology concept set. Referenced by: ea:concept:financial_assets_fvoci",
+      "gap": true
+    },
+    {
+      "id": "gap:missing-gaap:CashAndCashEquivalentsPeriodIncreaseDecrease",
+      "label": "Missing GAAP tag: CashAndCashEquivalentsPeriodIncreaseDecrease",
+      "layer": "discovery",
+      "source": "gap-analysis",
+      "kind": "gap",
+      "category": "missing-gaap",
+      "mapsTo": [
+        "CashAndCashEquivalentsPeriodIncreaseDecrease"
+      ],
+      "expression": "",
+      "definition": "Referenced by discovery libraries but not present in the local ontology concept set. Referenced by: et:standard:net-change-in-cash",
+      "gap": true
+    },
+    {
+      "id": "gap:missing-gaap:ContractWithCustomerAsset",
+      "label": "Missing GAAP tag: ContractWithCustomerAsset",
+      "layer": "discovery",
+      "source": "gap-analysis",
+      "kind": "gap",
+      "category": "missing-gaap",
+      "mapsTo": [
+        "ContractWithCustomerAsset"
+      ],
+      "expression": "",
+      "definition": "Referenced by discovery libraries but not present in the local ontology concept set. Referenced by: ea:concept:contract_assets",
+      "gap": true
+    },
+    {
+      "id": "gap:missing-gaap:CostOfGoodsSold",
+      "label": "Missing GAAP tag: CostOfGoodsSold",
+      "layer": "discovery",
+      "source": "gap-analysis",
+      "kind": "gap",
+      "category": "missing-gaap",
+      "mapsTo": [
+        "CostOfGoodsSold"
+      ],
+      "expression": "",
+      "definition": "Referenced by discovery libraries but not present in the local ontology concept set. Referenced by: et:standard:cost-of-goods-sold",
+      "gap": true
+    },
+    {
+      "id": "gap:missing-gaap:CostOfSales",
+      "label": "Missing GAAP tag: CostOfSales",
+      "layer": "discovery",
+      "source": "gap-analysis",
+      "kind": "gap",
+      "category": "missing-gaap",
+      "mapsTo": [
+        "CostOfSales"
+      ],
+      "expression": "",
+      "definition": "Referenced by discovery libraries but not present in the local ontology concept set. Referenced by: et:standard:cost-of-sales",
+      "gap": true
+    },
+    {
+      "id": "gap:missing-gaap:DeferredTaxLiabilitiesNet",
+      "label": "Missing GAAP tag: DeferredTaxLiabilitiesNet",
+      "layer": "discovery",
+      "source": "gap-analysis",
+      "kind": "gap",
+      "category": "missing-gaap",
+      "mapsTo": [
+        "DeferredTaxLiabilitiesNet"
+      ],
+      "expression": "",
+      "definition": "Referenced by discovery libraries but not present in the local ontology concept set. Referenced by: ea:concept:deferred_tax_liabilities",
+      "gap": true
+    },
+    {
+      "id": "gap:missing-gaap:DepreciationAmortizationInCostOfGoodsSold",
+      "label": "Missing GAAP tag: DepreciationAmortizationInCostOfGoodsSold",
+      "layer": "discovery",
+      "source": "gap-analysis",
+      "kind": "gap",
+      "category": "missing-gaap",
+      "mapsTo": [
+        "DepreciationAmortizationInCostOfGoodsSold"
+      ],
+      "expression": "",
+      "definition": "Referenced by discovery libraries but not present in the local ontology concept set. Referenced by: ea:concept:depreciation_in_cost_of_sales",
+      "gap": true
+    },
+    {
+      "id": "gap:missing-gaap:EquityAttributableToParent",
+      "label": "Missing GAAP tag: EquityAttributableToParent",
+      "layer": "discovery",
+      "source": "gap-analysis",
+      "kind": "gap",
+      "category": "missing-gaap",
+      "mapsTo": [
+        "EquityAttributableToParent"
+      ],
+      "expression": "",
+      "definition": "Referenced by discovery libraries but not present in the local ontology concept set. Referenced by: et:standard:total-stockholders-equity",
+      "gap": true
+    },
+    {
+      "id": "gap:missing-gaap:FixedAssets",
+      "label": "Missing GAAP tag: FixedAssets",
+      "layer": "discovery",
+      "source": "gap-analysis",
+      "kind": "gap",
+      "category": "missing-gaap",
+      "mapsTo": [
+        "FixedAssets"
+      ],
+      "expression": "",
+      "definition": "Referenced by discovery libraries but not present in the local ontology concept set. Referenced by: et:standard:property-plant-and-equipment",
+      "gap": true
+    },
+    {
+      "id": "gap:missing-gaap:IncomeLossBeforeIncomeTaxes",
+      "label": "Missing GAAP tag: IncomeLossBeforeIncomeTaxes",
+      "layer": "discovery",
+      "source": "gap-analysis",
+      "kind": "gap",
+      "category": "missing-gaap",
+      "mapsTo": [
+        "IncomeLossBeforeIncomeTaxes"
+      ],
+      "expression": "",
+      "definition": "Referenced by discovery libraries but not present in the local ontology concept set. Referenced by: et:standard:income-before-tax",
+      "gap": true
+    },
+    {
+      "id": "gap:missing-gaap:IncomeLossFromContinuingOperationsBeforeIncomeTaxes",
+      "label": "Missing GAAP tag: IncomeLossFromContinuingOperationsBeforeIncomeTaxes",
+      "layer": "discovery",
+      "source": "gap-analysis",
+      "kind": "gap",
+      "category": "missing-gaap",
+      "mapsTo": [
+        "IncomeLossFromContinuingOperationsBeforeIncomeTaxes"
+      ],
+      "expression": "",
+      "definition": "Referenced by discovery libraries but not present in the local ontology concept set. Referenced by: et:standard:income-before-tax-from-continuing-operations",
+      "gap": true
+    },
+    {
+      "id": "gap:missing-gaap:IncomeLossFromContinuingOperationsBeforeInterestAndTaxes",
+      "label": "Missing GAAP tag: IncomeLossFromContinuingOperationsBeforeInterestAndTaxes",
+      "layer": "discovery",
+      "source": "gap-analysis",
+      "kind": "gap",
+      "category": "missing-gaap",
+      "mapsTo": [
+        "IncomeLossFromContinuingOperationsBeforeInterestAndTaxes"
+      ],
+      "expression": "",
+      "definition": "Referenced by discovery libraries but not present in the local ontology concept set. Referenced by: et:standard:operating-income",
+      "gap": true
+    },
+    {
+      "id": "gap:missing-gaap:IncreaseDecreaseInCashAndCashEquivalents",
+      "label": "Missing GAAP tag: IncreaseDecreaseInCashAndCashEquivalents",
+      "layer": "discovery",
+      "source": "gap-analysis",
+      "kind": "gap",
+      "category": "missing-gaap",
+      "mapsTo": [
+        "IncreaseDecreaseInCashAndCashEquivalents"
+      ],
+      "expression": "",
+      "definition": "Referenced by discovery libraries but not present in the local ontology concept set. Referenced by: et:standard:net-change-in-cash",
+      "gap": true
+    },
+    {
+      "id": "gap:missing-gaap:IntangibleAssetsFiniteLivedNet",
+      "label": "Missing GAAP tag: IntangibleAssetsFiniteLivedNet",
+      "layer": "discovery",
+      "source": "gap-analysis",
+      "kind": "gap",
+      "category": "missing-gaap",
+      "mapsTo": [
+        "IntangibleAssetsFiniteLivedNet"
+      ],
+      "expression": "",
+      "definition": "Referenced by discovery libraries but not present in the local ontology concept set. Referenced by: ea:concept:intangible_assets",
+      "gap": true
+    },
+    {
+      "id": "gap:missing-gaap:IntangibleAssetsIndefiniteLivedExcludingGoodwill",
+      "label": "Missing GAAP tag: IntangibleAssetsIndefiniteLivedExcludingGoodwill",
+      "layer": "discovery",
+      "source": "gap-analysis",
+      "kind": "gap",
+      "category": "missing-gaap",
+      "mapsTo": [
+        "IntangibleAssetsIndefiniteLivedExcludingGoodwill"
+      ],
+      "expression": "",
+      "definition": "Referenced by discovery libraries but not present in the local ontology concept set. Referenced by: ea:concept:intangible_assets",
+      "gap": true
+    },
+    {
+      "id": "gap:missing-gaap:LiabilitiesTotal",
+      "label": "Missing GAAP tag: LiabilitiesTotal",
+      "layer": "discovery",
+      "source": "gap-analysis",
+      "kind": "gap",
+      "category": "missing-gaap",
+      "mapsTo": [
+        "LiabilitiesTotal"
+      ],
+      "expression": "",
+      "definition": "Referenced by discovery libraries but not present in the local ontology concept set. Referenced by: et:standard:total-liabilities",
+      "gap": true
+    },
+    {
+      "id": "gap:missing-gaap:LongTermBorrowings",
+      "label": "Missing GAAP tag: LongTermBorrowings",
+      "layer": "discovery",
+      "source": "gap-analysis",
+      "kind": "gap",
+      "category": "missing-gaap",
+      "mapsTo": [
+        "LongTermBorrowings"
+      ],
+      "expression": "",
+      "definition": "Referenced by discovery libraries but not present in the local ontology concept set. Referenced by: et:standard:long-term-debt",
+      "gap": true
+    },
+    {
+      "id": "gap:missing-gaap:NetIncome",
+      "label": "Missing GAAP tag: NetIncome",
+      "layer": "discovery",
+      "source": "gap-analysis",
+      "kind": "gap",
+      "category": "missing-gaap",
+      "mapsTo": [
+        "NetIncome"
+      ],
+      "expression": "",
+      "definition": "Referenced by discovery libraries but not present in the local ontology concept set. Referenced by: et:standard:net-income",
+      "gap": true
+    },
+    {
+      "id": "gap:missing-gaap:NetIncomeLossAttributableToParent",
+      "label": "Missing GAAP tag: NetIncomeLossAttributableToParent",
+      "layer": "discovery",
+      "source": "gap-analysis",
+      "kind": "gap",
+      "category": "missing-gaap",
+      "mapsTo": [
+        "NetIncomeLossAttributableToParent"
+      ],
+      "expression": "",
+      "definition": "Referenced by discovery libraries but not present in the local ontology concept set. Referenced by: ea:concept:net_income",
+      "gap": true
+    },
+    {
+      "id": "gap:missing-gaap:NoncontrollingInterest",
+      "label": "Missing GAAP tag: NoncontrollingInterest",
+      "layer": "discovery",
+      "source": "gap-analysis",
+      "kind": "gap",
+      "category": "missing-gaap",
+      "mapsTo": [
+        "NoncontrollingInterest"
+      ],
+      "expression": "",
+      "definition": "Referenced by discovery libraries but not present in the local ontology concept set. Referenced by: et:standard:minority-interest",
+      "gap": true
+    },
+    {
+      "id": "gap:missing-gaap:OperatingIncome",
+      "label": "Missing GAAP tag: OperatingIncome",
+      "layer": "discovery",
+      "source": "gap-analysis",
+      "kind": "gap",
+      "category": "missing-gaap",
+      "mapsTo": [
+        "OperatingIncome"
+      ],
+      "expression": "",
+      "definition": "Referenced by discovery libraries but not present in the local ontology concept set. Referenced by: et:standard:operating-income",
+      "gap": true
+    },
+    {
+      "id": "gap:missing-gaap:OperatingRevenue",
+      "label": "Missing GAAP tag: OperatingRevenue",
+      "layer": "discovery",
+      "source": "gap-analysis",
+      "kind": "gap",
+      "category": "missing-gaap",
+      "mapsTo": [
+        "OperatingRevenue"
+      ],
+      "expression": "",
+      "definition": "Referenced by discovery libraries but not present in the local ontology concept set. Referenced by: et:standard:revenue",
+      "gap": true
+    },
+    {
+      "id": "gap:missing-gaap:ProductSales",
+      "label": "Missing GAAP tag: ProductSales",
+      "layer": "discovery",
+      "source": "gap-analysis",
+      "kind": "gap",
+      "category": "missing-gaap",
+      "mapsTo": [
+        "ProductSales"
+      ],
+      "expression": "",
+      "definition": "Referenced by discovery libraries but not present in the local ontology concept set. Referenced by: et:standard:product-revenue",
+      "gap": true
+    },
+    {
+      "id": "gap:missing-gaap:RedeemablePreferredStockCarryingAmount",
+      "label": "Missing GAAP tag: RedeemablePreferredStockCarryingAmount",
+      "layer": "discovery",
+      "source": "gap-analysis",
+      "kind": "gap",
+      "category": "missing-gaap",
+      "mapsTo": [
+        "RedeemablePreferredStockCarryingAmount"
+      ],
+      "expression": "",
+      "definition": "Referenced by discovery libraries but not present in the local ontology concept set. Referenced by: ea:concept:preferred_stock",
+      "gap": true
+    },
+    {
+      "id": "gap:missing-gaap:ResearchAndDevelopmentCosts",
+      "label": "Missing GAAP tag: ResearchAndDevelopmentCosts",
+      "layer": "discovery",
+      "source": "gap-analysis",
+      "kind": "gap",
+      "category": "missing-gaap",
+      "mapsTo": [
+        "ResearchAndDevelopmentCosts"
+      ],
+      "expression": "",
+      "definition": "Referenced by discovery libraries but not present in the local ontology concept set. Referenced by: et:standard:research-and-development-expense",
+      "gap": true
+    },
+    {
+      "id": "gap:missing-gaap:RetainedEarnings",
+      "label": "Missing GAAP tag: RetainedEarnings",
+      "layer": "discovery",
+      "source": "gap-analysis",
+      "kind": "gap",
+      "category": "missing-gaap",
+      "mapsTo": [
+        "RetainedEarnings"
+      ],
+      "expression": "",
+      "definition": "Referenced by discovery libraries but not present in the local ontology concept set. Referenced by: et:standard:retained-earnings",
+      "gap": true
+    },
+    {
+      "id": "gap:missing-gaap:Revenue",
+      "label": "Missing GAAP tag: Revenue",
+      "layer": "discovery",
+      "source": "gap-analysis",
+      "kind": "gap",
+      "category": "missing-gaap",
+      "mapsTo": [
+        "Revenue"
+      ],
+      "expression": "",
+      "definition": "Referenced by discovery libraries but not present in the local ontology concept set. Referenced by: et:standard:revenue",
+      "gap": true
+    },
+    {
+      "id": "gap:missing-gaap:SalesRevenueGoodsNet",
+      "label": "Missing GAAP tag: SalesRevenueGoodsNet",
+      "layer": "discovery",
+      "source": "gap-analysis",
+      "kind": "gap",
+      "category": "missing-gaap",
+      "mapsTo": [
+        "SalesRevenueGoodsNet"
+      ],
+      "expression": "",
+      "definition": "Referenced by discovery libraries but not present in the local ontology concept set. Referenced by: ea:concept:revenue, et:standard:product-revenue",
+      "gap": true
+    },
+    {
+      "id": "gap:missing-gaap:SalesRevenueNet",
+      "label": "Missing GAAP tag: SalesRevenueNet",
+      "layer": "discovery",
+      "source": "gap-analysis",
+      "kind": "gap",
+      "category": "missing-gaap",
+      "mapsTo": [
+        "SalesRevenueNet"
+      ],
+      "expression": "",
+      "definition": "Referenced by discovery libraries but not present in the local ontology concept set. Referenced by: ea:concept:revenue, et:standard:revenue",
+      "gap": true
+    },
+    {
+      "id": "gap:missing-gaap:SalesRevenueServicesNet",
+      "label": "Missing GAAP tag: SalesRevenueServicesNet",
+      "layer": "discovery",
+      "source": "gap-analysis",
+      "kind": "gap",
+      "category": "missing-gaap",
+      "mapsTo": [
+        "SalesRevenueServicesNet"
+      ],
+      "expression": "",
+      "definition": "Referenced by discovery libraries but not present in the local ontology concept set. Referenced by: ea:concept:revenue",
+      "gap": true
+    },
+    {
+      "id": "gap:missing-gaap:StockholdersEquityAttributableToParent",
+      "label": "Missing GAAP tag: StockholdersEquityAttributableToParent",
+      "layer": "discovery",
+      "source": "gap-analysis",
+      "kind": "gap",
+      "category": "missing-gaap",
+      "mapsTo": [
+        "StockholdersEquityAttributableToParent"
+      ],
+      "expression": "",
+      "definition": "Referenced by discovery libraries but not present in the local ontology concept set. Referenced by: et:standard:total-stockholders-equity",
+      "gap": true
+    },
+    {
+      "id": "gap:missing-gaap:StockholdersEquityCommonStock",
+      "label": "Missing GAAP tag: StockholdersEquityCommonStock",
+      "layer": "discovery",
+      "source": "gap-analysis",
+      "kind": "gap",
+      "category": "missing-gaap",
+      "mapsTo": [
+        "StockholdersEquityCommonStock"
+      ],
+      "expression": "",
+      "definition": "Referenced by discovery libraries but not present in the local ontology concept set. Referenced by: et:standard:common-stock",
+      "gap": true
+    }
+  ]
+}

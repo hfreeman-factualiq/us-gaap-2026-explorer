@@ -3,7 +3,7 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1" />
-  <title>US GAAP 2026 Explorer</title>
+  <title>Financial Ontology 2026 — GAAP + Non-GAAP</title>
   <link rel="preconnect" href="https://fonts.googleapis.com" />
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
   <link href="https://fonts.googleapis.com/css2?family=IBM+Plex+Sans:wght@400;500;600;700&family=IBM+Plex+Mono:wght@400;500&display=swap" rel="stylesheet" />
@@ -105,6 +105,24 @@
       border-color: transparent;
       color: #fff;
     }
+    .tree-select {
+      border: 1px solid var(--line);
+      border-radius: 999px;
+      padding: 7px 12px;
+      font: inherit;
+      font-size: 0.8rem;
+      font-weight: 500;
+      color: var(--ink);
+      background: #fff;
+      max-width: 260px;
+    }
+    .tree-select:focus {
+      outline: none;
+      border-color: var(--accent);
+      box-shadow: 0 0 0 3px var(--accent-soft);
+    }
+    .badge.populated { background: #e4f2e8; color: #1f6b3a; }
+    .badge.derived-co { background: #dde8f5; color: #1e4d8c; }
 
     .main {
       display: grid;
@@ -195,6 +213,12 @@
     .badge.tagged { background: var(--tagged-bg); color: var(--tagged); }
     .badge.ratio { background: var(--ratio-bg); color: var(--ratio); }
     .badge.residual, .badge.abstract, .badge.meta { background: var(--meta-bg); color: var(--meta); }
+    .badge.derived { background: #f5e6d8; color: #8a4b16; }
+    .badge.rule { background: #e8e4f5; color: #4a3a7a; }
+    .badge.fibo { background: #dcecf5; color: #1a5f7a; }
+    .badge.root { background: var(--accent-soft); color: var(--accent); }
+    .badge.discovery { background: #e8f0e4; color: #3d5c2e; }
+    .badge.gap { background: #f7e8e0; color: #8a3a1a; }
 
     .hits { display: flex; flex-direction: column; gap: 4px; margin-bottom: 10px; }
     .hit, .row {
@@ -355,16 +379,23 @@
 <body>
   <div id="app" class="app">
     <header>
-      <h1>US GAAP <span>2026</span></h1>
+      <h1>Financial Ontology <span>2026</span></h1>
+      <label class="stat" style="display:inline-flex;align-items:center;gap:8px;border-radius:999px;">
+        <span style="font-size:0.75rem;color:var(--muted)">Tree</span>
+        <select id="tree-source" class="tree-select" title="Select ontology or company tree"></select>
+      </label>
       <div class="stats" id="stats"></div>
     </header>
 
     <div class="toolbar">
-      <input id="q" type="search" placeholder="Search by label or name…" autocomplete="off" />
+      <input id="q" type="search" placeholder="Search statements, metrics, GAAP tags…" autocomplete="off" />
       <div class="modes" id="modes">
-        <button type="button" class="active" data-mode="subtypes">Subtypes</button>
+        <button type="button" class="active" data-mode="presentation">Tree</button>
         <button type="button" data-mode="formula">Formulas</button>
+        <button type="button" data-mode="subtypes">Class</button>
         <button type="button" data-mode="usedby">Used by</button>
+        <button type="button" data-mode="nongaap">Metrics</button>
+        <button type="button" data-mode="discovery">Reference</button>
       </div>
     </div>
 
@@ -372,7 +403,7 @@
       <section class="panel">
         <div class="panel-h">
           <h2>Tree</h2>
-          <div class="hint" id="tree-hint">Top 3 roots — click ▸ to expand</div>
+          <div class="hint" id="tree-hint">Unified forest — click ▸ to expand</div>
         </div>
         <div class="panel-b">
           <div id="search-hits" class="hits" hidden></div>
@@ -383,7 +414,7 @@
       <section class="panel">
         <div class="panel-h">
           <h2>Relationships</h2>
-          <div class="hint">built from · used by · type grouping</div>
+          <div class="hint">presentation · formulas · Non-GAAP · rules</div>
         </div>
         <div class="panel-b" id="detail">
           <div class="empty">Select a concept.</div>
@@ -403,15 +434,42 @@
       aggregate: { id: "residual", label: "Has residual" },
       abstract: { id: "abstract", label: "Abstract" },
       meta: { id: "meta", label: "Meta" },
+      derived: { id: "derived", label: "Non-GAAP" },
+      rule: { id: "rule", label: "SEC C&DI" },
+      fibo: { id: "fibo", label: "FIBO" },
+      root: { id: "root", label: "Root" },
+      discovery: { id: "discovery", label: "Discovery" },
+      gap: { id: "gap", label: "Gap" },
     };
 
     const CHILD_LIMIT = 60;
+    const PREFERRED_NETS = new Set([
+      "StatementOfFinancialPositionClassified",
+      "StatementOfIncome",
+      "StatementOfCashFlowsIndirect",
+      "StatementOfShareholdersEquityAndOtherComprehensiveIncome",
+      "ClassSubclass",
+      "NonGAAP",
+      "NonGAAPCategory",
+      "DerivedFrom",
+      "Governs",
+      "AlignsTo",
+      "FIBO",
+      "SEC_CDI",
+      "Discovery",
+      "DiscoverySource",
+      "MapsTo",
+      "Gap",
+    ]);
     const state = {
       data: null,
       selected: null,
-      mode: "subtypes", // subtypes | formula | usedby
-      open: new Set(),  // expanded node names
+      mode: "presentation", // presentation | subtypes | formula | usedby | nongaap | discovery
+      open: new Set(),
       query: "",
+      netFilter: null, // optional presentation network filter
+      catalog: [],
+      sourceId: "v1.2",
     };
 
     const $ = (id) => document.getElementById(id);
@@ -432,7 +490,11 @@
     }
     function badge(c) {
       const r = roleOf(c);
-      return `<span class="badge ${r.id}">${r.label}</span>`;
+      let html = `<span class="badge ${r.id}">${r.label}</span>`;
+      if (c?.companyGap) html += ` <span class="badge gap">Gap add</span>`;
+      if (c?.companyDerived) html += ` <span class="badge derived-co">Derived</span>`;
+      else if (c?.companyPopulated) html += ` <span class="badge populated">Reported</span>`;
+      return html;
     }
 
     function uniqueCalc(list) {
@@ -446,22 +508,84 @@
       return out;
     }
 
+    function uniquePre(list, netFilter) {
+      const seen = new Set();
+      const out = [];
+      const items = list || [];
+      const preferredPresent = items.some((x) => x.net && PREFERRED_NETS.has(x.net));
+      for (const item of items) {
+        if (netFilter && item.net && item.net !== netFilter) continue;
+        if (!netFilter && preferredPresent && item.net && !PREFERRED_NETS.has(item.net)) continue;
+        if (seen.has(item.c)) continue;
+        seen.add(item.c);
+        out.push(item);
+      }
+      return out;
+    }
+
     function childrenOf(name) {
       const c = concept(name);
       if (!c) return [];
       if (state.mode === "formula") return uniqueCalc(c.cc).map((x) => x.c);
       if (state.mode === "usedby") return uniqueCalc(c.cp).map((x) => x.c);
-      return c.sc || [];
+      if (state.mode === "subtypes") {
+        if (c.sc?.length) return c.sc;
+        return uniquePre(c.tc || c.pc).map((x) => x.c);
+      }
+      if (state.mode === "nongaap") {
+        if (
+          c.layer === "nongaap" ||
+          c.layer === "rule" ||
+          c.n === "root:Metrics" ||
+          c.n === "root:NonGAAP" ||
+          c.n?.startsWith("nongaap:") ||
+          c.n?.startsWith("metrics:") ||
+          c.n?.startsWith("ea:metric:")
+        ) {
+          return uniquePre(c.tc || c.pc).map((x) => x.c);
+        }
+        return (c.fo || []).slice();
+      }
+      if (state.mode === "discovery") {
+        if (
+          c.layer === "discovery" ||
+          c.n === "root:Discovery" ||
+          c.n === "root:Reference" ||
+          c.n?.startsWith("discovery:") ||
+          c.n?.startsWith("reference:")
+        ) {
+          return uniquePre(c.tc || c.pc).map((x) => x.c);
+        }
+        return (c.discoveredBy || []).slice();
+      }
+      // presentation (default): prefer curated tree children
+      if (c.tc?.length) return uniquePre(c.tc, state.netFilter).map((x) => x.c);
+      return uniquePre(c.pc, state.netFilter).map((x) => x.c);
     }
 
     function renderStats() {
-      const s = state.data.summary;
-      $("stats").innerHTML = [
-        ["Concepts", s.totalConcepts],
-        ["In type tree", s.ontologyNodes],
-        ["With formula", s.calcTotals],
-        ["Ratios", s.ratios],
-      ].map(([k, v]) => `<div class="stat"><b>${Number(v).toLocaleString()}</b> ${k}</div>`).join("");
+      const s = state.data.summary || {};
+      const meta = state.data.meta || {};
+      const items = meta.companyTree
+        ? [
+            ["Concepts", s.ontologyNodes ?? Object.keys(state.data.concepts || {}).length],
+            ["Populated", meta.populatedCount],
+            ["Gaps added", meta.gapCount],
+            ["Derived", meta.derivedCount],
+            ["Mapped labels", s.companyMappedLabels],
+          ]
+        : [
+            ["Concepts", s.totalConcepts],
+            ["Roots", s.forestRoots],
+            ["Metrics", s.nongaapMetrics],
+            ["Discovery", s.discoveryNodes],
+            ["Gaps", s.discoveryGaps],
+            ["C&DIs", s.secRules],
+          ];
+      $("stats").innerHTML = items
+        .filter(([, v]) => v != null)
+        .map(([k, v]) => `<div class="stat"><b>${Number(v).toLocaleString()}</b> ${k}</div>`)
+        .join("") + (meta.company ? `<div class="stat"><b>${esc(meta.company)}</b></div>` : "");
     }
 
     function linkRow(name, extra = "") {
@@ -476,11 +600,20 @@
 
     function summarize(c) {
       const bits = [];
+      if (c.layer && c.layer !== "gaap") bits.push(`layer <em>${esc(c.layer)}</em>`);
+      if (c.expression) bits.push(`expression <strong>${esc(c.expression)}</strong>`);
       if (c.sp?.length) bits.push(`grouped under <em>${c.sp.map(labelOf).map(esc).join("</em>, <em>")}</em>`);
       if (c.sc?.length) bits.push(`broader type for <strong>${c.sc.length}</strong> subtypes`);
+      if (c.pc?.length) bits.push(`presents <strong>${uniquePre(c.pc).length}</strong> child line item(s)`);
       if (c.cc?.length) bits.push("built from a calculation formula");
       if (c.de?.length) bits.push(`tagged form of <em>${esc(labelOf(c.de[0]))}</em>`);
       if (c.num?.length || c.den?.length) bits.push("defined as a ratio");
+      if (c.df?.length) bits.push(`derived from <strong>${c.df.length}</strong> input(s)`);
+      if (c.mapsTo?.length) bits.push(`maps to <strong>${c.mapsTo.length}</strong> GAAP tag(s)`);
+      if (c.discoveredBy?.length) bits.push(`referenced by <strong>${c.discoveredBy.length}</strong> discovery node(s)`);
+      if (c.gap) bits.push("<strong>coverage gap</strong>");
+      if (c.fo?.length) bits.push(`input to <strong>${c.fo.length}</strong> Non-GAAP metric(s)`);
+      if (c.secCaveats?.length) bits.push(`governed by <strong>${c.secCaveats.length}</strong> SEC C&DI(s)`);
       if (c.cp?.length) bits.push(`used by <strong>${uniqueCalc(c.cp).length}</strong> other concept(s)`);
       if (!bits.length) {
         return c.f?.atomic
@@ -562,6 +695,28 @@
       </div>`;
     }
 
+    function renderDerivedFormula(c) {
+      if (!c.formula && !c.expression) return "";
+      const expr = c.expression ? `<div class="eq-line"><span class="eq-left">${esc(c.l || c.n)}</span> <span class="eq-op">=</span> ${esc(c.expression)}</div>` : "";
+      const ast = c.formula ? `<div class="doc" style="margin-top:8px"><code>${esc(JSON.stringify(c.formula))}</code></div>` : "";
+      const inputs = (c.df || []).map((n) => linkRow(n, `<span class="side">input</span>`)).join("");
+      return `<div class="equation"><span class="eq-net">Non-GAAP formula</span>${expr}${ast}</div>` +
+        (inputs ? `<div class="hits">${inputs}</div>` : "");
+    }
+
+    function renderRules(c) {
+      const ids = c.secCaveats || c.governs || [];
+      if (!ids.length && !c.answer) return "";
+      let html = "";
+      if (c.question) html += `<div class="doc"><strong>Q:</strong> ${esc(c.question)}</div>`;
+      if (c.answer) html += `<div class="doc"><strong>A:</strong> ${esc(c.answer)}</div>`;
+      if (c.sourceUrl) html += `<div class="sec-hint"><a href="${escAttr(c.sourceUrl)}" target="_blank" rel="noopener">SEC source</a></div>`;
+      if (ids.length) {
+        html += `<div class="hits">${ids.map((n) => linkRow(n, `<span class="side">link</span>`)).join("")}</div>`;
+      }
+      return html;
+    }
+
     function renderDetail(name) {
       const c = concept(name);
       const el = $("detail");
@@ -572,7 +727,7 @@
       state.selected = name;
       const role = roleOf(c);
 
-      const formulaHtml = renderEquations(name, c) + renderRatioEquation(c);
+      const formulaHtml = renderEquations(name, c) + renderRatioEquation(c) + renderDerivedFormula(c);
 
       let built = "";
       if (c.de?.length) {
@@ -619,23 +774,66 @@
         groupHtml += `</div>`;
       }
 
+      const preKids = uniquePre(c.tc || c.pc);
+      const preHtml = preKids.length
+        ? `<div class="hits">${preKids.slice(0, 40).map((x) => linkRow(x.c, `<span class="side">${esc(x.net || "")}</span>`)).join("")}</div>`
+        : "";
+
+      const foHtml = c.fo?.length
+        ? `<div class="hits">${c.fo.map((n) => linkRow(n, `<span class="side">uses this</span>`)).join("")}</div>`
+        : "";
+
+      const discHtml = c.discoveredBy?.length
+        ? `<div class="hits">${c.discoveredBy.slice(0, 40).map((n) => linkRow(n, `<span class="side">discovery</span>`)).join("")}</div>`
+        : "";
+
+      const mapsHtml = c.mapsTo?.length
+        ? `<div class="hits">${c.mapsTo.map((n) => linkRow(n, `<span class="side">mapsTo</span>`)).join("")}</div>`
+        : "";
+
+      const alignsHtml = (c.alignsTo || c.fiboAligned || []).length
+        ? `<div class="hits">${(c.alignsTo || []).map((n) => linkRow(n, `<span class="side">aligns</span>`)).join("")}${(c.fiboAligned || []).map((n) => linkRow(n, `<span class="side">FIBO</span>`)).join("")}</div>`
+        : "";
+
+      const kicker = c.layer === "nongaap" ? "Non-GAAP derived metric"
+        : c.layer === "rule" ? "SEC Non-GAAP C&DI"
+        : c.layer === "fibo" ? "FIBO-aligned concept"
+        : c.layer === "discovery" ? (c.gap ? "Discovery coverage gap" : "Discovery source concept")
+        : c.layer === "root" ? "Ontology forest root"
+        : c.cc || c.de || c.num ? "Built from other concepts"
+        : c.f?.atomic ? "Standalone" : "Concept";
+
+      const companyLabels = (c.companyLabels || []).length
+        ? `<div class="meta" style="margin-top:8px"><div><b>Company label(s)</b></div>${
+            c.companyLabels.map((lab) => `<div>${esc(lab)}</div>`).join("")
+          }</div>`
+        : "";
+
       el.innerHTML = `
         <div class="detail">
-          <div class="kicker">${c.cc || c.de || c.num ? "Built from other concepts" : c.f?.atomic ? "Standalone" : "Concept"}</div>
+          <div class="kicker">${kicker}</div>
           <h3>${esc(c.l || c.n)}</h3>
           <div class="cname">${esc(c.n)}</div>
           <div>${badge(c)}</div>
+          ${companyLabels}
           ${summarize(c)}
           <div class="meta">
             <div class="meta-box role"><div class="lbl">Role</div><div class="val">${esc(role.label)}</div></div>
-            <div class="meta-box type"><div class="lbl">Type</div><div class="val">${esc(c.t || "—")}</div></div>
+            <div class="meta-box type"><div class="lbl">Type / Layer</div><div class="val">${esc(c.t || "—")} · ${esc(c.layer || "gaap")}</div></div>
             <div class="meta-box period"><div class="lbl">Period</div><div class="val">${esc(c.p || "—")}</div></div>
             <div class="meta-box balance"><div class="lbl">Balance</div><div class="val">${esc(c.b || "—")}</div></div>
           </div>
           ${c.d ? `<div class="doc">${esc(c.d)}</div>` : ""}
+          ${c.reconciliationHint ? `<div class="summary"><strong>Reconciliation:</strong> ${esc(c.reconciliationHint)}</div>` : ""}
           ${section("Formula", "How this concept is calculated. Click a term to open it.", formulaHtml)}
+          ${section("SEC C&DI", "Staff guidance linked to this measure.", renderRules(c))}
+          ${section("Presentation children", "Statement line-item hierarchy (curated tree).", preHtml)}
           ${section("Built from", "Concepts this one needs.", built)}
           ${section("Used by", "Concepts that depend on this one.", usedHtml)}
+          ${section("Non-GAAP consumers", "Derived metrics that use this GAAP tag.", foHtml)}
+          ${section("Maps to GAAP", "Discovery library mappings into taxonomy tags.", mapsHtml)}
+          ${section("Discovered by", "Library concepts that reference this tag.", discHtml)}
+          ${section("Alignments", "FIBO / cross-layer links.", alignsHtml)}
           ${section("Type grouping", "Broader and narrower types.", groupHtml)}
           ${section("Residual other", "Catch-all residual amounts.", c.ao?.length ? `<div class="hits">${c.ao.map((n) => linkRow(n)).join("")}</div>` : "")}
           ${section("Traits", "Shared characteristics.", c.tr?.length ? `<div class="hits">${c.tr.slice(0, 20).map((n) => linkRow(n)).join("")}</div>` : "")}
@@ -688,11 +886,14 @@
     function renderTree() {
       const roots = state.data.ontologyRoots || [];
       const modeHint = {
-        subtypes: "showing subtypes",
-        formula: "showing formula parts",
-        usedby: "showing concepts that use this one",
+        presentation: "v1.2 extensible core (collapse + extension hooks)",
+        subtypes: "FASB class–subclass types",
+        formula: "calculation equations",
+        usedby: "concepts that use this one",
+        nongaap: "metrics & ratios with formulas",
+        discovery: "library maps, FIBO, coverage gaps",
       }[state.mode];
-      $("tree-hint").textContent = `Top 3 roots — ${modeHint}`;
+      $("tree-hint").textContent = `${roots.length} roots — ${modeHint}`;
       $("tree").innerHTML = roots.map((r) => nodeBlock(r, 0)).join("") ||
         `<div class="empty">No roots.</div>`;
 
@@ -707,7 +908,6 @@
           if (willOpen) state.open.add(name);
           else state.open.delete(name);
           select(name, { skipTree: true });
-          // Re-render so children load when opened
           if (willOpen) renderTree();
           else highlight();
         });
@@ -772,6 +972,9 @@
       if (opts.openAncestors) {
         const c = concept(name);
         (c.sp || []).forEach((p) => state.open.add(p));
+        (c.pp || []).forEach((p) => state.open.add(p.c));
+        // Open forest roots so deep links are reachable
+        (state.data.ontologyRoots || []).forEach((r) => state.open.add(r));
       }
       renderDetail(name);
       if (!opts.skipTree) renderTree();
@@ -791,24 +994,78 @@
         const btn = e.target.closest("button[data-mode]");
         if (!btn) return;
         state.mode = btn.dataset.mode;
-        state.open = new Set(); // reset expansion when switching mode
+        state.open = new Set();
+        state.netFilter = null;
         $("modes").querySelectorAll("button").forEach((b) => b.classList.toggle("active", b === btn));
         renderTree();
         if (state.selected) renderDetail(state.selected);
       });
+      $("tree-source").addEventListener("change", async (e) => {
+        const id = e.target.value;
+        const entry = state.catalog.find((x) => x.id === id);
+        if (!entry) return;
+        await loadTree(entry);
+      });
+    }
+
+    function fillCatalogSelect() {
+      const sel = $("tree-source");
+      sel.innerHTML = state.catalog.map((x) => {
+        let extra = "";
+        if (x.populated != null) {
+          extra = ` (${x.populated} populated`;
+          if (x.gaps) extra += `, ${x.gaps} gaps`;
+          extra += ")";
+        }
+        return `<option value="${escAttr(x.id)}">${esc(x.label)}${esc(extra)}</option>`;
+      }).join("");
+      sel.value = state.sourceId;
+    }
+
+    async function loadTree(entry) {
+      const res = await fetch(entry.path);
+      if (!res.ok) throw new Error(`HTTP ${res.status} loading ${entry.path}`);
+      state.data = await res.json();
+      state.sourceId = entry.id;
+      state.open = new Set();
+      state.query = "";
+      state.netFilter = null;
+      if ($("q")) $("q").value = "";
+      state.mode = state.data.meta?.defaultBrowseMode || "presentation";
+      $("modes").querySelectorAll("button").forEach((b) =>
+        b.classList.toggle("active", b.dataset.mode === state.mode)
+      );
+      const roots = state.data.ontologyRoots || [];
+      state.selected = roots[0] || null;
+      document.querySelector("header h1").innerHTML = state.data.meta?.company
+        ? `${esc(state.data.meta.company)} <span>tree</span>`
+        : `Financial Ontology <span>2026</span>`;
+      $("tree-hint").textContent = state.data.meta?.company
+        ? `Company tree — only populateable leaves/branches from ${state.data.meta.company}`
+        : "Unified forest — click ▸ to expand";
+      fillCatalogSelect();
+      renderStats();
+      renderTree();
+      if (state.selected) renderDetail(state.selected);
+      else $("detail").innerHTML = `<div class="empty">Select a concept.</div>`;
     }
 
     async function boot() {
       try {
-        const res = await fetch("taxonomy-data.json");
-        if (!res.ok) throw new Error(`HTTP ${res.status}`);
-        state.data = await res.json();
-        renderStats();
+        let catalog = [];
+        try {
+          const catRes = await fetch("companies/catalog.json");
+          if (catRes.ok) catalog = await catRes.json();
+        } catch (_) { /* optional */ }
+        if (!catalog.length) {
+          catalog = [{ id: "v1.2", label: "Ontology v1.2 (full core)", path: "taxonomy-data.json" }];
+        }
+        state.catalog = catalog;
+        const initial = catalog.find((x) => x.id === "v1.2") || catalog[0];
+        state.sourceId = initial.id;
+        fillCatalogSelect();
         bind();
-        const roots = state.data.ontologyRoots || [];
-        state.selected = roots[0] || "Assets";
-        renderTree();
-        renderDetail(state.selected);
+        await loadTree(initial);
       } catch (err) {
         $("app").innerHTML = `<div class="error">
           <h2>Could not load data</h2>

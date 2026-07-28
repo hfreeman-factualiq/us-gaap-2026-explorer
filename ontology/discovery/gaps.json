@@ -1,0 +1,1294 @@
+{
+  "meta": {
+    "purpose": "Compare discovery catalogs against the unified ontology",
+    "ontologyConceptCount": 17954,
+    "discoveryGaapTagCount": 207
+  },
+  "summary": {
+    "gaapTagsReferenced": 207,
+    "gaapTagsPresentInOntology": 172,
+    "gaapTagsMissingFromOntology": 35,
+    "eaDerivedAlreadyCovered": 8,
+    "eaDerivedMissingFromNongaap": 36,
+    "finnhubAlreadyCovered": 5,
+    "finnhubMissingFromNongaap": 76,
+    "orphanSynonymsNoGaapMatch": 3
+  },
+  "missingGaapTags": [
+    {
+      "tag": "AccruedExpenses",
+      "referencedBy": [
+        "ea:concept:accrued_expenses"
+      ]
+    },
+    {
+      "tag": "AdministrativeExpense",
+      "referencedBy": [
+        "et:standard:general-and-administrative-expense"
+      ]
+    },
+    {
+      "tag": "AssetsTotal",
+      "referencedBy": [
+        "et:standard:total-assets"
+      ]
+    },
+    {
+      "tag": "AvailableForSaleSecuritiesCurrent",
+      "referencedBy": [
+        "ea:concept:financial_assets_fvoci"
+      ]
+    },
+    {
+      "tag": "CashAndCashEquivalentsPeriodIncreaseDecrease",
+      "referencedBy": [
+        "et:standard:net-change-in-cash"
+      ]
+    },
+    {
+      "tag": "ContractWithCustomerAsset",
+      "referencedBy": [
+        "ea:concept:contract_assets"
+      ]
+    },
+    {
+      "tag": "CostOfGoodsSold",
+      "referencedBy": [
+        "et:standard:cost-of-goods-sold"
+      ]
+    },
+    {
+      "tag": "CostOfSales",
+      "referencedBy": [
+        "et:standard:cost-of-sales"
+      ]
+    },
+    {
+      "tag": "DeferredTaxLiabilitiesNet",
+      "referencedBy": [
+        "ea:concept:deferred_tax_liabilities"
+      ]
+    },
+    {
+      "tag": "DepreciationAmortizationInCostOfGoodsSold",
+      "referencedBy": [
+        "ea:concept:depreciation_in_cost_of_sales"
+      ]
+    },
+    {
+      "tag": "EquityAttributableToParent",
+      "referencedBy": [
+        "et:standard:total-stockholders-equity"
+      ]
+    },
+    {
+      "tag": "FixedAssets",
+      "referencedBy": [
+        "et:standard:property-plant-and-equipment"
+      ]
+    },
+    {
+      "tag": "IncomeLossBeforeIncomeTaxes",
+      "referencedBy": [
+        "et:standard:income-before-tax"
+      ]
+    },
+    {
+      "tag": "IncomeLossFromContinuingOperationsBeforeIncomeTaxes",
+      "referencedBy": [
+        "et:standard:income-before-tax-from-continuing-operations"
+      ]
+    },
+    {
+      "tag": "IncomeLossFromContinuingOperationsBeforeInterestAndTaxes",
+      "referencedBy": [
+        "et:standard:operating-income"
+      ]
+    },
+    {
+      "tag": "IncreaseDecreaseInCashAndCashEquivalents",
+      "referencedBy": [
+        "et:standard:net-change-in-cash"
+      ]
+    },
+    {
+      "tag": "IntangibleAssetsFiniteLivedNet",
+      "referencedBy": [
+        "ea:concept:intangible_assets"
+      ]
+    },
+    {
+      "tag": "IntangibleAssetsIndefiniteLivedExcludingGoodwill",
+      "referencedBy": [
+        "ea:concept:intangible_assets"
+      ]
+    },
+    {
+      "tag": "LiabilitiesTotal",
+      "referencedBy": [
+        "et:standard:total-liabilities"
+      ]
+    },
+    {
+      "tag": "LongTermBorrowings",
+      "referencedBy": [
+        "et:standard:long-term-debt"
+      ]
+    },
+    {
+      "tag": "NetIncome",
+      "referencedBy": [
+        "et:standard:net-income"
+      ]
+    },
+    {
+      "tag": "NetIncomeLossAttributableToParent",
+      "referencedBy": [
+        "ea:concept:net_income"
+      ]
+    },
+    {
+      "tag": "NoncontrollingInterest",
+      "referencedBy": [
+        "et:standard:minority-interest"
+      ]
+    },
+    {
+      "tag": "OperatingIncome",
+      "referencedBy": [
+        "et:standard:operating-income"
+      ]
+    },
+    {
+      "tag": "OperatingRevenue",
+      "referencedBy": [
+        "et:standard:revenue"
+      ]
+    },
+    {
+      "tag": "ProductSales",
+      "referencedBy": [
+        "et:standard:product-revenue"
+      ]
+    },
+    {
+      "tag": "RedeemablePreferredStockCarryingAmount",
+      "referencedBy": [
+        "ea:concept:preferred_stock"
+      ]
+    },
+    {
+      "tag": "ResearchAndDevelopmentCosts",
+      "referencedBy": [
+        "et:standard:research-and-development-expense"
+      ]
+    },
+    {
+      "tag": "RetainedEarnings",
+      "referencedBy": [
+        "et:standard:retained-earnings"
+      ]
+    },
+    {
+      "tag": "Revenue",
+      "referencedBy": [
+        "et:standard:revenue"
+      ]
+    },
+    {
+      "tag": "SalesRevenueGoodsNet",
+      "referencedBy": [
+        "ea:concept:revenue",
+        "et:standard:product-revenue"
+      ]
+    },
+    {
+      "tag": "SalesRevenueNet",
+      "referencedBy": [
+        "ea:concept:revenue",
+        "et:standard:revenue"
+      ]
+    },
+    {
+      "tag": "SalesRevenueServicesNet",
+      "referencedBy": [
+        "ea:concept:revenue"
+      ]
+    },
+    {
+      "tag": "StockholdersEquityAttributableToParent",
+      "referencedBy": [
+        "et:standard:total-stockholders-equity"
+      ]
+    },
+    {
+      "tag": "StockholdersEquityCommonStock",
+      "referencedBy": [
+        "et:standard:common-stock"
+      ]
+    }
+  ],
+  "presentGaapTagsSample": [
+    "AccountsPayableCurrent",
+    "AccountsPayableTradeCurrent",
+    "AccountsReceivableGross",
+    "AccountsReceivableNet",
+    "AccountsReceivableNetCurrent",
+    "AccruedLiabilitiesCurrent",
+    "AccumulatedOtherComprehensiveIncomeLossNetOfTax",
+    "AdditionalPaidInCapital",
+    "AdvertisingExpense",
+    "AllocatedShareBasedCompensationExpense",
+    "AmortizationOfIntangibleAssets",
+    "Assets",
+    "AssetsCurrent",
+    "AssetsNoncurrent",
+    "AvailableForSaleSecuritiesDebtSecuritiesCurrent",
+    "BusinessCombinationDisclosureTextBlock",
+    "BusinessCombinationsPolicy",
+    "Cash",
+    "CashAndCashEquivalentsAtCarryingValue",
+    "CashCashEquivalentsAndShortTermInvestments",
+    "CashCashEquivalentsRestrictedCashAndRestrictedCashEquivalentsPeriodIncreaseDecreaseIncludingExchangeRateEffect",
+    "CashEquivalentsAtCarryingValue",
+    "CommercialPaper",
+    "CommitmentsAndContingencies",
+    "CommitmentsAndContingenciesDisclosureTextBlock",
+    "CommonStockDividendsPerShareDeclared",
+    "CommonStockSharesIssued",
+    "CommonStockSharesOutstanding",
+    "CommonStockValue",
+    "CommonStocksIncludingAdditionalPaidInCapital",
+    "ComprehensiveIncomeNetOfTax",
+    "ContractWithCustomerLiability",
+    "ContractWithCustomerLiabilityCurrent",
+    "CostOfGoodsAndServiceExcludingDepreciationDepletionAndAmortization",
+    "CostOfGoodsAndServicesSold",
+    "CostOfRevenue",
+    "CostOfRevenueAbstract",
+    "CostsAndExpenses",
+    "DebtCurrent",
+    "DeferredIncomeTaxAssetsNet",
+    "DeferredRevenue",
+    "DeferredRevenueCurrent",
+    "DeferredRevenueNoncurrent",
+    "DeferredTaxAssetsGross",
+    "DeferredTaxAssetsNet",
+    "DeferredTaxLiabilities",
+    "Depreciation",
+    "DepreciationAndAmortization",
+    "DepreciationDepletionAndAmortization",
+    "DerivativeAssetFairValueGrossAssetIncludingNotSubjectToMasterNettingArrangement"
+  ],
+  "missingDerivedMetrics": [
+    {
+      "id": "ea:metric:net-margin",
+      "label": "Net Margin %",
+      "category": "profitability",
+      "expression": "Net Income / Revenue x 100",
+      "inputSynonyms": [
+        "net_income",
+        "revenue"
+      ],
+      "source": "edgar_analytics",
+      "kind": "derived"
+    },
+    {
+      "id": "ea:metric:ebit-approx",
+      "label": "EBIT (approx)",
+      "category": "profitability",
+      "expression": "Net Income + Interest + Tax",
+      "inputSynonyms": [
+        "net_income",
+        "interest_expense",
+        "income_tax_expense"
+      ],
+      "source": "edgar_analytics",
+      "kind": "derived"
+    },
+    {
+      "id": "ea:metric:ebit-standard",
+      "label": "EBIT (standard)",
+      "category": "profitability",
+      "expression": "Operating Income",
+      "inputSynonyms": [
+        "operating_income"
+      ],
+      "source": "edgar_analytics",
+      "kind": "derived"
+    },
+    {
+      "id": "ea:metric:current-ratio",
+      "label": "Current Ratio",
+      "category": "liquidity",
+      "expression": "Current Assets / Current Liabilities",
+      "inputSynonyms": [
+        "current_assets",
+        "current_liabilities"
+      ],
+      "source": "edgar_analytics",
+      "kind": "derived"
+    },
+    {
+      "id": "ea:metric:quick-ratio",
+      "label": "Quick Ratio",
+      "category": "liquidity",
+      "expression": "(Current Assets - Inventory) / Current Liabilities",
+      "inputSynonyms": [
+        "current_assets",
+        "inventory",
+        "current_liabilities"
+      ],
+      "source": "edgar_analytics",
+      "kind": "derived"
+    },
+    {
+      "id": "ea:metric:cash-ratio",
+      "label": "Cash Ratio",
+      "category": "liquidity",
+      "expression": "Cash / Current Liabilities",
+      "inputSynonyms": [
+        "cash_equivalents",
+        "current_liabilities"
+      ],
+      "source": "edgar_analytics",
+      "kind": "derived"
+    },
+    {
+      "id": "ea:metric:debt-to-equity",
+      "label": "Debt-to-Equity",
+      "category": "leverage",
+      "expression": "Total Liabilities / Total Equity",
+      "inputSynonyms": [
+        "total_liabilities",
+        "total_equity"
+      ],
+      "source": "edgar_analytics",
+      "kind": "derived"
+    },
+    {
+      "id": "ea:metric:debt-total-capital",
+      "label": "Debt/Total Capital",
+      "category": "leverage",
+      "expression": "(ST Debt + LT Debt) / (ST Debt + LT Debt + Equity)",
+      "inputSynonyms": [
+        "short_term_debt",
+        "long_term_debt",
+        "total_equity"
+      ],
+      "source": "edgar_analytics",
+      "kind": "derived"
+    },
+    {
+      "id": "ea:metric:equity-ratio",
+      "label": "Equity Ratio %",
+      "category": "leverage",
+      "expression": "Total Equity / Total Assets x 100",
+      "inputSynonyms": [
+        "total_equity",
+        "total_assets"
+      ],
+      "source": "edgar_analytics",
+      "kind": "derived"
+    },
+    {
+      "id": "ea:metric:interest-coverage",
+      "label": "Interest Coverage",
+      "category": "leverage",
+      "expression": "EBIT (standard) / Interest Expense",
+      "inputSynonyms": [
+        "operating_income",
+        "interest_expense"
+      ],
+      "source": "edgar_analytics",
+      "kind": "derived"
+    },
+    {
+      "id": "ea:metric:lease-liabilities-ratio",
+      "label": "Lease Liabilities Ratio %",
+      "category": "leverage",
+      "expression": "(Operating + Finance Leases) / Total Assets x 100",
+      "inputSynonyms": [
+        "operating_lease_liabilities",
+        "finance_lease_liabilities",
+        "total_assets"
+      ],
+      "source": "edgar_analytics",
+      "kind": "derived"
+    },
+    {
+      "id": "ea:metric:cash-from-operations",
+      "label": "Cash from Operations",
+      "category": "cashflow",
+      "expression": "Operating Cash Flow",
+      "inputSynonyms": [
+        "cash_flow_operating"
+      ],
+      "source": "edgar_analytics",
+      "kind": "derived"
+    },
+    {
+      "id": "ea:metric:cash-flow-coverage",
+      "label": "Cash Flow Coverage",
+      "category": "cashflow",
+      "expression": "OCF / Current Liabilities",
+      "inputSynonyms": [
+        "cash_flow_operating",
+        "current_liabilities"
+      ],
+      "source": "edgar_analytics",
+      "kind": "derived"
+    },
+    {
+      "id": "ea:metric:fixed-charge-coverage",
+      "label": "Fixed Charge Coverage",
+      "category": "cashflow",
+      "expression": "(EBIT + Lease Expense) / (Interest + Lease Expense)",
+      "inputSynonyms": [
+        "operating_income",
+        "interest_expense",
+        "operating_lease_liabilities"
+      ],
+      "source": "edgar_analytics",
+      "kind": "derived"
+    },
+    {
+      "id": "ea:metric:roe",
+      "label": "ROE %",
+      "category": "returns",
+      "expression": "Net Income / Total Equity x 100",
+      "inputSynonyms": [
+        "net_income",
+        "total_equity"
+      ],
+      "source": "edgar_analytics",
+      "kind": "derived"
+    },
+    {
+      "id": "ea:metric:roa",
+      "label": "ROA %",
+      "category": "returns",
+      "expression": "Net Income / Total Assets x 100",
+      "inputSynonyms": [
+        "net_income",
+        "total_assets"
+      ],
+      "source": "edgar_analytics",
+      "kind": "derived"
+    },
+    {
+      "id": "ea:metric:accruals-ratio",
+      "label": "Accruals Ratio",
+      "category": "quality",
+      "expression": "(Net Income - OCF) / Total Assets",
+      "inputSynonyms": [
+        "net_income",
+        "cash_flow_operating",
+        "total_assets"
+      ],
+      "source": "edgar_analytics",
+      "kind": "derived"
+    },
+    {
+      "id": "ea:metric:earnings-quality",
+      "label": "Earnings Quality",
+      "category": "quality",
+      "expression": "OCF / Net Income",
+      "inputSynonyms": [
+        "cash_flow_operating",
+        "net_income"
+      ],
+      "source": "edgar_analytics",
+      "kind": "derived"
+    },
+    {
+      "id": "ea:metric:sloan-accrual",
+      "label": "Sloan Accrual",
+      "category": "quality",
+      "expression": "(ΔWC - ΔCash - D&A) / Avg Total Assets",
+      "inputSynonyms": [
+        "current_assets",
+        "current_liabilities",
+        "cash_equivalents",
+        "depreciation_amortization",
+        "total_assets"
+      ],
+      "source": "edgar_analytics",
+      "kind": "derived"
+    },
+    {
+      "id": "ea:metric:intangible-ratio",
+      "label": "Intangible Ratio %",
+      "category": "composition",
+      "expression": "Intangible Assets / Total Assets x 100",
+      "inputSynonyms": [
+        "intangible_assets",
+        "total_assets"
+      ],
+      "source": "edgar_analytics",
+      "kind": "derived"
+    },
+    {
+      "id": "ea:metric:goodwill-ratio",
+      "label": "Goodwill Ratio %",
+      "category": "composition",
+      "expression": "Goodwill / Total Assets x 100",
+      "inputSynonyms": [
+        "goodwill",
+        "total_assets"
+      ],
+      "source": "edgar_analytics",
+      "kind": "derived"
+    },
+    {
+      "id": "ea:metric:tangible-equity",
+      "label": "Tangible Equity",
+      "category": "composition",
+      "expression": "Total Equity - Intangibles - Goodwill",
+      "inputSynonyms": [
+        "total_equity",
+        "intangible_assets",
+        "goodwill"
+      ],
+      "source": "edgar_analytics",
+      "kind": "derived"
+    },
+    {
+      "id": "ea:metric:p-e-ratio",
+      "label": "P/E Ratio",
+      "category": "valuation",
+      "expression": "Price / Diluted EPS",
+      "inputSynonyms": [
+        "earnings_per_share_diluted"
+      ],
+      "source": "edgar_analytics",
+      "kind": "derived"
+    },
+    {
+      "id": "ea:metric:p-b-ratio",
+      "label": "P/B Ratio",
+      "category": "valuation",
+      "expression": "Market Cap / Total Equity",
+      "inputSynonyms": [
+        "total_equity"
+      ],
+      "source": "edgar_analytics",
+      "kind": "derived"
+    },
+    {
+      "id": "ea:metric:earnings-yield",
+      "label": "Earnings Yield",
+      "category": "valuation",
+      "expression": "1 / P/E",
+      "inputSynonyms": [
+        "earnings_per_share_diluted"
+      ],
+      "source": "edgar_analytics",
+      "kind": "derived"
+    },
+    {
+      "id": "ea:metric:dso",
+      "label": "DSO",
+      "category": "working-capital",
+      "expression": "AR / (Revenue / 365)",
+      "inputSynonyms": [
+        "accounts_receivable",
+        "revenue"
+      ],
+      "source": "edgar_analytics",
+      "kind": "derived"
+    },
+    {
+      "id": "ea:metric:dio",
+      "label": "DIO",
+      "category": "working-capital",
+      "expression": "Inventory / (COGS / 365)",
+      "inputSynonyms": [
+        "inventory",
+        "cost_of_revenue"
+      ],
+      "source": "edgar_analytics",
+      "kind": "derived"
+    },
+    {
+      "id": "ea:metric:dpo",
+      "label": "DPO",
+      "category": "working-capital",
+      "expression": "AP / (COGS / 365)",
+      "inputSynonyms": [
+        "accounts_payable",
+        "cost_of_revenue"
+      ],
+      "source": "edgar_analytics",
+      "kind": "derived"
+    },
+    {
+      "id": "ea:metric:cash-conversion-cycle",
+      "label": "Cash Conversion Cycle",
+      "category": "working-capital",
+      "expression": "DSO + DIO - DPO",
+      "inputSynonyms": [
+        "accounts_receivable",
+        "inventory",
+        "accounts_payable",
+        "revenue",
+        "cost_of_revenue"
+      ],
+      "source": "edgar_analytics",
+      "kind": "derived"
+    },
+    {
+      "id": "ea:metric:nopat",
+      "label": "NOPAT",
+      "category": "returns",
+      "expression": "Operating Income x (1 - Tax Rate)",
+      "inputSynonyms": [
+        "operating_income",
+        "income_tax_expense",
+        "income_before_taxes"
+      ],
+      "source": "edgar_analytics",
+      "kind": "derived"
+    },
+    {
+      "id": "ea:metric:invested-capital",
+      "label": "Invested Capital",
+      "category": "returns",
+      "expression": "Equity + ST Debt + LT Debt - Cash",
+      "inputSynonyms": [
+        "total_equity",
+        "short_term_debt",
+        "long_term_debt",
+        "cash_equivalents"
+      ],
+      "source": "edgar_analytics",
+      "kind": "derived"
+    },
+    {
+      "id": "ea:metric:roic",
+      "label": "ROIC %",
+      "category": "returns",
+      "expression": "NOPAT / Invested Capital x 100",
+      "inputSynonyms": [
+        "operating_income",
+        "income_tax_expense",
+        "income_before_taxes",
+        "total_equity",
+        "short_term_debt",
+        "long_term_debt",
+        "cash_equivalents"
+      ],
+      "source": "edgar_analytics",
+      "kind": "derived"
+    },
+    {
+      "id": "ea:metric:asset-turnover",
+      "label": "Asset Turnover",
+      "category": "efficiency",
+      "expression": "Revenue / Total Assets",
+      "inputSynonyms": [
+        "revenue",
+        "total_assets"
+      ],
+      "source": "edgar_analytics",
+      "kind": "derived"
+    },
+    {
+      "id": "ea:metric:piotroski-f-score",
+      "label": "Piotroski F-Score",
+      "category": "scoring",
+      "expression": "9 binary fundamental tests (0-9)",
+      "inputSynonyms": [
+        "net_income",
+        "cash_flow_operating",
+        "total_assets",
+        "total_equity",
+        "long_term_debt",
+        "current_assets",
+        "current_liabilities",
+        "gross_profit",
+        "revenue",
+        "common_shares_outstanding"
+      ],
+      "source": "edgar_analytics",
+      "kind": "derived"
+    },
+    {
+      "id": "ea:metric:altman-z-score",
+      "label": "Altman Z-Score",
+      "category": "scoring",
+      "expression": "Bankruptcy probability model",
+      "inputSynonyms": [
+        "current_assets",
+        "current_liabilities",
+        "total_assets",
+        "retained_earnings",
+        "operating_income",
+        "total_liabilities",
+        "total_equity",
+        "revenue"
+      ],
+      "source": "edgar_analytics",
+      "kind": "derived"
+    },
+    {
+      "id": "ea:metric:beneish-m-score",
+      "label": "Beneish M-Score",
+      "category": "scoring",
+      "expression": "Earnings manipulation probability model",
+      "inputSynonyms": [
+        "accounts_receivable",
+        "revenue",
+        "gross_profit",
+        "total_assets",
+        "current_assets",
+        "ppe_net",
+        "depreciation_amortization",
+        "general_administrative",
+        "total_liabilities",
+        "current_liabilities",
+        "net_income",
+        "cash_flow_operating"
+      ],
+      "source": "edgar_analytics",
+      "kind": "derived"
+    }
+  ],
+  "missingFinnhubMetrics": [
+    {
+      "id": "fh:metric:10dayaveragetradingvolume",
+      "key": "10DayAverageTradingVolume",
+      "category": "liquidity",
+      "expression": "Trading volume"
+    },
+    {
+      "id": "fh:metric:13weekpricereturndaily",
+      "key": "13WeekPriceReturnDaily",
+      "category": "valuation",
+      "expression": "Price return"
+    },
+    {
+      "id": "fh:metric:26weekpricereturndaily",
+      "key": "26WeekPriceReturnDaily",
+      "category": "valuation",
+      "expression": "Price return"
+    },
+    {
+      "id": "fh:metric:3monthaveragetradingvolume",
+      "key": "3MonthAverageTradingVolume",
+      "category": "liquidity",
+      "expression": "Trading volume"
+    },
+    {
+      "id": "fh:metric:52weekhigh",
+      "key": "52WeekHigh",
+      "category": "valuation",
+      "expression": "Price level"
+    },
+    {
+      "id": "fh:metric:52weeklow",
+      "key": "52WeekLow",
+      "category": "valuation",
+      "expression": "Price level"
+    },
+    {
+      "id": "fh:metric:52weekpricereturndaily",
+      "key": "52WeekPriceReturnDaily",
+      "category": "valuation",
+      "expression": "Price return"
+    },
+    {
+      "id": "fh:metric:5daypricereturndaily",
+      "key": "5DayPriceReturnDaily",
+      "category": "valuation",
+      "expression": "Price return"
+    },
+    {
+      "id": "fh:metric:assetturnoverannual",
+      "key": "assetTurnoverAnnual",
+      "category": "efficiency",
+      "expression": "Revenue / Assets"
+    },
+    {
+      "id": "fh:metric:assetturnoverttm",
+      "key": "assetTurnoverTTM",
+      "category": "efficiency",
+      "expression": "Revenue / Assets"
+    },
+    {
+      "id": "fh:metric:bookvaluepershareannual",
+      "key": "bookValuePerShareAnnual",
+      "category": "per-share",
+      "expression": "Equity / Shares"
+    },
+    {
+      "id": "fh:metric:bookvaluepersharequarterly",
+      "key": "bookValuePerShareQuarterly",
+      "category": "per-share",
+      "expression": "Equity / Shares"
+    },
+    {
+      "id": "fh:metric:currentratioannual",
+      "key": "currentRatioAnnual",
+      "category": "liquidity",
+      "expression": "Current Assets / Current Liabilities"
+    },
+    {
+      "id": "fh:metric:currentratioquarterly",
+      "key": "currentRatioQuarterly",
+      "category": "liquidity",
+      "expression": "Current Assets / Current Liabilities"
+    },
+    {
+      "id": "fh:metric:ebitdpershareannual",
+      "key": "ebitdPerShareAnnual",
+      "category": "per-share",
+      "expression": "EBITDA / Shares"
+    },
+    {
+      "id": "fh:metric:ebitdpersharettm",
+      "key": "ebitdPerShareTTM",
+      "category": "per-share",
+      "expression": "EBITDA / Shares"
+    },
+    {
+      "id": "fh:metric:epsannual",
+      "key": "epsAnnual",
+      "category": "per-share",
+      "expression": "Net Income / Shares"
+    },
+    {
+      "id": "fh:metric:epsbasicexclextraitemsannual",
+      "key": "epsBasicExclExtraItemsAnnual",
+      "category": "per-share",
+      "expression": "EPS basic ex items"
+    },
+    {
+      "id": "fh:metric:epsgrowth3y",
+      "key": "epsGrowth3Y",
+      "category": "profitability",
+      "expression": "EPS growth"
+    },
+    {
+      "id": "fh:metric:epsgrowth5y",
+      "key": "epsGrowth5Y",
+      "category": "profitability",
+      "expression": "EPS growth"
+    },
+    {
+      "id": "fh:metric:epsgrowthquarterlyyoy",
+      "key": "epsGrowthQuarterlyYoy",
+      "category": "profitability",
+      "expression": "EPS growth YoY"
+    },
+    {
+      "id": "fh:metric:epsgrowthttmyoy",
+      "key": "epsGrowthTTMYoy",
+      "category": "profitability",
+      "expression": "EPS growth YoY"
+    },
+    {
+      "id": "fh:metric:epsttm",
+      "key": "epsTTM",
+      "category": "per-share",
+      "expression": "EPS TTM"
+    },
+    {
+      "id": "fh:metric:enterprisevalue",
+      "key": "enterpriseValue",
+      "category": "valuation",
+      "expression": "Market Cap + Net Debt"
+    },
+    {
+      "id": "fh:metric:freecashflowannual",
+      "key": "freeCashFlowAnnual",
+      "category": "cashflow",
+      "expression": "OCF - CapEx"
+    },
+    {
+      "id": "fh:metric:freecashflowpersharettm",
+      "key": "freeCashFlowPerShareTTM",
+      "category": "per-share",
+      "expression": "FCF / Shares"
+    },
+    {
+      "id": "fh:metric:grossmarginannual",
+      "key": "grossMarginAnnual",
+      "category": "profitability",
+      "expression": "Gross Profit / Revenue"
+    },
+    {
+      "id": "fh:metric:grossmarginttm",
+      "key": "grossMarginTTM",
+      "category": "profitability",
+      "expression": "Gross Profit / Revenue"
+    },
+    {
+      "id": "fh:metric:inventoryturnoverannual",
+      "key": "inventoryTurnoverAnnual",
+      "category": "efficiency",
+      "expression": "COGS / Inventory"
+    },
+    {
+      "id": "fh:metric:inventoryturnoverttm",
+      "key": "inventoryTurnoverTTM",
+      "category": "efficiency",
+      "expression": "COGS / Inventory"
+    },
+    {
+      "id": "fh:metric:longtermdebt-equityannual",
+      "key": "longTermDebt/equityAnnual",
+      "category": "leverage",
+      "expression": "LT Debt / Equity"
+    },
+    {
+      "id": "fh:metric:longtermdebt-equityquarterly",
+      "key": "longTermDebt/equityQuarterly",
+      "category": "leverage",
+      "expression": "LT Debt / Equity"
+    },
+    {
+      "id": "fh:metric:marketcapitalization",
+      "key": "marketCapitalization",
+      "category": "valuation",
+      "expression": "Shares x Price"
+    },
+    {
+      "id": "fh:metric:netdebtannual",
+      "key": "netDebtAnnual",
+      "category": "leverage",
+      "expression": "Debt - Cash"
+    },
+    {
+      "id": "fh:metric:netinterestcoverageannual",
+      "key": "netInterestCoverageAnnual",
+      "category": "leverage",
+      "expression": "EBIT / Interest"
+    },
+    {
+      "id": "fh:metric:netmarginannual",
+      "key": "netMarginAnnual",
+      "category": "profitability",
+      "expression": "Net Income / Revenue"
+    },
+    {
+      "id": "fh:metric:netmarginttm",
+      "key": "netMarginTTM",
+      "category": "profitability",
+      "expression": "Net Income / Revenue"
+    },
+    {
+      "id": "fh:metric:netprofitmarginannual",
+      "key": "netProfitMarginAnnual",
+      "category": "profitability",
+      "expression": "Net Income / Revenue"
+    },
+    {
+      "id": "fh:metric:netprofitmarginttm",
+      "key": "netProfitMarginTTM",
+      "category": "profitability",
+      "expression": "Net Income / Revenue"
+    },
+    {
+      "id": "fh:metric:operatingmarginannual",
+      "key": "operatingMarginAnnual",
+      "category": "profitability",
+      "expression": "Operating Income / Revenue"
+    },
+    {
+      "id": "fh:metric:operatingmarginttm",
+      "key": "operatingMarginTTM",
+      "category": "profitability",
+      "expression": "Operating Income / Revenue"
+    },
+    {
+      "id": "fh:metric:payoutratioannual",
+      "key": "payoutRatioAnnual",
+      "category": "cashflow",
+      "expression": "Dividends / Net Income"
+    },
+    {
+      "id": "fh:metric:payoutratiottm",
+      "key": "payoutRatioTTM",
+      "category": "cashflow",
+      "expression": "Dividends / Net Income"
+    },
+    {
+      "id": "fh:metric:pbannual",
+      "key": "pbAnnual",
+      "category": "valuation",
+      "expression": "Price / Book"
+    },
+    {
+      "id": "fh:metric:pbquarterly",
+      "key": "pbQuarterly",
+      "category": "valuation",
+      "expression": "Price / Book"
+    },
+    {
+      "id": "fh:metric:peannual",
+      "key": "peAnnual",
+      "category": "valuation",
+      "expression": "Price / EPS"
+    },
+    {
+      "id": "fh:metric:pettm",
+      "key": "peTTM",
+      "category": "valuation",
+      "expression": "Price / EPS TTM"
+    },
+    {
+      "id": "fh:metric:pfcfshareannual",
+      "key": "pfcfShareAnnual",
+      "category": "valuation",
+      "expression": "Price / FCF per share"
+    },
+    {
+      "id": "fh:metric:pfcfsharettm",
+      "key": "pfcfShareTTM",
+      "category": "valuation",
+      "expression": "Price / FCF per share"
+    },
+    {
+      "id": "fh:metric:psannual",
+      "key": "psAnnual",
+      "category": "valuation",
+      "expression": "Price / Sales"
+    },
+    {
+      "id": "fh:metric:psttm",
+      "key": "psTTM",
+      "category": "valuation",
+      "expression": "Price / Sales"
+    },
+    {
+      "id": "fh:metric:ptbvannual",
+      "key": "ptbvAnnual",
+      "category": "valuation",
+      "expression": "Price / Tangible Book"
+    },
+    {
+      "id": "fh:metric:ptbvquarterly",
+      "key": "ptbvQuarterly",
+      "category": "valuation",
+      "expression": "Price / Tangible Book"
+    },
+    {
+      "id": "fh:metric:quickratioannual",
+      "key": "quickRatioAnnual",
+      "category": "liquidity",
+      "expression": "(CA - Inventory) / CL"
+    },
+    {
+      "id": "fh:metric:quickratioquarterly",
+      "key": "quickRatioQuarterly",
+      "category": "liquidity",
+      "expression": "(CA - Inventory) / CL"
+    },
+    {
+      "id": "fh:metric:receivablesturnoverannual",
+      "key": "receivablesTurnoverAnnual",
+      "category": "efficiency",
+      "expression": "Revenue / AR"
+    },
+    {
+      "id": "fh:metric:receivablesturnoverttm",
+      "key": "receivablesTurnoverTTM",
+      "category": "efficiency",
+      "expression": "Revenue / AR"
+    },
+    {
+      "id": "fh:metric:roaannual",
+      "key": "roaAnnual",
+      "category": "returns",
+      "expression": "Net Income / Assets"
+    },
+    {
+      "id": "fh:metric:roarfy",
+      "key": "roaRfy",
+      "category": "returns",
+      "expression": "ROA"
+    },
+    {
+      "id": "fh:metric:roattm",
+      "key": "roaTTM",
+      "category": "returns",
+      "expression": "ROA TTM"
+    },
+    {
+      "id": "fh:metric:roeannual",
+      "key": "roeAnnual",
+      "category": "returns",
+      "expression": "Net Income / Equity"
+    },
+    {
+      "id": "fh:metric:roerfy",
+      "key": "roeRfy",
+      "category": "returns",
+      "expression": "ROE"
+    },
+    {
+      "id": "fh:metric:roettm",
+      "key": "roeTTM",
+      "category": "returns",
+      "expression": "ROE TTM"
+    },
+    {
+      "id": "fh:metric:roiannual",
+      "key": "roiAnnual",
+      "category": "returns",
+      "expression": "Return on investment"
+    },
+    {
+      "id": "fh:metric:roittm",
+      "key": "roiTTM",
+      "category": "returns",
+      "expression": "Return on investment"
+    },
+    {
+      "id": "fh:metric:revenuegrowth3y",
+      "key": "revenueGrowth3Y",
+      "category": "profitability",
+      "expression": "Revenue CAGR"
+    },
+    {
+      "id": "fh:metric:revenuegrowth5y",
+      "key": "revenueGrowth5Y",
+      "category": "profitability",
+      "expression": "Revenue CAGR"
+    },
+    {
+      "id": "fh:metric:revenuegrowthquarterlyyoy",
+      "key": "revenueGrowthQuarterlyYoy",
+      "category": "profitability",
+      "expression": "Revenue growth YoY"
+    },
+    {
+      "id": "fh:metric:revenuegrowthttmyoy",
+      "key": "revenueGrowthTTMYoy",
+      "category": "profitability",
+      "expression": "Revenue growth YoY"
+    },
+    {
+      "id": "fh:metric:revenuepershareannual",
+      "key": "revenuePerShareAnnual",
+      "category": "per-share",
+      "expression": "Revenue / Shares"
+    },
+    {
+      "id": "fh:metric:revenuepersharettm",
+      "key": "revenuePerShareTTM",
+      "category": "per-share",
+      "expression": "Revenue / Shares"
+    },
+    {
+      "id": "fh:metric:revenuesharegrowth5y",
+      "key": "revenueShareGrowth5Y",
+      "category": "per-share",
+      "expression": "Revenue/share growth"
+    },
+    {
+      "id": "fh:metric:tangiblebookvaluepershareannual",
+      "key": "tangibleBookValuePerShareAnnual",
+      "category": "per-share",
+      "expression": "Tangible equity / Shares"
+    },
+    {
+      "id": "fh:metric:tangiblebookvaluepersharequarterly",
+      "key": "tangibleBookValuePerShareQuarterly",
+      "category": "per-share",
+      "expression": "Tangible equity / Shares"
+    },
+    {
+      "id": "fh:metric:totaldebt-totalequityannual",
+      "key": "totalDebt/totalEquityAnnual",
+      "category": "leverage",
+      "expression": "Total Debt / Equity"
+    },
+    {
+      "id": "fh:metric:totaldebt-totalequityquarterly",
+      "key": "totalDebt/totalEquityQuarterly",
+      "category": "leverage",
+      "expression": "Total Debt / Equity"
+    }
+  ],
+  "orphanSynonyms": [
+    {
+      "id": "ea:concept:depreciation_in_cost_of_sales",
+      "synonymKey": "depreciation_in_cost_of_sales",
+      "label": "Depreciation In Cost Of Sales",
+      "gaapTags": [
+        "DepreciationAmortizationInCostOfGoodsSold"
+      ],
+      "ifrsTags": [],
+      "textLabels": [
+        "Depreciation in cost of sales",
+        "Depreciation included in cost of sales",
+        "Depreciation (in cost of sales)",
+        "Depr in cost of goods sold"
+      ],
+      "source": "edgar_analytics",
+      "kind": "extracted"
+    },
+    {
+      "id": "ea:concept:financial_assets_fvoci",
+      "synonymKey": "financial_assets_fvoci",
+      "label": "Financial Assets Fvoci",
+      "gaapTags": [
+        "AvailableForSaleSecuritiesCurrent"
+      ],
+      "ifrsTags": [
+        "ifrs-full:FinancialAssetsAtFairValueThroughOtherComprehensiveIncome"
+      ],
+      "textLabels": [
+        "Financial assets at fair value through other comprehensive income",
+        "Financial instruments (FVOCI)"
+      ],
+      "source": "edgar_analytics",
+      "kind": "extracted"
+    },
+    {
+      "id": "ea:concept:contract_assets",
+      "synonymKey": "contract_assets",
+      "label": "Contract Assets",
+      "gaapTags": [
+        "ContractWithCustomerAsset"
+      ],
+      "ifrsTags": [
+        "ifrs-full:ContractAssets"
+      ],
+      "textLabels": [
+        "Contract assets",
+        "Unbilled receivables"
+      ],
+      "source": "edgar_analytics",
+      "kind": "extracted"
+    }
+  ],
+  "requiredRelationships": [
+    {
+      "type": "mapsTo",
+      "from": "discovery standard/synonym node",
+      "to": "us-gaap local name",
+      "why": "Library synonym/standard maps are the bridge from management labels to taxonomy tags"
+    },
+    {
+      "type": "derivedFrom",
+      "from": "discovery derived metric",
+      "to": "extracted synonym concepts / GAAP tags",
+      "why": "Formulas need explicit input edges for Graph RAG and future engines"
+    },
+    {
+      "type": "alignsTo",
+      "from": "finnhub metric",
+      "to": "nongaap or gaap node",
+      "why": "Finnhub ratios should hang off the same ontology forest for exploration"
+    },
+    {
+      "type": "alternativeOf",
+      "from": "approx vs standard variants",
+      "to": "canonical metric",
+      "why": "edgar_analytics EBIT/EBITDA approx vs standard need sibling links"
+    }
+  ]
+}

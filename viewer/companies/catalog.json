@@ -1,0 +1,39 @@
+[
+  {
+    "id": "v1.2",
+    "label": "Ontology v1.2 (full core)",
+    "path": "taxonomy-data.json"
+  },
+  {
+    "id": "orijin",
+    "label": "Orijin",
+    "path": "companies/orijin/taxonomy-data.json",
+    "populated": 69,
+    "gaps": 26,
+    "nodes": 85
+  },
+  {
+    "id": "climb-credit",
+    "label": "Climb Credit",
+    "path": "companies/climb-credit/taxonomy-data.json",
+    "populated": 104,
+    "gaps": 58,
+    "nodes": 119
+  },
+  {
+    "id": "mantra-health",
+    "label": "Mantra Health",
+    "path": "companies/mantra-health/taxonomy-data.json",
+    "populated": 68,
+    "gaps": 25,
+    "nodes": 83
+  },
+  {
+    "id": "brains-and-motion",
+    "label": "Brains and Motion",
+    "path": "companies/brains-and-motion/taxonomy-data.json",
+    "populated": 109,
+    "gaps": 61,
+    "nodes": 124
+  }
+]
