@@ -1,6 +1,5 @@
 # Raw FASB taxonomy package (large XML/XSD) — not needed to run the app
 us-gaap-2026/
-viewer/
 build_viewer_data.py
 __pycache__/
 *.pyc
@@ -8,3 +7,6 @@ __pycache__/
 venv/
 .env
 .DS_Store
+# Streamlit experiment (HTML viewer is primary)
+app.py
+.streamlit/

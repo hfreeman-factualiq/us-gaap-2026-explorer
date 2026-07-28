@@ -1,0 +1,720 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>US GAAP 2026 Explorer</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=IBM+Plex+Sans:wght@400;500;600;700&family=IBM+Plex+Mono:wght@400;500&display=swap" rel="stylesheet" />
+  <style>
+    :root {
+      --bg: #e8eef2;
+      --panel: #f7fafc;
+      --ink: #15202b;
+      --muted: #5a6b78;
+      --line: #c5d2dc;
+      --accent: #0b6e6a;
+      --accent-soft: #d3ebe9;
+      --standalone: #1f6b3a;
+      --standalone-bg: #e4f2e8;
+      --group: #3d5a40;
+      --group-bg: #e5eee6;
+      --formula: #1e4d8c;
+      --formula-bg: #dde8f5;
+      --tagged: #6b2d7b;
+      --tagged-bg: #f0e3f4;
+      --ratio: #9b1d4a;
+      --ratio-bg: #f7e0e8;
+      --meta: #4a5560;
+      --meta-bg: #e6e9ec;
+      --font: "IBM Plex Sans", system-ui, sans-serif;
+      --mono: "IBM Plex Mono", ui-monospace, monospace;
+    }
+    * { box-sizing: border-box; }
+    html, body { height: 100%; margin: 0; }
+    body {
+      font-family: var(--font);
+      color: var(--ink);
+      background: linear-gradient(180deg, #eef3f6, var(--bg));
+    }
+    .app {
+      max-width: 1400px;
+      margin: 0 auto;
+      height: 100%;
+      display: grid;
+      grid-template-rows: auto auto 1fr;
+      gap: 12px;
+      padding: 16px;
+    }
+    header h1 {
+      margin: 0;
+      font-size: 1.7rem;
+      letter-spacing: -0.02em;
+    }
+    header h1 span { color: var(--accent); }
+    header p { margin: 6px 0 0; color: var(--muted); font-size: 0.92rem; }
+    .stats { display: flex; flex-wrap: wrap; gap: 8px; margin-top: 10px; }
+    .stat {
+      background: var(--panel);
+      border: 1px solid var(--line);
+      border-radius: 999px;
+      padding: 5px 11px;
+      font-size: 0.78rem;
+      color: var(--muted);
+    }
+    .stat b { color: var(--ink); }
+
+    .toolbar {
+      display: grid;
+      grid-template-columns: 1fr auto;
+      gap: 10px;
+      background: var(--panel);
+      border: 1px solid var(--line);
+      border-radius: 10px;
+      padding: 10px 12px;
+    }
+    .toolbar input {
+      width: 100%;
+      border: 1px solid var(--line);
+      border-radius: 8px;
+      padding: 10px 12px;
+      font: inherit;
+      outline: none;
+    }
+    .toolbar input:focus { border-color: var(--accent); box-shadow: 0 0 0 3px var(--accent-soft); }
+    .modes { display: flex; gap: 6px; flex-wrap: wrap; align-items: center; }
+    .modes button, .chip {
+      border: 1px solid var(--line);
+      background: #fff;
+      color: var(--muted);
+      border-radius: 999px;
+      padding: 7px 12px;
+      font: inherit;
+      font-size: 0.8rem;
+      font-weight: 500;
+      cursor: pointer;
+    }
+    .modes button.active, .chip.active {
+      background: var(--accent);
+      border-color: transparent;
+      color: #fff;
+    }
+
+    .main {
+      display: grid;
+      grid-template-columns: minmax(320px, 1fr) minmax(360px, 1.1fr);
+      gap: 12px;
+      min-height: 0;
+    }
+    .panel {
+      background: var(--panel);
+      border: 1px solid var(--line);
+      border-radius: 10px;
+      display: flex;
+      flex-direction: column;
+      min-height: 0;
+      overflow: hidden;
+    }
+    .panel-h {
+      padding: 12px 14px;
+      border-bottom: 1px solid var(--line);
+      background: #fff;
+    }
+    .panel-h h2 { margin: 0; font-size: 1rem; }
+    .panel-h .hint { margin-top: 3px; font-size: 0.75rem; color: var(--muted); }
+    .panel-b { overflow: auto; padding: 10px; flex: 1; }
+
+    .tree details { margin: 0; }
+    .tree details details { margin-left: 14px; border-left: 1px solid var(--line); padding-left: 6px; }
+    .tree summary {
+      list-style: none;
+      cursor: pointer;
+      display: flex;
+      gap: 8px;
+      align-items: flex-start;
+      padding: 7px 8px;
+      border-radius: 8px;
+      font-size: 0.88rem;
+    }
+    .tree summary::-webkit-details-marker { display: none; }
+    .tree summary:hover, .row:hover, .hit:hover { background: #e4ebf0; }
+    .tree summary.selected, .row.selected, .hit.selected {
+      background: var(--accent-soft);
+      outline: 1px solid #9ecfcf;
+    }
+    .twist {
+      width: 14px;
+      flex: 0 0 auto;
+      color: var(--muted);
+      font-family: var(--mono);
+      font-size: 0.75rem;
+      margin-top: 2px;
+    }
+    details[open] > summary > .twist { transform: rotate(90deg); }
+    .node-main { min-width: 0; flex: 1; }
+    .node-label { display: block; font-weight: 500; }
+    .node-name {
+      display: block;
+      font-family: var(--mono);
+      font-size: 0.68rem;
+      color: var(--muted);
+      white-space: nowrap;
+      overflow: hidden;
+      text-overflow: ellipsis;
+    }
+    .leaf {
+      display: flex;
+      gap: 8px;
+      align-items: flex-start;
+      padding: 7px 8px 7px 30px;
+      border-radius: 8px;
+      cursor: pointer;
+      font-size: 0.88rem;
+    }
+
+    .badge {
+      display: inline-flex;
+      align-items: center;
+      border-radius: 999px;
+      padding: 1px 7px;
+      font-size: 0.62rem;
+      font-weight: 600;
+      text-transform: uppercase;
+      white-space: nowrap;
+      margin-top: 2px;
+    }
+    .badge.standalone { background: var(--standalone-bg); color: var(--standalone); }
+    .badge.group, .badge.group-formula { background: var(--group-bg); color: var(--group); }
+    .badge.formula { background: var(--formula-bg); color: var(--formula); }
+    .badge.tagged { background: var(--tagged-bg); color: var(--tagged); }
+    .badge.ratio { background: var(--ratio-bg); color: var(--ratio); }
+    .badge.residual, .badge.abstract, .badge.meta { background: var(--meta-bg); color: var(--meta); }
+
+    .hits { display: flex; flex-direction: column; gap: 4px; margin-bottom: 10px; }
+    .hit, .row {
+      display: grid;
+      grid-template-columns: 1fr auto;
+      gap: 8px;
+      padding: 8px 10px;
+      border-radius: 8px;
+      cursor: pointer;
+    }
+    .hit .title, .row .title { font-size: 0.88rem; font-weight: 500; }
+    .hit .sub, .row .sub {
+      font-family: var(--mono);
+      font-size: 0.68rem;
+      color: var(--muted);
+      white-space: nowrap;
+      overflow: hidden;
+      text-overflow: ellipsis;
+    }
+
+    .detail .kicker {
+      font-size: 0.7rem;
+      text-transform: uppercase;
+      letter-spacing: .06em;
+      color: var(--muted);
+    }
+    .detail h3 { margin: 4px 0 4px; font-size: 1.25rem; line-height: 1.25; }
+    .detail .cname {
+      font-family: var(--mono);
+      font-size: 0.78rem;
+      color: var(--accent);
+      word-break: break-all;
+      margin-bottom: 8px;
+    }
+    .summary {
+      background: var(--accent-soft);
+      border: 1px solid #b7d9d9;
+      border-radius: 8px;
+      padding: 10px 12px;
+      font-size: 0.86rem;
+      margin: 10px 0;
+    }
+    .meta {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 8px;
+      margin-bottom: 12px;
+    }
+    .meta div {
+      background: #fff;
+      border: 1px solid var(--line);
+      border-radius: 8px;
+      padding: 8px 10px;
+    }
+    .meta .lbl {
+      font-size: 0.65rem;
+      text-transform: uppercase;
+      letter-spacing: .05em;
+      color: var(--muted);
+    }
+    .meta .val { font-weight: 500; font-size: 0.86rem; margin-top: 2px; word-break: break-word; }
+    .doc {
+      background: #fff;
+      border: 1px solid var(--line);
+      border-radius: 8px;
+      padding: 10px 12px;
+      color: var(--muted);
+      font-size: 0.86rem;
+      margin-bottom: 12px;
+    }
+    .section { margin-top: 14px; }
+    .section h4 { margin: 0 0 4px; font-size: 0.9rem; }
+    .section .sec-hint { margin: 0 0 8px; font-size: 0.74rem; color: var(--muted); }
+    .formula {
+      background: #fff;
+      border: 1px solid var(--line);
+      border-radius: 8px;
+      overflow: hidden;
+    }
+    .formula-h {
+      padding: 6px 10px;
+      font-size: 0.7rem;
+      font-weight: 600;
+      text-transform: uppercase;
+      letter-spacing: .04em;
+      color: var(--muted);
+      background: #e8eef2;
+      border-top: 1px solid var(--line);
+    }
+    .formula-h:first-child { border-top: 0; }
+    .formula-row {
+      display: grid;
+      grid-template-columns: 42px 1fr;
+      gap: 8px;
+      padding: 8px 10px;
+      border-top: 1px solid var(--line);
+      cursor: pointer;
+      font-size: 0.86rem;
+    }
+    .formula-row:hover { background: #e4ebf0; }
+    .weight { font-family: var(--mono); color: var(--formula); font-size: 0.78rem; font-weight: 500; }
+    .side { font-size: 0.65rem; color: var(--muted); text-align: right; }
+    .empty { color: var(--muted); text-align: center; padding: 28px 12px; }
+    .loading, .error {
+      display: grid;
+      place-items: center;
+      min-height: 50vh;
+      color: var(--muted);
+      font-weight: 600;
+    }
+    .error { color: #7a1f1f; max-width: 520px; margin: 40px auto; background: #fff; border: 1px solid #e0b4b4; border-radius: 12px; padding: 20px; font-weight: 400; }
+    @media (max-width: 900px) {
+      .main, .toolbar { grid-template-columns: 1fr; }
+      .panel { max-height: 55vh; }
+    }
+  </style>
+</head>
+<body>
+  <div id="boot" class="loading">Loading US GAAP 2026…</div>
+  <div id="app" class="app" hidden>
+    <header>
+      <h1>US GAAP <span>2026</span></h1>
+      <p>Start from the top three concepts, expand outward, and inspect how each concept relates to others.</p>
+      <div class="stats" id="stats"></div>
+    </header>
+
+    <div class="toolbar">
+      <input id="q" type="search" placeholder="Search by label or name…" autocomplete="off" />
+      <div class="modes" id="modes">
+        <button type="button" class="active" data-mode="subtypes">Subtypes</button>
+        <button type="button" data-mode="formula">Formulas</button>
+        <button type="button" data-mode="usedby">Used by</button>
+      </div>
+    </div>
+
+    <div class="main">
+      <section class="panel">
+        <div class="panel-h">
+          <h2>Tree</h2>
+          <div class="hint" id="tree-hint">Top 3 roots — click ▸ to expand</div>
+        </div>
+        <div class="panel-b">
+          <div id="search-hits" class="hits" hidden></div>
+          <div id="tree" class="tree"></div>
+        </div>
+      </section>
+
+      <section class="panel">
+        <div class="panel-h">
+          <h2>Relationships</h2>
+          <div class="hint">built from · used by · type grouping</div>
+        </div>
+        <div class="panel-b" id="detail">
+          <div class="empty">Select a concept.</div>
+        </div>
+      </section>
+    </div>
+  </div>
+
+  <script>
+    const ROLE = {
+      atomic: { id: "standalone", label: "Standalone" },
+      total: { id: "formula", label: "Has formula" },
+      "class+total": { id: "group-formula", label: "Group + formula" },
+      class: { id: "group", label: "Broader type" },
+      dimensional: { id: "tagged", label: "Tagged form" },
+      ratio: { id: "ratio", label: "Ratio" },
+      aggregate: { id: "residual", label: "Has residual" },
+      abstract: { id: "abstract", label: "Abstract" },
+      meta: { id: "meta", label: "Meta" },
+    };
+
+    const CHILD_LIMIT = 60;
+    const state = {
+      data: null,
+      selected: null,
+      mode: "subtypes", // subtypes | formula | usedby
+      open: new Set(),  // expanded node names
+      query: "",
+    };
+
+    const $ = (id) => document.getElementById(id);
+    const esc = (s) => String(s)
+      .replace(/&/g, "&amp;").replace(/</g, "&lt;")
+      .replace(/>/g, "&gt;").replace(/"/g, "&quot;");
+    const escAttr = (s) => esc(s).replace(/'/g, "&#39;");
+
+    function concept(name) {
+      return state.data.concepts[name];
+    }
+    function labelOf(name) {
+      const c = concept(name);
+      return (c && c.l) || name;
+    }
+    function roleOf(c) {
+      return ROLE[c?.k] || { id: "standalone", label: c?.k || "Concept" };
+    }
+    function badge(c) {
+      const r = roleOf(c);
+      return `<span class="badge ${r.id}">${r.label}</span>`;
+    }
+
+    function uniqueCalc(list) {
+      const seen = new Set();
+      const out = [];
+      for (const item of list || []) {
+        if (seen.has(item.c)) continue;
+        seen.add(item.c);
+        out.push(item);
+      }
+      return out;
+    }
+
+    function childrenOf(name) {
+      const c = concept(name);
+      if (!c) return [];
+      if (state.mode === "formula") return uniqueCalc(c.cc).map((x) => x.c);
+      if (state.mode === "usedby") return uniqueCalc(c.cp).map((x) => x.c);
+      return c.sc || [];
+    }
+
+    function renderStats() {
+      const s = state.data.summary;
+      $("stats").innerHTML = [
+        ["Concepts", s.totalConcepts],
+        ["In type tree", s.ontologyNodes],
+        ["With formula", s.calcTotals],
+        ["Ratios", s.ratios],
+      ].map(([k, v]) => `<div class="stat"><b>${Number(v).toLocaleString()}</b> ${k}</div>`).join("");
+    }
+
+    function linkRow(name, extra = "") {
+      return `<div class="row" data-go="${escAttr(name)}">
+        <div>
+          <div class="title">${esc(labelOf(name))}</div>
+          <div class="sub">${esc(name)}</div>
+        </div>
+        <div>${extra}</div>
+      </div>`;
+    }
+
+    function summarize(c) {
+      const bits = [];
+      if (c.sp?.length) bits.push(`grouped under <em>${c.sp.map(labelOf).map(esc).join("</em>, <em>")}</em>`);
+      if (c.sc?.length) bits.push(`broader type for <strong>${c.sc.length}</strong> subtypes`);
+      if (c.cc?.length) bits.push("built from a calculation formula");
+      if (c.de?.length) bits.push(`tagged form of <em>${esc(labelOf(c.de[0]))}</em>`);
+      if (c.num?.length || c.den?.length) bits.push("defined as a ratio");
+      if (c.cp?.length) bits.push(`used by <strong>${uniqueCalc(c.cp).length}</strong> other concept(s)`);
+      if (!bits.length) {
+        return c.f?.atomic
+          ? `<div class="summary"><strong>Standalone.</strong> No formula, subtypes, tagged form, or ratio parts here.</div>`
+          : `<div class="summary">No grouping or composition links found for this concept.</div>`;
+      }
+      return `<div class="summary"><strong>How it relates:</strong> ${bits.join("; ")}.</div>`;
+    }
+
+    function section(title, hint, html) {
+      if (!html) return "";
+      return `<div class="section"><h4>${title}</h4><p class="sec-hint">${hint}</p>${html}</div>`;
+    }
+
+    function renderDetail(name) {
+      const c = concept(name);
+      const el = $("detail");
+      if (!c) {
+        el.innerHTML = `<div class="empty">Concept not found.</div>`;
+        return;
+      }
+      state.selected = name;
+      const role = roleOf(c);
+
+      let built = "";
+      if (c.de?.length) {
+        const roles = ["Base concept", "Axis", "Member", "Other"];
+        built += `<div class="hits">` + c.de.map((n, i) =>
+          linkRow(n, `<span class="side">${roles[i] || "Part"}</span>`)
+        ).join("") + `</div>`;
+      }
+      if (c.num?.length || c.den?.length) {
+        built += `<div class="hits">`;
+        (c.num || []).forEach((n) => (built += linkRow(n, `<span class="side">numerator</span>`)));
+        (c.den || []).forEach((n) => (built += linkRow(n, `<span class="side">denominator</span>`)));
+        built += `</div>`;
+      }
+      if (c.cc?.length) {
+        const byNet = new Map();
+        for (const item of c.cc) {
+          if (!byNet.has(item.net)) byNet.set(item.net, new Map());
+          const m = byNet.get(item.net);
+          if (!m.has(item.c)) m.set(item.c, item);
+        }
+        built += `<div class="formula">`;
+        for (const [net, map] of byNet) {
+          built += `<div class="formula-h">${esc(net)}</div>`;
+          for (const item of map.values()) {
+            const sign = item.w < 0 ? String(item.w) : `+${item.w}`;
+            built += `<div class="formula-row" data-go="${escAttr(item.c)}">
+              <div class="weight">${sign}</div>
+              <div>
+                <div>${esc(labelOf(item.c))}</div>
+                <div class="sub">${esc(item.c)}</div>
+              </div>
+            </div>`;
+          }
+        }
+        built += `</div>`;
+      }
+
+      const used = uniqueCalc(c.cp);
+      let usedHtml = used.length
+        ? `<div class="hits">${used.map((x) => linkRow(x.c, badge(concept(x.c)))).join("")}</div>`
+        : "";
+
+      let groupHtml = "";
+      if (c.sp?.length || c.sc?.length) {
+        groupHtml = `<div class="hits">`;
+        (c.sp || []).forEach((n) => (groupHtml += linkRow(n, `<span class="side">broader</span>`)));
+        (c.sc || []).forEach((n) => (groupHtml += linkRow(n, `<span class="side">narrower</span>`)));
+        groupHtml += `</div>`;
+      }
+
+      el.innerHTML = `
+        <div class="detail">
+          <div class="kicker">${c.cc || c.de || c.num ? "Built from other concepts" : c.f?.atomic ? "Standalone" : "Concept"}</div>
+          <h3>${esc(c.l || c.n)}</h3>
+          <div class="cname">${esc(c.n)}</div>
+          <div>${badge(c)}</div>
+          ${summarize(c)}
+          <div class="meta">
+            <div><div class="lbl">Role</div><div class="val">${esc(role.label)}</div></div>
+            <div><div class="lbl">Type</div><div class="val">${esc(c.t || "—")}</div></div>
+            <div><div class="lbl">Period</div><div class="val">${esc(c.p || "—")}</div></div>
+            <div><div class="lbl">Balance</div><div class="val">${esc(c.b || "—")}</div></div>
+          </div>
+          ${c.d ? `<div class="doc">${esc(c.d)}</div>` : ""}
+          ${section("Built from", "Concepts this one needs.", built)}
+          ${section("Used by", "Concepts that depend on this one.", usedHtml)}
+          ${section("Type grouping", "Broader and narrower types.", groupHtml)}
+          ${section("Residual other", "Catch-all residual amounts.", c.ao?.length ? `<div class="hits">${c.ao.map((n) => linkRow(n)).join("")}</div>` : "")}
+          ${section("Traits", "Shared characteristics.", c.tr?.length ? `<div class="hits">${c.tr.slice(0, 20).map((n) => linkRow(n)).join("")}</div>` : "")}
+        </div>`;
+
+      el.querySelectorAll("[data-go]").forEach((node) => {
+        node.addEventListener("click", () => select(node.dataset.go, { openAncestors: true }));
+      });
+    }
+
+    function nodeBlock(name, depth) {
+      const c = concept(name);
+      if (!c) return "";
+      const kids = childrenOf(name);
+      const selected = name === state.selected ? "selected" : "";
+      const label = esc(c.l || c.n);
+      const nm = esc(c.n);
+
+      if (!kids.length) {
+        return `<div class="leaf ${selected}" data-go="${escAttr(name)}">
+          <div class="node-main">
+            <span class="node-label">${label}</span>
+            <span class="node-name">${nm}</span>
+          </div>
+          ${badge(c)}
+        </div>`;
+      }
+
+      const open = state.open.has(name) ? "open" : "";
+      const shown = kids.slice(0, CHILD_LIMIT);
+      let html = `<details ${open} data-node="${escAttr(name)}">
+        <summary class="${selected}" data-go="${escAttr(name)}">
+          <span class="twist">▸</span>
+          <span class="node-main">
+            <span class="node-label">${label}</span>
+            <span class="node-name">${nm} · ${kids.length} children</span>
+          </span>
+          ${badge(c)}
+        </summary>`;
+      if (state.open.has(name)) {
+        for (const child of shown) html += nodeBlock(child, depth + 1);
+        if (kids.length > CHILD_LIMIT) {
+          html += `<div class="empty" style="padding:8px;text-align:left">Showing ${CHILD_LIMIT} of ${kids.length}.</div>`;
+        }
+      }
+      html += `</details>`;
+      return html;
+    }
+
+    function renderTree() {
+      const roots = state.data.ontologyRoots || [];
+      const modeHint = {
+        subtypes: "showing subtypes",
+        formula: "showing formula parts",
+        usedby: "showing concepts that use this one",
+      }[state.mode];
+      $("tree-hint").textContent = `Top 3 roots — ${modeHint}`;
+      $("tree").innerHTML = roots.map((r) => nodeBlock(r, 0)).join("") ||
+        `<div class="empty">No roots.</div>`;
+
+      $("tree").querySelectorAll("summary[data-go]").forEach((summary) => {
+        summary.addEventListener("click", (e) => {
+          e.preventDefault();
+          e.stopPropagation();
+          const name = summary.dataset.go;
+          const details = summary.parentElement;
+          const willOpen = !details.open;
+          details.open = willOpen;
+          if (willOpen) state.open.add(name);
+          else state.open.delete(name);
+          select(name, { skipTree: true });
+          // Re-render so children load when opened
+          if (willOpen) renderTree();
+          else highlight();
+        });
+      });
+      $("tree").querySelectorAll(".leaf[data-go]").forEach((node) => {
+        node.addEventListener("click", () => select(node.dataset.go, { skipTree: true }));
+      });
+      $("tree").querySelectorAll("details").forEach((d) => {
+        d.addEventListener("toggle", () => {
+          const name = d.dataset.node;
+          if (!name) return;
+          if (d.open) state.open.add(name);
+          else state.open.delete(name);
+        });
+      });
+    }
+
+    function highlight() {
+      document.querySelectorAll(".selected").forEach((n) => n.classList.remove("selected"));
+      if (!state.selected) return;
+      document.querySelectorAll(`[data-go="${CSS.escape(state.selected)}"]`)
+        .forEach((n) => n.classList.add("selected"));
+    }
+
+    function renderSearch() {
+      const box = $("search-hits");
+      const q = state.query.trim().toLowerCase();
+      if (!q) {
+        box.hidden = true;
+        box.innerHTML = "";
+        return;
+      }
+      const hits = [];
+      for (const c of Object.values(state.data.concepts)) {
+        if (c.n.toLowerCase().includes(q) || (c.l || "").toLowerCase().includes(q)) {
+          hits.push(c);
+          if (hits.length >= 40) break;
+        }
+      }
+      hits.sort((a, b) => (a.l || a.n).localeCompare(b.l || b.n));
+      box.hidden = false;
+      if (!hits.length) {
+        box.innerHTML = `<div class="empty">No matches.</div>`;
+        return;
+      }
+      box.innerHTML = `<div class="hint" style="margin:0 0 6px;color:var(--muted);font-size:0.75rem">${hits.length}${hits.length >= 40 ? "+" : ""} search hits</div>` +
+        hits.map((c) => `<div class="hit ${c.n === state.selected ? "selected" : ""}" data-go="${escAttr(c.n)}">
+          <div>
+            <div class="title">${esc(c.l || c.n)}</div>
+            <div class="sub">${esc(c.n)}</div>
+          </div>
+          ${badge(c)}
+        </div>`).join("");
+      box.querySelectorAll("[data-go]").forEach((node) => {
+        node.addEventListener("click", () => select(node.dataset.go, { openAncestors: true }));
+      });
+    }
+
+    function select(name, opts = {}) {
+      if (!concept(name)) return;
+      state.selected = name;
+      if (opts.openAncestors) {
+        const c = concept(name);
+        (c.sp || []).forEach((p) => state.open.add(p));
+      }
+      renderDetail(name);
+      if (!opts.skipTree) renderTree();
+      else highlight();
+      renderSearch();
+      $("detail").scrollTop = 0;
+    }
+
+    function bind() {
+      let t = null;
+      $("q").addEventListener("input", (e) => {
+        state.query = e.target.value;
+        clearTimeout(t);
+        t = setTimeout(renderSearch, 100);
+      });
+      $("modes").addEventListener("click", (e) => {
+        const btn = e.target.closest("button[data-mode]");
+        if (!btn) return;
+        state.mode = btn.dataset.mode;
+        state.open = new Set(); // reset expansion when switching mode
+        $("modes").querySelectorAll("button").forEach((b) => b.classList.toggle("active", b === btn));
+        renderTree();
+        if (state.selected) renderDetail(state.selected);
+      });
+    }
+
+    async function boot() {
+      try {
+        const res = await fetch("taxonomy-data.json");
+        if (!res.ok) throw new Error(`HTTP ${res.status}`);
+        state.data = await res.json();
+        $("boot").hidden = true;
+        $("app").hidden = false;
+        renderStats();
+        bind();
+        const roots = state.data.ontologyRoots || [];
+        state.selected = roots[0] || "Assets";
+        renderTree();
+        renderDetail(state.selected);
+      } catch (err) {
+        $("boot").outerHTML = `<div class="error">
+          <h2>Could not load data</h2>
+          <p>Serve the <code>viewer</code> folder over HTTP:</p>
+          <p><code>cd viewer && python -m http.server 8877 --bind 127.0.0.1</code></p>
+          <p>Then open <code>http://127.0.0.1:8877</code></p>
+          <p>${esc(String(err))}</p>
+        </div>`;
+      }
+    }
+
+    boot();
+  </script>
+</body>
+</html>

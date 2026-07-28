@@ -1,29 +1,23 @@
 # US GAAP 2026 Concept Explorer
 
-A simple [Streamlit](https://streamlit.io) app for exploring the US GAAP 2026 taxonomy: how concepts are **grouped**, what they are **built from**, and which other concepts **depend on them**.
-
-## Features
-
-- **Relationships** — inspect built-from parts, used-by dependents, type hierarchy, and traits
-- **Visual tree** — interactive graph; click nodes to expand and follow connections
-- **Type browser** — walk the class–subclass hierarchy (Assets, Liabilities, …)
+Simple HTML explorer for the US GAAP 2026 taxonomy: how concepts are grouped, what they are built from, and what depends on them.
 
 ## Run locally
 
 ```bash
-pip install -r requirements.txt
-streamlit run app.py
+cd viewer
+python -m http.server 8877 --bind 127.0.0.1
 ```
+
+Open http://127.0.0.1:8877
+
+## How to use
+
+1. The tree starts with the three top concepts: **Assets**, **Liabilities**, **Inventory Adjustments**
+2. Click ▸ to expand children (subtypes, formulas, or “used by” — toggle at the top)
+3. Select any concept to see relationships on the right
+4. Search by label or technical name
 
 ## Data
 
-`data/taxonomy-data.json` is a compact extract of the FASB US GAAP 2026 taxonomy (elements, labels, metamodel relationships, and calculation linkbases).
-
-## Deploy
-
-**GitHub:** https://github.com/hfreeman-factualiq/us-gaap-2026-explorer
-
-**Streamlit Cloud (one-click):**  
-https://share.streamlit.io/deploy?repository=hfreeman-factualiq/us-gaap-2026-explorer&branch=master&mainModule=app.py
-
-Sign in with GitHub, confirm `app.py` as the main file, then Deploy.
+`viewer/taxonomy-data.json` is a compact extract of the FASB US GAAP 2026 taxonomy.
