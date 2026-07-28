@@ -21,4 +21,9 @@ streamlit run app.py
 
 ## Deploy
 
-Connected to Streamlit Community Cloud from this GitHub repository (`app.py` as the main file).
+**GitHub:** https://github.com/hfreeman-factualiq/us-gaap-2026-explorer
+
+**Streamlit Cloud (one-click):**  
+https://share.streamlit.io/deploy?repository=hfreeman-factualiq/us-gaap-2026-explorer&branch=master&mainModule=app.py
+
+Sign in with GitHub, confirm `app.py` as the main file, then Deploy.
