@@ -38,6 +38,11 @@ from prune_core_v12 import (
     ROOT_META as V12_ROOT_META,
     apply_core_v12,
 )
+from prune_core_v13 import (
+    FOREST_ORDER as V13_FOREST_ORDER,
+    ROOT_META as V13_ROOT_META,
+    apply_core_v13,
+)
 
 ROOT = Path(__file__).resolve().parent
 ONTOLOGY = ROOT / "ontology"
@@ -46,9 +51,9 @@ ROOT_OUT = ROOT / "taxonomy-data.json"
 DATA_OUT = ROOT / "data" / "ontology-full.json"
 SUMMARY_MD = ONTOLOGY / "summary.md"
 
-# Active forest = collapsed extensible core (v1.2)
-FOREST_ORDER = V12_FOREST_ORDER
-ROOT_META = V12_ROOT_META
+# Active forest = collapsed extensible core + standards scrape surface (v1.31)
+FOREST_ORDER = V13_FOREST_ORDER
+ROOT_META = V13_ROOT_META
 
 # Keep legacy labels available for merge helpers that still create old roots;
 # final forest is replaced by prune_core_v12.apply_core_v12().
@@ -606,6 +611,97 @@ def merge_discovery(concepts: dict, catalog: dict) -> dict:
     }
 
 
+STANDARD_ROLE = {
+    "signalDomain": "abstract",
+    "signal": "signal",
+    "standard": "standard",
+    "standardClass": "standard",
+    "scrapeTarget": "scrape",
+}
+
+STANDARD_PASSTHROUGH = [
+    "classId",
+    "domain",
+    "domainLabels",
+    "domains",
+    "expression",
+    "formats",
+    "gaapTags",
+    "integration",
+    "keyClasses",
+    "nongaapRefs",
+    "order",
+    "primaryStandards",
+    "probe",
+    "scrapeKind",
+    "scrapeTargets",
+    "signalKey",
+    "signals",
+    "standard",
+    "standardClasses",
+    "steward",
+    "url",
+    "verified",
+]
+
+
+def merge_external_standards(concepts: dict, catalog: dict) -> dict:
+    """Merge the formalized-standards registry (signal domains, standards, scrape targets)."""
+    nodes = catalog.get("nodes") or []
+    for item in nodes:
+        nid = item["id"]
+        kind = item.get("kind") or "standard"
+        maps = [t for t in (item.get("mapsTo") or []) if t]
+        entry = {
+            "n": nid,
+            "l": item.get("label") or nid,
+            "d": (item.get("definition") or "")[:500],
+            "t": kind,
+            "a": kind in {"signalDomain", "standard"},
+            "p": "",
+            "b": "",
+            "k": STANDARD_ROLE.get(kind, "standard"),
+            "layer": "standard",
+            "stdKind": kind,
+            "category": item.get("category"),
+            "mapsTo": maps,
+            "gap": bool(item.get("gap")),
+            "f": {
+                "atomic": False,
+                "combination": bool(maps),
+                "classParent": kind in {"signalDomain", "standard"},
+                "calcTotal": False,
+                "dimensional": False,
+                "ratio": False,
+                "aggregate": False,
+            },
+            "pc": [{"c": t, "o": (j + 1) * 10, "net": "MapsTo"} for j, t in enumerate(maps)],
+            "sc": maps,
+        }
+        for key in STANDARD_PASSTHROUGH:
+            if item.get(key) not in (None, [], ""):
+                entry[key] = item[key]
+        concepts[nid] = entry
+
+        for target in maps:
+            if target in concepts and target != nid:
+                concepts[target].setdefault("standardizedBy", [])
+                if nid not in concepts[target]["standardizedBy"]:
+                    concepts[target]["standardizedBy"].append(nid)
+
+    summary = catalog.get("summary") or {}
+    return {
+        "standardNodes": len(nodes),
+        "signalDomains": summary.get("signalDomains", 0),
+        "signals": summary.get("signals", 0),
+        "standards": summary.get("standards", 0),
+        "standardClasses": summary.get("standardClasses", 0),
+        "scrapedClasses": summary.get("scrapedClasses", 0),
+        "scrapeTargets": summary.get("scrapeTargets", 0),
+        "scrapeTargetsReachable": summary.get("reachableTargets", 0),
+    }
+
+
 def write_summary(data: dict) -> None:
     s = data["summary"]
     lines = [
@@ -619,6 +715,12 @@ def write_summary(data: dict) -> None:
         f"- FIBO curated concepts: **{s.get('fiboConcepts', 0):,}**",
         f"- Discovery nodes: **{s.get('discoveryNodes', 0):,}**",
         f"- Discovery gaps flagged: **{s.get('discoveryGaps', 0):,}**",
+        f"- Signal domains: **{s.get('signalDomains', 0):,}**",
+        f"- Signals: **{s.get('signals', 0):,}**",
+        f"- Formalized standards registered: **{s.get('standards', 0):,}**",
+        f"- Standard key classes: **{s.get('standardClasses', 0):,}**",
+        f"- Scraped classes (from XSD/XMI/JSON): **{s.get('scrapedClasses', 0):,}**",
+        f"- Scrape targets: **{s.get('scrapeTargets', 0):,}**",
         f"- Forest roots: {', '.join(data.get('ontologyRoots') or [])}",
         "",
         "## Layers",
@@ -673,8 +775,20 @@ def build(skip_gaap: bool = False) -> dict:
     else:
         print("No ontology/discovery_catalog.json — run scripts/harvest_discovery_sources.py")
 
-    print("Pruning / restructuring forest for collapsed extensible core (v1.2)…")
-    prune_stats = apply_core_v12(concepts)
+    standards_path = ONTOLOGY / "external_standards_catalog.json"
+    standards_stats = {"standardNodes": 0, "signals": 0, "standards": 0}
+    if not standards_path.exists() and (ONTOLOGY / "external_standards.yaml").exists():
+        print("Standards catalog missing — harvesting registry offline…")
+        import scripts.harvest_external_standards as harvest_standards
+
+        harvest_standards.harvest(try_network=False)
+    if standards_path.exists():
+        standards_stats = merge_external_standards(concepts, load_json(standards_path))
+    else:
+        print("No ontology/external_standards_catalog.json — run scripts/harvest_external_standards.py")
+
+    print("Pruning / restructuring forest for collapsed extensible core + standards (v1.31)…")
+    prune_stats = apply_core_v13(concepts)
 
     layer_counts: dict[str, int] = defaultdict(int)
     kind_counts: dict[str, int] = defaultdict(int)
@@ -693,6 +807,7 @@ def build(skip_gaap: bool = False) -> dict:
             "layerCounts": dict(sorted(layer_counts.items())),
             "kindCounts": dict(sorted(kind_counts.items(), key=lambda x: -x[1])),
             **discovery_stats,
+            **standards_stats,
             **prune_stats,
         }
     )
@@ -704,14 +819,27 @@ def build(skip_gaap: bool = False) -> dict:
             "prunedForest": True,
             "coreGeneralizable": True,
             "coreCollapsed": True,
-            "ontologyVersion": "1.2",
-            "layers": ["gaap", "nongaap", "fibo", "rule", "discovery", "root", "core"],
+            "ontologyVersion": "1.31",
+            "layers": [
+                "gaap",
+                "nongaap",
+                "fibo",
+                "rule",
+                "discovery",
+                "standard",
+                "root",
+                "core",
+            ],
             "defaultBrowseMode": "presentation",
             "notes": (
                 (gaap.get("meta") or {}).get("notes", "")
                 + " v1.2 collapsed extensible core: short BS/IS/CF chains with explicit "
                 "extension hooks for project grow/prune. Specialized concepts remain under "
-                "Reference & Extensions."
+                "Reference & Extensions. v1.3 adds Signal Domains and Standards & Scrape "
+                "Sources driven by ontology/external_standards.yaml. v1.31 expands that "
+                "registry with strategy/ops/governance frameworks (BMM, DMN, VDML, SCOR, "
+                "BIAN, DORA, Open FAIR, COBIT, ITIL 4, SASB/ISSB) and scrapes machine-readable "
+                "XSD/XMI artifacts into standard-class nodes."
             ),
         },
         "summary": summary,

@@ -1,0 +1,1556 @@
+# Registry of formalized ontologies / taxonomies / schemas to scrape for concepts,
+# organized by signal domain. Source of truth for the v1.3 base template tree.
+#
+# `integration` values:
+#   full       - already parsed into the ontology (concepts exist as nodes)
+#   partial    - a curated subset exists; more concepts remain to be scraped
+#   registered - declared here as a scrape target; concepts are curated stubs only
+#
+# Scrape kinds: local | http-json | http-jsonld | http-rdf | http-zip | http-html | manual
+# `verified: false` marks a target whose exact artifact URL still needs confirmation;
+# scripts/harvest_external_standards.py probes every target and records reachability.
+
+version: "2026-v1.31"
+publisher: "project"
+notes: >
+  Signal domains are the underwriting/monitoring surfaces we want machine-readable
+  concepts for. Each signal names the formalized standard(s) that already codify it
+  so concept scraping has an explicit target instead of ad-hoc label matching.
+  v1.31 adds strategy, decision, value-stream, supply-chain, capability, eng-health,
+  risk, governance, service-delivery, and ESG-materiality domains.
+
+standards:
+  - id: us-gaap-xbrl
+    label: FASB US GAAP XBRL Taxonomy
+    steward: FASB
+    formats: [XBRL, XML Schema]
+    integration: full
+    domains: [income_statement, cash_flow, balance_sheet, plan_forecast, reporting_narrative]
+    coverage: >
+      Direct coverage of all statutory line items, plus calculation linkbases used as
+      explicit DAGs for deriving non-GAAP metrics from GAAP tags.
+    scrape:
+      - kind: local
+        url: us-gaap-2026/
+        note: Local FASB taxonomy package parsed by build_viewer_data.py
+      - kind: http-html
+        url: https://xbrl.fasb.org/us-gaap/2026/
+        note: Published taxonomy package index (entry points, linkbases)
+    keyClasses:
+      - id: us-gaap:RevenueFromContractWithCustomerExcludingAssessedTax
+        label: Revenue from Contract with Customer
+        mapsTo: [RevenueFromContractWithCustomerExcludingAssessedTax]
+      - id: us-gaap:CostOfGoodsAndServicesSold
+        label: Cost of Goods and Services Sold
+        mapsTo: [CostOfGoodsAndServicesSold]
+      - id: us-gaap:SellingAndMarketingExpense
+        label: Selling and Marketing Expense
+        mapsTo: [SellingAndMarketingExpense]
+      - id: us-gaap:ResearchAndDevelopmentExpense
+        label: Research and Development Expense
+        mapsTo: [ResearchAndDevelopmentExpense]
+      - id: us-gaap:GeneralAndAdministrativeExpense
+        label: General and Administrative Expense
+        mapsTo: [GeneralAndAdministrativeExpense]
+      - id: us-gaap:AllocatedShareBasedCompensationExpense
+        label: Allocated Share-Based Compensation Expense
+        mapsTo: [AllocatedShareBasedCompensationExpense, ShareBasedCompensation]
+      - id: us-gaap:NetCashProvidedByUsedInOperatingActivities
+        label: Net Cash from Operating Activities
+        mapsTo: [NetCashProvidedByUsedInOperatingActivities]
+      - id: us-gaap:PaymentsToAcquirePropertyPlantAndEquipment
+        label: Capital Expenditures
+        mapsTo: [PaymentsToAcquirePropertyPlantAndEquipment]
+      - id: us-gaap:DeferredRevenue
+        label: Deferred Revenue / Contract Liability
+        mapsTo: [ContractWithCustomerLiability, DeferredRevenue]
+      - id: us-gaap:AccountsReceivableNetCurrent
+        label: Accounts Receivable, Net, Current
+        mapsTo: [AccountsReceivableNetCurrent]
+      - id: xbrl:CalculationLinkbase
+        label: Calculation Linkbase (non-GAAP derivation DAG)
+        note: >
+          Calculation linkbases let non-GAAP metrics be written as explicit DAGs over
+          GAAP tags (e.g. Magic Number from ARR deltas and us-gaap:SellingAndMarketingExpense).
+
+  - id: xbrl-gl
+    label: XBRL Global Ledger Framework (XBRL GL)
+    steward: XBRL International
+    formats: [XML, XBRL]
+    integration: registered
+    domains: [income_statement, plan_forecast, reporting_narrative]
+    coverage: >
+      Represents internal accounting databases rather than final statements. Natively
+      supports plan-vs-actual modelling by tagging any GL row with entryType
+      (Actual | Budget | Forecast | Re-forecast), budget version, scenario and period.
+    scrape:
+      - kind: http-html
+        url: https://www.xbrl.org/the-standard/what/global-ledger/
+        note: Framework overview and module descriptions (gl-cor, gl-bus, gl-muc, gl-taf)
+      - kind: http-html
+        url: https://www.xbrl.org/guidance/xbrl-gl/
+        note: Implementation guidance for GL entry/scenario tagging
+      - kind: http-html
+        url: https://specifications.xbrl.org/
+        note: Specification index — locate the current Global Ledger work product
+    keyClasses:
+      - id: gl-cor:accountingEntries
+        label: Accounting Entries (GL document root)
+      - id: gl-cor:entryHeader
+        label: Entry Header (scenario / posting metadata)
+      - id: gl-cor:entryDetail
+        label: Entry Detail (GL row)
+      - id: gl-cor:entryType
+        label: Entry Type (Actual | Budget | Forecast | Re-forecast)
+      - id: gl-bus:budgetVersion
+        label: Budget Version
+      - id: gl-cor:accountMainID
+        label: Chart of Accounts Identifier
+      - id: gl-cor:postingDate
+        label: Posting Date (report lag / period flags)
+
+  - id: open-saas
+    label: Open-SaaS Metrics Schema
+    steward: Open-source community (GitHub)
+    formats: [JSON Schema]
+    integration: registered
+    verified: false
+    domains: [unit_economics, commercial_pipeline]
+    coverage: >
+      Community JSON Schemas that codify non-GAAP SaaS metrics (CAC, LTV/CAC, magic
+      number, burn multiple, NRR) which GAAP deliberately does not define. Paired with
+      XBRL calculation linkbases so each ratio resolves to GAAP inputs.
+    scrape:
+      - kind: http-json
+        url: https://api.github.com/search/repositories?q=saas+metrics+json-schema&sort=stars
+        note: Repository discovery — exact canonical repo still to be pinned
+      - kind: http-json
+        url: https://api.github.com/search/code?q=magic+number+arr+filename:schema.json
+        note: Schema-file discovery across community repos (needs GitHub token)
+    keyClasses:
+      - id: opensaas:AnnualRecurringRevenue
+        label: Annual Recurring Revenue (ARR)
+        mapsTo: [nongaap:ARR]
+      - id: opensaas:MonthlyRecurringRevenue
+        label: Monthly Recurring Revenue (MRR)
+      - id: opensaas:CustomerAcquisitionCost
+        label: Customer Acquisition Cost (CAC)
+      - id: opensaas:CACPayback
+        label: CAC Payback Period
+      - id: opensaas:LTV_CAC_Ratio
+        label: LTV / CAC Ratio
+      - id: opensaas:MagicNumber
+        label: Magic Number
+        expression: "((ARR_t - ARR_t-1) * 4) / S&M_Spend_t-1"
+      - id: opensaas:BurnMultiple
+        label: Burn Multiple
+        expression: "NetBurn / NetNewARR"
+      - id: opensaas:NetRevenueRetention
+        label: Net Revenue Retention (NRR)
+        mapsTo: [nongaap:NetRevenueRetention]
+      - id: opensaas:RevenueMix
+        label: Revenue Mix (recurring vs non-recurring)
+
+  - id: actus
+    label: ACTUS (Algorithmic Contract Types Unified Standards)
+    steward: ACTUS Financial Research Foundation
+    formats: [JSON, OWL, Algorithmic]
+    integration: registered
+    domains: [cash_flow, balance_sheet]
+    coverage: >
+      Simulates contract-level cash flows (principal, interest, drawdowns, prepayment)
+      from a standardized term dictionary — the missing layer under runway and debt
+      service modelling.
+    scrape:
+      - kind: http-json
+        url: https://raw.githubusercontent.com/actusfrf/actus-dictionary/master/actus-dictionary.json
+        note: Canonical machine-readable dictionary of contract types, terms and events
+      - kind: http-html
+        url: https://www.actusfrf.org/dictionary
+        note: Human-readable dictionary browser
+    keyClasses:
+      - id: actus:PAM
+        label: Principal At Maturity (PAM)
+      - id: actus:LAM
+        label: Linear Amortizer (LAM)
+      - id: actus:ANN
+        label: Annuity (ANN)
+      - id: actus:NAM
+        label: Negative Amortizer (NAM)
+      - id: actus:CLM
+        label: Call Money (CLM)
+      - id: actus:UMP
+        label: Undefined Maturity Profile (UMP)
+      - id: actus:NotionalPrincipal
+        label: Notional Principal (term)
+      - id: actus:NominalInterestRate
+        label: Nominal Interest Rate (term)
+      - id: actus:CycleOfPrincipalRedemption
+        label: Cycle of Principal Redemption (term)
+      - id: actus:IED
+        label: Initial Exchange Date (event)
+      - id: actus:PR
+        label: Principal Redemption (event)
+      - id: actus:IP
+        label: Interest Payment (event)
+
+  - id: ocf
+    label: Open Cap Format (OCF)
+    steward: Open Cap Table Coalition
+    formats: [JSON Schema]
+    integration: registered
+    domains: [balance_sheet]
+    coverage: >
+      Vendor-neutral open schema for equity and cap tables. Represents every stock
+      class, convertible note, SAFE, option pool and dilution event as machine-readable
+      JSON — the standard for equity_events.
+    scrape:
+      - kind: http-json
+        url: https://api.github.com/repos/Open-Cap-Table-Coalition/Open-Cap-Format-OCF/git/trees/main?recursive=1
+        note: Enumerate every schema/*.json object and enum in the OCF repo
+      - kind: http-html
+        url: https://open-cap-table-coalition.github.io/Open-Cap-Format-OCF/
+        note: Published schema documentation
+    keyClasses:
+      - id: ocf:StockClass
+        label: Stock Class
+      - id: ocf:StockIssuance
+        label: Stock Issuance
+      - id: ocf:ConvertibleIssuance
+        label: Convertible Issuance (SAFE / note)
+      - id: ocf:WarrantIssuance
+        label: Warrant Issuance
+      - id: ocf:EquityCompensationIssuance
+        label: Equity Compensation Issuance (option grant)
+      - id: ocf:StockPlan
+        label: Stock Plan (option pool)
+      - id: ocf:VestingTerms
+        label: Vesting Terms
+      - id: ocf:Valuation
+        label: Valuation (409A / round price)
+      - id: ocf:StockClassConversionRight
+        label: Conversion Right (dilution mechanics)
+
+  - id: apqc-pcf
+    label: APQC Process Classification Framework (PCF)
+    steward: APQC
+    formats: [XML, XLSX]
+    integration: registered
+    domains: [commercial_pipeline, team_headcount]
+    coverage: >
+      Codifies cross-industry business processes and their operational KPIs.
+      Category 3.0 (Market and Sell Products and Services) covers pipeline, bookings,
+      win rate and retention process definitions.
+    scrape:
+      - kind: http-html
+        url: https://www.apqc.org/process-performance-management/process-frameworks
+        note: Cross-industry PCF downloads (XLSX/PDF per version)
+      - kind: manual
+        url: https://www.apqc.org/resource-library/resource-listing/apqc-process-classification-framework-pcf-cross-industry-excel-8
+        note: Registration-gated download; parse the XLSX offline into process/KPI nodes
+    keyClasses:
+      - id: apqc:Category_3_0
+        label: 3.0 Market and Sell Products and Services
+      - id: apqc:Process_3_2_2
+        label: 3.2.2 Manage Sales Pipeline
+      - id: apqc:Process_3_5_0
+        label: 3.5 Manage Sales Orders / Bookings
+      - id: apqc:KPI_WinRate
+        label: KPI — Win Rate
+      - id: apqc:KPI_CustomerRetentionRate
+        label: KPI — Customer Retention Rate
+      - id: apqc:KPI_SalesCycleTime
+        label: KPI — Sales Cycle Time
+
+  - id: schema-org
+    label: Schema.org (Action / Offer vocabulary)
+    steward: W3C Schema.org Community Group
+    formats: [JSON-LD, RDF]
+    integration: registered
+    domains: [commercial_pipeline, external_events]
+    coverage: >
+      Publicly crawlable vocabulary for commercial offers, orders, pricing and actions
+      — useful for typing external pricing/partner claims and pipeline artifacts.
+    scrape:
+      - kind: http-jsonld
+        url: https://schema.org/version/latest/schemaorg-current-https.jsonld
+        note: Full vocabulary in JSON-LD (classes, properties, enumerations)
+    keyClasses:
+      - id: schema:Offer
+        label: Offer
+      - id: schema:Demand
+        label: Demand
+      - id: schema:Order
+        label: Order
+      - id: schema:PriceSpecification
+        label: Price Specification
+      - id: schema:SellAction
+        label: Sell Action
+      - id: schema:Organization
+        label: Organization
+      - id: schema:MonetaryAmount
+        label: Monetary Amount
+
+  - id: w3c-org
+    label: W3C Organization Ontology (ORG)
+    steward: W3C
+    formats: [OWL, RDF, Turtle]
+    integration: registered
+    domains: [team_headcount]
+    coverage: >
+      Structures org charts, posts and reporting lines as semantic triples
+      (Person -> holds -> Post -> in -> OrganizationalUnit) with temporal tracking of
+      role changes, so reorgs and leadership events are first-class facts.
+    scrape:
+      - kind: http-rdf
+        url: https://www.w3.org/ns/org.ttl
+        note: Canonical Turtle serialization of the ORG vocabulary
+      - kind: http-html
+        url: https://www.w3.org/TR/vocab-org/
+        note: Specification text for class/property definitions
+    keyClasses:
+      - id: org:Organization
+        label: Organization
+      - id: org:OrganizationalUnit
+        label: Organizational Unit
+      - id: org:Post
+        label: Post (role / seat)
+      - id: org:Membership
+        label: Membership (person-in-post, time bounded)
+      - id: org:reportsTo
+        label: reportsTo
+      - id: org:headOf
+        label: headOf
+      - id: org:hasSubOrganization
+        label: hasSubOrganization
+      - id: org:ChangeEvent
+        label: Change Event (merger / split / reorg)
+
+  - id: iso-30414
+    label: ISO 30414 Human Capital Reporting
+    steward: ISO
+    formats: [Metric Specification]
+    integration: registered
+    domains: [team_headcount]
+    coverage: >
+      Standardizes workforce metric definitions (turnover, FTE, vacancy, cost) so
+      headcount signals are comparable across companies and periods.
+    scrape:
+      - kind: manual
+        url: https://www.iso.org/standard/69338.html
+        note: Standard text is paywalled — curate metric definitions manually
+      - kind: http-html
+        url: https://www.iso.org/obp/ui/#iso:std:iso:30414:ed-1:v1:en
+        note: >
+          Online Browsing Platform preview of the terms and definitions section.
+          Returns 403 to scripted clients — read it in a browser and curate by hand.
+    keyClasses:
+      - id: iso30414:TurnoverRate
+        label: Turnover Rate
+      - id: iso30414:FullTimeEquivalent_FTE
+        label: Full-Time Equivalent (FTE)
+      - id: iso30414:VacancyRate
+        label: Vacancy Rate
+      - id: iso30414:TimeToFillVacantPositions
+        label: Time to Fill Vacant Positions
+      - id: iso30414:WorkforceCosts
+        label: Total Workforce Costs
+      - id: iso30414:CriticalPositionTurnover
+        label: Critical Position Turnover
+      - id: iso30414:LeadershipDepth
+        label: Leadership Depth / Succession Readiness
+
+  - id: fibo
+    label: FIBO (Financial Industry Business Ontology)
+    steward: EDM Council
+    formats: [OWL, RDF]
+    integration: partial
+    domains:
+      [unit_economics, balance_sheet, external_events, reporting_narrative, cash_flow]
+    coverage: >
+      Models contracts, corporate equity and debt, business entities, regulators and
+      financial reporting provenance. Eight curated concepts are already aligned to
+      GAAP/non-GAAP nodes; the modules below are the remaining scrape surface.
+    scrape:
+      - kind: http-zip
+        url: https://github.com/edmcouncil/fibo/archive/refs/tags/master_2026Q1.zip
+        note: Sparse extract already wired in scripts/fetch_external_resources.py
+      - kind: http-rdf
+        url: https://spec.edmcouncil.org/fibo/ontology/FND/Agreements/Contracts/
+        note: Contracts module — recurring payment / contractual term classes
+      - kind: http-rdf
+        url: https://spec.edmcouncil.org/fibo/ontology/FBC/DebtAndEquities/Debt/
+        note: Corporate debt module
+      - kind: http-rdf
+        url: https://spec.edmcouncil.org/fibo/ontology/SEC/Equities/EquityInstruments/
+        note: Corporate equity module
+      - kind: http-rdf
+        url: https://spec.edmcouncil.org/fibo/ontology/BE/LegalEntities/LegalPersons/
+        note: Business entities module
+      - kind: http-rdf
+        url: https://spec.edmcouncil.org/fibo/ontology/FND/Accounting/AccountingEquity/
+        note: Financial reporting / accounting equity module (report provenance)
+      - kind: http-rdf
+        url: https://spec.edmcouncil.org/fibo/ontology/FND/Accounting/CurrencyAmount/
+        note: Monetary amount module (already curated into the fibo layer)
+    keyClasses:
+      - id: fibo-fnd-agr-ctr:RecurringPayment
+        label: Recurring Payment (ARR / MRR basis)
+        mapsTo: [nongaap:ARR]
+      - id: fibo-fbc-dae-dbt:DebtInstrument
+        label: Debt Instrument
+        mapsTo: [nongaap:NetDebt]
+      - id: fibo-fbc-dae-eq:EquityInstrument
+        label: Equity Instrument
+      - id: fibo-be-le-lp:LegalEntity
+        label: Legal Entity
+      - id: fibo-fbc-fbc:RegulatoryAgency
+        label: Regulatory Agency
+      - id: fibo-fnd-acc-cur:MonetaryAmount
+        label: Monetary Amount
+      - id: fibo-fnd-acc-aeq:FinancialReport
+        label: Financial Report (statement provenance)
+
+  - id: fro
+    label: Financial Regulation Ontology (FRO)
+    steward: Jayzed Data Models
+    formats: [OWL, RDF]
+    integration: registered
+    verified: false
+    domains: [external_events, reporting_narrative]
+    coverage: >
+      Bridges legal/regulatory text to FIBO business entities, giving regulatory events
+      and compliance obligations a formal home alongside financial concepts.
+    scrape:
+      - kind: http-html
+        url: https://finregont.com/
+        note: Ontology downloads (Turtle/OWL) and module documentation
+      - kind: http-rdf
+        url: https://finregont.com/fro/
+        note: Module namespace root — confirm exact artifact filenames before parsing
+    keyClasses:
+      - id: fro:Regulation
+        label: Regulation
+      - id: fro:LegalRule
+        label: Legal Rule
+      - id: fro:RegulatoryFiling
+        label: Regulatory Filing
+      - id: fro:ComplianceObligation
+        label: Compliance Obligation
+
+  - id: archimate
+    label: ArchiMate Business Metamodel
+    steward: The Open Group
+    formats: [XML, XSD]
+    integration: registered
+    domains: [external_events]
+    coverage: >
+      Captures the external environment — events, drivers, constraints, contracts and
+      products — so competitive, pricing and partnership signals are typed rather than
+      free text.
+    scrape:
+      - kind: http-html
+        url: https://www.opengroup.org/xsd/archimate/
+        note: Open Exchange File Format XSDs (element and relationship types)
+      - kind: http-html
+        url: https://www.opengroup.org/archimate-forum/archimate-overview
+        note: >
+          Business-layer element definitions. The pubs.opengroup.org specification text
+          requires an account, so parse element/relationship types from the XSDs above.
+    keyClasses:
+      - id: archimate:BusinessEvent
+        label: Business Event
+      - id: archimate:BusinessActor
+        label: Business Actor (competitor / partner)
+      - id: archimate:Constraint
+        label: Constraint (regulatory / contractual)
+      - id: archimate:Driver
+        label: Driver
+      - id: archimate:Assessment
+        label: Assessment (market claim)
+      - id: archimate:Contract
+        label: Contract
+      - id: archimate:Product
+        label: Product (pricing event subject)
+
+  - id: sec-ixbrl
+    label: SEC EDGAR Inline XBRL (iXBRL) & Staff Guidance
+    steward: U.S. Securities and Exchange Commission
+    formats: [iXBRL, JSON, CSV]
+    integration: partial
+    domains: [reporting_narrative, income_statement, plan_forecast]
+    coverage: >
+      Ties footnotes, accounting changes and MD&A management claims back to tagged
+      source paragraphs. Non-GAAP C&DIs are already merged as rule nodes; the datasets
+      below extend coverage to filing-level facts and report lag.
+    scrape:
+      - kind: http-html
+        url: https://www.sec.gov/dera/data/financial-statement-data-sets
+        note: Quarterly statement + footnote datasets (num/pre/sub/tag)
+      - kind: http-json
+        url: https://data.sec.gov/api/xbrl/frames/us-gaap/Revenues/USD/CY2025Q4I.json
+        note: Frames API sample — concept usage across filers
+      - kind: http-html
+        url: https://www.sec.gov/rules-regulations/staff-guidance/corporation-finance-interpretations/non-gaap-financial-measures
+        note: Non-GAAP C&DIs (already integrated as rule nodes)
+    keyClasses:
+      - id: ixbrl:FootnoteTuple
+        label: iXBRL Footnote / Tuple Structure
+      - id: dei:DocumentPeriodEndDate
+        label: Document Period End Date (report lag)
+      - id: sec:AccountingChangeDisclosure
+        label: Accounting Change Disclosure
+      - id: sec:MDandASection
+        label: MD&A Section (management claims)
+
+  - id: iris-plus
+    label: IRIS+ Taxonomy
+    steward: Global Impact Investing Network (GIIN)
+    formats: [JSON, XML, RDF]
+    integration: registered
+    domains: [impact_outcomes]
+    coverage: >
+      The global metric catalog for impact underwriting — standardized outcome and
+      stakeholder indicators with codes that survive across portfolios.
+    scrape:
+      - kind: http-html
+        url: https://iris.thegiin.org/metrics/
+        note: Metric catalog browser (IRIS metric codes, definitions, usage guidance)
+      - kind: manual
+        url: https://iris.thegiin.org/document/iris-catalog-of-metrics/
+        note: Bulk catalog download — parse into metric nodes with PI/OI/OD codes
+    keyClasses:
+      - id: iris:PI4060
+        label: PI4060 — Target Stakeholders
+      - id: iris:OI1234
+        label: OI1234 — Outcome Metric
+      - id: iris:PD_ProductDescription
+        label: PD — Product / Service Description
+      - id: iris:OD_OrganizationDescription
+        label: OD — Organization Description
+      - id: iris:CostPerOutcome
+        label: Cost per Outcome (efficiency indicator)
+
+  - id: imp
+    label: Impact Management Project — Five Dimensions of Impact
+    steward: Impact Frontiers (formerly IMP)
+    formats: [RDF, JSON]
+    integration: registered
+    domains: [impact_outcomes]
+    coverage: >
+      The five-dimension frame (What, Who, How Much, Contribution, Risk) that organizes
+      impact evidence into an auditable path from activity to outcome.
+    scrape:
+      - kind: http-html
+        url: https://impactfrontiers.org/norms/five-dimensions-of-impact/
+        note: Dimension and sub-dimension definitions
+      - kind: http-html
+        url: https://impactfrontiers.org/norms/impact-management-norms/
+        note: Norms text for contribution and risk taxonomies
+    keyClasses:
+      - id: imp:What
+        label: What (outcome and its importance)
+      - id: imp:Who
+        label: Who (stakeholders and baseline)
+      - id: imp:HowMuch
+        label: How Much (scale, depth, duration)
+      - id: imp:Contribution
+        label: Contribution (counterfactual)
+      - id: imp:Risk
+        label: Impact Risk
+
+  # ---- v1.31: Strategy, Ops, Governance frameworks --------------------------------
+
+  - id: bmm
+    label: Business Motivation Model (BMM)
+    steward: Object Management Group (OMG)
+    formats: [XMI, XML, OWL]
+    integration: registered
+    domains: [strategy_motivation]
+    coverage: >
+      Models the why of a business: Vision, Mission, Strategy, Tactics, Goals,
+      Objectives and Business Policies. Lets a bot check whether operational
+      actions align with strategic ends.
+    scrape:
+      - kind: http-html
+        url: https://www.omg.org/spec/BMM/1.3/
+        note: Specification index (PDF + machine-readable XMI)
+      - kind: http-rdf
+        url: https://www.omg.org/spec/BMM/20141108/BMM.xmi
+        note: Normative BMM 1.3 XMI metamodel — scrape packagedElement / class names
+    keyClasses:
+      - id: bmm:Vision
+        label: Vision
+      - id: bmm:Mission
+        label: Mission
+      - id: bmm:Strategy
+        label: Strategy
+      - id: bmm:Tactic
+        label: Tactic
+      - id: bmm:Goal
+        label: Goal
+      - id: bmm:Objective
+        label: Objective
+      - id: bmm:BusinessPolicy
+        label: Business Policy
+      - id: bmm:BusinessRule
+        label: Business Rule
+      - id: bmm:Influencer
+        label: Influencer
+      - id: bmm:Assessment
+        label: Assessment
+
+  - id: dmn
+    label: Decision Model and Notation (DMN)
+    steward: Object Management Group (OMG)
+    formats: [XML Schema, FEEL, XMI]
+    integration: registered
+    domains: [decision_logic]
+    coverage: >
+      Formal standard for operational decision-making. Captures input data,
+      decision requirements diagrams (DRDs) and decision tables so complex
+      business choices can be automated or audited.
+    scrape:
+      - kind: http-html
+        url: https://www.omg.org/spec/DMN/1.5
+        note: DMN 1.5 specification index
+      - kind: http-json
+        url: https://www.omg.org/spec/DMN/20230324/DMN15.xsd
+        note: Normative DMN 1.5 XSD — scrape element / complexType names
+      - kind: http-json
+        url: https://raw.githubusercontent.com/omg-dmn-taskforce/omg-dmn-spec/v1.5/xsd/DMN15.xsd
+        note: GitHub mirror of DMN 1.5 XSD (stable raw URL)
+    keyClasses:
+      - id: dmn:Definitions
+        label: Definitions (decision model root)
+      - id: dmn:Decision
+        label: Decision
+      - id: dmn:DecisionTable
+        label: Decision Table
+      - id: dmn:BusinessKnowledgeModel
+        label: Business Knowledge Model
+      - id: dmn:InputData
+        label: Input Data
+      - id: dmn:KnowledgeSource
+        label: Knowledge Source
+      - id: dmn:InformationRequirement
+        label: Information Requirement
+      - id: dmn:LiteralExpression
+        label: Literal Expression (FEEL)
+      - id: dmn:HitPolicy
+        label: Hit Policy
+
+  - id: vdml
+    label: Value Delivery Modeling Language (VDML)
+    steward: Object Management Group (OMG)
+    formats: [MOF, XML Schema, XMI]
+    integration: registered
+    domains: [value_streams]
+    coverage: >
+      Models how capabilities and activities create, aggregate and exchange
+      economic value across internal units and partner ecosystems.
+    scrape:
+      - kind: http-html
+        url: https://www.omg.org/spec/VDML/
+        note: Specification index
+      - kind: http-html
+        url: https://www.omg.org/spec/VDML/1.1/
+        note: VDML 1.1 formal version page (machine-readable links)
+      - kind: http-rdf
+        url: https://www.omg.org/spec/VDML/20180201/vdml.xmi
+        note: Normative VDML 1.1 XMI metamodel — scrape Class names
+    keyClasses:
+      - id: vdml:ValueProposition
+        label: Value Proposition
+      - id: vdml:ValueStream
+        label: Value Stream
+      - id: vdml:Capability
+        label: Capability
+      - id: vdml:Activity
+        label: Activity
+      - id: vdml:Role
+        label: Role
+      - id: vdml:Collaboration
+        label: Collaboration
+      - id: vdml:DeliverableFlow
+        label: Deliverable Flow
+      - id: vdml:BusinessItem
+        label: Business Item
+      - id: vdml:MeasurableElement
+        label: Measurable Element
+
+  - id: scor-ds
+    label: SCOR DS (Supply Chain Operations Reference)
+    steward: ASCM (Association for Supply Chain Management)
+    formats: [Structured Metric Taxonomy]
+    integration: registered
+    domains: [supply_chain]
+    coverage: >
+      Standardized language for end-to-end supply chain health. Codifies
+      processes (Plan, Source, Make, Deliver, Return, Enable) and performance
+      attributes (Reliability, Responsiveness, Agility, Cost, Asset Management).
+    scrape:
+      - kind: http-html
+        url: https://www.ascm.org/corporate-transformation/standards-tools/scor-ds/
+        note: SCOR Digital Standard overview and process framework
+      - kind: manual
+        url: https://www.ascm.org/learning-development/certifications-credentials/scor-p/
+        note: Full process/metric catalog is membership-gated — curate key classes offline
+    keyClasses:
+      - id: scor:Plan
+        label: Plan (sP)
+      - id: scor:Source
+        label: Source (sS)
+      - id: scor:Make
+        label: Make (sM)
+      - id: scor:Deliver
+        label: Deliver (sD)
+      - id: scor:Return
+        label: Return (sR)
+      - id: scor:Enable
+        label: Enable (sE)
+      - id: scor:Reliability
+        label: Performance — Reliability
+      - id: scor:Responsiveness
+        label: Performance — Responsiveness
+      - id: scor:Agility
+        label: Performance — Agility
+      - id: scor:Cost
+        label: Performance — Cost
+      - id: scor:AssetManagement
+        label: Performance — Asset Management Efficiency
+
+  - id: bian
+    label: BIAN (Banking Industry Architecture Network)
+    steward: BIAN Association
+    formats: [OpenAPI, ArchiMate, JSON]
+    integration: registered
+    domains: [capability_architecture]
+    coverage: >
+      Service Landscape taxonomy for discrete, non-overlapping Business
+      Capabilities and service domains. Gold standard for capability maps in
+      financial services; reusable pattern for any capability-oriented model.
+    scrape:
+      - kind: http-html
+        url: https://bian.org/
+        note: Association home — Service Landscape overview
+      - kind: http-html
+        url: https://bian.org/servicelandscape/
+        note: Interactive Service Landscape browser
+      - kind: http-json
+        url: https://api.github.com/repos/bian-official/public/contents/
+        note: Public BIAN GitHub content listing (OpenAPI / ArchiMate extracts)
+    keyClasses:
+      - id: bian:BusinessArea
+        label: Business Area
+      - id: bian:BusinessDomain
+        label: Business Domain
+      - id: bian:ServiceDomain
+        label: Service Domain
+      - id: bian:BusinessCapability
+        label: Business Capability
+      - id: bian:ControlRecord
+        label: Control Record
+      - id: bian:ServiceOperation
+        label: Service Operation
+      - id: bian:BehavioralView
+        label: Behavioral View
+
+  - id: dora
+    label: DORA Metrics Taxonomy (DevOps Research & Assessment)
+    steward: DORA / Google Cloud
+    formats: [JSON Schema, Metric Spec]
+    integration: registered
+    domains: [eng_health]
+    coverage: >
+      Quantifies software delivery performance and operational stability via
+      four key metrics: Deployment Frequency, Lead Time for Changes, Change
+      Failure Rate, and Time to Restore Service (MTTR).
+    scrape:
+      - kind: http-html
+        url: https://dora.dev/guides/dora-metrics/
+        note: Canonical DORA metrics definitions and guidance
+      - kind: http-html
+        url: https://dora.dev/research/
+        note: Research / State of DevOps reports (metric catalogs)
+      - kind: http-json
+        url: https://raw.githubusercontent.com/GoogleCloudPlatform/fourkeys/main/README.md
+        note: Four Keys project — open implementation of DORA metrics pipeline
+    keyClasses:
+      - id: dora:DeploymentFrequency
+        label: Deployment Frequency
+      - id: dora:LeadTimeForChanges
+        label: Lead Time for Changes
+      - id: dora:ChangeFailureRate
+        label: Change Failure Rate
+      - id: dora:TimeToRestoreService
+        label: Time to Restore Service (MTTR)
+      - id: dora:Reliability
+        label: Reliability (fifth key / ops)
+      - id: dora:Throughput
+        label: Throughput (composite)
+      - id: dora:Stability
+        label: Stability (composite)
+
+  - id: open-fair
+    label: Open FAIR Ontology (Factor Analysis of Information Risk)
+    steward: The Open Group
+    formats: [XML, OWL, PDF Taxonomy]
+    integration: registered
+    domains: [risk_exposure]
+    coverage: >
+      Formal taxonomy for quantitative risk. Breaks risk into Loss Event
+      Frequency (Threat Event Frequency × Vulnerability) and Loss Magnitude
+      (Primary vs Secondary Losses). Machine-readable OWL is community-curated;
+      normative O-RT / O-RA are PDF standards.
+    scrape:
+      - kind: http-html
+        url: https://www.opengroup.org/open-fair
+        note: Open FAIR Body of Knowledge overview
+      - kind: http-html
+        url: https://publications.opengroup.org/standards/open-fair-standards
+        note: O-RT (Risk Taxonomy) and O-RA (Risk Analysis) standard downloads
+      - kind: manual
+        url: https://publications.opengroup.org/c20a
+        note: Risk Taxonomy (O-RT) PDF — curate key classes from taxonomy tables
+    keyClasses:
+      - id: fair:Risk
+        label: Risk
+      - id: fair:LossEventFrequency
+        label: Loss Event Frequency (LEF)
+      - id: fair:ThreatEventFrequency
+        label: Threat Event Frequency (TEF)
+      - id: fair:Vulnerability
+        label: Vulnerability
+      - id: fair:LossMagnitude
+        label: Loss Magnitude (LM)
+      - id: fair:PrimaryLoss
+        label: Primary Loss
+      - id: fair:SecondaryLoss
+        label: Secondary Loss
+      - id: fair:ThreatActor
+        label: Threat Actor
+      - id: fair:Asset
+        label: Asset (at risk)
+
+  - id: cobit
+    label: COBIT 2019 Framework
+    steward: ISACA
+    formats: [Structured Governance Taxonomy]
+    integration: registered
+    domains: [enterprise_governance]
+    coverage: >
+      Maps governance objectives (Evaluate, Direct, Monitor) and management
+      objectives (Align, Plan, Build, Run, Monitor) so value creation is
+      balanced against risk and resource usage.
+    scrape:
+      - kind: http-html
+        url: https://www.isaca.org/resources/cobit
+        note: COBIT overview and publication index
+      - kind: manual
+        url: https://www.isaca.org/resources/cobit/cobit-2019-framework-publications
+        note: Framework publications are membership/purchase gated — curate objectives offline
+    keyClasses:
+      - id: cobit:EDM
+        label: Evaluate, Direct and Monitor (governance)
+      - id: cobit:APO
+        label: Align, Plan and Organize
+      - id: cobit:BAI
+        label: Build, Acquire and Implement
+      - id: cobit:DSS
+        label: Deliver, Service and Support
+      - id: cobit:MEA
+        label: Monitor, Evaluate and Assess
+      - id: cobit:GovernanceObjective
+        label: Governance Objective
+      - id: cobit:ManagementObjective
+        label: Management Objective
+      - id: cobit:DesignFactor
+        label: Design Factor
+
+  - id: itil4
+    label: ITIL 4 Service Value System (SVS)
+    steward: AXELOS / PeopleCert
+    formats: [Process Taxonomy]
+    integration: registered
+    domains: [service_delivery]
+    coverage: >
+      Codifies service management practices, service catalog entries,
+      incident/problem workflows and SLA metrics for internal service health.
+    scrape:
+      - kind: http-html
+        url: https://www.axelos.com/certifications/itil-service-management/what-is-itil
+        note: ITIL 4 overview and SVS description
+      - kind: http-html
+        url: https://www.axelos.com/certifications/itil-service-management/itil-4-foundation
+        note: ITIL 4 Foundation overview (AXELOS / PeopleCert)
+      - kind: manual
+        url: https://www.axelos.com/resource-hub/white-paper/itil-4-practices
+        note: Practice guides are gated — curate core practices offline
+    keyClasses:
+      - id: itil:ServiceValueSystem
+        label: Service Value System (SVS)
+      - id: itil:ServiceValueChain
+        label: Service Value Chain
+      - id: itil:IncidentManagement
+        label: Incident Management
+      - id: itil:ProblemManagement
+        label: Problem Management
+      - id: itil:ChangeEnablement
+        label: Change Enablement
+      - id: itil:ServiceLevelManagement
+        label: Service Level Management
+      - id: itil:ServiceCatalog
+        label: Service Catalog
+      - id: itil:SLA
+        label: Service Level Agreement (SLA)
+      - id: itil:ContinualImprovement
+        label: Continual Improvement
+
+  - id: sasb-issb
+    label: SASB / ISSB Sustainability Taxonomy
+    steward: IFRS Foundation (ISSB)
+    formats: [XBRL, XML]
+    integration: registered
+    domains: [esg_materiality]
+    coverage: >
+      Identifies ESG issues most relevant to financial performance and
+      enterprise value across 77 industries. Complements IRIS+/IMP (impact
+      underwriting) with financially material sustainability disclosure tags.
+    scrape:
+      - kind: http-html
+        url: https://www.ifrs.org/issued-standards/sasb-standards/sasb-standards-taxonomy/
+        note: SASB Standards Taxonomy download page (XBRL package)
+      - kind: http-html
+        url: https://www.ifrs.org/issued-standards/ifrs-sustainability-standards-navigator/
+        note: IFRS Sustainability Disclosure Standards navigator (S1/S2)
+      - kind: http-html
+        url: https://sasb.ifrs.org/standards/download/
+        note: Industry standards download — materiality map by sector
+    keyClasses:
+      - id: sasb:Industry
+        label: Industry (77-industry classification)
+      - id: sasb:DisclosureTopic
+        label: Disclosure Topic
+      - id: sasb:AccountingMetric
+        label: Accounting Metric
+      - id: sasb:ActivityMetric
+        label: Activity Metric
+      - id: issb:IFRS_S1
+        label: IFRS S1 — General Sustainability Disclosures
+      - id: issb:IFRS_S2
+        label: IFRS S2 — Climate-related Disclosures
+      - id: issb:Governance
+        label: Governance (TCFD/ISSB pillar)
+      - id: issb:Strategy
+        label: Strategy (TCFD/ISSB pillar)
+      - id: issb:RiskManagement
+        label: Risk Management (TCFD/ISSB pillar)
+      - id: issb:MetricsAndTargets
+        label: Metrics and Targets (TCFD/ISSB pillar)
+
+signalDomains:
+  - id: income_statement
+    order: 1
+    label: Income Statement
+    description: Statutory earnings lines plus the spend splits underwriting cares about.
+    primaryStandards: [us-gaap-xbrl, xbrl-gl]
+    signals:
+      - key: rev
+        label: Revenue
+        gaap: [RevenueFromContractWithCustomerExcludingAssessedTax, Revenues]
+        classes: [us-gaap:RevenueFromContractWithCustomerExcludingAssessedTax]
+      - key: cogs
+        label: Cost of Revenue
+        gaap: [CostOfGoodsAndServicesSold, CostOfRevenue]
+        classes: [us-gaap:CostOfGoodsAndServicesSold]
+      - key: opex
+        label: Operating Expenses
+        gaap: [OperatingExpenses]
+        classes: [gl-cor:entryDetail]
+      - key: sm_spend
+        label: Sales & Marketing Spend
+        gaap: [SellingAndMarketingExpense]
+        classes: [us-gaap:SellingAndMarketingExpense]
+      - key: rd_spend
+        label: R&D Spend
+        gaap: [ResearchAndDevelopmentExpense]
+        classes: [us-gaap:ResearchAndDevelopmentExpense]
+      - key: ga_spend
+        label: G&A Spend
+        gaap: [GeneralAndAdministrativeExpense]
+        classes: [us-gaap:GeneralAndAdministrativeExpense]
+      - key: sbc
+        label: Stock-Based Compensation
+        gaap: [AllocatedShareBasedCompensationExpense, ShareBasedCompensation]
+        classes: [us-gaap:AllocatedShareBasedCompensationExpense]
+      - key: ebitda
+        label: EBITDA
+        nongaap: [nongaap:EBITDA, nongaap:AdjustedEBITDA]
+        classes: [xbrl:CalculationLinkbase, fibo-fnd-acc-cur:MonetaryAmount]
+      - key: restatements
+        label: Restatements
+        gaap: [PriorPeriodReclassificationAdjustment]
+        classes: [sec:AccountingChangeDisclosure, gl-cor:entryType]
+
+  - id: unit_economics
+    order: 2
+    label: Unit Economics
+    description: Non-GAAP SaaS ratios codified by community schemas and FIBO contract terms.
+    primaryStandards: [open-saas, fibo]
+    signals:
+      - key: arr
+        label: Annual Recurring Revenue
+        nongaap: [nongaap:ARR]
+        classes: [opensaas:AnnualRecurringRevenue, fibo-fnd-agr-ctr:RecurringPayment]
+      - key: rev_mix
+        label: Revenue Mix
+        gaap: [RevenueFromContractWithCustomerExcludingAssessedTax]
+        classes: [opensaas:RevenueMix]
+      - key: cac
+        label: Customer Acquisition Cost
+        gaap: [SellingAndMarketingExpense]
+        classes: [opensaas:CustomerAcquisitionCost]
+      - key: cac_payback
+        label: CAC Payback
+        classes: [opensaas:CACPayback]
+      - key: ltv_cac
+        label: LTV / CAC
+        classes: [opensaas:LTV_CAC_Ratio]
+      - key: burn_mult
+        label: Burn Multiple
+        nongaap: [nongaap:CashBurn]
+        classes: [opensaas:BurnMultiple]
+      - key: magic_no
+        label: Magic Number
+        gaap: [SellingAndMarketingExpense]
+        classes: [opensaas:MagicNumber, xbrl:CalculationLinkbase]
+
+  - id: cash_flow
+    order: 3
+    label: Cash Flow & Runway
+    description: GAAP cash flow sections plus contract-level simulation for runway and debt service.
+    primaryStandards: [actus, us-gaap-xbrl]
+    signals:
+      - key: burn
+        label: Cash Burn
+        nongaap: [nongaap:CashBurn, nongaap:CashBurnCapEx]
+        classes: [us-gaap:NetCashProvidedByUsedInOperatingActivities]
+      - key: norm_burn
+        label: Normalized Burn
+        nongaap: [nongaap:CashBurn]
+        classes: [gl-cor:entryType]
+      - key: runway
+        label: Runway
+        classes: [actus:PAM, actus:CycleOfPrincipalRedemption]
+      - key: ocf
+        label: Operating Cash Flow
+        gaap: [NetCashProvidedByUsedInOperatingActivities]
+        classes: [us-gaap:NetCashProvidedByUsedInOperatingActivities]
+      - key: capex
+        label: Capital Expenditures
+        gaap: [PaymentsToAcquirePropertyPlantAndEquipment]
+        classes: [us-gaap:PaymentsToAcquirePropertyPlantAndEquipment]
+      - key: fin_flows
+        label: Financing Flows
+        gaap: [NetCashProvidedByUsedInFinancingActivities]
+        classes: [actus:IED, actus:PR]
+      - key: debt_svc
+        label: Debt Service
+        gaap: [InterestAndDebtExpense, InterestExpense]
+        classes: [actus:IP, actus:NominalInterestRate, actus:LAM]
+
+  - id: balance_sheet
+    order: 4
+    label: Balance Sheet
+    description: Position lines plus the open equity/cap-table schema for dilution events.
+    primaryStandards: [ocf, fibo, us-gaap-xbrl]
+    signals:
+      - key: cash
+        label: Cash & Equivalents
+        gaap: [CashAndCashEquivalentsAtCarryingValue]
+      - key: ar
+        label: Accounts Receivable
+        gaap: [AccountsReceivableNetCurrent]
+        classes: [us-gaap:AccountsReceivableNetCurrent]
+      - key: ap
+        label: Accounts Payable
+        gaap: [AccountsPayableCurrent]
+      - key: dso
+        label: Days Sales Outstanding
+        gaap: [AccountsReceivableNetCurrent]
+        classes: [xbrl:CalculationLinkbase]
+      - key: dr_bal
+        label: Deferred Revenue Balance
+        gaap: [ContractWithCustomerLiability, DeferredRevenue]
+        classes: [us-gaap:DeferredRevenue]
+      - key: billings
+        label: Billings
+        gaap: [ContractWithCustomerLiability]
+        classes: [opensaas:AnnualRecurringRevenue]
+      - key: debt_sched
+        label: Debt Schedule
+        gaap: [LongTermDebt, LongTermDebtAndCapitalLeaseObligations]
+        classes: [fibo-fbc-dae-dbt:DebtInstrument, actus:PAM, actus:NotionalPrincipal]
+      - key: equity_events
+        label: Equity Events (SAFEs, notes, options)
+        gaap: [StockholdersEquity]
+        classes:
+          - ocf:StockIssuance
+          - ocf:ConvertibleIssuance
+          - ocf:WarrantIssuance
+          - ocf:StockPlan
+          - fibo-fbc-dae-eq:EquityInstrument
+
+  - id: commercial_pipeline
+    order: 5
+    label: Commercial & Pipeline
+    description: Sales process and retention KPIs codified by APQC PCF and schema.org commerce types.
+    primaryStandards: [apqc-pcf, schema-org]
+    signals:
+      - key: bookings
+        label: Bookings
+        classes: [apqc:Process_3_5_0, schema:Order]
+      - key: pipeline
+        label: Pipeline
+        classes: [apqc:Process_3_2_2, schema:Demand]
+      - key: logos
+        label: Customer Logos
+        classes: [schema:Organization]
+      - key: grr
+        label: Gross Revenue Retention
+        classes: [apqc:KPI_CustomerRetentionRate]
+      - key: nrr
+        label: Net Revenue Retention
+        nongaap: [nongaap:NetRevenueRetention]
+        classes: [opensaas:NetRevenueRetention, apqc:KPI_CustomerRetentionRate]
+      - key: acv
+        label: Average Contract Value
+        classes: [schema:PriceSpecification, fibo-fnd-agr-ctr:RecurringPayment]
+      - key: sales_cycle
+        label: Sales Cycle Length
+        classes: [apqc:KPI_SalesCycleTime]
+      - key: win_rate
+        label: Win Rate
+        classes: [apqc:KPI_WinRate, schema:SellAction]
+
+  - id: team_headcount
+    order: 6
+    label: Team & Headcount
+    description: Org structure as triples (W3C ORG) with ISO 30414 workforce metric definitions.
+    primaryStandards: [w3c-org, iso-30414]
+    signals:
+      - key: headcount
+        label: Headcount
+        gaap: [LaborAndRelatedExpense]
+        classes: [iso30414:FullTimeEquivalent_FTE, org:Membership]
+      - key: hc_plan
+        label: Headcount Plan
+        classes: [org:Post, gl-bus:budgetVersion]
+      - key: leadership_events
+        label: Leadership Events
+        classes: [org:headOf, org:Post, iso30414:LeadershipDepth]
+      - key: vacancies
+        label: Vacancies
+        classes: [iso30414:VacancyRate, iso30414:TimeToFillVacantPositions, org:Post]
+      - key: attrition
+        label: Attrition
+        classes: [iso30414:TurnoverRate, iso30414:CriticalPositionTurnover]
+      - key: reorg_events
+        label: Reorg Events
+        classes: [org:ChangeEvent, org:hasSubOrganization, org:reportsTo]
+
+  - id: external_events
+    order: 7
+    label: External Events
+    description: Competitive, pricing, regulatory and partnership events typed by FIBO/FRO and ArchiMate.
+    primaryStandards: [fibo, fro, archimate]
+    signals:
+      - key: comp_events
+        label: Competitive Events
+        classes: [archimate:BusinessActor, archimate:BusinessEvent]
+      - key: pricing_events
+        label: Pricing Events
+        classes: [archimate:Product, schema:PriceSpecification, schema:Offer]
+      - key: reg_events
+        label: Regulatory Events
+        classes: [fibo-fbc-fbc:RegulatoryAgency, fro:Regulation, archimate:Constraint]
+      - key: partner_events
+        label: Partnership Events
+        classes: [archimate:Contract, fibo-be-le-lp:LegalEntity]
+      - key: market_claims
+        label: Market Claims
+        classes: [archimate:Assessment, archimate:Driver]
+
+  - id: plan_forecast
+    order: 8
+    label: Plan & Forecast
+    description: >
+      Plan vs actual variance modelling. XBRL GL attaches entryType, budget version and
+      scenario flags to any GL concept, so variance is standardized across any chart of accounts.
+    primaryStandards: [xbrl-gl]
+    signals:
+      - key: plan_rev
+        label: Planned Revenue
+        gaap: [RevenueFromContractWithCustomerExcludingAssessedTax]
+        classes: [gl-cor:entryType, gl-bus:budgetVersion]
+      - key: plan_opex
+        label: Planned Operating Expenses
+        gaap: [OperatingExpenses]
+        classes: [gl-cor:entryType, gl-cor:accountMainID]
+      - key: plan_burn
+        label: Planned Burn
+        nongaap: [nongaap:CashBurn]
+        classes: [gl-cor:entryType]
+      - key: milestones
+        label: Milestones
+        classes: [gl-cor:postingDate, archimate:BusinessEvent]
+      - key: rf_versions
+        label: Re-forecast Versions
+        classes: [gl-bus:budgetVersion, gl-cor:entryHeader]
+      - key: variances
+        label: Plan vs Actual Variances
+        classes: [gl-cor:entryType, xbrl:CalculationLinkbase]
+
+  - id: reporting_narrative
+    order: 9
+    label: Reporting & Narrative
+    description: >
+      Footnotes, accounting changes and MD&A claims mapped to source paragraphs via
+      iXBRL tuple structures and FIBO provenance concepts.
+    primaryStandards: [sec-ixbrl, fibo]
+    signals:
+      - key: gl_anomalies
+        label: GL Anomalies
+        classes: [gl-cor:entryDetail, gl-cor:entryType]
+      - key: reclass_events
+        label: Reclassification Events
+        gaap: [PriorPeriodReclassificationAdjustment]
+        classes: [sec:AccountingChangeDisclosure, gl-cor:accountMainID]
+      - key: coa_changes
+        label: Chart of Accounts Changes
+        classes: [gl-cor:accountMainID, gl-cor:entryHeader]
+      - key: report_lag
+        label: Reporting Lag
+        classes: [dei:DocumentPeriodEndDate, gl-cor:postingDate]
+      - key: mdna_claims
+        label: MD&A Claims
+        classes: [sec:MDandASection, ixbrl:FootnoteTuple, fibo-fnd-acc-aeq:FinancialReport]
+
+  - id: impact_outcomes
+    order: 10
+    label: Impact & Outcomes
+    description: Impact underwriting via IRIS+ metric codes and the IMP five dimensions.
+    primaryStandards: [iris-plus, imp]
+    signals:
+      - key: reach
+        label: Reach
+        classes: [iris:PI4060, imp:Who]
+      - key: outcomes
+        label: Outcomes
+        classes: [iris:OI1234, imp:What]
+      - key: underserved_share
+        label: Underserved Share
+        classes: [iris:PI4060, imp:Who]
+      - key: cost_per_outcome
+        label: Cost per Outcome
+        classes: [iris:CostPerOutcome, imp:HowMuch]
+      - key: memo_impact_path
+        label: Memo Impact Path
+        classes: [imp:Contribution, imp:Risk, iris:PD_ProductDescription]
+
+  # ---- v1.31 signal domains -------------------------------------------------------
+
+  - id: strategy_motivation
+    order: 11
+    label: Strategy & Motivation
+    description: >
+      The why of the business — vision through policies — so operational actions
+      can be checked for strategic alignment (BMM).
+    primaryStandards: [bmm]
+    signals:
+      - key: vision
+        label: Vision
+        classes: [bmm:Vision]
+      - key: mission
+        label: Mission
+        classes: [bmm:Mission]
+      - key: strategy
+        label: Strategy
+        classes: [bmm:Strategy]
+      - key: tactics
+        label: Tactics
+        classes: [bmm:Tactic]
+      - key: goals
+        label: Goals
+        classes: [bmm:Goal]
+      - key: objectives
+        label: Objectives
+        classes: [bmm:Objective]
+      - key: business_policies
+        label: Business Policies
+        classes: [bmm:BusinessPolicy, bmm:BusinessRule]
+      - key: influencers
+        label: Influencers & Assessments
+        classes: [bmm:Influencer, bmm:Assessment, archimate:Driver]
+
+  - id: decision_logic
+    order: 12
+    label: Decision Logic & Rules
+    description: >
+      Formal operational decision-making — DRDs, decision tables and FEEL
+      expressions that automate or audit complex business choices (DMN).
+    primaryStandards: [dmn]
+    signals:
+      - key: decisions
+        label: Decisions
+        classes: [dmn:Decision]
+      - key: decision_tables
+        label: Decision Tables
+        classes: [dmn:DecisionTable, dmn:HitPolicy]
+      - key: input_data
+        label: Input Data
+        classes: [dmn:InputData]
+      - key: business_knowledge
+        label: Business Knowledge Models
+        classes: [dmn:BusinessKnowledgeModel, dmn:KnowledgeSource]
+      - key: feel_expressions
+        label: FEEL Expressions
+        classes: [dmn:LiteralExpression]
+      - key: information_requirements
+        label: Information Requirements
+        classes: [dmn:InformationRequirement]
+
+  - id: value_streams
+    order: 13
+    label: Value Creation Streams
+    description: >
+      How capabilities and activities create and exchange economic value across
+      departments and partners (VDML).
+    primaryStandards: [vdml]
+    signals:
+      - key: value_propositions
+        label: Value Propositions
+        classes: [vdml:ValueProposition]
+      - key: value_streams
+        label: Value Streams
+        classes: [vdml:ValueStream]
+      - key: capabilities
+        label: Capabilities
+        classes: [vdml:Capability, bian:BusinessCapability]
+      - key: activities
+        label: Activities
+        classes: [vdml:Activity]
+      - key: collaborations
+        label: Collaborations
+        classes: [vdml:Collaboration, vdml:Role]
+      - key: deliverable_flows
+        label: Deliverable Flows
+        classes: [vdml:DeliverableFlow, vdml:BusinessItem]
+
+  - id: supply_chain
+    order: 14
+    label: Supply Chain Operations
+    description: >
+      End-to-end supply chain health via SCOR DS processes and performance
+      attributes (Plan, Source, Make, Deliver, Return, Enable).
+    primaryStandards: [scor-ds]
+    signals:
+      - key: plan_ops
+        label: Plan
+        classes: [scor:Plan]
+      - key: source
+        label: Source
+        classes: [scor:Source]
+      - key: make
+        label: Make
+        classes: [scor:Make]
+      - key: deliver
+        label: Deliver
+        classes: [scor:Deliver]
+      - key: return_ops
+        label: Return
+        classes: [scor:Return]
+      - key: enable
+        label: Enable
+        classes: [scor:Enable]
+      - key: reliability
+        label: Reliability
+        classes: [scor:Reliability]
+      - key: responsiveness
+        label: Responsiveness
+        classes: [scor:Responsiveness]
+      - key: agility
+        label: Agility
+        classes: [scor:Agility]
+
+  - id: capability_architecture
+    order: 15
+    label: Capability Architecture
+    description: >
+      Discrete, non-overlapping business capabilities and service domains
+      (BIAN Service Landscape; ArchiMate-compatible).
+    primaryStandards: [bian, archimate]
+    signals:
+      - key: business_areas
+        label: Business Areas
+        classes: [bian:BusinessArea]
+      - key: business_domains
+        label: Business Domains
+        classes: [bian:BusinessDomain]
+      - key: service_domains
+        label: Service Domains
+        classes: [bian:ServiceDomain]
+      - key: business_capabilities
+        label: Business Capabilities
+        classes: [bian:BusinessCapability, vdml:Capability]
+      - key: service_operations
+        label: Service Operations
+        classes: [bian:ServiceOperation, bian:ControlRecord]
+      - key: behavioral_views
+        label: Behavioral Views
+        classes: [bian:BehavioralView]
+
+  - id: eng_health
+    order: 16
+    label: Tech & Software Engineering Health
+    description: >
+      Software delivery performance and operational stability via DORA metrics
+      (deployment frequency, lead time, change failure rate, MTTR).
+    primaryStandards: [dora]
+    signals:
+      - key: deploy_freq
+        label: Deployment Frequency
+        classes: [dora:DeploymentFrequency]
+      - key: lead_time
+        label: Lead Time for Changes
+        classes: [dora:LeadTimeForChanges]
+      - key: change_fail_rate
+        label: Change Failure Rate
+        classes: [dora:ChangeFailureRate]
+      - key: mttr
+        label: Time to Restore Service (MTTR)
+        classes: [dora:TimeToRestoreService]
+      - key: throughput
+        label: Throughput
+        classes: [dora:Throughput, dora:DeploymentFrequency]
+      - key: stability
+        label: Stability
+        classes: [dora:Stability, dora:Reliability]
+
+  - id: risk_exposure
+    order: 17
+    label: Risk & Quantitative Exposure
+    description: >
+      Quantitative risk modelling via Open FAIR — Loss Event Frequency and Loss
+      Magnitude decomposed into threat, vulnerability and loss components.
+    primaryStandards: [open-fair]
+    signals:
+      - key: risk
+        label: Risk
+        classes: [fair:Risk]
+      - key: loss_event_freq
+        label: Loss Event Frequency
+        classes: [fair:LossEventFrequency, fair:ThreatEventFrequency, fair:Vulnerability]
+      - key: loss_magnitude
+        label: Loss Magnitude
+        classes: [fair:LossMagnitude, fair:PrimaryLoss, fair:SecondaryLoss]
+      - key: threat_actors
+        label: Threat Actors
+        classes: [fair:ThreatActor]
+      - key: assets_at_risk
+        label: Assets at Risk
+        classes: [fair:Asset]
+
+  - id: enterprise_governance
+    order: 18
+    label: Enterprise Governance & Controls
+    description: >
+      Governance and management objectives that balance value creation against
+      risk and resource usage (COBIT 2019 EDM / APO / BAI / DSS / MEA).
+    primaryStandards: [cobit]
+    signals:
+      - key: edm
+        label: Evaluate, Direct and Monitor
+        classes: [cobit:EDM, cobit:GovernanceObjective]
+      - key: apo
+        label: Align, Plan and Organize
+        classes: [cobit:APO, cobit:ManagementObjective]
+      - key: bai
+        label: Build, Acquire and Implement
+        classes: [cobit:BAI]
+      - key: dss
+        label: Deliver, Service and Support
+        classes: [cobit:DSS]
+      - key: mea
+        label: Monitor, Evaluate and Assess
+        classes: [cobit:MEA]
+      - key: design_factors
+        label: Design Factors
+        classes: [cobit:DesignFactor]
+
+  - id: service_delivery
+    order: 19
+    label: IT & Operational Service Delivery
+    description: >
+      Service management practices, catalog entries, incident/problem workflows
+      and SLA metrics (ITIL 4 SVS).
+    primaryStandards: [itil4]
+    signals:
+      - key: service_value_system
+        label: Service Value System
+        classes: [itil:ServiceValueSystem, itil:ServiceValueChain]
+      - key: incidents
+        label: Incidents
+        classes: [itil:IncidentManagement]
+      - key: problems
+        label: Problems
+        classes: [itil:ProblemManagement]
+      - key: changes
+        label: Change Enablement
+        classes: [itil:ChangeEnablement]
+      - key: sla
+        label: Service Level Agreements
+        classes: [itil:SLA, itil:ServiceLevelManagement]
+      - key: service_catalog
+        label: Service Catalog
+        classes: [itil:ServiceCatalog]
+      - key: continual_improvement
+        label: Continual Improvement
+        classes: [itil:ContinualImprovement]
+
+  - id: esg_materiality
+    order: 20
+    label: Sustainability & ESG Materiality
+    description: >
+      Financially material ESG issues by industry (SASB / ISSB). Complements
+      Impact & Outcomes (IRIS+/IMP) with enterprise-value materiality tags.
+    primaryStandards: [sasb-issb]
+    signals:
+      - key: industry_classification
+        label: Industry Classification
+        classes: [sasb:Industry]
+      - key: disclosure_topics
+        label: Disclosure Topics
+        classes: [sasb:DisclosureTopic]
+      - key: accounting_metrics
+        label: Accounting Metrics
+        classes: [sasb:AccountingMetric, sasb:ActivityMetric]
+      - key: ifrs_s1
+        label: IFRS S1 General Disclosures
+        classes: [issb:IFRS_S1]
+      - key: ifrs_s2
+        label: IFRS S2 Climate Disclosures
+        classes: [issb:IFRS_S2]
+      - key: esg_governance
+        label: ESG Governance
+        classes: [issb:Governance]
+      - key: esg_strategy
+        label: ESG Strategy
+        classes: [issb:Strategy]
+      - key: esg_risk_mgmt
+        label: ESG Risk Management
+        classes: [issb:RiskManagement]
+      - key: esg_metrics_targets
+        label: ESG Metrics & Targets
+        classes: [issb:MetricsAndTargets]

@@ -1,39 +1,47 @@
 [
   {
-    "id": "v1.2",
-    "label": "Ontology v1.2 (full core)",
+    "id": "v1.31",
+    "label": "Ontology v1.31 (full core)",
     "path": "taxonomy-data.json"
   },
   {
     "id": "orijin",
     "label": "Orijin",
     "path": "companies/orijin/taxonomy-data.json",
-    "populated": 69,
-    "gaps": 26,
-    "nodes": 85
+    "populated": 133,
+    "gaps": 20,
+    "nodes": 182
   },
   {
     "id": "climb-credit",
     "label": "Climb Credit",
     "path": "companies/climb-credit/taxonomy-data.json",
-    "populated": 104,
-    "gaps": 58,
-    "nodes": 119
+    "populated": 187,
+    "gaps": 83,
+    "nodes": 227
   },
   {
     "id": "mantra-health",
     "label": "Mantra Health",
     "path": "companies/mantra-health/taxonomy-data.json",
-    "populated": 68,
-    "gaps": 25,
-    "nodes": 83
+    "populated": 161,
+    "gaps": 50,
+    "nodes": 202
   },
   {
     "id": "brains-and-motion",
     "label": "Brains and Motion",
     "path": "companies/brains-and-motion/taxonomy-data.json",
-    "populated": 109,
-    "gaps": 61,
-    "nodes": 124
+    "populated": 187,
+    "gaps": 62,
+    "nodes": 228
+  },
+  {
+    "id": "knack",
+    "label": "Knack",
+    "path": "companies/knack/taxonomy-data.json",
+    "populated": 191,
+    "gaps": 86,
+    "nodes": 233
   }
 ]

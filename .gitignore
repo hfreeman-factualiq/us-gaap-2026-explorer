@@ -17,6 +17,11 @@ app.py
 vendor/fibo/
 data/gaap-only.json
 data/ontology-full.json
+# Build caches, logs and progress artifacts
+.cache/
+logs/
+company_trees/build_progress.json
 # Confidential portco packs — never publish
 Financial Statements/
+company_document_pack/
 

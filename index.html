@@ -240,6 +240,9 @@
     .badge.root { background: var(--accent-soft); color: var(--accent); }
     .badge.discovery { background: #e8f0e4; color: #3d5c2e; }
     .badge.gap { background: #f7e8e0; color: #8a3a1a; }
+    .badge.standard { background: #e4eef7; color: #1f4b6e; }
+    .badge.signal { background: #f0e9f7; color: #5a3a7a; }
+    .badge.scrape { background: #eef1e6; color: #4a5c22; }
 
     .hits { display: flex; flex-direction: column; gap: 4px; margin-bottom: 10px; }
     .hit, .row {
@@ -465,6 +468,9 @@
       root: { id: "root", label: "Root" },
       discovery: { id: "discovery", label: "Discovery" },
       gap: { id: "gap", label: "Gap" },
+      standard: { id: "standard", label: "Standard" },
+      signal: { id: "signal", label: "Signal" },
+      scrape: { id: "scrape", label: "Scrape source" },
     };
 
     const CHILD_LIMIT = 60;
@@ -485,6 +491,14 @@
       "DiscoverySource",
       "MapsTo",
       "Gap",
+      "Signal",
+      "Standard",
+      "KeyClass",
+      "ScrapeTarget",
+      "FormalizedBy",
+      "PrimaryStandard",
+      "Collapsed",
+      "ExtensionPoint",
     ]);
     const state = {
       data: null,
@@ -494,7 +508,7 @@
       query: "",
       netFilter: null, // optional presentation network filter
       catalog: [],
-      sourceId: "v1.2",
+      sourceId: "v1.31",
     };
 
     const $ = (id) => document.getElementById(id);
@@ -548,6 +562,24 @@
       return out;
     }
 
+    // Curated tree children (`tc`) are authored, not harvested — dedupe only, never
+    // drop them for having a non-preferred network the way raw `pc` arcs are filtered.
+    function uniqueTree(list, netFilter) {
+      const seen = new Set();
+      const out = [];
+      for (const item of list || []) {
+        if (netFilter && item.net && item.net !== netFilter) continue;
+        if (seen.has(item.c)) continue;
+        seen.add(item.c);
+        out.push(item);
+      }
+      return out;
+    }
+
+    function browseKids(c, netFilter) {
+      return c.tc?.length ? uniqueTree(c.tc, netFilter) : uniquePre(c.pc, netFilter);
+    }
+
     function childrenOf(name) {
       const c = concept(name);
       if (!c) return [];
@@ -555,7 +587,7 @@
       if (state.mode === "usedby") return uniqueCalc(c.cp).map((x) => x.c);
       if (state.mode === "subtypes") {
         if (c.sc?.length) return c.sc;
-        return uniquePre(c.tc || c.pc).map((x) => x.c);
+        return browseKids(c).map((x) => x.c);
       }
       if (state.mode === "nongaap") {
         if (
@@ -567,25 +599,27 @@
           c.n?.startsWith("metrics:") ||
           c.n?.startsWith("ea:metric:")
         ) {
-          return uniquePre(c.tc || c.pc).map((x) => x.c);
+          return browseKids(c).map((x) => x.c);
         }
         return (c.fo || []).slice();
       }
       if (state.mode === "discovery") {
         if (
           c.layer === "discovery" ||
+          c.layer === "standard" ||
           c.n === "root:Discovery" ||
           c.n === "root:Reference" ||
+          c.n === "root:Standards" ||
+          c.n === "root:Signals" ||
           c.n?.startsWith("discovery:") ||
           c.n?.startsWith("reference:")
         ) {
-          return uniquePre(c.tc || c.pc).map((x) => x.c);
+          return browseKids(c).map((x) => x.c);
         }
         return (c.discoveredBy || []).slice();
       }
       // presentation (default): prefer curated tree children
-      if (c.tc?.length) return uniquePre(c.tc, state.netFilter).map((x) => x.c);
-      return uniquePre(c.pc, state.netFilter).map((x) => x.c);
+      return browseKids(c, state.netFilter).map((x) => x.c);
     }
 
     function renderStats() {
@@ -603,6 +637,8 @@
             ["Concepts", s.totalConcepts],
             ["Roots", s.forestRoots],
             ["Metrics", s.nongaapMetrics],
+            ["Signals", s.signals],
+            ["Standards", s.standards],
             ["Discovery", s.discoveryNodes],
             ["Gaps", s.discoveryGaps],
             ["C&DIs", s.secRules],
@@ -742,6 +778,30 @@
       return html;
     }
 
+    function renderStandardSource(c) {
+      const rows = [];
+      if (c.steward) rows.push(["Steward", esc(c.steward)]);
+      if (c.formats?.length) rows.push(["Format", esc(c.formats.join(" / "))]);
+      if (c.integration) rows.push(["Integration", esc(c.integration)]);
+      if (c.scrapeKind) rows.push(["Scrape kind", esc(c.scrapeKind)]);
+      if (c.domainLabels?.length) rows.push(["Signal domains", esc(c.domainLabels.join(", "))]);
+      if (c.verified === false) rows.push(["Verified", "artifact URL still to confirm"]);
+      if (c.probe) {
+        const p = c.probe;
+        const state = p.reachable === true ? "reachable"
+          : p.reachable === false ? `unreachable (${esc(String(p.error || p.status || "?"))})`
+          : `not probed (${esc(String(p.status || "—"))})`;
+        rows.push(["Last probe", state]);
+      }
+      if (!rows.length && !c.url) return "";
+      const url = c.url
+        ? `<div class="doc"><a href="${escAttr(c.url)}" target="_blank" rel="noopener">${esc(c.url)}</a></div>`
+        : "";
+      return `<div class="meta">${rows.map(([k, v]) =>
+        `<div class="meta-box type"><div class="lbl">${k}</div><div class="val">${v}</div></div>`
+      ).join("")}</div>${url}`;
+    }
+
     function renderDetail(name) {
       const c = concept(name);
       const el = $("detail");
@@ -799,7 +859,7 @@
         groupHtml += `</div>`;
       }
 
-      const preKids = uniquePre(c.tc || c.pc);
+      const preKids = browseKids(c);
       const preHtml = preKids.length
         ? `<div class="hits">${preKids.slice(0, 40).map((x) => linkRow(x.c, `<span class="side">${esc(x.net || "")}</span>`)).join("")}</div>`
         : "";
@@ -820,7 +880,27 @@
         ? `<div class="hits">${(c.alignsTo || []).map((n) => linkRow(n, `<span class="side">aligns</span>`)).join("")}${(c.fiboAligned || []).map((n) => linkRow(n, `<span class="side">FIBO</span>`)).join("")}</div>`
         : "";
 
-      const kicker = c.layer === "nongaap" ? "Non-GAAP derived metric"
+      const stdSourceHtml = c.layer === "standard" ? renderStandardSource(c) : "";
+
+      const formalizedHtml = (c.standardClasses || []).length
+        ? `<div class="hits">${c.standardClasses.map((n) => linkRow(n, `<span class="side">formalized by</span>`)).join("")}</div>`
+        : "";
+
+      const standardizedHtml = (c.standardizedBy || []).length
+        ? `<div class="hits">${c.standardizedBy.map((n) => linkRow(n, `<span class="side">standard</span>`)).join("")}</div>`
+        : "";
+
+      const STD_KICKER = {
+        signalDomain: "Signal domain",
+        signal: "Underwriting signal",
+        standard: "Formalized standard / scrape source",
+        standardClass: "Standard class or tag",
+        scrapeTarget: "Scrape target",
+        scrapeFolder: "Scrape targets",
+      };
+
+      const kicker = c.stdKind ? STD_KICKER[c.stdKind] || "Standards registry"
+        : c.layer === "nongaap" ? "Non-GAAP derived metric"
         : c.layer === "rule" ? "SEC Non-GAAP C&DI"
         : c.layer === "fibo" ? "FIBO-aligned concept"
         : c.layer === "discovery" ? (c.gap ? "Discovery coverage gap" : "Discovery source concept")
@@ -849,7 +929,10 @@
             <div class="meta-box balance"><div class="lbl">Balance</div><div class="val">${esc(c.b || "—")}</div></div>
           </div>
           ${c.d ? `<div class="doc">${esc(c.d)}</div>` : ""}
+          ${stdSourceHtml}
           ${c.reconciliationHint ? `<div class="summary"><strong>Reconciliation:</strong> ${esc(c.reconciliationHint)}</div>` : ""}
+          ${section("Formalized by", "External standard classes that define this signal.", formalizedHtml)}
+          ${section("Formalized in standards", "Registered standards whose classes map to this concept.", standardizedHtml)}
           ${section("Formula", "How this concept is calculated. Click a term to open it.", formulaHtml)}
           ${section("SEC C&DI", "Staff guidance linked to this measure.", renderRules(c))}
           ${section("Presentation children", "Statement line-item hierarchy (curated tree).", preHtml)}
@@ -911,12 +994,12 @@
     function renderTree() {
       const roots = state.data.ontologyRoots || [];
       const modeHint = {
-        presentation: "v1.2 extensible core (collapse + extension hooks)",
+        presentation: "v1.31 extensible core + signal domains & scrape sources",
         subtypes: "FASB class–subclass types",
         formula: "calculation equations",
         usedby: "concepts that use this one",
         nongaap: "metrics & ratios with formulas",
-        discovery: "library maps, FIBO, coverage gaps",
+        discovery: "library maps, FIBO, standards registry, coverage gaps",
       }[state.mode];
       $("tree-hint").textContent = `${roots.length} roots — ${modeHint}`;
       $("tree").innerHTML = roots.map((r) => nodeBlock(r, 0)).join("") ||
@@ -1030,8 +1113,9 @@
     }
 
     function csvEscape(val) {
-      const s = val == null ? "" : String(val);
-      if (/[",\n\r]/.test(s)) return `"${s.replace(/"/g, '""')}"`;
+      // Collapse embedded newlines so one concept is always one physical CSV line.
+      const s = (val == null ? "" : String(val)).replace(/\s*[\r\n]+\s*/g, " ");
+      if (/[",]/.test(s)) return `"${s.replace(/"/g, '""')}"`;
       return s;
     }
 
@@ -1218,10 +1302,10 @@
           if (catRes.ok) catalog = await catRes.json();
         } catch (_) { /* optional */ }
         if (!catalog.length) {
-          catalog = [{ id: "v1.2", label: "Ontology v1.2 (full core)", path: "taxonomy-data.json" }];
+          catalog = [{ id: "v1.31", label: "Ontology v1.31 (full core)", path: "taxonomy-data.json" }];
         }
         state.catalog = catalog;
-        const initial = catalog.find((x) => x.id === "v1.2") || catalog[0];
+        const initial = catalog.find((x) => x.id === "v1.31") || catalog.find((x) => x.id === "v1.3") || catalog[0];
         state.sourceId = initial.id;
         fillCatalogSelect();
         bind();

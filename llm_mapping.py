@@ -9,25 +9,55 @@ that company's tree.
 from __future__ import annotations
 
 import json
+import logging
 import os
+import random
 import re
+import threading
 import time
+from concurrent.futures import ThreadPoolExecutor, as_completed
 from pathlib import Path
 
 from anthropic import Anthropic
+from json_repair import repair_json
 
 ROOT = Path(__file__).resolve().parent
 KEY_FILE = ROOT / "claudekey.txt"
 DEFAULT_MODEL = os.environ.get("ANTHROPIC_MODEL", "claude-sonnet-4-5")
 
-MAP_SYSTEM = """You map private-company financial-statement line items to US GAAP / Non-GAAP ontology concept IDs.
+log = logging.getLogger("llm")
+
+# Batches are independent, so they run concurrently. The gate bounds total
+# in-flight requests across all companies so we do not trip rate limits.
+API_CONCURRENCY = int(os.environ.get("LLM_API_CONCURRENCY", "12"))
+BATCH_WORKERS = int(os.environ.get("LLM_BATCH_WORKERS", "6"))
+_API_GATE = threading.BoundedSemaphore(API_CONCURRENCY)
+_CLIENT_LOCK = threading.Lock()
+_CLIENT: Anthropic | None = None
+
+
+def get_client() -> Anthropic:
+    global _CLIENT
+    with _CLIENT_LOCK:
+        if _CLIENT is None:
+            _CLIENT = Anthropic(api_key=load_api_key(), max_retries=4)
+        return _CLIENT
+
+MAP_SYSTEM = """You map private-company source evidence to ontology concept IDs.
 
 Rules:
 - Only use concept IDs from the provided CANDIDATES list.
-- Map a label only when it clearly corresponds to that concept (totals, primary statement lines, or obvious equivalents).
+- Sources include financial statements, board books, and investor memos.
+- Candidate layers include US GAAP, Non-GAAP metrics, strategic/operational signals,
+  and formal standard classes (BMM, DMN, VDML, SCOR, BIAN, DORA, FAIR, COBIT,
+  ITIL, SASB/ISSB, and others).
+- Map a label only when it clearly evidences that concept.
 - Prefer totals over detail when both exist (e.g. "Total Revenue" → Revenues).
 - Product/channel revenue lines (Subscription Revenue, Interest Income, etc.) should usually stay UNMAPPED here — gap analysis will add them as new children. Only map them to Revenues if they are clearly the company's sole revenue total.
-- Do NOT map: company names, dates, bare section headers, bank/GL account codes, variance/budget notes, or noise.
+- A narrative sentence may map to a strategic or operational signal when it contains
+  concrete evidence (a stated goal, decision rule, risk, KPI, incident, control, etc.).
+- Do NOT map: company names, dates, decorative headings, bank/GL account codes,
+  boilerplate, or generic mentions with no substantive evidence.
 - Do NOT map a bank account or GL code to Cash — only map labels like "Cash", "Total Cash", "Cash & Equivalents".
 - If unsure, return concept null.
 - confidence is 0–1. Only emit a non-null concept when confidence >= 0.75.
@@ -36,10 +66,11 @@ Return ONLY a JSON array (no markdown):
 {"label":"<exact input label>","concept":"<id or null>","confidence":0.0,"reason":"<short>"}
 """
 
-GAP_SYSTEM = """You perform ontology gap analysis for a company's financial statements.
+GAP_SYSTEM = """You perform ontology gap analysis for a company's source documents.
 
 You receive:
-- Labels that did NOT map to an existing ontology concept
+- Labels/evidence from financial statements, board books, and investor memos that did
+  NOT map to an existing ontology concept
 - Concepts already mapped/populated for this company
 - Allowed attach parents (existing tree nodes / extension hooks)
 
@@ -47,10 +78,13 @@ Task: propose NEW company-specific concepts for important economic line items th
 
 Include:
 - Material revenue streams, cost pools, opex categories, BS line items, CF lines, KPIs
+- Material company-specific strategic objectives, operating capabilities, risks,
+  controls, service/engineering health metrics, ESG topics, and outcome measures
 - Lines that are children/components of an existing total (e.g. Subscription Revenue under Revenues)
 
 Exclude:
 - Noise, dates, company names, individual bank accounts / GL codes
+- Generic prose, aspirations without a measurable concept, duplicate evidence
 - Lines already covered by a mapped total (don't duplicate "Total Revenue" if Revenues is mapped)
 - Tiny misc fluff
 
@@ -112,27 +146,88 @@ def _parse_json_array(text: str) -> list:
     end = text.rfind("]")
     if start < 0 or end < 0:
         raise ValueError(f"No JSON array in model response: {text[:240]}")
-    return json.loads(text[start : end + 1])
+    payload = text[start : end + 1]
+    try:
+        return json.loads(payload)
+    except json.JSONDecodeError:
+        repaired = repair_json(payload)
+        result = json.loads(repaired)
+        if not isinstance(result, list):
+            raise ValueError("Repaired model response is not a JSON array")
+        return result
 
 
-def _claude_json_array(client: Anthropic, *, model: str, system: str, user: str) -> list:
-    for attempt in range(3):
+def _cached_system(*blocks: str) -> list[dict]:
+    """System prompt as blocks, with the large trailing block prompt-cached.
+
+    Every batch for a company repeats the same candidate/parent catalog, so
+    caching that prefix makes batches after the first far faster and cheaper.
+    """
+    out = [{"type": "text", "text": b} for b in blocks if b]
+    if out:
+        out[-1]["cache_control"] = {"type": "ephemeral"}
+    return out
+
+
+def _claude_json_array(
+    client: Anthropic,
+    *,
+    model: str,
+    system,
+    user: str,
+    tag: str = "",
+    attempts: int = 4,
+) -> list:
+    for attempt in range(attempts):
         try:
-            msg = client.messages.create(
-                model=model,
-                max_tokens=8192,
-                temperature=0,
-                system=system,
-                messages=[{"role": "user", "content": user}],
+            with _API_GATE:
+                started = time.time()
+                msg = client.messages.create(
+                    model=model,
+                    max_tokens=8192,
+                    temperature=0,
+                    system=system,
+                    messages=[{"role": "user", "content": user}],
+                )
+            usage = getattr(msg, "usage", None)
+            log.debug(
+                "%s api ok in %.1fs (in=%s out=%s cache_read=%s)",
+                tag,
+                time.time() - started,
+                getattr(usage, "input_tokens", "?"),
+                getattr(usage, "output_tokens", "?"),
+                getattr(usage, "cache_read_input_tokens", 0),
             )
             text = "".join(b.text for b in msg.content if getattr(b, "type", None) == "text")
             return _parse_json_array(text)
-        except Exception as e:
-            if attempt == 2:
-                raise
-            print(f"  LLM retry after error: {e}")
-            time.sleep(2 * (attempt + 1))
+        except Exception as e:  # noqa: BLE001 - retry transport, rate limit and parse errors alike
+            if attempt == attempts - 1:
+                log.error("%s giving up after %d attempts: %s", tag, attempts, e)
+                return []
+            delay = min(30, 2 ** attempt) + random.uniform(0, 1.5)
+            log.warning("%s retry %d/%d in %.1fs: %s", tag, attempt + 1, attempts - 1, delay, e)
+            time.sleep(delay)
     return []
+
+
+def _run_batches(batches: list, fn, *, workers: int) -> list:
+    """Run fn(index, batch) over all batches, in order-preserving results.
+
+    The first batch runs alone to write the prompt cache; the rest then run
+    concurrently against a warm cache.
+    """
+    results: list = [None] * len(batches)
+    if not batches:
+        return results
+    results[0] = fn(0, batches[0])
+    rest = list(range(1, len(batches)))
+    if not rest:
+        return results
+    with ThreadPoolExecutor(max_workers=max(1, min(workers, len(rest)))) as pool:
+        futures = {pool.submit(fn, i, batches[i]): i for i in rest}
+        for fut in as_completed(futures):
+            results[futures[fut]] = fut.result()
+    return results
 
 
 def map_labels_with_llm(
@@ -145,6 +240,8 @@ def map_labels_with_llm(
     batch_size: int = 35,
     min_confidence: float = 0.75,
     refresh: bool = False,
+    workers: int = BATCH_WORKERS,
+    progress=None,
 ) -> tuple[dict[str, str], list[dict]]:
     """Return (concept→example_label, detail rows)."""
 
@@ -155,10 +252,10 @@ def map_labels_with_llm(
             and cached.get("company") == company_name
             and cached.get("stage") == "map"
         ):
-            print(f"  LLM map cache hit: {cache_path.name}")
+            log.info("[%s] map cache hit (%s)", company_name, cache_path.name)
             return cached["mapped"], cached["details"]
 
-    client = Anthropic(api_key=load_api_key())
+    client = get_client()
     cand_block = json.dumps(candidates, ensure_ascii=False)
 
     work_items: list[dict] = []
@@ -177,16 +274,47 @@ def map_labels_with_llm(
     details: list[dict] = []
     mapped: dict[str, str] = {}
 
-    print(f"  LLM mapping {len(unique_items)} labels ({model})")
-    for bi, batch in enumerate(_chunk(unique_items, batch_size), 1):
-        user = (
-            f"Company: {company_name}\n\n"
-            f"CANDIDATES ({len(candidates)}):\n{cand_block}\n\n"
-            f"LABELS TO MAP (batch {bi}; statement=is|bs|cf|other):\n"
-            f"{json.dumps(batch, ensure_ascii=False, indent=2)}\n"
+    batches = list(_chunk(unique_items, batch_size))
+    system = _cached_system(MAP_SYSTEM, f"CANDIDATES ({len(candidates)}):\n{cand_block}")
+    log.info(
+        "[%s] map: %d labels in %d batches (%s, %d workers)",
+        company_name,
+        len(unique_items),
+        len(batches),
+        model,
+        workers,
+    )
+    finished = [0]
+    gate = threading.Lock()
+
+    def run_batch(idx: int, batch: list[dict]) -> list:
+        rows = _claude_json_array(
+            client,
+            model=model,
+            system=system,
+            user=(
+                f"Company: {company_name}\n\n"
+                f"LABELS TO MAP (batch {idx + 1}; source=is|bs|cf|other|document):\n"
+                f"{json.dumps(batch, ensure_ascii=False, indent=2)}\n"
+            ),
+            tag=f"[{company_name}] map batch {idx + 1}/{len(batches)}",
         )
-        rows = _claude_json_array(client, model=model, system=MAP_SYSTEM, user=user)
-        by_label = {r.get("label"): r for r in rows if isinstance(r, dict)}
+        with gate:
+            finished[0] += 1
+            log.info(
+                "[%s] map batch %d/%d done (%d complete)",
+                company_name,
+                idx + 1,
+                len(batches),
+                finished[0],
+            )
+            if progress:
+                progress("map", finished[0], len(batches))
+        return rows
+
+    candidate_ids = {c["id"] for c in candidates}
+    for batch, rows in zip(batches, _run_batches(batches, run_batch, workers=workers)):
+        by_label = {r.get("label"): r for r in (rows or []) if isinstance(r, dict)}
         for item in batch:
             lab = item["label"]
             row = by_label.get(lab) or {}
@@ -194,11 +322,7 @@ def map_labels_with_llm(
             conf = float(row.get("confidence") or 0)
             if concept in ("", "null", "None"):
                 concept = None
-            if (
-                concept
-                and conf >= min_confidence
-                and any(c["id"] == concept for c in candidates)
-            ):
+            if concept and conf >= min_confidence and concept in candidate_ids:
                 mapped.setdefault(concept, lab)
                 details.append(
                     {
@@ -221,7 +345,13 @@ def map_labels_with_llm(
                         "statement": item["statement"],
                     }
                 )
-        print(f"  map batch {bi}: {len(mapped)} concepts so far")
+
+    log.info(
+        "[%s] map done: %d concepts from %d labels",
+        company_name,
+        len(mapped),
+        len(unique_items),
+    )
 
     if cache_path:
         cache_path.parent.mkdir(parents=True, exist_ok=True)
@@ -255,6 +385,8 @@ def propose_gaps_with_llm(
     batch_size: int = 50,
     min_confidence: float = 0.7,
     refresh: bool = False,
+    workers: int = BATCH_WORKERS,
+    progress=None,
 ) -> list[dict]:
     """Propose new company concepts for important unmapped labels."""
 
@@ -265,7 +397,7 @@ def propose_gaps_with_llm(
             and cached.get("company") == company_name
             and cached.get("stage") == "gaps"
         ):
-            print(f"  LLM gap cache hit: {cache_path.name}")
+            log.info("[%s] gap cache hit (%s)", company_name, cache_path.name)
             return cached["gaps"]
 
     # Pre-filter obvious noise before spending tokens
@@ -289,22 +421,56 @@ def propose_gaps_with_llm(
     if not filtered:
         return []
 
-    client = Anthropic(api_key=load_api_key())
+    client = get_client()
     parents_block = json.dumps(attach_parents, ensure_ascii=False)
     mapped_block = json.dumps(mapped_concepts, ensure_ascii=False)
 
     gaps: list[dict] = []
-    print(f"  LLM gap analysis on {len(filtered)} unmapped labels ({model})")
-    for bi, batch in enumerate(_chunk(filtered, batch_size), 1):
-        user = (
-            f"Company: {company_name} (slug={company_slug})\n\n"
-            f"ALREADY MAPPED CONCEPTS:\n{mapped_block}\n\n"
-            f"ATTACH_PARENTS (parent must be one of these ids):\n{parents_block}\n\n"
-            f"UNMAPPED LABELS (batch {bi}):\n{json.dumps(batch, ensure_ascii=False, indent=2)}\n"
+    parent_ids = {p["id"] for p in attach_parents}
+    batches = list(_chunk(filtered, batch_size))
+    system = _cached_system(
+        GAP_SYSTEM,
+        f"ALREADY MAPPED CONCEPTS:\n{mapped_block}\n\n"
+        f"ATTACH_PARENTS (parent must be one of these ids):\n{parents_block}",
+    )
+    log.info(
+        "[%s] gaps: %d unmapped labels in %d batches (%s, %d workers)",
+        company_name,
+        len(filtered),
+        len(batches),
+        model,
+        workers,
+    )
+    finished = [0]
+    gate = threading.Lock()
+
+    def run_batch(idx: int, batch: list[dict]) -> list:
+        rows = _claude_json_array(
+            client,
+            model=model,
+            system=system,
+            user=(
+                f"Company: {company_name} (slug={company_slug})\n\n"
+                f"UNMAPPED LABELS (batch {idx + 1}):\n"
+                f"{json.dumps(batch, ensure_ascii=False, indent=2)}\n"
+            ),
+            tag=f"[{company_name}] gap batch {idx + 1}/{len(batches)}",
         )
-        rows = _claude_json_array(client, model=model, system=GAP_SYSTEM, user=user)
-        parent_ids = {p["id"] for p in attach_parents}
-        for row in rows:
+        with gate:
+            finished[0] += 1
+            log.info(
+                "[%s] gap batch %d/%d done (%d complete)",
+                company_name,
+                idx + 1,
+                len(batches),
+                finished[0],
+            )
+            if progress:
+                progress("gaps", finished[0], len(batches))
+        return rows
+
+    for rows in _run_batches(batches, run_batch, workers=workers):
+        for row in rows or []:
             if not isinstance(row, dict):
                 continue
             conf = float(row.get("confidence") or 0)
@@ -333,13 +499,13 @@ def propose_gaps_with_llm(
                     "reason": row.get("reason") or "",
                 }
             )
-        print(f"  gap batch {bi}: {len(gaps)} proposals so far")
 
     # De-dupe by id_slug
     dedup = {}
     for g in gaps:
         dedup[g["id_slug"]] = g
     gaps = list(dedup.values())
+    log.info("[%s] gaps done: %d proposals", company_name, len(gaps))
 
     if cache_path:
         cache_path.parent.mkdir(parents=True, exist_ok=True)

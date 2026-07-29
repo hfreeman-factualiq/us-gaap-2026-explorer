@@ -9,6 +9,8 @@ Unified machine-readable ontology and interactive explorer for the FASB **US GAA
 - **SEC Non-GAAP C&DI** rule nodes
 - Curated **FIBO** alignments
 - **Discovery catalogs** from `edgartools`, `edgar_analytics`, and Finnhub (ontology expansion / gap-finding only)
+- **Signal domains** (v1.31) — 20 underwriting/monitoring domains, 134 signals, each bound to the standard that formalizes it
+- **Standards & scrape sources** (v1.31) — 25 formalized ontologies/taxonomies/schemas (financial + BMM/DMN/VDML/SCOR/BIAN/DORA/Open FAIR/COBIT/ITIL/SASB-ISSB) with per-source scrape targets, probe status, and 404 scraped class nodes from XSD/XMI/JSON artifacts
 
 This project does **not** run a live EDGAR calculation engine. The discovery libraries are harvested for their concept maps, synonym→GAAP bridges, and metric catalogs so you can explore unused/missing relationships.
 
@@ -16,7 +18,7 @@ This project does **not** run a live EDGAR calculation engine. The discovery lib
 
 https://hfreeman-factualiq.github.io/us-gaap-2026-explorer/
 
-Use the **Tree** dropdown to switch between the full v1.2 ontology and each company’s pruned tree (Orijin, Climb Credit, Mantra Health, Brains and Motion). Company trees include LLM-mapped GAAP concepts plus gap-added company-specific line items.
+Use the **Tree** dropdown to switch between the full v1.31 ontology and each company’s pruned tree (Orijin, Climb Credit, Mantra Health, Brains and Motion). Company trees include LLM-mapped GAAP concepts plus gap-added company-specific line items.
 
 ## Run the explorer locally
 
@@ -54,8 +56,10 @@ python build_company_trees.py --refresh-llm
 2. **Income Statement** — top-down calc rollup (Revenue → … → Net Income / EPS)
 3. **Cash Flow Statement** — Operating / Investing / Financing
 4. **Metrics & Ratios** — deduplicated Non-GAAP + analytics (FCF, margins, ROE, scores, …)
-5. **Regulatory Guidance** — SEC Non-GAAP C&DIs
-6. **Reference Sources** — FIBO, edgartools/edgar_analytics/Finnhub catalogs, gaps, class ontology
+5. **Signal Domains** — 20 domains (financial underwriting + strategy/ops/governance) → signals → formalizing standard classes
+6. **Standards & Scrape Sources** — 25 standards bucketed by integration status, each with key classes (curated + scraped) and scrape targets
+7. **Regulatory Guidance** — SEC Non-GAAP C&DIs
+8. **Reference Sources** — FIBO, edgartools/edgar_analytics/Finnhub catalogs, gaps, class ontology
 
 Raw XBRL presentation/calculation arcs remain on each node for detail panes; the browse tree uses curated `tc` children.
 
@@ -77,10 +81,30 @@ Raw XBRL presentation/calculation arcs remain on each node for detail panes; the
 | `ontology/nongaap_metrics.yaml` | Non-GAAP formula catalog (source of truth) |
 | `ontology/sec_nongaap_cdis.json` | SEC C&DI rules |
 | `ontology/fibo_metrics_curated.json` | Curated FIBO ↔ GAAP/Non-GAAP map |
+| `ontology/external_standards.yaml` | Signal domains + formalized standards to scrape (source of truth) |
+| `ontology/external_standards_catalog.json` | Flattened standards/signal nodes merged into the tree |
+| `ontology/standards/probe_status.json` | Reachability of every scrape target + unresolved references |
 | `build_viewer_data.py` | GAAP parse |
 | `build_ontology.py` | Merge layers into unified JSON |
+| `prune_core_v13.py` | v1.3 forest (v1.2 core + signal domains + standards registry) |
 | `scripts/fetch_external_resources.py` | SEC C&DIs / FIBO refresh |
 | `scripts/harvest_discovery_sources.py` | Library catalog harvest + gap analysis |
+| `scripts/harvest_external_standards.py` | Standards registry harvest + scrape-target probe + XSD/XMI concept scrape |
+| `scripts/save_ontology_v13.py` | Snapshot `financial_ontology_2026_v1.3/` |
+| `scripts/save_ontology_v131.py` | Snapshot `financial_ontology_2026_v1.31/` |
+
+## Adding a scrape source
+
+Edit `ontology/external_standards.yaml` (standards, their scrape targets and key classes,
+plus the signals each one formalizes), then:
+
+```bash
+python scripts/harvest_external_standards.py    # add --offline to skip probes
+python build_ontology.py --skip-gaap
+python scripts/save_ontology_v131.py
+```
+
+No tree code changes are needed — `prune_core_v13.py` builds both new roots from the registry.
 
 ## Live site
 
